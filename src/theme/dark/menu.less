@@ -1,0 +1,75 @@
+[data-theme='dark'] {
+	.ant-menu,
+	.ant-menu-submenu > .ant-menu {
+		background: @dark-main-bg-color;
+	}
+
+	.ant-menu-item:hover,
+	.ant-menu-submenu-title:hover,
+	.ant-menu-item-only-child:hover,
+	.ant-menu-submenu-selected,
+	.ant-menu-item-selected {
+		color: @dark-selected-font-color;
+	}
+
+	.ant-menu-submenu-selected {
+		& > .ant-menu-submenu-title {
+			.ant-menu-submenu-arrow::before,
+			.ant-menu-submenu-arrow::after {
+				background: linear-gradient(to right, @dark-selected-font-color, @dark-selected-font-color);
+			}
+		}
+	}
+	.ant-menu-horizontal .ant-menu-item-selected,
+	.ant-menu-horizontal > .ant-menu-item:hover {
+		border-bottom-color: @dark-selected-font-color;
+	}
+	.ant-menu-horizontal .ant-menu-item-selected,
+	.ant-menu-horizontal > .ant-menu-item:hover,
+	.ant-menu-sub.ant-menu-inline > .ant-menu-item:hover,
+	.ant-menu-vertical .ant-menu-submenu-selected {
+		color: @dark-selected-font-color;
+	}
+	.ant-menu-item-only-child:hover,
+	.ant-menu-submenu-inline .ant-menu-submenu-title:hover,
+	.ant-menu-horizontal > .ant-menu-submenu-horizontal:hover {
+		background-color: @dark-base-bg-color;
+	}
+
+	.ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+	.ant-menu-submenu-active,
+	.ant-menu-horizontal > .ant-menu-submenu:hover,
+	.ant-menu-horizontal > .ant-menu-submenu-selected {
+		color: @dark-selected-font-color;
+		border-bottom-color: @dark-selected-font-color;
+	}
+
+	.ant-menu-inline .ant-menu-item::after {
+		border-right-color: @dark-selected-font-color;
+	}
+
+	.ant-menu-submenu-vertical-left,
+	.ant-menu-submenu-vertical,
+	.ant-menu-submenu-inline,
+	.ant-menu-submenu-selected.ant-menu-submenu-inline {
+		.ant-menu-submenu-title:hover {
+			.ant-menu-submenu-arrow::before,
+			.ant-menu-submenu-arrow::after {
+				background: linear-gradient(to right, @dark-selected-font-color, @dark-selected-font-color);
+			}
+		}
+	}
+	.ant-menu-submenu-vertical-left:hover,
+	.ant-menu-submenu-vertical:hover {
+		background-color: @dark-base-bg-color;
+	}
+
+	.ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open {
+		& > .ant-menu-submenu-title {
+			.ant-menu-submenu-arrow::before,
+			.ant-menu-submenu-arrow::after {
+				background: linear-gradient(to right, @dark-selected-font-color, @dark-selected-font-color);
+			}
+		}
+	}
+}

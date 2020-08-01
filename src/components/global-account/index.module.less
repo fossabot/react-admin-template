@@ -1,0 +1,44 @@
+.header-account {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	min-width: 88px;
+	height: 100%;
+	padding: 0 10px;
+	margin-right: -10px;
+	cursor: pointer;
+	user-select: none;
+	transition: all 0.3s;
+
+	.avatar {
+		font-size: 18px;
+	}
+	.name {
+		margin-left: 4px;
+		font-size: 16px;
+		vertical-align: middle;
+	}
+}
+
+.dropdown-container {
+	.icon {
+		font-size: 18px;
+	}
+	:global {
+		.ant-dropdown-menu-item {
+			padding: 0 20px;
+			line-height: 36px;
+		}
+	}
+}
+
+[data-theme='light'] {
+	.header-account:hover {
+		background-color: @light-hover-bg-color;
+	}
+}
+[data-theme='dark'] {
+	.header-account:hover {
+		background-color: #1f1f1f;
+	}
+}

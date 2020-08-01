@@ -1,0 +1,19 @@
+.breadcrumb {
+	color: @light-main-front-color;
+	user-select: none;
+
+	:global {
+		.ant-breadcrumb {
+			font-size: 12px;
+			line-height: 20px;
+			div > span:last-child a {
+				color: @light-main-front-color;
+				cursor: default;
+			}
+		}
+	}
+
+	.home {
+		margin-left: 8px;
+	}
+}

@@ -1,0 +1,38 @@
+.command-centre {
+	padding-left: 0;
+	box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+	transition: padding-left 0.2s;
+
+	&.has-aside {
+		padding-left: @aside-width;
+
+		&.collapsed {
+			padding-left: @aside-collapsed-width;
+		}
+	}
+}
+
+.main-battlefield {
+	position: relative;
+	flex: 1;
+	padding: 10px;
+	overflow: hidden;
+	transition: padding-left 0.2s;
+
+	&.has-aside {
+		padding-right: 10px;
+		padding-left: @aside-width + 10px;
+
+		&.collapsed {
+			padding-left: @aside-collapsed-width + 10px;
+		}
+	}
+
+	.drill-ground {
+		position: relative;
+		height: calc(100% - 30px);
+		margin: 10px 0;
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+}
