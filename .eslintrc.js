@@ -52,7 +52,7 @@ module.exports = {
 		quotes: ERROR,
 		indent: [OFF, 'tab'],
 		radix: [ERROR, 'as-needed'],
-		'one-var': WARN,
+		'one-var': OFF,
 		'func-names': OFF,
 		'global-require': OFF,
 		'arrow-body-style': OFF,
