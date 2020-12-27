@@ -17,17 +17,20 @@ const resolveModule = (resolveFn, filePath) => {
 };
 
 module.exports = {
-	favicon: resolvePath('public/favicon.ico'),
-	appRootPath: resolvePath('.'),
-	appDllPath: resolvePath('dll'),
-	appDistPath: resolvePath('dist'),
 	appPublicPath: resolvePath('public'),
-	appTplHtml: resolvePath('public/index.html'),
+	favicon: resolvePath('public/favicon.ico'),
+	appHtml: resolvePath('public/index.html'),
+
+	appRootPath: resolvePath('.'),
+	appDllPath: resolvePath('node_modules/.cache/dll'),
+	appDistPath: resolvePath('dist'),
 	appSrc: resolvePath('src'),
 	appEntry: resolveModule(resolvePath, 'src/index'),
-	appPackageJson: resolvePath('package.json'),
+	appRootPkgJson: resolvePath('package.json'),
+	appJsConfig: resolvePath('jsconfig.json'),
 	appTsConfig: resolvePath('tsconfig.json'),
 	appNodeModules: resolvePath('node_modules'),
-	appGlobalVariables: resolvePath('src/styles/variables/*.less'),
-	appGlobalMixins: resolvePath('src/styles/mixins/*.less'),
+
+	globalLessVariables: resolvePath('src/styles/variables/*.less'),
+	globalLessMixins: resolvePath('src/styles/mixins/*.less'),
 };

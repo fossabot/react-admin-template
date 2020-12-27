@@ -1,16 +1,34 @@
-/.DS_Store/
-/.idea/
-/.vscode/
+.DS_Store
+node_modules
+dist
+debug.log
 
-/node_modules
-npm-debug.log
-yarn-error.log
-yarn.lock
-*.log
+/tests/e2e/videos/
+/tests/e2e/screenshots/
 
-/doc/node_modules/
-/doc/_book/
+# cache files
+.stylelintcache*
+.eslintcache
 
-/dll/
-/dist/
+# local env files
+.env.local
+.env.*.local
 
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# lock files
+yarn.lock*
+package-lock.json*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

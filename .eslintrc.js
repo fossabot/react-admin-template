@@ -25,7 +25,6 @@ module.exports = {
 		__dirname: true,
 	},
 	parser: '@typescript-eslint/parser',
-	// parser: 'babel-eslint',
 	parserOptions: {
 		ecmaVersion: 2018,
 		ecmaFeatures: {

@@ -4,25 +4,17 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 
-const { dll, paths } = require('../config');
+const { dllConfig } = require('../config');
+const paths = require('../config/paths');
 const webpackBaseConfig = require('./webpack-base-config');
 
 const webpackDevConfig = {
-	devtool: 'cheap-module-source-map',
 	mode: 'development',
+	devtool: 'cheap-module-source-map',
 	output: {
 		filename: '[name].js',
 	},
-	resolve: {
-		extensions: ['.js', '.jsx', '.ts', '.tsx'],
-		alias: {
-			// 'react-dom': '@hot-loader/react-dom',
-		},
-	},
 	plugins: [
-		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-		}),
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
@@ -30,16 +22,16 @@ const webpackDevConfig = {
 };
 
 if (
-	fs.existsSync(path.resolve(paths.appDllPath, dll.filename)) &&
-	fs.existsSync(path.resolve(paths.appDllPath, dll.manifest))
+	fs.existsSync(path.resolve(paths.appDllPath, dllConfig.filename)) &&
+	fs.existsSync(path.resolve(paths.appDllPath, dllConfig.manifest))
 ) {
 	webpackDevConfig.plugins.push(
 		new webpack.DllReferencePlugin({
 			context: __dirname,
-			manifest: require(path.resolve(paths.appDllPath, dll.manifest)),
+			manifest: require(path.resolve(paths.appDllPath, dllConfig.manifest)),
 		}),
 		new AddAssetHtmlWebpackPlugin({
-			filepath: require.resolve(path.resolve(paths.appDllPath, dll.filename)),
+			filepath: require.resolve(path.resolve(paths.appDllPath, dllConfig.filename)),
 		}),
 	);
 }

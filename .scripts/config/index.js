@@ -11,21 +11,12 @@ if (fs.existsSync(proxyPath)) {
 module.exports = {
 	hostName: '0.0.0.0',
 	port: 3000,
-	proxy: {
-		'/mock': {
-			target: 'http://localhost',
-			changeOrigin: true,
-			pathRewrite: {
-				'^/mock': '/mock',
-			},
-		},
-		...proxy,
-	},
-	staticSourcePathPrefix: '',
-	env: process.env.NODE_ENV,
-	analyze: process.env.ANALYZE,
-	paths,
-	dll: {
+	proxy: { ...proxy },
+	appPublicPath: '/',
+	buildEnv: process.env.BUILD_ENV,
+	bundleAnalyze: process.env.BUNDLE_ANALYZE,
+	useSourceMap: process.env.GENERATE_SOURCEMAP === 'true',
+	dllConfig: {
 		entryKey: 'dll',
 		filename: 'dll_scripts.js',
 		library: 'dll_library',

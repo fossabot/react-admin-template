@@ -1,21 +1,22 @@
 {
-  "name": "react-template",
+  "name": "react-admin-template",
   "version": "0.0.1",
-  "private": true,
-  "description": "项目基础模板",
+  "private": false,
+  "description": "React Admin Template",
   "author": {
-    "name": "孙景科",
-    "email": "******@**.com"
+    "name": "uninge",
+    "email": "uninge.sun@gmail.com"
   },
   "scripts": {
-    "dev": "cross-env NODE_ENV=development node ./.script/dev.js",
-    "start": "cross-env NODE_ENV=development node ./.script/start.js",
-    "build": "cross-env NODE_ENV=production npm run _build",
-    "build:dev": "cross-env NODE_ENV=development npm run _build",
-    "build:test": "cross-env NODE_ENV=test npm run _build",
-    "build:prod": "cross-env NODE_ENV=production npm run _build",
-    "dll": "webpack --colors --config .script/webpack/webpack-dll-config.js",
-    "analyze": "cross-env ANALYZE=1 npm run build:prod",
+    "start": "npm run dev",
+    "dev": "cross-env BUILD_ENV=development nodemon ./.scripts/dev.js",
+    "build": "node ./.scripts/pub.js",
+    "build:dev": "cross-env BUILD_ENV=development npm run build",
+    "build:test": "cross-env BUILD_ENV=test npm run build",
+    "build:prod": "cross-env BUILD_ENV=production npm run build",
+    "prestart": "npm run dll",
+    "dll": "node ./.scripts/dll.js",
+    "analyze": "cross-env BUNDLE_ANALYZE=true npm run build:prod",
     "lint-staged": "lint-staged",
     "lint-staged:scripts": "eslint --ext .js,.jsx,.ts,.tsx ",
     "lint:scripts": "eslint --ext .js,.jsx,.ts,.tsx ./",
@@ -23,7 +24,6 @@
     "fix:styles": "stylelint --fix \"**/*.less\" --syntax less",
     "prettier": "prettier -c --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "lint:prettier": "prettier --check \"**/*.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
-    "_build": "node ./.script/pub.js",
     "init:doc": "cd doc && npm install -g gitbook-cli && gitbook install && gitbook serve",
     "run:doc": "cd doc && gitbook serve",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -33,13 +33,13 @@
     "hooks": {
       "pre-commit": "npm run lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-push": "echo \"\n九尺高台，起于垒土。感谢有你！\n\""
+      "pre-push": "echo \"\n半壁翻云刃，满江酩酊红。千古光阴一霎时，且醉浪涛中！\n\""
     }
   },
   "lint-staged": {
-    "**/*.less": "stylelint --fix --syntax less",
-    "**/*.{js,jsx,ts,tsx}": "npm run lint-staged:scripts",
-    "**/*.{js,jsx,tsx,ts,less,md,json}": [
+    "src/**/*.less": "stylelint --fix --syntax less",
+    "src/**/*.{js,jsx,ts,tsx}": "npm run lint-staged:scripts",
+    "src/**/*.{js,jsx,tsx,ts,less,md,json}": [
       "prettier -c --write",
       "prettier --check --end-of-line auto"
     ]
@@ -110,8 +110,9 @@
     "connect-history-api-fallback": "^1.6.0",
     "cross-env": "^7.0.2",
     "css-loader": "^3.6.0",
+    "css-minimizer-webpack-plugin": "^1.1.5",
     "cssnano": "^4.1.10",
-    "eslint": "^6.8.0",
+    "eslint": "^7.16.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-friendly-formatter": "^4.0.1",
@@ -122,6 +123,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^2.5.1",
+    "eslint-webpack-plugin": "^2.4.1",
     "express": "^4.17.1",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
@@ -131,13 +133,18 @@
     "lint-staged": "^10.2.11",
     "md5": "^2.2.1",
     "mini-css-extract-plugin": "^0.9.0",
+    "nodemon": "^2.0.6",
     "open": "^7.0.4",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "portfinder": "^1.0.26",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-loader": "^3.0.0",
+    "postcss-normalize": "^9.0.0",
+    "postcss-preset-env": "^6.7.0",
     "prettier": "^2.0.5",
+    "react-dev-utils": "^11.0.1",
     "react-hot-loader": "^4.12.21",
+    "resolve-url-loader": "^3.1.2",
     "rimraf": "^3.0.2",
     "semver": "^7.3.2",
     "style-loader": "^1.2.1",
@@ -154,7 +161,7 @@
     "typescript": "^3.9.6",
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
-    "webpack-bundle-analyzer": "^3.8.0",
+    "webpack-bundle-analyzer": "^4.3.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-hot-middleware": "^2.25.0",
@@ -162,12 +169,53 @@
     "webpack-merge": "^4.2.2",
     "webpackbar": "^4.0.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 10"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not ie <= 8",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "verbose": true,
+    "execMap": {
+      "js": "node --harmony"
+    },
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "watch": [
+      ".scripts"
+    ],
+    "ext": "*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": " https://github.com/uninge/react-admin-template.git"
+  },
+  "tags": [
+    "react",
+    "admin",
+    "template",
+    "element"
+  ],
+  "keywords": [
+    "react",
+    "admin",
+    "template",
+    "element",
+    "react-template",
+    "react-admin-template"
   ],
   "engines": {
     "node": ">=10.13.0"
-  }
+  },
+  "license": "MIT"
 }
