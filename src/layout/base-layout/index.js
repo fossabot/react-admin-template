@@ -39,7 +39,7 @@ class BaseLayout extends Component {
 		if (route.redirect) {
 			redirectArr.push(<Redirect exact key={route.path} from={route.path} to={route.redirect} />);
 		}
-		route.routes.forEach(item => {
+		route.routes.forEach((item) => {
 			if (item.redirect) {
 				redirectArr.push(<Redirect exact key={item.path} from={item.path} to={item.redirect} />);
 			}

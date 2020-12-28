@@ -54,7 +54,7 @@ class Request {
 
 	private configResponseInterceptors() {
 		this.client.interceptors.response.use(
-			response => {
+			(response) => {
 				const config = response.config as IRequestConfig;
 
 				if (!config.background) {
@@ -62,7 +62,7 @@ class Request {
 				}
 				return response;
 			},
-			error => {
+			(error) => {
 				const config = error.config as IRequestConfig;
 				const response = error.response as AxiosResponse;
 

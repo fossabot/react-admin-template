@@ -17,7 +17,7 @@ function GlobalBreadcrumb(props) {
 		location: { pathname },
 	} = props;
 
-	const pathSnippets = pathname.split('/').filter(snippet => snippet);
+	const pathSnippets = pathname.split('/').filter((snippet) => snippet);
 	const extraBreadcrumbItems = pathSnippets.map((_, index) => {
 		const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
 		const breadcrumbName = breadcrumbNameMap[url];

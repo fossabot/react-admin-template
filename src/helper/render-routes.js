@@ -10,7 +10,7 @@ function renderRoutes(routes, authData = {}, extraProps = {}) {
 	const map = [];
 
 	function helper(routerList) {
-		routerList.forEach(route => {
+		routerList.forEach((route) => {
 			const { key, path, exact, strict, some, authority = [] } = route;
 			map.push(
 				<Route
@@ -18,12 +18,12 @@ function renderRoutes(routes, authData = {}, extraProps = {}) {
 					path={path}
 					exact={exact}
 					strict={strict}
-					render={props => {
+					render={(props) => {
 						const list = isArray(authority) ? authority : [authority];
 						const isNeedAuth = list.length > 0;
 						const authorized = some
-							? list.some(item => authData[item])
-							: list.every(item => authData[item]);
+							? list.some((item) => authData[item])
+							: list.every((item) => authData[item]);
 
 						if (!isNeedAuth || (isNeedAuth && authorized)) {
 							return <route.component {...props} {...extraProps} route={route} />;

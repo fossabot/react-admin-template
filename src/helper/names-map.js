@@ -5,7 +5,7 @@ export default function namesMap(routes) {
 	const breadcrumbNameMap = {};
 
 	function travel(list) {
-		list.forEach(route => {
+		list.forEach((route) => {
 			const { path, title, breadcrumbName } = route;
 			titleMap[path] = title;
 			breadcrumbNameMap[path] = breadcrumbName;

@@ -19,13 +19,13 @@ export default class GlobalMenu extends Component {
 		};
 	}
 
-	onMenuOpenChange = keys => {
+	onMenuOpenChange = (keys) => {
 		const { position, inlineCollapsed } = this.props;
 
 		if (position !== 'aside' || inlineCollapsed) return;
 		const { openKeys } = this.state;
-		const latestOpenKey = keys.find(key => !openKeys.includes(key));
-		if (!menuList.some(item => item.id === latestOpenKey)) {
+		const latestOpenKey = keys.find((key) => !openKeys.includes(key));
+		if (!menuList.some((item) => item.id === latestOpenKey)) {
 			this.setState({
 				openKeys: keys,
 			});
@@ -45,7 +45,7 @@ export default class GlobalMenu extends Component {
 	renderMenuItem = (list, level = 0) => {
 		const { position } = this.props;
 		const isAside = position === 'aside';
-		return list.map(item => {
+		return list.map((item) => {
 			const hasSubMenu = item.children && item.children.length > 0;
 
 			if (hasSubMenu) {

@@ -36,7 +36,7 @@ export default class Sample extends Component {
 		});
 	};
 
-	onChangeTheme = theme => {
+	onChangeTheme = (theme) => {
 		this.props.global.onChangeTheme(theme);
 	};
 

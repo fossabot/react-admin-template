@@ -10,7 +10,7 @@ export const isBlob = (value: any) => getType(value) === 'Blob';
 export const isArrayBuffer = (value: any) => getType(value) === 'ArrayBuffer';
 
 export function sleep(ms: number) {
-	return new Promise(resolve => setTimeout(resolve, ms));
+	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export function getQueryString(name: string) {
@@ -36,7 +36,7 @@ export function filterUndefinedNull(obj: { [propName: string]: any }) {
 
 	const res: { [propName: string]: any } = {};
 
-	Object.keys(obj).forEach(key => {
+	Object.keys(obj).forEach((key) => {
 		if (obj[key] === undefined || obj[key] === null) return;
 
 		res[key] = obj[key];

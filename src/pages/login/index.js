@@ -49,7 +49,7 @@ export default class Login extends Component {
 
 				this.props.history.replace(getQueryString('redirect') || '/');
 			})
-			.catch(err => {
+			.catch((err) => {
 				message.error(err.message || '登录失败，请稍后再试');
 				this.setState({
 					isLoading: false,
