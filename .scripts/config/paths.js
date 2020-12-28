@@ -22,7 +22,7 @@ module.exports = {
 	appHtml: resolvePath('public/index.html'),
 
 	appRootPath: resolvePath('.'),
-	appDllPath: resolvePath('node_modules/.cache/dll'),
+	appDllPath: resolvePath('node_modules/.cache/dll-plugin'),
 	appDistPath: resolvePath('dist'),
 	appSrc: resolvePath('src'),
 	appEntry: resolveModule(resolvePath, 'src/index'),
