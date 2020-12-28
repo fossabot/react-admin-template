@@ -11,7 +11,7 @@ module.exports = {
 		'@babel/plugin-transform-async-to-generator',
 		'@babel/plugin-transform-regenerator',
 		'@babel/plugin-transform-modules-commonjs',
-		// 'syntax-async-functions',
+		// 'babel-plugin-syntax-async-functions',
 		// '@babel/plugin-proposal-function-sent',
 		// '@babel/plugin-syntax-import-meta',
 		// '@babel/plugin-proposal-json-strings',
