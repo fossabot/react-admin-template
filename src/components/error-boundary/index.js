@@ -18,7 +18,7 @@ class ErrorBoundary extends Component {
 	}
 
 	componentDidMount() {
-		console.log('ErrorBoundary Did Mount')
+		console.log('ErrorBoundary Did Mount');
 	}
 
 	componentDidCatch(error, errorInfo) {
