@@ -11,6 +11,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const { buildEnv, bundleAnalyze, appPublicPath, useSourceMap } = require('../config');
 const paths = require('../config/paths');
+const pkg = require(paths.appRootPkgJson);
 const isDevelopment = buildEnv === 'development';
 const isProduction = buildEnv === 'production';
 const canUseSourceMap = isProduction ? useSourceMap : true;
@@ -172,6 +173,9 @@ const webpackBaseConfig = {
 		}),
 		new webpack.DefinePlugin({
 			'process.env.BUILD_ENV': JSON.stringify(process.env.BUILD_ENV),
+			'process.env.__APP_NAME__': JSON.stringify(pkg.name),
+			'process.env.__APP_VERSION__': JSON.stringify(pkg.version),
+			'process.env.__APP_BUILD_TIME__': JSON.stringify(new Date().toLocaleString()),
 		}),
 		new MiniCssExtractPlugin({
 			filename: 'styles/[name].[contenthash:8].css',

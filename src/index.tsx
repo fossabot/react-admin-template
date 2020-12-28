@@ -2,8 +2,11 @@ import 'core-js';
 import React from 'react';
 import ReactDom from 'react-dom';
 import 'mobx-react-lite/batchingForReactDom';
+import getAppInfo from './utils/app-info';
 
 import App from './app';
+
+getAppInfo(true);
 
 const MOUNT_NODE = document.querySelector('#app');
 
