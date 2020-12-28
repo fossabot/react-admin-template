@@ -21,7 +21,7 @@ function dllCheck() {
 
 	if (Object.keys(dllDependencies).length !== Object.keys(dependencies).length) return false;
 
-	return Object.keys(dllDependencies).every(key => dllDependencies[key] === dependencies[key]);
+	return Object.keys(dllDependencies).every((key) => dllDependencies[key] === dependencies[key]);
 }
 
 if (dllCheck()) {
@@ -29,6 +29,9 @@ if (dllCheck()) {
 	console.log();
 	return;
 }
+
+console.log(chalk.yellow(' DLL未构建或已失效，即将构建！'));
+console.log();
 
 webpack(webpackDllConfig, function (webpackError, stats) {
 	if (webpackError) {

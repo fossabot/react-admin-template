@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const postcssNormalize = require('postcss-normalize');
 const ESLintPlugin = require('eslint-webpack-plugin');
@@ -24,18 +25,18 @@ function getCSSModuleLocalIdent(context, localIdentName, localName, options) {
 }
 
 function getStyleLoaders(useCssModule, isLessLoader) {
-	const loaders =  [
+	const loaders = [
 		isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
 		{
 			loader: 'css-loader',
 			options: useCssModule
 				? {
-					modules: isDevelopment
-						? {
-							getLocalIdent: getCSSModuleLocalIdent,
-						}
-						: true,
-				}
+						modules: isDevelopment
+							? {
+									getLocalIdent: getCSSModuleLocalIdent,
+							  }
+							: true,
+				  }
 				: {},
 		},
 		{
@@ -57,30 +58,32 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 	];
 
 	if (isLessLoader) {
-		loaders.push({
-			loader: require.resolve('resolve-url-loader'),
-			options: {
-				sourceMap: canUseSourceMap,
-				root: paths.appSrc,
-			},
-		},
-		{
-			loader: 'less-loader',
-			options: {
-				sourceMap: canUseSourceMap,
-				lessOptions: {
-					modifyVars: themeConfig,
-					javascriptEnabled: true,
+		loaders.push(
+			{
+				loader: require.resolve('resolve-url-loader'),
+				options: {
+					sourceMap: canUseSourceMap,
+					root: paths.appSrc,
 				},
 			},
-		},
-		{
-			loader: 'style-resources-loader',
-			options: {
-				patterns: [paths.globalLessVariables, paths.globalLessMixins],
-				injector: 'append',
+			{
+				loader: 'less-loader',
+				options: {
+					sourceMap: canUseSourceMap,
+					lessOptions: {
+						modifyVars: themeConfig,
+						javascriptEnabled: true,
+					},
+				},
 			},
-		});
+			{
+				loader: 'style-resources-loader',
+				options: {
+					patterns: [paths.globalLessVariables, paths.globalLessMixins],
+					injector: 'append',
+				},
+			},
+		);
 	}
 	return loaders;
 }
@@ -95,7 +98,7 @@ const webpackBaseConfig = {
 		filename: 'scripts/[name]-[chunkhash:8].js',
 		chunkFilename: 'scripts/[name]-[chunkhash:8].chunk.js',
 		publicPath: appPublicPath,
-		globalObject: 'this'
+		globalObject: 'this',
 	},
 	module: {
 		strictExportPresence: true,
@@ -182,21 +185,23 @@ const webpackBaseConfig = {
 					publicPath: appPublicPath,
 					template: paths.appHtml,
 				},
-				isProduction ? {
-					minify: {
-						removeComments: true,
-						collapseWhitespace: true,
-						removeRedundantAttributes: true,
-						useShortDoctype: true,
-						removeEmptyAttributes: true,
-						removeStyleLinkTypeAttributes: true,
-						keepClosingSlash: true,
-						minifyJS: true,
-						minifyCSS: true,
-						minifyURLs: true,
-					},
-				} : undefined,
-			)
+				isProduction
+					? {
+							minify: {
+								removeComments: true,
+								collapseWhitespace: true,
+								removeRedundantAttributes: true,
+								useShortDoctype: true,
+								removeEmptyAttributes: true,
+								removeStyleLinkTypeAttributes: true,
+								keepClosingSlash: true,
+								minifyJS: true,
+								minifyCSS: true,
+								minifyURLs: true,
+							},
+					  }
+					: undefined,
+			),
 		),
 	],
 	performance: {
