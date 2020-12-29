@@ -24,7 +24,7 @@
     "lint:prettier": "prettier --check \"src/**/*.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "init:doc": "cd doc && npm install -g gitbook-cli && gitbook install && gitbook serve",
     "run:doc": "cd doc && gitbook serve",
-    "cacheclean": "rimraf node_modules/.cache .eslintcache .stylelintcache",
+    "cacheclean": "rimraf node_modules/.cache .eslintcache .stylelintcache debug.log yarn-error.log yarn.lock",
     "watch": "tsc --watch",
     "prestart": "npm run dll",
     "build": "node ./.scripts/pub.js",
