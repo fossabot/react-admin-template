@@ -91,7 +91,7 @@ const webpackPubConfig = {
 			name: false,
 		},
 		runtimeChunk: {
-			name: entrypoint => `runtime-${entrypoint.name}`,
+			name: (entrypoint) => `runtime-${entrypoint.name}`,
 		},
 	},
 };

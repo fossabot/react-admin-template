@@ -1,10 +1,9 @@
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
 
-process.on('unhandledRejection', error => {
+process.on('unhandledRejection', (error) => {
 	throw error;
 });
-
 
 const path = require('path');
 const open = require('open');
@@ -32,7 +31,7 @@ const devMiddleware = WebpackDevMiddleware(compiler, {
 	logger: webpackLog({ name: 'wds', level: 'error' }),
 });
 const hotMiddleware = WebpackHotMiddleware(compiler, {
-	log: msg => console.log(`${chalk.magenta('[HMW]')} ${chalk.green(msg)}`),
+	log: (msg) => console.log(`${chalk.magenta('[HMW]')} ${chalk.green(msg)}`),
 });
 
 const app = express();
@@ -42,7 +41,7 @@ app.use(devMiddleware);
 app.use(hotMiddleware);
 app.use(express.static(path.resolve(process.cwd(), './public')));
 
-Object.keys(config.proxy).forEach(context => {
+Object.keys(config.proxy).forEach((context) => {
 	let options = config.proxy[context];
 	if (typeof options === 'string') {
 		options = { target: options };
@@ -54,7 +53,7 @@ portFinder
 	.getPortPromise({
 		port: config.port,
 	})
-	.then(port => {
+	.then((port) => {
 		let first = true;
 		app.listen(port, config.hostName, () => {
 			const localUrl = `http://localhost:${port}`;
@@ -69,6 +68,6 @@ portFinder
 			});
 		});
 	})
-	.catch(err => {
+	.catch((err) => {
 		console.log(err);
 	});

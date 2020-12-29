@@ -1,7 +1,7 @@
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
 
-process.on('unhandledRejection', error => {
+process.on('unhandledRejection', (error) => {
 	throw error;
 });
 
@@ -12,12 +12,10 @@ const webpack = require('webpack');
 const paths = require('./config/paths');
 const webpackConfig = require('./webpack/webpack-pub-config');
 
-rimraf(paths.appDistPath, err => {
+rimraf(paths.appDistPath, (err) => {
 	if (err) throw err;
 
-	console.log(
-		chalk.cyan(`\n 目录【${chalk.yellow(paths.appDistPath)}】清理成功, 等待打包...\n`),
-	);
+	console.log(chalk.cyan(`\n 目录【${chalk.yellow(paths.appDistPath)}】清理成功, 等待打包...\n`));
 
 	webpack(webpackConfig, (err, stats) => {
 		if (err) throw err;

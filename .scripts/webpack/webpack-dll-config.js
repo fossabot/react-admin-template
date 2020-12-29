@@ -14,7 +14,9 @@ module.exports = {
 	devtool: 'cheap-module-source-map',
 	mode: 'development',
 	entry: {
-		[dllConfig.entryKey]: Object.keys(dependencies).filter(key => !dllExcludePackages.includes(key)),
+		[dllConfig.entryKey]: Object.keys(dependencies).filter(
+			(key) => !dllExcludePackages.includes(key),
+		),
 	},
 	output: {
 		path: appDllPath,

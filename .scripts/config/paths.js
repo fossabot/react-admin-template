@@ -3,9 +3,9 @@ const path = require('path');
 
 const rootDirectory = fs.realpathSync(process.cwd());
 const moduleFileExtensions = ['js', 'jsx', 'ts', 'tsx'];
-const resolvePath = relativePath => path.resolve(rootDirectory, relativePath);
+const resolvePath = (relativePath) => path.resolve(rootDirectory, relativePath);
 const resolveModule = (resolveFn, filePath) => {
-	const extension = moduleFileExtensions.find(extension =>
+	const extension = moduleFileExtensions.find((extension) =>
 		fs.existsSync(resolveFn(`${filePath}.${extension}`)),
 	);
 
