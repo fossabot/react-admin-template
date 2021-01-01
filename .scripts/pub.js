@@ -13,9 +13,11 @@ process.on('unhandledRejection', (error) => {
 const chalk = require('chalk');
 const rimraf = require('rimraf');
 const webpack = require('webpack');
-
 const paths = require('./config/paths');
 const webpackConfig = require('./webpack/webpack-pub-config');
+
+// check
+require('./helper/pass-check');
 
 rimraf(paths.appDistPath, (err) => {
 	if (err) throw err;

@@ -20,8 +20,11 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const config = require('./config');
 const webpackConfig = require('./webpack/webpack-dev-config');
 const printInstructions = require('./helper/print-instructions');
-
 const compiler = webpack(webpackConfig);
+
+// check
+require('./helper/pass-check');
+
 const devMiddleware = WebpackDevMiddleware(compiler, {
 	lazy: false,
 	logTime: true,
