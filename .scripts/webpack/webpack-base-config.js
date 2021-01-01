@@ -178,6 +178,7 @@ const webpackBaseConfig = {
 			'process.env.__APP_BUILD_TIME__': JSON.stringify(new Date().toLocaleString()),
 		}),
 		new MiniCssExtractPlugin({
+			ignoreOrder: true,
 			filename: 'styles/[name].[contenthash:8].css',
 			chunkFilename: 'styles/[name].[contenthash:8].chunk.css',
 		}),

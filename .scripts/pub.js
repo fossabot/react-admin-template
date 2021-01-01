@@ -1,5 +1,5 @@
 // CI传入参数不一定是development、test、production之一，此处用BUILD_ENV代替修正
-if (!process.env.BUILD_ENV) {
+if (!process.env.BUILD_ENV && process.env.NODE_ENV) {
 	process.env.BUILD_ENV = process.env.NODE_ENV;
 }
 
