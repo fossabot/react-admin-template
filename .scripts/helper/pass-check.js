@@ -39,9 +39,10 @@ figlet(capitalCase(name), (err, data) => {
 	}
 
 	console.log(chalk.gray(`  本次启动参数:`));
-	console.log(chalk.cyan(`  OS: ${chalk.yellow(os.hostname(), os.type(), os.version(), os.platform(), os.arch())}`));
-	console.log(chalk.cyan(`  Node.js: ${chalk.yellow(currentNodeVersion)}`));
-	console.log(chalk.cyan(`  BUILD_ENV: ${chalk.yellow(BUILD_ENV)}`));
 	console.log(chalk.cyan(`  NODE_ENV: ${chalk.yellow(NODE_ENV)}`));
+	console.log(chalk.cyan(`  BUILD_ENV: ${chalk.yellow(BUILD_ENV)}`));
+
+	console.log(chalk.cyan(`  Node.js: ${chalk.yellow(currentNodeVersion)}`));
+	console.log(chalk.cyan(`  OS: ${chalk.yellow(os.hostname(), os.type(), os.version(), os.platform(), os.arch())}`));
 	console.log();
 });
