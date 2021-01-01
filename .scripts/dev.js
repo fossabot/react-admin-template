@@ -25,7 +25,7 @@ const compiler = webpack(webpackConfig);
 const devMiddleware = WebpackDevMiddleware(compiler, {
 	lazy: false,
 	logTime: true,
-	serverSideRender: true,
+	serverSideRender: false,
 	stats: { colors: true },
 	publicPath: webpackConfig.output.publicPath,
 	logger: webpackLog({ name: 'wds', level: 'error' }),
