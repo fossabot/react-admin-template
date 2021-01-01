@@ -14,7 +14,7 @@ export default function getAppInfo(log) {
 		const versionStyle = `${style};color:#fff;background:#007ec6;`;
 		const envStyle = `${style};color:#fff;background:#3c1;`;
 		const timeStyle = `${style};color:#fff;background:#dfb317;${br('right', 3)};`;
-		console.log(
+		window.console.log(
 			`%c${name}%cv${version}%c${env}%c${time}`,
 			nameStyle,
 			versionStyle,
