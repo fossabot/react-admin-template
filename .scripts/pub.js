@@ -1,5 +1,12 @@
+// CI传入参数不一定是development、test、production之一，此处用BUILD_ENV代替修正
+if (!process.env.BUILD_ENV) {
+	process.env.BUILD_ENV = process.env.NODE_ENV;
+}
+
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
+
+console.log(process.env.BUILD_ENV, process.env.NODE_ENV);
 
 process.on('unhandledRejection', (error) => {
 	throw error;
@@ -29,6 +36,8 @@ rimraf(paths.appDistPath, (err) => {
 				chunkModules: false,
 			})} \n\n`,
 		);
+
+		if (stats.hasErrors()) process.exit(1);
 
 		console.log(chalk.cyan('  打包完成。'));
 	});
