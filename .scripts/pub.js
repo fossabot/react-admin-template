@@ -6,8 +6,6 @@ if (!process.env.BUILD_ENV) {
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
 
-console.log(process.env.BUILD_ENV, process.env.NODE_ENV);
-
 process.on('unhandledRejection', (error) => {
 	throw error;
 });
