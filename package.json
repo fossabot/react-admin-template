@@ -29,6 +29,7 @@
     "prestart": "npm run dll",
     "build": "node ./.scripts/pub.js",
     "dll": "node ./.scripts/dll.js",
+		"npm-check": "npm-check",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "husky": {
@@ -47,11 +48,11 @@
     ]
   },
   "dependencies": {
-    "@ant-design/icons": "^4.2.1",
+    "@ant-design/icons": "^4.3.0",
     "@babel/runtime": "^7.10.4",
     "@babel/runtime-corejs3": "^7.10.4",
-    "antd": "^4.4.2",
-    "axios": "^0.19.2",
+    "antd": "^4.9.4",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "core-js": "^3.6.5",
     "figlet": "^1.5.0",
@@ -61,8 +62,8 @@
     "mobx-react-lite": "^2.0.7",
     "moment": "^2.27.0",
     "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-loadable": "^5.5.0",
     "react-router": "^5.2.0",
     "react-router-config": "^5.1.1",
@@ -132,6 +133,7 @@
     "md5": "^2.2.1",
     "mini-css-extract-plugin": "^0.9.0",
     "nodemon": "^2.0.6",
+    "npm-check": "^5.9.2",
     "open": "^7.0.4",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "portfinder": "^1.0.26",
