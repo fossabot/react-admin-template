@@ -1,33 +1,15 @@
-import 'core-js';
 import React from 'react';
 import ReactDom from 'react-dom';
-import 'mobx-react-lite/batchingForReactDom';
-import getAppInfo from './utils/app-info';
-
 import App from './app';
+import appInfo from './utils/app-info';
+import reportWebVitals from './utils/report-web-vitals';
 
-getAppInfo(true);
+ReactDom.render(<App />, document.querySelector('#app'));
 
-const MOUNT_NODE = document.querySelector('#app');
+// app basic info
+appInfo(process.env.BUILD_ENV !== 'production');
 
-ReactDom.render(<App />, MOUNT_NODE);
-
-// if (process.env.NODE_ENV === 'development') {
-// 	const { setConfig, AppContainer } = require('react-hot-loader');
-// 	setConfig({
-// 		logLevel: 'error',
-// 	});
-//
-// 	ReactDom.render(
-// 		<AppContainer>
-// 			<App />
-// 		</AppContainer>,
-// 		MOUNT_NODE,
-// 	);
-//
-// 	if (module.hot) {
-// 		module.hot.accept();
-// 	}
-// } else {
-// 	ReactDom.render(<App />, MOUNT_NODE);
-// }
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals(console.log);

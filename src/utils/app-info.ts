@@ -1,4 +1,4 @@
-export default function getAppInfo(log) {
+export default function appInfo(log?: boolean) {
 	const env = process.env.BUILD_ENV;
 	const name = process.env.__APP_NAME__;
 	const version = process.env.__APP_VERSION__;
@@ -8,7 +8,7 @@ export default function getAppInfo(log) {
 
 	if (log) {
 		const style = 'padding:2px 4px;font-size:14px;font-weight:700';
-		const br = (dir, size) =>
+		const br = (dir: string, size: number) =>
 			`border-top-${dir}-radius:${size}px;border-bottom-${dir}-radius:${size}px`;
 		const nameStyle = `${style};color:#f90;background:#000;${br('left', 3)};`;
 		const versionStyle = `${style};color:#fff;background:#007ec6;`;
