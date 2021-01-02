@@ -1,13 +1,15 @@
+import { capitalCase } from 'change-case';
+
 export default function appInfo(log?: boolean): void {
 	const env = process.env.BUILD_ENV;
-	const name = process.env.__APP_NAME__;
+	const name = capitalCase(process.env.__APP_NAME__ || '');
 	const version = process.env.__APP_VERSION__;
 	const prodUpdateTime = process.env.__APP_BUILD_TIME__;
 	const devUpdateTime = new Date().toLocaleString();
 	const time = env === 'development' ? `刷新于: ${devUpdateTime}` : `发布于: ${prodUpdateTime}`;
 
 	if (log) {
-		const style = 'padding:2px 4px;font-size:14px;font-weight:700';
+		const style = 'padding:2px 4px;font-size:12px;font-weight:700';
 		const br = (dir: string, size: number) =>
 			`border-top-${dir}-radius:${size}px;border-bottom-${dir}-radius:${size}px`;
 		const nameStyle = `${style};color:#f90;background:#000;${br('left', 3)};`;

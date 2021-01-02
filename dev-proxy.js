@@ -7,7 +7,7 @@ module.exports = {
 		},
 	},
 	'/api': {
-		target: 'https://www.baidu.com',
+		target: 'http://localhost:10086',
 		changeOrigin: true,
 		pathRewrite: {
 			'^/api': '/',
