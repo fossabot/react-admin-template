@@ -29,7 +29,7 @@
     "prestart": "npm run dll",
     "build": "node ./.scripts/pub.js",
     "dll": "node ./.scripts/dll.js",
-		"npm-check": "npm-check",
+    "npm-check": "npm-check",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "husky": {
