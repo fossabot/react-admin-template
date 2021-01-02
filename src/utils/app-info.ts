@@ -1,4 +1,4 @@
-export default function appInfo(log?: boolean) {
+export default function appInfo(log?: boolean): void {
 	const env = process.env.BUILD_ENV;
 	const name = process.env.__APP_NAME__;
 	const version = process.env.__APP_VERSION__;
@@ -22,11 +22,4 @@ export default function appInfo(log?: boolean) {
 			timeStyle,
 		);
 	}
-
-	return {
-		name,
-		version,
-		time,
-		env,
-	};
 }

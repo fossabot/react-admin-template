@@ -1,4 +1,4 @@
-const reportWebVitals = (onPerfEntry?: () => void) => {
+const reportWebVitals = (onPerfEntry?: () => void): void => {
 	if (onPerfEntry) {
 		import('web-vitals').then(({ getCLS, getFID, getLCP, getFCP, getTTFB }) => {
 			getCLS(onPerfEntry); // Cumulative Layout Shift (CLS)
