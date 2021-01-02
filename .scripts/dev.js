@@ -19,7 +19,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const config = require('./config');
 const webpackConfig = require('./webpack/webpack-dev-config');
-const printInstructions = require('./helper/print-instructions');
+const { printInstructions } = require('./helper/printer');
 const compiler = webpack(webpackConfig);
 
 // check

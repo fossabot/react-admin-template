@@ -94,12 +94,12 @@ const webpackBaseConfig = {
 		app: [paths.appEntry],
 	},
 	output: {
-		path: paths.appDistPath,
+		globalObject: 'this',
 		pathinfo: !isProduction,
+		path: paths.appDistPath,
+		publicPath: appPublicPath,
 		filename: 'scripts/[name]-[chunkhash:8].js',
 		chunkFilename: 'scripts/[name]-[chunkhash:8].chunk.js',
-		publicPath: appPublicPath,
-		globalObject: 'this',
 	},
 	module: {
 		strictExportPresence: true,

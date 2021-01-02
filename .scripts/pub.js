@@ -22,7 +22,7 @@ require('./helper/pass-check');
 rimraf(paths.appDistPath, (err) => {
 	if (err) throw err;
 
-	console.log(chalk.cyan(`\n 目录【${chalk.yellow(paths.appDistPath)}】清理成功, 等待打包...\n`));
+	console.log(chalk.gray(` 目录【${paths.appDistPath}】清理成功, 等待打包...`));
 
 	webpack(webpackConfig, (err, stats) => {
 		if (err) throw err;
@@ -39,6 +39,6 @@ rimraf(paths.appDistPath, (err) => {
 
 		if (stats.hasErrors()) process.exit(1);
 
-		console.log(chalk.cyan('  打包完成。'));
+		console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green('打包完成')}`);
 	});
 });

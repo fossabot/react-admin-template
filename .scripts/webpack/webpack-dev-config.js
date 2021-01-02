@@ -13,6 +13,7 @@ const webpackDevConfig = {
 	devtool: 'cheap-module-source-map',
 	output: {
 		filename: '[name].js',
+		publicPath: '/',
 	},
 	plugins: [
 		new webpack.NamedModulesPlugin(),
