@@ -123,8 +123,9 @@ module.exports = {
 
 		'@typescript-eslint/unbound-method': OFF,
 		'@typescript-eslint/no-misused-promises': OFF,
+		'@typescript-eslint/no-floating-promises': OFF,
 		'@typescript-eslint/explicit-function-return-type': OFF,
-		'@typescript-eslint/interface-name-prefix': [ERROR, { prefixWithI: 'always' }],
+		'@typescript-eslint/restrict-template-expressions': OFF,
 
 		'react/no-danger': WARN,
 		'react/no-string-refs': ERROR,
