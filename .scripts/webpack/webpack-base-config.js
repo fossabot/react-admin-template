@@ -16,9 +16,15 @@ const isDevelopment = buildEnv === 'development';
 const isProduction = buildEnv === 'production';
 const canUseSourceMap = isProduction ? useSourceMap : true;
 
-const p = path.resolve(paths.appRootPath, './.antdthemerc.js');
-let themeConfig = {};
-if (fs.existsSync(p)) themeConfig = require(p);
+// antd theme
+let antdThemeVars = {};
+const antdThemeRcPath = path.resolve(paths.appRootPath, './.antdthemerc.js');
+if (fs.existsSync(antdThemeRcPath)) {
+	const antdThemeConfig = require(antdThemeRcPath);
+	if (antdThemeConfig.enable) {
+		antdThemeVars = antdThemeConfig.antdThemeVars;
+	}
+}
 
 function getCSSModuleLocalIdent(context, localIdentName, localName, options) {
 	const resourcePath = context.resourcePath.replace(/\\/g, '/');
@@ -74,7 +80,7 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 				options: {
 					sourceMap: canUseSourceMap,
 					lessOptions: {
-						modifyVars: themeConfig,
+						modifyVars: antdThemeVars,
 						javascriptEnabled: true,
 					},
 				},
