@@ -106,8 +106,8 @@ const webpackBaseConfig = {
 		pathinfo: !isProduction,
 		path: paths.appDistPath,
 		publicPath: appPublicPath,
-		filename: 'static/scripts/[name]-[chunkhash:8].js',
-		chunkFilename: 'static/scripts/[name]-[chunkhash:8].chunk.js',
+		filename: 'statics/scripts/[name]-[chunkhash:8].js',
+		chunkFilename: 'statics/scripts/[name]-[chunkhash:8].chunk.js',
 	},
 	module: {
 		strictExportPresence: true,
@@ -149,7 +149,7 @@ const webpackBaseConfig = {
 				loader: require.resolve('url-loader'),
 				options: {
 					limit: 10240,
-					name: 'static/assets/[name].[hash:8].[ext]',
+					name: 'statics/assets/[name].[hash:8].[ext]',
 				},
 			},
 		],

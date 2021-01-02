@@ -30,8 +30,8 @@ const webpackPubConfig = {
 		}),
 		new MiniCssExtractPlugin({
 			ignoreOrder: true,
-			filename: 'static/styles/[name].[contenthash:8].css',
-			chunkFilename: 'static/styles/[name].[contenthash:8].chunk.css',
+			filename: 'statics/styles/[name].[contenthash:8].css',
+			chunkFilename: 'statics/styles/[name].[contenthash:8].chunk.css',
 		}),
 	],
 	optimization: {
