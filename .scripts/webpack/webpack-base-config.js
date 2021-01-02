@@ -106,8 +106,8 @@ const webpackBaseConfig = {
 		pathinfo: !isProduction,
 		path: paths.appDistPath,
 		publicPath: appPublicPath,
-		filename: 'scripts/[name]-[chunkhash:8].js',
-		chunkFilename: 'scripts/[name]-[chunkhash:8].chunk.js',
+		filename: 'static/scripts/[name]-[chunkhash:8].js',
+		chunkFilename: 'static/scripts/[name]-[chunkhash:8].chunk.js',
 	},
 	module: {
 		strictExportPresence: true,
@@ -149,7 +149,7 @@ const webpackBaseConfig = {
 				loader: require.resolve('url-loader'),
 				options: {
 					limit: 10240,
-					name: 'assets/[name].[hash:8].[ext]',
+					name: 'static/assets/[name].[hash:8].[ext]',
 				},
 			},
 		],
@@ -184,11 +184,6 @@ const webpackBaseConfig = {
 			'process.env.__APP_NAME__': JSON.stringify(pkg.name),
 			'process.env.__APP_VERSION__': JSON.stringify(pkg.version),
 			'process.env.__APP_BUILD_TIME__': JSON.stringify(new Date().toLocaleString()),
-		}),
-		new MiniCssExtractPlugin({
-			ignoreOrder: true,
-			filename: 'styles/[name].[contenthash:8].css',
-			chunkFilename: 'styles/[name].[contenthash:8].chunk.css',
 		}),
 		new HtmlWebpackPlugin(
 			Object.assign(

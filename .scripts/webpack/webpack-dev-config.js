@@ -12,14 +12,14 @@ const webpackDevConfig = {
 	mode: 'development',
 	devtool: 'cheap-module-source-map',
 	output: {
-		filename: '[name].js',
 		publicPath: '/',
+		filename: '[name]-[hash:8].js',
 	},
-	resolve: {
-		alias: {
-			'react-dom': '@hot-loader/react-dom',
-		}
-	},
+	// resolve: {
+	// 	alias: {
+	// 		'react-dom': '@hot-loader/react-dom',
+	// 	},
+	// },
 	plugins: [
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin(),

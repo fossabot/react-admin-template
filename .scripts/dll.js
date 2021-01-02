@@ -1,3 +1,7 @@
+process.on('unhandledRejection', (error) => {
+	throw error;
+});
+
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');

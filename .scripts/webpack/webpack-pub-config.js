@@ -1,8 +1,11 @@
 const webpackMerge = require('webpack-merge');
+const CopyPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
 const webpackBaseConfig = require('./webpack-base-config');
+const paths = require('../config/paths');
 const { buildEnv, useSourceMap } = require('../config');
 const isProduction = buildEnv === 'production';
 const isProductionProfile = isProduction && process.argv.includes('--profile');
@@ -12,7 +15,25 @@ const webpackPubConfig = {
 	mode: 'production',
 	bail: isProduction,
 	devtool: canUseSourceMap ? 'source-map' : false,
-	plugins: [],
+	plugins: [
+		new CopyPlugin({
+			patterns: [
+				{
+					from: paths.appPublicPath,
+					to: paths.appDistPath,
+					globOptions: {
+						ignore: ['**/favicon.ico', '**/index.html'],
+					},
+					noErrorOnMissing: true,
+				},
+			],
+		}),
+		new MiniCssExtractPlugin({
+			ignoreOrder: true,
+			filename: 'static/styles/[name].[contenthash:8].css',
+			chunkFilename: 'static/styles/[name].[contenthash:8].chunk.css',
+		}),
+	],
 	optimization: {
 		usedExports: true,
 		minimizer: [

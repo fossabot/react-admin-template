@@ -6,7 +6,7 @@ export default function appInfo(log?: boolean): void {
 	const version = process.env.__APP_VERSION__;
 	const prodUpdateTime = process.env.__APP_BUILD_TIME__;
 	const devUpdateTime = new Date().toLocaleString();
-	const time = env === 'development' ? `刷新于: ${devUpdateTime}` : `发布于: ${prodUpdateTime}`;
+	const time = env === 'development' ? `Refresh: ${devUpdateTime}` : `Build: ${prodUpdateTime}`;
 
 	if (log) {
 		const style = 'padding:2px 4px;font-size:12px;font-weight:700';
