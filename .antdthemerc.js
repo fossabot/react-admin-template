@@ -6,6 +6,6 @@ module.exports = {
 	enable: true,
 	antdThemeVars: getThemeVariables({
 		dark: true,
-		compact: true,
+		compact: false,
 	}),
 };

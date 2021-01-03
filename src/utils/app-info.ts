@@ -1,10 +1,10 @@
 import { capitalCase } from 'change-case';
 
 export default function appInfo(log?: boolean): void {
-	const env = process.env.BUILD_ENV;
+	const env = process.env.BUILD_ENV || '';
 	const name = capitalCase(process.env.__APP_NAME__ || '');
-	const version = process.env.__APP_VERSION__;
-	const prodUpdateTime = process.env.__APP_BUILD_TIME__;
+	const version = process.env.__APP_VERSION__ || '';
+	const prodUpdateTime = process.env.__APP_BUILD_TIME__ || '';
 	const devUpdateTime = new Date().toLocaleString();
 	const time = env === 'development' ? `Refresh: ${devUpdateTime}` : `Build: ${prodUpdateTime}`;
 

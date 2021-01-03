@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { Button } from 'antd';
+import React  from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
+import BaseLayout from './layout';
 import './styles/index.less';
 
 export default function App(): React.ReactElement {
-	const [count, setCount] = useState(666);
-
 	return (
-		<div>
-			<Button type="primary" onClick={() => setCount(count + 1)}>Hello {count}</Button>
-		</div>
+		<BrowserRouter>
+			<BaseLayout />
+		</BrowserRouter>
 	);
 }
 

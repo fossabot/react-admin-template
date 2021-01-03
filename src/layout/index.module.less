@@ -1,0 +1,41 @@
+.appAside {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	::-webkit-scrollbar-thumb {
+		background: transparent;
+		&:hover {
+			background: transparent;
+		}
+	}
+	&:hover {
+		::-webkit-scrollbar-thumb {
+			background: #444;
+			&:hover {
+				background: #555;
+			}
+		}
+	}
+	.appAsideLogo {
+		padding: 0 10px;
+		font-size: 16px;
+		font-weight: 700;
+		color: #f90;
+		text-align: center;
+	}
+}
+.appHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 10px;
+	.foldIcon {
+		font-size: 20px;
+		&:hover {
+			color: #f90;
+		}
+	}
+}
+.appRouterView {
+	overflow: auto;
+}

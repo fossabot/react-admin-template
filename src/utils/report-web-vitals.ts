@@ -1,5 +1,6 @@
 const reportWebVitals = (onPerfEntry?: () => void): void => {
 	if (onPerfEntry) {
+		// eslint-disable-next-line @typescript-eslint/no-floating-promises
 		import('web-vitals').then(({ getCLS, getFID, getLCP, getFCP, getTTFB }) => {
 			getCLS(onPerfEntry); // Cumulative Layout Shift (CLS)
 			getFID(onPerfEntry); // First Input Delay (FID)

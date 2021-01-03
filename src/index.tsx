@@ -4,7 +4,7 @@ import App from './app';
 import appInfo from './utils/app-info';
 import reportWebVitals from './utils/report-web-vitals';
 
-ReactDom.render(<App />, document.querySelector('#app'));
+ReactDom.render(<App />, document.querySelector('#react-admin-template'));
 
 // app basic info
 appInfo(process.env.BUILD_ENV !== 'production');
