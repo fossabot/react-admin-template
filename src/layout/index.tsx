@@ -1,6 +1,6 @@
 import React, { Suspense, useState } from 'react';
 import { Switch } from 'react-router';
-import { Layout  } from 'antd';
+import { Layout } from 'antd';
 import { MenuFoldOutlined } from '@ant-design/icons';
 
 import GlobalMenu from './components/global-menu';
@@ -17,33 +17,31 @@ function BaseLayout(): React.ReactElement {
 
 	return (
 		<Layout id="app-container">
-			<Sider
-				collapsedWidth={80}
-				collapsed={collapsed}
-			>
+			<Sider collapsedWidth={80} collapsed={collapsed}>
 				<div className={s.appAside}>
-					<Header className={s.appAsideLogo}>
-						React Admin Template
-					</Header>
+					<Header className={s.appAsideLogo}>React Admin Template</Header>
 					<GlobalMenu />
 				</div>
 			</Sider>
 			<Layout>
 				<Header className={s.appHeader}>
-					<MenuFoldOutlined className={s.foldIcon} onClick={() => setCollapsed(!collapsed)} />
+					<MenuFoldOutlined
+						className={s.foldIcon}
+						onClick={(): void => {
+							setCollapsed(!collapsed);
+						}}
+					/>
 					<GlobalNav />
 				</Header>
 				<Content className={s.appRouterView}>
 					{/* @todo Suspense 和 React.lazy不支持服务端渲染 */}
 					<Suspense fallback={<LoadingComponent />}>
-						<Switch>
-							{renderRoutesDeep(routes)}
-						</Switch>
+						<Switch>{renderRoutesDeep(routes)}</Switch>
 					</Suspense>
 				</Content>
 			</Layout>
 		</Layout>
-	)
+	);
 }
 
 export default BaseLayout;

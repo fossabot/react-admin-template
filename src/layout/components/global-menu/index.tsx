@@ -61,5 +61,5 @@ export default function GlobalMenu(): React.ReactElement {
 				</SubMenu>
 			</SubMenu>
 		</Menu>
-	)
+	);
 }

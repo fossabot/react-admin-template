@@ -9,7 +9,14 @@ const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-const { buildEnv, bundleAnalyze, appPublicPath, useSourceMap } = require('../config');
+const {
+	gitBranch,
+	buildTime,
+	buildEnv,
+	bundleAnalyze,
+	appPublicPath,
+	useSourceMap,
+} = require('../config');
 const paths = require('../config/paths');
 const pkg = require(paths.appRootPkgJson);
 const isDevelopment = buildEnv === 'development';
@@ -127,7 +134,7 @@ const webpackBaseConfig = {
 			},
 			{
 				test: /\.css$/,
-				use: getStyleLoaders(true, false),
+				use: getStyleLoaders(false, false),
 			},
 			{
 				test: /\.module\.css$/,
@@ -180,10 +187,11 @@ const webpackBaseConfig = {
 			files: ['src/**/*.(le|c)ss'],
 		}),
 		new webpack.DefinePlugin({
-			'process.env.BUILD_ENV': JSON.stringify(process.env.BUILD_ENV),
-			'process.env.__APP_NAME__': JSON.stringify(pkg.name),
-			'process.env.__APP_VERSION__': JSON.stringify(pkg.version),
-			'process.env.__APP_BUILD_TIME__': JSON.stringify(new Date().toLocaleString()),
+			'process.env.BUILD_ENV': JSON.stringify(buildEnv),
+			'process.env.$__GIT_BRANCH__$': JSON.stringify(gitBranch),
+			'process.env.$__APP_NAME__$': JSON.stringify(pkg.name),
+			'process.env.$__APP_VERSION__$': JSON.stringify(pkg.version),
+			'process.env.$__APP_BUILD_TIME__$': JSON.stringify(buildTime),
 		}),
 		new HtmlWebpackPlugin(
 			Object.assign(

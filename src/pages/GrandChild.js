@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 const GrandChild = ({ route, someProp }) => {
 	const history = useHistory();
-	console.log(history, '--+++++--', route)
+	console.log(history, '--+++++--', route);
 
 	return (
 		<div>
@@ -12,12 +12,11 @@ const GrandChild = ({ route, someProp }) => {
 			<div>{someProp}</div>
 		</div>
 	);
-}
-
+};
 
 GrandChild.propTypes = {
 	route: PropTypes.object,
 	someProp: PropTypes.string,
-}
+};
 
 export default GrandChild;

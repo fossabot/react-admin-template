@@ -4,6 +4,8 @@ import React from 'react';
  * @todo Suspense 和 React.lazy不支持服务端渲染
  * @param callback
  */
-export default function load(callback: {(): Promise<any>}): React.LazyExoticComponent<React.ComponentType<any>> {
+export default function load(callback: {
+	(): Promise<any>;
+}): React.LazyExoticComponent<React.ComponentType<any>> {
 	return React.lazy(callback);
 }

@@ -1,33 +1,23 @@
 module.exports = {
 	root: true,
-	parser: 'babel-eslint',
-	parserOptions: {
-		parser: 'babel-eslint',
-		sourceType: 'module',
-	},
-	env: {
-		browser: true,
-		node: true,
-	},
-	plugins: ['stylelint-order', 'stylelint-declaration-block-no-ignored-properties'],
 	extends: [
 		'stylelint-config-standard',
-		'stylelint-config-css-modules',
 		'stylelint-config-recess-order',
 		'stylelint-config-prettier',
+		'stylelint-config-css-modules',
 	],
+	plugins: ['stylelint-order', 'stylelint-declaration-block-no-ignored-properties'],
 	rules: {
-		'no-empty-source': null,
-		'declaration-no-important': true,
 		'color-named': 'never',
+		'no-empty-source': true,
 		'color-hex-case': 'lower',
 		'number-leading-zero': 'always',
+		'declaration-no-important': true,
+		'no-descending-specificity': true,
+		'comment-empty-line-before': 'always',
+		'no-invalid-double-slash-comments': true,
 		'plugin/declaration-block-no-ignored-properties': true,
-		'at-rule-no-unknown': [
-			true,
-			{
-				ignoreAtRules: ['mixin', 'extend', 'content'],
-			},
-		],
+		'at-rule-no-unknown': [true, { ignoreAtRules: ['mixin', 'extend', 'content'] }],
+		'function-name-case': ['lower', { ignoreFunctions: ['/colorPalette/'] }],
 	},
 };

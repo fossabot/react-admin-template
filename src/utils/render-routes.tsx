@@ -15,7 +15,8 @@ export interface IRouterConfig {
 	// eslint-disable-next-line no-unused-vars
 	render?: (props: IRouteComponentProps) => React.ReactNode;
 	component?: React.ComponentType<IRouteComponentProps> | React.ComponentType<any>;
-	meta?: { // metadata
+	meta?: {
+		// metadata
 		title?: string; // document title
 		icon?: string; // icon in menu or tabs
 		pin?: boolean; // fixed in tabs
@@ -33,19 +34,23 @@ export interface ICommonObject {
 	[key: string]: any;
 }
 
-export interface IExtraProps extends ICommonObject{
+export interface IExtraProps extends ICommonObject {
 	permissions?: { [key: string]: boolean };
 }
 
-function generatorRoute(route: IRouterConfig, index: number, extraProps?: IExtraProps): React.ReactElement {
+function generatorRoute(
+	route: IRouterConfig,
+	index: number,
+	extraProps?: IExtraProps,
+): React.ReactElement {
 	const permissions = extraProps?.permissions;
 	const meta = route?.meta;
 	const fallback = meta?.fallback;
 	const authorities = meta?.authorities;
 	const authorizationRequired = authorities && authorities?.length > 0;
-	const authorized = meta?.some ?
-		authorities?.some(value => permissions?.[value]) :
-		authorities?.every(value => permissions?.[value]);
+	const authorized = meta?.some
+		? authorities?.some((value) => permissions?.[value])
+		: authorities?.every((value) => permissions?.[value]);
 
 	return (
 		<Route
@@ -53,7 +58,7 @@ function generatorRoute(route: IRouterConfig, index: number, extraProps?: IExtra
 			path={route.path}
 			exact={route.exact}
 			strict={route.strict}
-			render={(props) => {
+			render={(props): React.ReactNode => {
 				if (authorizationRequired && !authorized) {
 					return (
 						<Redirect
@@ -73,46 +78,39 @@ function generatorRoute(route: IRouterConfig, index: number, extraProps?: IExtra
 				return null;
 			}}
 		/>
-	)
+	);
 }
 
-function renderRoutes (
+function renderRoutes(
 	routes: IRouterConfig[],
 	extraProps?: IExtraProps,
 ): React.ReactElement[] | null {
 	if (routes) {
 		return routes.map((route, index) => {
 			return generatorRoute(route, index, extraProps);
-		})
+		});
 	}
 	return null;
 }
 
-function renderRoutesDeep (
-	routes: IRouterConfig[],
-	extraProps?: IExtraProps,
-): React.ReactElement[] {
+function renderRoutesDeep(routes: IRouterConfig[], extraProps?: IExtraProps): React.ReactElement[] {
 	const routers: React.ReactElement[] = [];
 
-	function travel(routerList: IRouterConfig[]) {
+	function travel(routerList: IRouterConfig[]): void {
 		routerList.forEach((route, index) => {
-
-			routers.push(generatorRoute(route, index, extraProps))
+			routers.push(generatorRoute(route, index, extraProps));
 
 			if (Array.isArray(route.routes)) {
 				travel(route.routes);
 			}
-		})
+		});
 	}
 
 	if (Array.isArray(routes)) {
-		travel(routes)
+		travel(routes);
 	}
 
 	return routers;
 }
 
-export {
-	renderRoutes,
-	renderRoutesDeep,
-};
+export { renderRoutes, renderRoutesDeep };

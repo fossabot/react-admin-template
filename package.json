@@ -16,20 +16,18 @@
     "build:analyze": "cross-env BUNDLE_ANALYZE=true npm run build:prod",
     "lint-staged": "lint-staged",
     "lint-staged:scripts": "eslint --ext .js,.jsx,.ts,.tsx ",
-    "lint:scripts": "eslint --ext .js,.jsx,.ts,.tsx ./",
+    "lint:scripts": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "lint:styles": "stylelint \"src/**/*.less\" --syntax less",
     "fix:styles": "stylelint --fix \"src/**/*.less\" --syntax less",
     "prettier": "prettier -c --write \"src/**/*.{js,jsx,ts,tsx,less,md,json}\"",
     "pretty-quick": "pretty-quick",
     "lint:prettier": "prettier --check \"src/**/*.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
-    "init:doc": "cd doc && npm install -g gitbook-cli && gitbook install && gitbook serve",
-    "run:doc": "cd doc && gitbook serve",
     "cacheclean": "rimraf node_modules/.cache .eslintcache .stylelintcache debug.log yarn-error.log yarn.lock",
     "watch": "tsc --watch",
     "prestart": "npm run dll",
     "build": "node ./.scripts/pub.js",
     "dll": "node ./.scripts/dll.js",
-    "npm-check": "npm-check",
+    "npm-check": "npm-check -u",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "husky": {
@@ -89,7 +87,6 @@
     "@typescript-eslint/parser": "^4.11.1",
     "add-asset-html-webpack-plugin": "^3.1.3",
     "address": "^1.1.2",
-    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-import": "^1.13.3",
     "babel-preset-react-app": "^10.0.0",
@@ -111,6 +108,7 @@
     "eslint-plugin-prettier": "^3.3.0",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^2.5.1",
+    "eslint-plugin-unicorn": "^25.0.1",
     "eslint-webpack-plugin": "^2.4.1",
     "express": "^4.17.1",
     "figlet": "^1.5.0",
@@ -188,7 +186,8 @@
       ".eslintrc.js",
       ".stylelintrc.js",
       "dev-proxy.js",
-      "package.json"
+      "package.json",
+      "tsconfig.json"
     ],
     "ext": "*.js"
   },
