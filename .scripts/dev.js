@@ -6,7 +6,7 @@ process.on('unhandledRejection', (error) => {
 });
 
 // check
-require('./utils/checker');
+require('./utils/checkers');
 
 const path = require('path');
 const open = require('open');

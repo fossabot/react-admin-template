@@ -11,7 +11,7 @@ process.on('unhandledRejection', (error) => {
 });
 
 // check
-require('./utils/checker');
+require('./utils/checkers');
 
 const chalk = require('chalk');
 const rimraf = require('rimraf');

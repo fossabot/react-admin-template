@@ -114,6 +114,7 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 }
 
 const webpackBaseConfig = {
+	target: 'web',
 	entry: {
 		app: [paths.appEntry],
 	},

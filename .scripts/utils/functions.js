@@ -3,18 +3,18 @@ const semver = require('semver');
 const webpack = require('webpack');
 const childProcess = require('child_process');
 
+const envs = ['development', 'test', 'production'];
+const NODE_ENV = process.env.NODE_ENV;
+const BUILD_ENV = process.env.BUILD_ENV;
 const paths = require('../config/paths');
 const { engines } = require(paths.appRootPkgJson);
 const currentNodeVersion = process.version;
 const requiredNodeVersion = engines.node;
 
-// exec
-exports.exec = function exec(cmd, options) {
-	return childProcess.execSync(cmd, options).toString().trim();
-}
+const boldYellowBright = str => chalk.bold(chalk.yellowBright(str));
 
 // Node Version
-exports.nodeVersionCheck = function nodeVersionCheck() {
+function nodeVersionCheck() {
 	if (!semver.satisfies(currentNodeVersion, requiredNodeVersion)) {
 		console.log(chalk.yellow(` 你当前${chalk.red('Node')}版本${chalk.red(currentNodeVersion)}，期望${chalk.red('Node')}版本${chalk.red(requiredNodeVersion)}`));
 		console.log(chalk.yellow(` 点击右侧连接下载新版: https://nodejs.org/zh-cn/`));
@@ -24,8 +24,31 @@ exports.nodeVersionCheck = function nodeVersionCheck() {
 	}
 }
 
+// BUILD_ENV
+function buildEnvCheck() {
+	if (!BUILD_ENV) {
+		console.log(chalk.red(` 缺少必要构建参数${chalk.bold(chalk.yellowBright('BUILD_ENV'))}，请检查构建命令是否正确`));
+		console.log();
+		process.exit(1);
+	}
+}
+
+// NODE_ENV
+function nodeEnvCheck() {
+	if (!envs.includes(NODE_ENV)) {
+		console.log(chalk.red(` 环境变量${boldYellowBright(NODE_ENV)}值无效，${boldYellowBright(envs.join(', '))}为${boldYellowBright('NODE_ENV')}可选项`));
+		console.log();
+		process.exit(1);
+	}
+}
+
+// exec
+function exec(cmd, options) {
+	return childProcess.execSync(cmd, options).toString().trim();
+}
+
 // webpack compiler
-exports.build = function build(config) {
+function build(config) {
 	return new Promise((resolve, reject) => {
 		webpack(config, (err, stats) => {
 			if (err) {
@@ -47,4 +70,12 @@ exports.build = function build(config) {
 			resolve(message);
 		});
 	})
+}
+
+module.exports = {
+	nodeVersionCheck,
+	buildEnvCheck,
+	nodeEnvCheck,
+	exec,
+	build,
 }
