@@ -28,30 +28,16 @@ import { IRouterConfig } from '../utils/render-routes';
  */
 const routes: IRouterConfig[] = [
 	{
+		path: '/',
+		exact: true,
+		component: load(() => import('../pages/home')),
+		meta: { title: '首页', icon: <DesktopOutlined />, hidden: true },
+	},
+	{
 		path: '/dashboard',
 		exact: true,
 		component: load(() => import('../pages/dashboard')),
 		meta: { title: '工作台', icon: <DashboardOutlined />, authorities: ['权限test3', '权限test4'] },
-	},
-	{
-		path: '/home',
-		exact: true,
-		component: load(() => import('../pages/home')),
-		meta: { title: '首页', icon: <DesktopOutlined />, authorities: [], some: true },
-		routes: [
-			{
-				path: '/dashboard1',
-				exact: true,
-				component: load(() => import('../pages/dashboard')),
-				meta: { title: '工作台', icon: <DashboardOutlined />, authorities: ['权限test3', '权限test4'] },
-			},
-			{
-				path: '/home1',
-				exact: true,
-				component: load(() => import('../pages/home')),
-				meta: { title: '首页', icon: <DesktopOutlined />, authorities: [], some: true },
-			},
-		],
 	},
 	{
 		path: '/errors',
@@ -61,7 +47,7 @@ const routes: IRouterConfig[] = [
 			{
 				path: '/403',
 				component: load(() => import('../pages/errors/403')),
-				meta: { title: '403', icon: <VerifiedOutlined />, hidden: true },
+				meta: { title: '403', icon: <VerifiedOutlined /> },
 			},
 			{
 				path: '/404',
@@ -73,7 +59,7 @@ const routes: IRouterConfig[] = [
 	{
 		path: '/*',
 		component: load(() => import('../pages/errors/404')),
-		meta: { title: '/*', icon: <FieldNumberOutlined />, authorities: ['权限test3', '权限test4'], hidden: true },
+		meta: { title: '/*', icon: <FieldNumberOutlined />, hidden: true },
 	},
 ];
 
