@@ -1,10 +1,6 @@
 const chalk = require('chalk');
-const semver = require('semver');
 const { printName, printEnvironment } = require('./printer');
-const paths = require('../config/paths');
-const { engines } = require(paths.appRootPkgJson);
-const currentNodeVersion = process.version;
-const requiredNodeVersion = engines.node;
+const { nodeVersionCheck } = require('./functions');
 const envs = ['development', 'test', 'production'];
 const NODE_ENV = process.env.NODE_ENV;
 const BUILD_ENV = process.env.BUILD_ENV;
@@ -13,13 +9,7 @@ const BUILD_ENV = process.env.BUILD_ENV;
 printName();
 
 // Node Version
-if (!semver.satisfies(currentNodeVersion, requiredNodeVersion)) {
-	console.log(chalk.yellow(` 你当前${chalk.red('Node')}版本${chalk.red(currentNodeVersion)}，期望${chalk.red('Node')}版本${chalk.red(requiredNodeVersion)}`));
-	console.log(chalk.yellow(` 点击右侧连接下载新版: https://nodejs.org/zh-cn/`));
-	console.log(chalk.yellow(` 也可以使用nvm管理Node版本: https://github.com/nvm-sh/nvm`));
-	console.log();
-	process.exit(1);
-}
+nodeVersionCheck();
 
 // BUILD_ENV
 if (!BUILD_ENV) {

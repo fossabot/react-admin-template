@@ -10,14 +10,14 @@ process.on('unhandledRejection', (error) => {
 	throw error;
 });
 
+// check
+require('./utils/checker');
+
 const chalk = require('chalk');
 const rimraf = require('rimraf');
 const paths = require('./config/paths');
 const webpackConfig = require('./webpack/webpack-pub-config');
-const build = require('./helper/build');
-
-// check
-require('./helper/pass-check');
+const { build } = require('./utils/functions');
 
 rimraf(paths.appDistPath, (err) => {
 	if (err) throw err;

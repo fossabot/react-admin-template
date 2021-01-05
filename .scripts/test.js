@@ -6,4 +6,7 @@ process.on('unhandledRejection', (error) => {
 	throw error;
 });
 
+// check
+require('./utils/functions').nodeVersionCheck();
+
 // @todo
