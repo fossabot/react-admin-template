@@ -1,10 +1,8 @@
 const chalk = require('chalk');
-const figlet = require('figlet');
 const semver = require('semver');
-const { capitalCase } = require('change-case');
-const { printEnvironment } = require('./printer');
+const { printName, printEnvironment } = require('./printer');
 const paths = require('../config/paths');
-const { name, engines } = require(paths.appRootPkgJson);
+const { engines } = require(paths.appRootPkgJson);
 const currentNodeVersion = process.version;
 const requiredNodeVersion = engines.node;
 const envs = ['development', 'test', 'production'];
@@ -12,11 +10,7 @@ const NODE_ENV = process.env.NODE_ENV;
 const BUILD_ENV = process.env.BUILD_ENV;
 
 // logo
-try {
-	console.log(chalk.gray(figlet.textSync(capitalCase(name))));
-} catch (err) {
-	console.log(err);
-}
+printName();
 
 // Node Version
 if (!semver.satisfies(currentNodeVersion, requiredNodeVersion)) {

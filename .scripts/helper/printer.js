@@ -1,5 +1,17 @@
 const os = require('os');
 const chalk = require('chalk');
+const figlet = require('figlet');
+const { capitalCase } = require('change-case');
+const paths = require('../config/paths');
+const { name } = require(paths.appRootPkgJson);
+
+function printName() {
+	try {
+		console.log(chalk.gray(figlet.textSync(capitalCase(name))));
+	} catch (err) {
+		console.log(err);
+	}
+}
 
 function printEnvironment() {
 	console.log(chalk.cyan(` NODE_ENV: ${chalk.yellow(process.env.NODE_ENV)}`));
@@ -18,6 +30,7 @@ function printInstructions(localUrl, networkUrl) {
 }
 
 module.exports = {
+	printName,
 	printEnvironment,
 	printInstructions,
 };

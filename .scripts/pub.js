@@ -12,9 +12,9 @@ process.on('unhandledRejection', (error) => {
 
 const chalk = require('chalk');
 const rimraf = require('rimraf');
-const webpack = require('webpack');
 const paths = require('./config/paths');
 const webpackConfig = require('./webpack/webpack-pub-config');
+const build = require('./helper/build');
 
 // check
 require('./helper/pass-check');
@@ -24,21 +24,10 @@ rimraf(paths.appDistPath, (err) => {
 
 	console.log(chalk.gray(` 目录【${paths.appDistPath}】清理成功, 等待打包...`));
 
-	webpack(webpackConfig, (err, stats) => {
-		if (err) throw err;
-
-		process.stdout.write(
-			`${stats.toString({
-				colors: true,
-				modules: false,
-				children: false,
-				chunks: false,
-				chunkModules: false,
-			})} \n\n`,
-		);
-
-		if (stats.hasErrors()) process.exit(1);
-
+	build(webpackConfig).then(res => {
+		console.log(`${res}`);
 		console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green('打包完成')}`);
+	}).catch(err => {
+		console.log(err);
 	});
 });

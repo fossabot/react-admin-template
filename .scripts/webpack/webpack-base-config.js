@@ -2,12 +2,20 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
+const threadLoader = require('thread-loader');
 const postcssNormalize = require('postcss-normalize');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
+threadLoader.warmup({}, [
+	'babel-loader',
+	'css-loader',
+	'postcss-loader',
+	'less-loader',
+]);
 
 const {
 	gitBranch,
@@ -41,6 +49,7 @@ function getCSSModuleLocalIdent(context, localIdentName, localName, options) {
 function getStyleLoaders(useCssModule, isLessLoader) {
 	const loaders = [
 		isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+		'thread-loader',
 		{
 			loader: 'css-loader',
 			options: useCssModule

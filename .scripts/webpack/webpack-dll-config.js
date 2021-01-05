@@ -11,8 +11,8 @@ const { dependencies } = require(appRootPkgJson);
 const dllExcludePackages = ['@babel/runtime', '@babel/runtime-corejs3'];
 
 module.exports = {
-	devtool: 'cheap-module-source-map',
 	mode: 'development',
+	devtool: 'cheap-module-source-map',
 	entry: {
 		[dllConfig.entryKey]: Object.keys(dependencies).filter(
 			(key) => !dllExcludePackages.includes(key),
