@@ -7,7 +7,7 @@ export interface IRouteComponentProps extends RouteComponentProps {
 
 export interface IRouterConfig {
 	key?: string;
-	path?: string | string[];
+	path: string;
 	exact?: boolean;
 	strict?: boolean;
 	sensitive?: boolean;
@@ -18,7 +18,7 @@ export interface IRouterConfig {
 	meta?: {
 		// metadata
 		title?: string; // document title
-		icon?: string; // icon in menu or tabs
+		icon?: React.ReactElement | string; // icon in menu or tabs
 		pin?: boolean; // fixed in tabs
 		cache?: boolean; // cache
 		hidden?: boolean; // hide in menu

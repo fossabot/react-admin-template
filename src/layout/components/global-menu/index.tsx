@@ -7,16 +7,26 @@ import {
 	MailOutlined,
 	PieChartOutlined,
 } from '@ant-design/icons';
+import routes from '../../../router';
+
 import s from './index.module.less';
 
 const { Item: MenuItem, SubMenu } = Menu;
 
 export default function GlobalMenu(): React.ReactElement {
+	setTimeout(() => {
+		console.log(routes, '======');
+	}, 1000)
 	return (
 		<Menu className={s.globalMenu} theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-			<MenuItem key="1" icon={<PieChartOutlined />}>
-				Option 1
-			</MenuItem>
+			{routes.map((route) => {
+				return (
+					<MenuItem key={route.key || route.path} icon={route.meta?.icon}>
+						{route.meta?.title}
+					</MenuItem>
+				)
+			})}
+
 			<MenuItem key="2" icon={<DesktopOutlined />}>
 				Option 2
 			</MenuItem>

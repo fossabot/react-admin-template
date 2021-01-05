@@ -1,3 +1,6 @@
+import React from 'react';
+import { DesktopOutlined, DashboardOutlined, VerifiedOutlined, FieldNumberOutlined } from '@ant-design/icons';
+
 import load from '../utils/load';
 import { IRouterConfig } from '../utils/render-routes';
 
@@ -25,34 +28,30 @@ import { IRouterConfig } from '../utils/render-routes';
  */
 const routes: IRouterConfig[] = [
 	{
-		path: '/',
+		path: '/dashboard',
 		exact: true,
-		component: load(() => import('../pages/home')),
+		component: load(() => import('../pages/dashboard')),
+		meta: { title: '工作台', icon: <DashboardOutlined />, authorities: ['权限test3', '权限test4'] },
 	},
 	{
-		path: '/child/:id',
+		path: '/home',
 		exact: true,
-		component: load(() => import('../pages/child')),
-		// meta: { authorities: ['权限test1', '权限test2'] },
-		routes: [
-			{
-				path: '/child/:id/grand-child',
-				exact: true,
-				component: load(() => import('../pages/GrandChild')),
-				// meta: { authorities: ['权限test2'] },
-				routes: [
-					{
-						path: '/child/:id/grand-child/6666',
-						component: load(() => import('../pages')),
-						// meta: { authorities: ['权限test3'] },
-					},
-				],
-			},
-		],
+		component: load(() => import('../pages/home')),
+		meta: { title: '首页', icon: <DesktopOutlined />, authorities: [], some: true },
+	},
+	{
+		path: '/403',
+		component: load(() => import('../pages/errors/403')),
+		meta: { title: '403', icon: <VerifiedOutlined />, authorities: ['权限test3', '权限test4'] },
+	},
+	{
+		path: '/404',
+		component: load(() => import('../pages/errors/404')),
+		meta: { title: '404', icon: <FieldNumberOutlined />, authorities: ['权限test3', '权限test4'] },
 	},
 	{
 		path: '/*',
-		component: load(() => import('../pages/home')),
+		component: load(() => import('../pages/errors/404')),
 	},
 ];
 
