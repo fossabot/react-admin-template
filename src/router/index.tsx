@@ -19,7 +19,7 @@ import { IRouterConfig } from '../utils/render-routes';
  * meta?.icon    			{String}   			icon
  * meta?.pin     			{Boolean}  			是否固定在标签栏。默认: false
  * meta?.cache   			{Boolean}  			是否被缓存，类似Vue。@todo
- * meta?.hidden  			{Boolean}  			是否被从导航栏隐藏，如果为true，同时不会被添加到tabs栏。默认: false
+ * meta?.hidden  			{Boolean}  			是否被从导航栏隐藏，如果为true，同时不会被添加到tabs栏，父级隐藏所有子级也会隐藏。默认: false
  * meta?.showInTabs		{Boolean}  			是否被添加到tabs栏，优先级高于hidden。默认: true
  * meta?.some					{Boolean}				鉴权逻辑，authorities满足其一即为有权限。默认为false。
  * meta?.authorities	{Boolean}				权限列表。
@@ -38,20 +38,42 @@ const routes: IRouterConfig[] = [
 		exact: true,
 		component: load(() => import('../pages/home')),
 		meta: { title: '首页', icon: <DesktopOutlined />, authorities: [], some: true },
+		routes: [
+			{
+				path: '/dashboard1',
+				exact: true,
+				component: load(() => import('../pages/dashboard')),
+				meta: { title: '工作台', icon: <DashboardOutlined />, authorities: ['权限test3', '权限test4'] },
+			},
+			{
+				path: '/home1',
+				exact: true,
+				component: load(() => import('../pages/home')),
+				meta: { title: '首页', icon: <DesktopOutlined />, authorities: [], some: true },
+			},
+		],
 	},
 	{
-		path: '/403',
-		component: load(() => import('../pages/errors/403')),
-		meta: { title: '403', icon: <VerifiedOutlined />, authorities: ['权限test3', '权限test4'] },
-	},
-	{
-		path: '/404',
-		component: load(() => import('../pages/errors/404')),
-		meta: { title: '404', icon: <FieldNumberOutlined />, authorities: ['权限test3', '权限test4'] },
+		path: '/errors',
+		component: null,
+		meta: { title: 'errors', icon: <VerifiedOutlined /> },
+		routes: [
+			{
+				path: '/403',
+				component: load(() => import('../pages/errors/403')),
+				meta: { title: '403', icon: <VerifiedOutlined />, hidden: true },
+			},
+			{
+				path: '/404',
+				component: load(() => import('../pages/errors/404')),
+				meta: { title: '404', icon: <FieldNumberOutlined /> },
+			},
+		],
 	},
 	{
 		path: '/*',
 		component: load(() => import('../pages/errors/404')),
+		meta: { title: '/*', icon: <FieldNumberOutlined />, authorities: ['权限test3', '权限test4'], hidden: true },
 	},
 ];
 
