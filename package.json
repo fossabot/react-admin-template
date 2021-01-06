@@ -15,7 +15,6 @@
     "build:prod": "cross-env BUILD_ENV=production npm run build",
     "build:analyze": "cross-env BUNDLE_ANALYZE=true npm run build:prod",
     "lint-staged": "lint-staged",
-    "lint-staged:scripts": "eslint --ext .js,.jsx,.ts,.tsx ",
     "lint:scripts": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "lint:styles": "stylelint \"src/**/*.less\" --syntax less",
     "fix:styles": "stylelint --fix \"src/**/*.less\" --syntax less",
@@ -39,7 +38,7 @@
   },
   "lint-staged": {
     "src/**/*.less": "stylelint --fix --syntax less",
-    "src/**/*.{js,jsx,ts,tsx}": "npm run pretty-quick && npm run lint-staged:scripts",
+    "src/**/*.{js,jsx,ts,tsx}": "pretty-quick && eslint --ext .js,.jsx,.ts,.tsx ",
     "src/**/*.{js,jsx,tsx,ts,less,md,json}": [
       "prettier -c --write",
       "prettier --check --end-of-line auto"
