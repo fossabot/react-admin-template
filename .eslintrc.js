@@ -73,6 +73,7 @@ module.exports = {
 		'prefer-destructuring': OFF,
 		'object-curly-spacing': ERROR,
 
+		'semi': ERROR,
 		'no-var': ERROR,
 		'no-tabs': OFF,
 		'no-proto': ERROR,
