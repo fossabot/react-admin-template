@@ -4,12 +4,14 @@ import {
 	DashboardOutlined,
 	VerifiedOutlined,
 	FieldNumberOutlined,
+	AlertOutlined,
 } from '@ant-design/icons';
 
 import load from '../utils/load';
 import { IRouterConfig } from '../utils/render-routes';
 
 /**
+ * 含公共功能组件路由列表
  * key 			   				{String}   			key
  * path 			   			{String}   			路由地址
  * exact 			   			{Boolean}  			精确匹配，如果存在子路由，父级路由必须。默认: false
@@ -42,29 +44,29 @@ const routes: IRouterConfig[] = [
 		path: '/dashboard',
 		exact: true,
 		component: load(() => import('../pages/dashboard')),
-		meta: { title: '工作台', icon: <DashboardOutlined />, authorities: ['权限test3', '权限test4'] },
+		meta: { title: '工作台', icon: <DashboardOutlined /> },
 	},
 	{
 		path: '/errors',
 		component: null,
-		meta: { title: 'errors', icon: <VerifiedOutlined /> },
+		meta: { title: 'errors', icon: <AlertOutlined /> },
 		routes: [
 			{
 				path: '/403',
 				component: load(() => import('../pages/errors/403')),
-				meta: { title: '403', icon: <VerifiedOutlined /> },
+				meta: { title: '403', icon: <VerifiedOutlined />, showInTabs: false },
 			},
 			{
 				path: '/404',
 				component: load(() => import('../pages/errors/404')),
-				meta: { title: '404', icon: <FieldNumberOutlined /> },
+				meta: { title: '404', icon: <FieldNumberOutlined />, showInTabs: false },
 			},
 		],
 	},
 	{
 		path: '/*',
 		component: load(() => import('../pages/errors/404')),
-		meta: { title: '/*', icon: <FieldNumberOutlined />, hidden: true },
+		meta: { title: '/*', icon: <FieldNumberOutlined />, showInTabs: false },
 	},
 ];
 
