@@ -17,7 +17,7 @@ export default function GlobalMenu(): React.ReactElement {
 			const subRoutes = route.routes?.filter((item) => item && !item.meta?.hidden);
 			const hasSubMenu = subRoutes?.length;
 
-			// route.routes为空会认为是有效的菜单
+			// route.routes为空会认为是有效的菜单，在判断
 			// 此处值判断route.routes非空且全部hidden返回null
 			if (route.routes?.length && !hasSubMenu) {
 				return null;
