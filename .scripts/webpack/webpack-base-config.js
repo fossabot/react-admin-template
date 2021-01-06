@@ -174,7 +174,7 @@ const webpackBaseConfig = {
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx'],
 		alias: {
-			'@': path.join(paths.appRootPath, './src'),
+			'@': paths.appSrc,
 		},
 	},
 	plugins: [
@@ -194,7 +194,8 @@ const webpackBaseConfig = {
 			fix: true,
 			cache: true,
 			quiet: true,
-			files: ['src/**/*.(le|c)ss'],
+			context: paths.appSrc,
+			files: ['**/*.(le|c)ss'],
 		}),
 		new webpack.DefinePlugin({
 			'process.env.BUILD_ENV': JSON.stringify(buildEnv),
