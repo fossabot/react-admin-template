@@ -15,11 +15,12 @@
     "build:prod": "cross-env BUILD_ENV=production npm run build",
     "build:analyze": "cross-env BUNDLE_ANALYZE=true npm run build:prod",
     "lint-staged": "lint-staged",
-    "lint:scripts": "eslint --ext .js,.jsx,.ts,.tsx ./src",
-    "lint:styles": "stylelint \"src/**/*.less\" --syntax less",
-    "fix:styles": "stylelint --fix \"src/**/*.less\" --syntax less",
-    "prettier": "prettier -c --write \"src/**/*.{js,jsx,ts,tsx,less,md,json}\"",
-    "pretty-quick": "pretty-quick",
+		"lint:styles": "stylelint \"src/**/*.less\" --syntax less",
+		"lint:scripts": "eslint --ext .js,.jsx,.ts,.tsx ./src",
+		"fix:styles": "stylelint --fix \"src/**/*.less\" --syntax less",
+		"fix:scripts": "eslint --fix --ext .js,.jsx,.ts,.tsx ./src",
+		"pretty-quick": "pretty-quick",
+		"prettier": "prettier -c --write \"src/**/*.{js,jsx,ts,tsx,less,md,json}\"",
     "lint:prettier": "prettier --check \"src/**/*.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "cacheclean": "rimraf node_modules/.cache .eslintcache .stylelintcache debug.log yarn-error.log yarn.lock",
     "watch": "tsc --watch",
@@ -31,18 +32,14 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint-staged",
+      "pre-commit": "pretty-quick && npm run lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-push": "echo \"\n半壁翻云刃，满江酩酊红。千古光阴一霎时，且醉浪涛中！\n\""
     }
   },
   "lint-staged": {
-    "src/**/*.less": "stylelint --fix --syntax less",
-    "src/**/*.{js,jsx,ts,tsx}": "pretty-quick && eslint --ext .js,.jsx,.ts,.tsx ",
-    "src/**/*.{js,jsx,tsx,ts,less,md,json}": [
-      "prettier -c --write",
-      "prettier --check --end-of-line auto"
-    ]
+    "src/**/*.less": "npm run lint:styles",
+    "src/**/*.{js,jsx,ts,tsx}": "npm run lint:scripts"
   },
   "dependencies": {
     "@ant-design/icons": "^4.3.0",

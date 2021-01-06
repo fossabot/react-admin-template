@@ -25,17 +25,17 @@ export default function GlobalMenu(): React.ReactElement {
 
 			if (hasSubMenu) {
 				return (
-					<SubMenu key={route.key || route.path} title={route.meta?.title} icon={route.meta?.icon} >
+					<SubMenu key={route.key || route.path} title={route.meta?.title} icon={route.meta?.icon}>
 						{renderMenuItem(subRoutes)}
 					</SubMenu>
-				)
+				);
 			}
 
 			return (
 				<MenuItem key={route.key || route.path} icon={route.meta?.icon}>
 					{route.meta?.title}
 				</MenuItem>
-			)
+			);
 		});
 	}
 

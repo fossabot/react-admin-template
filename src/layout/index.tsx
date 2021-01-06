@@ -28,10 +28,7 @@ function BaseLayout(): React.ReactElement {
 		<Layout id="app-container">
 			<Sider collapsedWidth={80} collapsed={collapsed}>
 				<div className={s.appAside}>
-					<Header
-						className={s.appAsideLogo}
-						onClick={onNavToRoot}
-					>
+					<Header className={s.appAsideLogo} onClick={onNavToRoot}>
 						React Admin Template
 					</Header>
 					<GlobalMenu />

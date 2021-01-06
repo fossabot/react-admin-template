@@ -1,5 +1,10 @@
 import React from 'react';
-import { DesktopOutlined, DashboardOutlined, VerifiedOutlined, FieldNumberOutlined } from '@ant-design/icons';
+import {
+	DesktopOutlined,
+	DashboardOutlined,
+	VerifiedOutlined,
+	FieldNumberOutlined,
+} from '@ant-design/icons';
 
 import load from '../utils/load';
 import { IRouterConfig } from '../utils/render-routes';
