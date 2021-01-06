@@ -1,5 +1,6 @@
 import React, { Suspense, useState } from 'react';
 import { Switch } from 'react-router';
+import { useLocation, useHistory } from 'react-router-dom';
 import { Layout } from 'antd';
 import { MenuFoldOutlined } from '@ant-design/icons';
 
@@ -13,13 +14,26 @@ import s from './index.module.less';
 const { Header, Sider, Content } = Layout;
 
 function BaseLayout(): React.ReactElement {
+	const location = useLocation();
+	const history = useHistory();
 	const [collapsed, setCollapsed] = useState(false);
+
+	function onNavToRoot(): void {
+		if (location.pathname !== '/') {
+			history.push('/');
+		}
+	}
 
 	return (
 		<Layout id="app-container">
 			<Sider collapsedWidth={80} collapsed={collapsed}>
 				<div className={s.appAside}>
-					<Header className={s.appAsideLogo}>React Admin Template</Header>
+					<Header
+						className={s.appAsideLogo}
+						onClick={onNavToRoot}
+					>
+						React Admin Template
+					</Header>
 					<GlobalMenu />
 				</div>
 			</Sider>

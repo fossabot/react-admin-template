@@ -19,7 +19,6 @@ export default function appInfo(log?: boolean): void {
 		const versionStyle = `${style};color:#fff;background:#007ec6;`;
 		const envStyle = `${style};color:#fff;background:#3c1;`;
 		const timeStyle = `${style};color:#fff;background:#dfb317;${br('right', 3)};`;
-		window.console.clear();
 		window.console.log(
 			`%c${name}%c${gitBranch}-v${version}%c${env}%c${time}`,
 			nameStyle,

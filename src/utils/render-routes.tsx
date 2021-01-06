@@ -14,7 +14,7 @@ export interface IRouterConfig {
 	redirect?: string;
 	// eslint-disable-next-line no-unused-vars
 	render?: (props: IRouteComponentProps) => React.ReactNode;
-	component?: React.ComponentType<IRouteComponentProps> | React.ComponentType<any>;
+	component?: React.ComponentType<IRouteComponentProps> | React.ComponentType<any> | null;
 	meta?: {
 		// metadata
 		title?: string; // document title
