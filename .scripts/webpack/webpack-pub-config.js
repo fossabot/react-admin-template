@@ -1,5 +1,5 @@
 const webpackMerge = require('webpack-merge');
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
@@ -16,7 +16,7 @@ const webpackPubConfig = {
 	bail: isProduction,
 	devtool: canUseSourceMap ? 'source-map' : false,
 	plugins: [
-		new CopyPlugin({
+		new CopyWebpackPlugin({
 			patterns: [
 				{
 					from: paths.appPublicPath,
