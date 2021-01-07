@@ -10,12 +10,7 @@ const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-threadLoader.warmup({}, [
-	'babel-loader',
-	'css-loader',
-	'postcss-loader',
-	'less-loader',
-]);
+threadLoader.warmup({}, ['babel-loader', 'css-loader', 'postcss-loader', 'less-loader']);
 
 const {
 	buildTime,
@@ -139,7 +134,7 @@ const webpackBaseConfig = {
 					{
 						loader: 'babel-loader',
 						options: {
-							cacheDirectory: true,
+							cacheDirectory: false,
 						},
 					},
 				],
@@ -188,13 +183,13 @@ const webpackBaseConfig = {
 			formatter: require.resolve('react-dev-utils/eslintFormatter'),
 			eslintPath: require.resolve('eslint'),
 			context: paths.appSrc,
-			cache: true,
+			cache: false,
 			cwd: paths.appRootPath,
 			resolvePluginsRelativeTo: __dirname,
 		}),
 		new StylelintPlugin({
 			fix: true,
-			cache: true,
+			cache: false,
 			quiet: true,
 			context: paths.appSrc,
 			files: ['**/*.(le|c)ss'],
