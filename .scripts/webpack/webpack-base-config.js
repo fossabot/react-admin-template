@@ -18,15 +18,17 @@ threadLoader.warmup({}, [
 ]);
 
 const {
-	gitBranch,
 	buildTime,
 	buildEnv,
 	bundleAnalyze,
 	appPublicPath,
 	useSourceMap,
+
+	name,
+	version,
+	gitBranch,
 } = require('../config');
 const paths = require('../config/paths');
-const pkg = require(paths.appRootPkgJson);
 const isDevelopment = buildEnv === 'development';
 const isProduction = buildEnv === 'production';
 const canUseSourceMap = isProduction ? useSourceMap : true;
@@ -200,8 +202,8 @@ const webpackBaseConfig = {
 		new webpack.DefinePlugin({
 			'process.env.BUILD_ENV': JSON.stringify(buildEnv),
 			'process.env.$__GIT_BRANCH__$': JSON.stringify(gitBranch),
-			'process.env.$__APP_NAME__$': JSON.stringify(pkg.name),
-			'process.env.$__APP_VERSION__$': JSON.stringify(pkg.version),
+			'process.env.$__APP_NAME__$': JSON.stringify(name),
+			'process.env.$__APP_VERSION__$': JSON.stringify(version),
 			'process.env.$__APP_BUILD_TIME__$': JSON.stringify(buildTime),
 		}),
 		new HtmlWebpackPlugin(

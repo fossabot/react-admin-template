@@ -1,13 +1,11 @@
 const chalk = require('chalk');
 const semver = require('semver');
 const webpack = require('webpack');
-const childProcess = require('child_process');
 
 const envs = ['development', 'test', 'production'];
 const NODE_ENV = process.env.NODE_ENV;
 const BUILD_ENV = process.env.BUILD_ENV;
-const paths = require('../config/paths');
-const { engines } = require(paths.appRootPkgJson);
+const { engines } = require('../config');
 const currentNodeVersion = process.version;
 const requiredNodeVersion = engines.node;
 
@@ -42,11 +40,6 @@ function nodeEnvCheck() {
 	}
 }
 
-// exec
-function exec(cmd, options) {
-	return childProcess.execSync(cmd, options).toString().trim();
-}
-
 // webpack compiler
 function build(config) {
 	return new Promise((resolve, reject) => {
@@ -76,6 +69,5 @@ module.exports = {
 	nodeVersionCheck,
 	buildEnvCheck,
 	nodeEnvCheck,
-	exec,
 	build,
 }

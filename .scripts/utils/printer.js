@@ -2,8 +2,7 @@ const os = require('os');
 const chalk = require('chalk');
 const figlet = require('figlet');
 const { capitalCase } = require('change-case');
-const paths = require('../config/paths');
-const { name } = require(paths.appRootPkgJson);
+const { name } = require('../config');
 
 function printName() {
 	try {
