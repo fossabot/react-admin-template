@@ -31,7 +31,6 @@ export default function LoginCard(): React.ReactElement {
 				>
 					<Input
 						size="large"
-						autoComplete="off"
 						placeholder="请输入用户名/邮箱"
 						onFocus={(): void => {
 							setPanda('greeting');
