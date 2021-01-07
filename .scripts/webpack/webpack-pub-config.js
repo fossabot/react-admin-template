@@ -36,6 +36,7 @@ const webpackPubConfig = {
 	],
 	optimization: {
 		usedExports: true,
+		minimize: true,
 		minimizer: [
 			new TerserPlugin({
 				exclude: /\.min\.js$/,
