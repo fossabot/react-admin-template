@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const { printName, printEnvironment } = require('./printer');
+const { printName, printPkgInfo, printEnvironment } = require('./printer');
 const { nodeVersionCheck, buildEnvCheck, nodeEnvCheck } = require('./functions');
 
 // logo
@@ -15,5 +15,6 @@ buildEnvCheck();
 nodeEnvCheck();
 
 console.log(chalk.gray(` 本次启动参数:`));
+// env
 printEnvironment();
 console.log();
