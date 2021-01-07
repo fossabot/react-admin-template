@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Form, Input, Checkbox, Button } from 'antd';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 import s from './index.module.less';
 import normal from '../../img/normal.png';
@@ -12,9 +12,17 @@ export default function LoginCard(): React.ReactElement {
 
 	return (
 		<Card className={s.card}>
-			<img className={classNames(s.panda, { [s.show]: panda === 'normal' })} src={normal} alt="" />
-			<img className={classNames(s.panda, { [s.show]: panda === 'greeting' })} src={greeting} alt="" />
-			<img className={classNames(s.panda, { [s.show]: panda === 'blindfold' })} src={blindfold} alt="" />
+			<img className={classnames(s.panda, { [s.show]: panda === 'normal' })} src={normal} alt="" />
+			<img
+				className={classnames(s.panda, { [s.show]: panda === 'greeting' })}
+				src={greeting}
+				alt=""
+			/>
+			<img
+				className={classnames(s.panda, { [s.show]: panda === 'blindfold' })}
+				src={blindfold}
+				alt=""
+			/>
 			<Form name="login">
 				<Form.Item
 					label="账户"
@@ -25,19 +33,23 @@ export default function LoginCard(): React.ReactElement {
 						size="large"
 						autoComplete="off"
 						placeholder="请输入用户名/邮箱"
-						onFocus={(): void => { setPanda('greeting'); }}
-						onBlur={(): void => { setPanda('normal'); }}
+						onFocus={(): void => {
+							setPanda('greeting');
+						}}
+						onBlur={(): void => {
+							setPanda('normal');
+						}}
 					/>
 				</Form.Item>
-				<Form.Item
-					label="密码"
-					name="password"
-					rules={[{ required: true, message: '请输入密码' }]}
-				>
+				<Form.Item label="密码" name="password" rules={[{ required: true, message: '请输入密码' }]}>
 					<Input.Password
 						size="large"
-						onFocus={(): void => { setPanda('blindfold'); }}
-						onBlur={(): void => { setPanda('normal'); }}
+						onFocus={(): void => {
+							setPanda('blindfold');
+						}}
+						onBlur={(): void => {
+							setPanda('normal');
+						}}
 					/>
 				</Form.Item>
 
