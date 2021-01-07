@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
+const { merge: webpackMerge } = require('webpack-merge');
 const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 
 const { dllConfig } = require('../config');
