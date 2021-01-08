@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDom from 'react-dom';
 import App from './app';
 import appInfo from './utils/app-info';
 import reportWebVitals from './utils/report-web-vitals';
 
-ReactDom.render(<App />, document.querySelector('#react-admin-template'));
+ReactDom.render(
+	<StrictMode>
+		<App />
+	</StrictMode>,
+	document.querySelector('#react-admin-template'),
+);
 
 // app basic info
 appInfo(process.env.BUILD_ENV !== 'production');
