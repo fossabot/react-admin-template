@@ -126,7 +126,7 @@ module.exports = {
 		'class-methods-use-this': WARN,
 		'comma-dangle': [ERROR, 'always-multiline'],
 
-		'linebreak-style': [ERROR, 'unix'],
+		// 'linebreak-style': [ERROR, 'unix'],
 		'lines-between-class-members': ERROR,
 
 		'import/extensions': OFF,
