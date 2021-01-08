@@ -8,7 +8,7 @@ ReactDom.render(
 	<StrictMode>
 		<App />
 	</StrictMode>,
-	document.querySelector('#react-admin-template'),
+	document.getElementById('#react-admin-template'),
 );
 
 // app basic info
