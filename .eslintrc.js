@@ -64,6 +64,7 @@ module.exports = {
 		},
 	],
 	rules: {
+		semi: ERROR,
 		quotes: ERROR,
 		indent: [ERROR, 'tab', { SwitchCase: 1, ObjectExpression: 1 }],
 		radix: ERROR,
@@ -73,7 +74,6 @@ module.exports = {
 		'prefer-destructuring': OFF,
 		'object-curly-spacing': ERROR,
 
-		semi: ERROR,
 		'no-var': ERROR,
 		'no-tabs': OFF,
 		'no-proto': ERROR,
