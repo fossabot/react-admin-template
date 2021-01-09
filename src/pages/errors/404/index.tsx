@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default function NotFond(): React.ReactElement {
+const NotFond: React.FC = () => {
 	return <div>NotFond</div>;
-}
+};
+
+export default NotFond;

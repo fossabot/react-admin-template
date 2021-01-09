@@ -8,7 +8,7 @@ import s from './index.module.less';
 
 const { Item: MenuItem, SubMenu } = Menu;
 
-export default function GlobalMenu(): React.ReactElement {
+const GlobalMenu: React.FC = () => {
 	function renderMenuItem(list?: IRouterConfig[]): null | (null | React.ReactElement)[] {
 		if (!Array.isArray(list) || !list.length) {
 			return null;
@@ -44,4 +44,6 @@ export default function GlobalMenu(): React.ReactElement {
 			{renderMenuItem(routes.filter((item) => item && !item.meta?.hidden))}
 		</Menu>
 	);
-}
+};
+
+export default GlobalMenu;

@@ -13,7 +13,7 @@ import s from './index.module.less';
 
 const { Header, Sider, Content } = Layout;
 
-function BaseLayout(): React.ReactElement {
+const BaseLayout: React.FC = () => {
 	const location = useLocation();
 	const history = useHistory();
 	const [collapsed, setCollapsed] = useState(false);
@@ -53,6 +53,6 @@ function BaseLayout(): React.ReactElement {
 			</Layout>
 		</Layout>
 	);
-}
+};
 
 export default BaseLayout;

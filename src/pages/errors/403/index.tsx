@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default function PermissionDenied(): React.ReactElement {
+const PermissionDenied: React.FC = () => {
 	return <div>PermissionDenied </div>;
-}
+};
+
+export default PermissionDenied;

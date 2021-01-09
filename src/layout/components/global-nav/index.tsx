@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default function GlobalNav(): React.ReactElement {
+const GlobalNav: React.FC = () => {
 	return <div>导航栏</div>;
-}
+};
+
+export default GlobalNav;

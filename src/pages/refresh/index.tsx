@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default function Refresh(): React.ReactElement {
+const Refresh: React.FC = () => {
 	return <div>Refresh</div>;
-}
+};
+
+export default Refresh;

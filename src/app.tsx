@@ -6,7 +6,7 @@ import { renderRoutes } from './utils/render-routes';
 import outsiders from './router/outsiders';
 import './styles/index.less';
 
-export default function App(): React.ReactElement {
+const App: React.FC = () => {
 	return (
 		<BrowserRouter>
 			<Switch>
@@ -15,4 +15,6 @@ export default function App(): React.ReactElement {
 			</Switch>
 		</BrowserRouter>
 	);
-}
+};
+
+export default App;

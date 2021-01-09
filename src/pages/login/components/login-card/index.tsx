@@ -7,7 +7,7 @@ import normal from '../../img/normal.png';
 import greeting from '../../img/greeting.png';
 import blindfold from '../../img/blindfold.png';
 
-export default function LoginCard(): React.ReactElement {
+const LoginCard: React.FC = () => {
 	const [panda, setPanda] = useState('normal');
 
 	return (
@@ -64,4 +64,6 @@ export default function LoginCard(): React.ReactElement {
 			</Form>
 		</Card>
 	);
-}
+};
+
+export default LoginCard;

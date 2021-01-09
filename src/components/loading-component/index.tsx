@@ -1,6 +1,8 @@
 import React from 'react';
 import { Spin } from 'antd';
 
-export default function LoadingComponent(): React.ReactElement {
+const LoadingComponent: React.FC = () => {
 	return <Spin size="large" tip="loading..." />;
-}
+};
+
+export default LoadingComponent;

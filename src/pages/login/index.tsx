@@ -3,10 +3,12 @@ import React from 'react';
 import LoginCard from './components/login-card';
 import s from './index.module.less';
 
-export default function Login(): React.ReactElement {
+const Login: React.FC = () => {
 	return (
 		<div className={s.login}>
 			<LoginCard />
 		</div>
 	);
-}
+};
+
+export default Login;

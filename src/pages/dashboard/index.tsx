@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default function Dashboard(): React.ReactElement {
+const Dashboard: React.FC = () => {
 	return <div>Dashboard</div>;
-}
+};
+
+export default Dashboard;
