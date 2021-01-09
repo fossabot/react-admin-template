@@ -2,7 +2,7 @@ const os = require('os');
 const chalk = require('chalk');
 const figlet = require('figlet');
 const { capitalCase } = require('change-case');
-const { name, version, gitBranch } = require('../config');
+const { name, version, gitBranch, gitCommitHash } = require('../config');
 
 function printName() {
 	try {
@@ -16,6 +16,7 @@ function printEnvironment() {
 	console.log(chalk.cyan(` name: ${chalk.yellow(name)}`));
 	console.log(chalk.cyan(` version: ${chalk.yellow(version)}`));
 	console.log(chalk.cyan(` branch: ${chalk.yellow(gitBranch)}`));
+	console.log(chalk.cyan(` commit: ${chalk.yellow(gitCommitHash)}`));
 
 	console.log(chalk.cyan(` NODE_ENV: ${chalk.yellow(process.env.NODE_ENV)}`));
 	console.log(chalk.cyan(` BUILD_ENV: ${chalk.yellow(process.env.BUILD_ENV)}`));
