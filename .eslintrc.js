@@ -47,7 +47,7 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended-requiring-type-checking',
 		'prettier/react',
 	],
-	plugins: ['react', 'babel', '@typescript-eslint', 'react-hooks', 'unicorn', 'jsx-a11y'],
+	plugins: ['react', 'babel', '@typescript-eslint', 'react-hooks', 'unicorn'],
 	overrides: [
 		{
 			files: ['*.js', '*.jsx'],
