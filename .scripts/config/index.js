@@ -21,7 +21,6 @@ module.exports = {
 	proxy: { ...proxy },
 	appPublicPath: '/',
 	buildEnv: process.env.BUILD_ENV,
-	buildTime: new Date().toLocaleString(),
 	bundleAnalyze: process.env.BUNDLE_ANALYZE,
 	useSourceMap: process.env.GENERATE_SOURCEMAP === 'true',
 	dllConfig: {
@@ -31,8 +30,11 @@ module.exports = {
 		manifest: 'dll_manifest.json',
 	},
 
+	// 其他无关痛痒的参数
 	name,
 	version,
 	engines,
 	gitBranch: exec('git rev-parse --abbrev-ref HEAD'),
+	gitCommitHash: exec('git show -s --format=%h'),
+	buildTime: new Date().toLocaleString(),
 };

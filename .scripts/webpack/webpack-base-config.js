@@ -22,6 +22,7 @@ const {
 	name,
 	version,
 	gitBranch,
+	gitCommitHash,
 } = require('../config');
 const paths = require('../config/paths');
 const isDevelopment = buildEnv === 'development';
@@ -196,9 +197,10 @@ const webpackBaseConfig = {
 		}),
 		new webpack.DefinePlugin({
 			'process.env.BUILD_ENV': JSON.stringify(buildEnv),
-			'process.env.$__GIT_BRANCH__$': JSON.stringify(gitBranch),
 			'process.env.$__APP_NAME__$': JSON.stringify(name),
 			'process.env.$__APP_VERSION__$': JSON.stringify(version),
+			'process.env.$__GIT_BRANCH__$': JSON.stringify(gitBranch),
+			'process.env.$__GIT_COMMIT_HASH__$': JSON.stringify(gitCommitHash),
 			'process.env.$__APP_BUILD_TIME__$': JSON.stringify(buildTime),
 		}),
 		new HtmlWebpackPlugin(

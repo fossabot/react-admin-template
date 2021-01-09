@@ -3,8 +3,9 @@ import { capitalCase } from 'change-case';
 export default function appInfo(log?: boolean): void {
 	const env = process.env.BUILD_ENV || '';
 	const name = capitalCase(process.env.$__APP_NAME__$ || '');
-	const gitBranch = process.env.$__GIT_BRANCH__$ || '';
 	const version = process.env.$__APP_VERSION__$ || '';
+	const gitBranch = process.env.$__GIT_BRANCH__$ || '';
+	const gitCommitHash = process.env.$__GIT_COMMIT_HASH__$ || '';
 	const prodBuildTime = process.env.$__APP_BUILD_TIME__$ || '';
 	const devUpdateTime = new Date().toLocaleString();
 	const time = env === 'development' ? `Refresh: ${devUpdateTime}` : `Build: ${prodBuildTime}`;
@@ -20,7 +21,7 @@ export default function appInfo(log?: boolean): void {
 		const envStyle = `${style};color:#fff;background:#3c1;`;
 		const timeStyle = `${style};color:#fff;background:#dfb317;${br('right', 3)};`;
 		window.console.log(
-			`%c${name}%c${gitBranch}-v${version}%c${env}%c${time}`,
+			`%c${name}%cv${version}-${gitBranch}-${gitCommitHash}%c${env}%c${time}`,
 			nameStyle,
 			versionStyle,
 			envStyle,
