@@ -97,7 +97,7 @@ module.exports = {
 		'no-unreachable': ERROR,
 		'no-return-await': ERROR,
 		'no-self-compare': ERROR,
-		'no-param-reassign': [ERROR, { props: true }],
+		'no-param-reassign': [ERROR, { props: false }],
 		'no-mixed-operators': ERROR,
 		'no-useless-concat': ERROR,
 		'no-nested-ternary': ERROR,
@@ -121,7 +121,7 @@ module.exports = {
 		'max-lines-per-function': [WARN, 120],
 		'max-lines': [ERROR, { max: 800, skipBlankLines: true, skipComments: true }],
 
-		'consistent-return': ERROR,
+		'consistent-return': WARN,
 		'object-curly-newline': OFF,
 		'class-methods-use-this': WARN,
 		'comma-dangle': [ERROR, 'always-multiline'],
@@ -158,5 +158,8 @@ module.exports = {
 		'react/no-access-state-in-setstate': ERROR,
 		'react/jsx-wrap-multilines': [ERROR, { declaration: false, assignment: false }],
 		'react/jsx-filename-extension': [ERROR, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+
+		'jsx-a11y/click-events-have-key-events': OFF,
+		'jsx-a11y/no-static-element-interactions': OFF,
 	},
 };
