@@ -1,6 +1,6 @@
 const { merge: webpackMerge } = require('webpack-merge');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const TerserPlugin = require('terser-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
@@ -38,7 +38,7 @@ const webpackPubConfig = {
 		usedExports: true,
 		minimize: true,
 		minimizer: [
-			new TerserPlugin({
+			new TerserWebpackPlugin({
 				exclude: /\.min\.js$/,
 				cache: true,
 				parallel: true,
