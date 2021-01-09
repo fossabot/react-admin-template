@@ -73,7 +73,7 @@ module.exports = {
 		'prefer-destructuring': OFF,
 		'object-curly-spacing': ERROR,
 
-		'semi': ERROR,
+		semi: ERROR,
 		'no-var': ERROR,
 		'no-tabs': OFF,
 		'no-proto': ERROR,
@@ -121,7 +121,7 @@ module.exports = {
 		'max-lines-per-function': [WARN, 120],
 		'max-lines': [ERROR, { max: 800, skipBlankLines: true, skipComments: true }],
 
-		'consistent-return': WARN,
+		'consistent-return': ERROR,
 		'object-curly-newline': OFF,
 		'class-methods-use-this': WARN,
 		'comma-dangle': [ERROR, 'always-multiline'],
@@ -140,8 +140,9 @@ module.exports = {
 		'@typescript-eslint/no-misused-promises': ERROR,
 		'@typescript-eslint/no-floating-promises': WARN,
 		'@typescript-eslint/no-unsafe-member-access': ERROR,
-		'@typescript-eslint/explicit-function-return-type': ERROR,
+		'@typescript-eslint/explicit-function-return-type': WARN,
 		'@typescript-eslint/restrict-template-expressions': ERROR,
+		'@typescript-eslint/explicit-module-boundary-types': OFF,
 
 		'react/no-danger': ERROR,
 		'react/no-string-refs': ERROR,
