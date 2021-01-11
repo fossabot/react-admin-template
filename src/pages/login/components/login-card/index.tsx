@@ -12,13 +12,19 @@ const LoginCard: React.FC = () => {
 
 	return (
 		<Card className={s.card}>
-			<img className={classnames(s.panda, { [s.show]: panda === 'normal' })} src={normal} alt="" />
 			<img
+				title="图片来自掘金登陆弹窗，本项目非商业使用，如涉及侵权请联系删除，谢谢"
+				className={classnames(s.panda, { [s.show]: panda === 'normal' })}
+				src={normal} alt=""
+			/>
+			<img
+				title="图片来自掘金登陆弹窗，本项目非商业使用，如涉及侵权请联系删除，谢谢"
 				className={classnames(s.panda, { [s.show]: panda === 'greeting' })}
 				src={greeting}
 				alt=""
 			/>
 			<img
+				title="图片来自掘金登陆弹窗，本项目非商业使用，如涉及侵权请联系删除，谢谢"
 				className={classnames(s.panda, { [s.show]: panda === 'blindfold' })}
 				src={blindfold}
 				alt=""
