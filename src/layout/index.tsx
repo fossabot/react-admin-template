@@ -6,7 +6,6 @@ import { MenuFoldOutlined } from '@ant-design/icons';
 
 import GlobalMenu from './components/global-menu';
 import GlobalNav from './components/global-nav';
-// import LoadingComponent from '../components/loading-component';
 import { renderRoutesDeep } from '../utils/render-routes';
 import routes from '../router';
 import s from './index.module.less';
@@ -45,10 +44,6 @@ const BaseLayout: React.FC = () => {
 					<GlobalNav />
 				</Header>
 				<Content className={s.appRouterView}>
-					{/* @warn Suspense 和 React.lazy不支持服务端渲染。如果不需要SSR并且不想用三方库，请至utils/load.ts同步修改 */}
-					{/* <Suspense fallback={<LoadingComponent />}> */}
-					{/*	<Switch>{renderRoutesDeep(routes)}</Switch> */}
-					{/* </Suspense> */}
 					<Switch>{renderRoutesDeep(routes)}</Switch>
 				</Content>
 			</Layout>

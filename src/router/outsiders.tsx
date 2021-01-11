@@ -1,7 +1,7 @@
 import React from 'react';
 import { LoginOutlined } from '@ant-design/icons';
 
-import Login from '../pages/login';
+import load from '../utils/load';
 import { IRouterConfig } from '../utils/render-routes';
 
 /**
@@ -10,7 +10,7 @@ import { IRouterConfig } from '../utils/render-routes';
 const outsiders: IRouterConfig[] = [
 	{
 		path: '/login',
-		component: Login,
+		component: load(() => import('../pages/login')),
 		meta: { title: '登录', icon: <LoginOutlined />, showInTabs: false },
 	},
 ];
