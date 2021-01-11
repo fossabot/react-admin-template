@@ -4,6 +4,12 @@ import App from './app';
 import appInfo from './utils/app-info';
 import reportWebVitals from './utils/report-web-vitals';
 
+// ReactDom.render(
+// 	<App />,
+// 	document.getElementById('react-admin-template'),
+// );
+
+// antd等一些第三方库会抛出一些警告，建议开启，防止自己写有潜在问题的代码
 ReactDom.render(
 	<StrictMode>
 		<App />
