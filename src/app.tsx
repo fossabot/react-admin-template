@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
-import Mobx from './mobx';
+import MobxProvider from './mobx';
 
-import BaseLayout from './layout';
+import BaseLayout from './layout/base-layout';
 import { getRedirectsRoutes, renderRoutes } from './utils/render-routes';
 import outsiders from './router/outsiders';
 import './styles/index.less';
@@ -12,7 +12,7 @@ import './styles/index.less';
 const App: React.FC = () => {
 	return (
 		<ConfigProvider locale={zhCN}>
-			<Mobx>
+			<MobxProvider>
 				<BrowserRouter>
 					<Switch>
 						{getRedirectsRoutes(outsiders)}
@@ -20,7 +20,7 @@ const App: React.FC = () => {
 						<BaseLayout />
 					</Switch>
 				</BrowserRouter>
-			</Mobx>
+			</MobxProvider>
 		</ConfigProvider>
 	);
 };

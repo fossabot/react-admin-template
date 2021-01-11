@@ -6,8 +6,8 @@ import { MenuFoldOutlined } from '@ant-design/icons';
 
 import GlobalMenu from './components/global-menu';
 import GlobalNav from './components/global-nav';
-import { getRedirectsRoutes, renderRoutesDeep } from '../utils/render-routes';
-import routes from '../router';
+import { getRedirectsRoutes, renderRoutesDeep } from '../../utils/render-routes';
+import routes from '../../router';
 import s from './index.module.less';
 
 const { Header, Sider, Content } = Layout;

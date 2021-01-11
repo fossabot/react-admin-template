@@ -1,9 +1,9 @@
 import React from 'react';
 import { Menu } from 'antd';
 import { useLocation, useHistory } from 'react-router';
-import { IRouterConfig } from '../../../utils/render-routes';
-import routes from '../../../router';
-import { SelectInfo } from '../../../interface/menu';
+import { IRouterConfig } from '../../../../utils/render-routes';
+import routes from '../../../../router';
+import { SelectInfo } from '../../../../interface/menu';
 import s from './index.module.less';
 
 const { Item: MenuItem, SubMenu } = Menu;

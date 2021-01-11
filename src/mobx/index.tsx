@@ -5,7 +5,7 @@ import store from './store';
 
 configure({ enforceActions: 'observed' });
 
-function Mobx(props: ProviderProps): React.ReactElement {
+function MobxProvider(props: ProviderProps): React.ReactElement {
 	return (
 		<Provider {...store}>
 			{props.children}
@@ -13,4 +13,4 @@ function Mobx(props: ProviderProps): React.ReactElement {
 	);
 }
 
-export default Mobx;
+export default MobxProvider;
