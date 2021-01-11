@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { useState } from 'react';
 import { Switch } from 'react-router';
 import { useLocation, useHistory } from 'react-router-dom';
 import { Layout } from 'antd';
@@ -6,7 +6,7 @@ import { MenuFoldOutlined } from '@ant-design/icons';
 
 import GlobalMenu from './components/global-menu';
 import GlobalNav from './components/global-nav';
-import LoadingComponent from '../components/loading-component';
+// import LoadingComponent from '../components/loading-component';
 import { renderRoutesDeep } from '../utils/render-routes';
 import routes from '../router';
 import s from './index.module.less';
@@ -45,10 +45,11 @@ const BaseLayout: React.FC = () => {
 					<GlobalNav />
 				</Header>
 				<Content className={s.appRouterView}>
-					{/* @todo Suspense 和 React.lazy不支持服务端渲染 */}
-					<Suspense fallback={<LoadingComponent />}>
-						<Switch>{renderRoutesDeep(routes)}</Switch>
-					</Suspense>
+					{/* @warn Suspense 和 React.lazy不支持服务端渲染。如果不需要SSR并且不想用三方库，请至utils/load.ts同步修改 */}
+					{/* <Suspense fallback={<LoadingComponent />}> */}
+					{/*	<Switch>{renderRoutesDeep(routes)}</Switch> */}
+					{/* </Suspense> */}
+					<Switch>{renderRoutesDeep(routes)}</Switch>
 				</Content>
 			</Layout>
 		</Layout>
