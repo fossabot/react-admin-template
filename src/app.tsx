@@ -11,17 +11,17 @@ import './styles/index.less';
 
 const App: React.FC = () => {
 	return (
-		<ConfigProvider locale={zhCN}>
-			<MobxProvider>
-				<BrowserRouter>
+		<BrowserRouter>
+			<ConfigProvider locale={zhCN}>
+				<MobxProvider>
 					<Switch>
 						{getRedirectsRoutes(outsiders)}
 						{renderRoutes(outsiders)}
 						<BaseLayout />
 					</Switch>
-				</BrowserRouter>
-			</MobxProvider>
-		</ConfigProvider>
+				</MobxProvider>
+			</ConfigProvider>
+		</BrowserRouter>
 	);
 };
 
