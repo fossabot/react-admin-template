@@ -6,26 +6,25 @@ export interface IRouteComponentProps extends RouteComponentProps {
 }
 
 export interface IRouterConfig {
-	key?: string;
-	path: string;
-	exact?: boolean;
-	strict?: boolean;
-	sensitive?: boolean;
-	redirect?: string;
+	key?: string; // key
+	path: string; // 路由地址
+	exact?: boolean; // 精确匹配
+	strict?: boolean; // 严格匹配
+	sensitive?: boolean; // 是否区分大小写匹配
+	redirect?: string; // 重定向路由地址
 	// eslint-disable-next-line no-unused-vars
 	render?: (props: IRouteComponentProps) => React.ReactNode;
 	component?: React.ComponentType<IRouteComponentProps> | React.ComponentType<any> | null;
-	meta?: {
-		// metadata
-		title?: string; // document title
-		icon?: React.ReactElement | string; // icon in menu or tabs
-		pin?: boolean; // fixed in tabs
-		cache?: boolean; // cache
-		hidden?: boolean; // hide in menu
-		showInTabs?: boolean; // show in tabs
-		some?: boolean; // authority logic
-		authorities?: string[]; // authorities
-		fallback?: string; // fallback url
+	meta?: { // 元数据
+		title?: string; // 标题
+		icon?: React.ReactElement | string; // icon
+		pin?: boolean; // 是否固定在标签栏
+		cache?: boolean; // 是否被缓存
+		hidden?: boolean; // 是否被从导航栏隐藏
+		showInTabs?: boolean; // 是否被添加到tabs栏，优先级高于hidden
+		some?: boolean; // 鉴权逻辑，authorities满足其一即为有权限
+		authorities?: string[]; // 权限列表
+		fallback?: string; // 无权限回退页面
 	};
 	routes?: IRouterConfig[]; // child routes
 }
@@ -63,7 +62,7 @@ function generatorRoute(
 					return (
 						<Redirect
 							to={{
-								pathname: fallback || '/403',
+								pathname: fallback || '/errors/403',
 								state: { from: props.location },
 							}}
 						/>
@@ -113,4 +112,28 @@ function renderRoutesDeep(routes: IRouterConfig[], extraProps?: IExtraProps): Re
 	return routers;
 }
 
-export { renderRoutes, renderRoutesDeep };
+/**
+ * 不耦合于上面方法，暂时递归处理
+ * @param {IRouterConfig[]} routes
+ */
+function getRedirectsRoutes(routes: IRouterConfig[]): React.ReactElement[] {
+	const redirects: React.ReactElement[] = [];
+
+	function travel(list: IRouterConfig[]): void {
+		list.forEach((route) => {
+			if (route.redirect) {
+				redirects.push(<Redirect exact key={route.path} from={route.path} to={route.redirect} />);
+
+				if (route.routes) {
+					travel(route.routes);
+				}
+			}
+		});
+	}
+
+	travel(routes);
+
+	return redirects;
+}
+
+export { renderRoutes, renderRoutesDeep, getRedirectsRoutes };

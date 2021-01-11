@@ -15,12 +15,12 @@ import { IRouterConfig } from '../utils/render-routes';
  *
  * key 			   				{String}   			key
  * path 			   			{String}   			路由地址
- * exact 			   			{Boolean}  			精确匹配，如果存在子路由，父级路由必须。默认: false
+ * exact 			   			{Boolean}  			精确匹配，如果存在子路由，父级路由必须为true。默认: false
  * strict 			   		{Boolean}  			严格匹配，是否考虑尾部斜杠。默认: false
  * sensitive 			   	{Boolean}  			是否区分大小写匹配。默认: false
- * redirect 			   	{String}   			重定向路由地址。@todo
- * render 			   		{Function} 			路由地址
- * component 			   	{ReactElement}	路由地址
+ * redirect 			   	{String}   			重定向路由地址。
+ * render 			   		{Function}
+ * component 			   	{ReactElement}
  * 其他扩展字段
  * meta 			   			{Object}   			元数据
  * meta?.title   			{[]} 						标题
@@ -49,7 +49,9 @@ const routes: IRouterConfig[] = [
 	},
 	{
 		path: '/errors',
+		exact: true,
 		component: null,
+		redirect: '/errors/403',
 		meta: { title: 'errors', icon: <AlertOutlined /> },
 		routes: [
 			{

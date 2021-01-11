@@ -6,7 +6,7 @@ import { MenuFoldOutlined } from '@ant-design/icons';
 
 import GlobalMenu from './components/global-menu';
 import GlobalNav from './components/global-nav';
-import { renderRoutesDeep } from '../utils/render-routes';
+import { getRedirectsRoutes, renderRoutesDeep } from '../utils/render-routes';
 import routes from '../router';
 import s from './index.module.less';
 
@@ -44,7 +44,10 @@ const BaseLayout: React.FC = () => {
 					<GlobalNav />
 				</Header>
 				<Content className={s.appRouterView}>
-					<Switch>{renderRoutesDeep(routes)}</Switch>
+					<Switch>
+						{getRedirectsRoutes(routes)}
+						{renderRoutesDeep(routes)}
+					</Switch>
 				</Content>
 			</Layout>
 		</Layout>
