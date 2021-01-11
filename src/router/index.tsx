@@ -12,6 +12,7 @@ import { IRouterConfig } from '../utils/render-routes';
 
 /**
  * 含公共功能组件路由列表
+ *
  * key 			   				{String}   			key
  * path 			   			{String}   			路由地址
  * exact 			   			{Boolean}  			精确匹配，如果存在子路由，父级路由必须。默认: false
@@ -52,14 +53,14 @@ const routes: IRouterConfig[] = [
 		meta: { title: 'errors', icon: <AlertOutlined /> },
 		routes: [
 			{
-				path: '/403',
+				path: '/errors/403',
 				component: load(() => import('../pages/errors/403')),
-				meta: { title: '403', icon: <VerifiedOutlined />, showInTabs: false },
+				meta: { title: '无当前页面权限', icon: <VerifiedOutlined />, showInTabs: false },
 			},
 			{
-				path: '/404',
+				path: '/errors/404',
 				component: load(() => import('../pages/errors/404')),
-				meta: { title: '404', icon: <FieldNumberOutlined />, showInTabs: false },
+				meta: { title: '访问出错了~', icon: <FieldNumberOutlined />, showInTabs: false },
 			},
 		],
 	},

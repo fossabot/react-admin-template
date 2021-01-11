@@ -11,7 +11,12 @@ const outsiders: IRouterConfig[] = [
 	{
 		path: '/login',
 		component: load(() => import('../pages/login')),
-		meta: { title: '登录', icon: <LoginOutlined />, showInTabs: false },
+		meta: { title: '用户登录', icon: <LoginOutlined />, showInTabs: false },
+	},
+	{
+		path: '/permission-denied',
+		component: load(() => import('../pages/errors/403')),
+		meta: { title: '无系统访问权限', icon: <LoginOutlined />, showInTabs: false },
 	},
 ];
 

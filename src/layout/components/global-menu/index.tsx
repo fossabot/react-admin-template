@@ -1,14 +1,24 @@
 import React from 'react';
 import { Menu } from 'antd';
-
+import { useLocation, useHistory } from 'react-router';
 import { IRouterConfig } from '../../../utils/render-routes';
 import routes from '../../../router';
-
+import { SelectInfo } from '../../../interface/menu';
 import s from './index.module.less';
 
 const { Item: MenuItem, SubMenu } = Menu;
 
 const GlobalMenu: React.FC = () => {
+	const location = useLocation();
+	const history = useHistory();
+
+	function onHandleMenuSelect(item: SelectInfo): void {
+		if (location.pathname !== item.key) {
+			console.log(item);
+			history.push(`${item.key}`);
+		}
+	}
+
 	function renderMenuItem(list?: IRouterConfig[]): null | (null | React.ReactElement)[] {
 		if (!Array.isArray(list) || !list.length) {
 			return null;
@@ -25,14 +35,14 @@ const GlobalMenu: React.FC = () => {
 
 			if (hasSubMenu) {
 				return (
-					<SubMenu key={route.key || route.path} title={route.meta?.title} icon={route.meta?.icon}>
+					<SubMenu key={route.path} title={route.meta?.title} icon={route.meta?.icon}>
 						{renderMenuItem(subRoutes)}
 					</SubMenu>
 				);
 			}
 
 			return (
-				<MenuItem key={route.key || route.path} icon={route.meta?.icon}>
+				<MenuItem key={route.path} icon={route.meta?.icon}>
 					{route.meta?.title}
 				</MenuItem>
 			);
@@ -40,7 +50,14 @@ const GlobalMenu: React.FC = () => {
 	}
 
 	return (
-		<Menu className={s.globalMenu} theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+		<Menu
+			className={s.globalMenu}
+			theme="dark"
+			mode="inline"
+			defaultOpenKeys={[]}
+			defaultSelectedKeys={[location.pathname]}
+			onClick={onHandleMenuSelect}
+		>
 			{renderMenuItem(routes.filter((item) => item && !item.meta?.hidden))}
 		</Menu>
 	);
