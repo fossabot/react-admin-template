@@ -16,7 +16,7 @@ export interface IRouterConfig {
 	render?: (props: IRouteComponentProps) => React.ReactNode;
 	component?: React.ComponentType<IRouteComponentProps> | React.ComponentType<any> | null;
 	meta?: { // 元数据
-		title?: string; // 标题
+		title?: string; // 菜单标题，同时会作为网页标题，如不能满足请自行扩展字段
 		icon?: React.ReactElement | string; // icon
 		pin?: boolean; // 是否固定在标签栏
 		cache?: boolean; // 是否被缓存

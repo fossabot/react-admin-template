@@ -23,7 +23,7 @@ import { IRouterConfig } from '../utils/render-routes';
  * component 			   	{ReactElement}
  * 其他扩展字段
  * meta 			   			{Object}   			元数据
- * meta?.title   			{[]} 						标题
+ * meta?.title   			{[]} 						菜单标题，同时会作为网页标题，如不能满足请自行扩展字段
  * meta?.icon    			{String}   			icon
  * meta?.pin     			{Boolean}  			是否固定在标签栏。默认: false
  * meta?.cache   			{Boolean}  			是否被缓存，类似Vue。@todo
