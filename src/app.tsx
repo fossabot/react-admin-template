@@ -16,8 +16,8 @@ const App: React.FC = () => {
 				<BrowserRouter>
 					<Switch>
 						{renderRoutes(outsiders)}
+						<BaseLayout />
 					</Switch>
-					<BaseLayout />
 				</BrowserRouter>
 			</Mobx>
 		</ConfigProvider>
