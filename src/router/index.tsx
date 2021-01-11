@@ -1,15 +1,3 @@
-import React from 'react';
-import {
-	DesktopOutlined,
-	DashboardOutlined,
-	VerifiedOutlined,
-	FieldNumberOutlined,
-	AlertOutlined,
-} from '@ant-design/icons';
-
-import load from '../utils/load';
-import { IRouterConfig } from '../utils/render-routes';
-
 /**
  * 含公共功能组件路由列表
  *
@@ -34,6 +22,19 @@ import { IRouterConfig } from '../utils/render-routes';
  * meta?.fallback			{Boolean}				无权限回退页面。默认"/403"
  * @type {*[]}
  */
+import React from 'react';
+import {
+	DesktopOutlined,
+	DashboardOutlined,
+	VerifiedOutlined,
+	FieldNumberOutlined,
+	AlertOutlined,
+} from '@ant-design/icons';
+
+import load from '../utils/load';
+import { IRouterConfig } from '../utils/render-routes';
+import tests from './tests';
+
 const routes: IRouterConfig[] = [
 	{
 		path: '/',
@@ -66,6 +67,7 @@ const routes: IRouterConfig[] = [
 			},
 		],
 	},
+	...tests,
 	{
 		path: '/*',
 		component: load(() => import('../pages/errors/404')),

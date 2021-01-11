@@ -54,6 +54,7 @@ const GlobalMenu: React.FC = () => {
 			className={s.globalMenu}
 			theme="dark"
 			mode="inline"
+			inlineIndent={12}
 			defaultOpenKeys={[]}
 			defaultSelectedKeys={[location.pathname]}
 			onClick={onHandleMenuSelect}
