@@ -135,6 +135,7 @@ module.exports = {
 		'import/prefer-default-export': ERROR,
 		'import/no-extraneous-dependencies': ERROR,
 
+		'@typescript-eslint/no-var-requires': OFF,
 		'@typescript-eslint/unbound-method': ERROR,
 		'@typescript-eslint/no-unsafe-call': ERROR,
 		'@typescript-eslint/no-misused-promises': ERROR,
