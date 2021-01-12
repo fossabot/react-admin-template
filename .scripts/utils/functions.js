@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const semver = require('semver');
 const webpack = require('webpack');
+const childProcess = require('child_process');
 
 const envs = ['development', 'test', 'production'];
 const NODE_ENV = process.env.NODE_ENV;
@@ -10,6 +11,11 @@ const currentNodeVersion = process.version;
 const requiredNodeVersion = engines.node;
 
 const boldYellowBright = str => chalk.bold(chalk.yellowBright(str));
+
+// exec
+function exec(cmd, options) {
+	return childProcess.execSync(cmd, options).toString().trim();
+}
 
 // Node Version
 function nodeVersionCheck() {
@@ -66,6 +72,7 @@ function build(config) {
 }
 
 module.exports = {
+	exec,
 	nodeVersionCheck,
 	buildEnvCheck,
 	nodeEnvCheck,
