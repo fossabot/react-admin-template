@@ -1,14 +1,20 @@
 import React from 'react';
 import { Menu } from 'antd';
+import { MenuMode } from 'antd/lib/menu';
 import { useLocation, useHistory } from 'react-router';
+
 import { IRouterConfig } from '../../../../utils/render-routes';
 import routes from '../../../../router';
 import { SelectInfo } from '../../../../interface/menu';
-import s from './index.module.less';
+// import s from './index.module.less';
+
+export interface IProps {
+	mode?: MenuMode
+}
 
 const { Item: MenuItem, SubMenu } = Menu;
 
-const GlobalMenu: React.FC = () => {
+const GlobalMenu: React.FC<IProps> = (props: IProps) => {
 	const location = useLocation();
 	const history = useHistory();
 
@@ -51,9 +57,8 @@ const GlobalMenu: React.FC = () => {
 
 	return (
 		<Menu
-			className={s.globalMenu}
 			theme="dark"
-			mode="inline"
+			mode={props.mode || 'inline'}
 			inlineIndent={12}
 			defaultOpenKeys={[]}
 			defaultSelectedKeys={[location.pathname]}

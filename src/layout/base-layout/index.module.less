@@ -17,10 +17,15 @@
 		}
 	}
 	.appAsideLogo {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		padding: 0 10px;
+		overflow: hidden;
 		font-size: 16px;
 		font-weight: 700;
-		color: #f90;
+		line-height: 1;
+		color: @dark-primary-color;
 		text-align: center;
 		cursor: pointer;
 		user-select: none;
@@ -30,12 +35,17 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 10px;
+	padding: 0;
 	.foldIcon {
+		padding: 0 10px;
 		font-size: 20px;
 		&:hover {
-			color: #f90;
+			color: @dark-primary-color;
 		}
+	}
+	.headerMenu {
+		display: flex;
+		align-items: center;
 	}
 }
 .appRouterView {

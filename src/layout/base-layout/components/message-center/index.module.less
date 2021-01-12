@@ -1,0 +1,62 @@
+.messageCenter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 64px;
+	height: 64px;
+}
+.bell {
+	margin-right: 10px;
+	font-size: 26px;
+	cursor: pointer;
+	transition: color 0.3s;
+	&:hover {
+		color: @dark-primary-color;
+	}
+}
+
+.messageCenterMenu {
+	width: 460px;
+
+	.header {
+		display: flex;
+		align-items: center;
+		padding: 8px 12px 12px 12px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+		.title {
+			margin-right: 20px;
+			font-size: 18px;
+		}
+		.count {
+			margin: 0 4px;
+			font-size: 18px;
+			color: @dark-primary-color;
+		}
+		.clear {
+			margin-left: 20px;
+			font-size: 16px;
+			cursor: pointer;
+			&:hover {
+				color: @dark-primary-color;
+			}
+		}
+	}
+
+	.messageCenterMenuItem {
+		padding-top: 16px;
+		padding-bottom: 16px;
+		white-space: normal;
+		.messageTitle {
+			overflow: hidden;
+			font-size: 14px;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.messageDescribe {
+			margin-top: 6px;
+			font-size: 12px;
+			color: #888;
+		}
+	}
+}

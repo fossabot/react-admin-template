@@ -5,7 +5,7 @@ import { Layout } from 'antd';
 import { MenuFoldOutlined } from '@ant-design/icons';
 
 import GlobalMenu from './components/global-menu';
-import GlobalNav from './components/global-nav';
+import HeaderRight from './components/header-right';
 import { getRedirectsRoutes, renderRoutesDeep } from '../../utils/render-routes';
 import routes from '../../router';
 import s from './index.module.less';
@@ -35,13 +35,16 @@ const BaseLayout: React.FC = () => {
 			</Sider>
 			<Layout>
 				<Header className={s.appHeader}>
-					<MenuFoldOutlined
-						className={s.foldIcon}
-						onClick={(): void => {
-							setCollapsed(!collapsed);
-						}}
-					/>
-					<GlobalNav />
+					<section className={s.headerMenu}>
+						<MenuFoldOutlined
+							className={s.foldIcon}
+							onClick={(): void => {
+								setCollapsed(!collapsed);
+							}}
+						/>
+						<GlobalMenu mode="horizontal" />
+					</section>
+					<HeaderRight />
 				</Header>
 				<Content className={s.appRouterView}>
 					<Switch>
