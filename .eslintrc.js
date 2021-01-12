@@ -88,7 +88,7 @@ module.exports = {
 		'no-script-url': ERROR,
 		'no-iterator': ERROR,
 		'no-lonely-if': ERROR,
-		'no-unused-vars': ERROR,
+		'no-unused-vars': OFF,
 		'no-new-object': ERROR,
 		'no-undef-init': ERROR,
 		'no-multi-assign': ERROR,
@@ -136,12 +136,13 @@ module.exports = {
 		'import/no-extraneous-dependencies': ERROR,
 
 		'@typescript-eslint/no-var-requires': OFF,
+		'@typescript-eslint/no-unused-vars': ERROR,
 		'@typescript-eslint/unbound-method': ERROR,
 		'@typescript-eslint/no-unsafe-call': ERROR,
 		'@typescript-eslint/no-misused-promises': ERROR,
 		'@typescript-eslint/no-floating-promises': WARN,
 		'@typescript-eslint/no-unsafe-member-access': ERROR,
-		'@typescript-eslint/explicit-function-return-type': WARN,
+		'@typescript-eslint/explicit-function-return-type': OFF,
 		'@typescript-eslint/restrict-template-expressions': ERROR,
 		'@typescript-eslint/explicit-module-boundary-types': OFF,
 

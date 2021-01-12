@@ -13,7 +13,6 @@ export default function appInfo(log?: boolean): void {
 
 	if (log) {
 		const style = 'padding:2px 4px;font-size:12px;font-weight:700';
-		// eslint-disable-next-line no-unused-vars
 		const br: (dir: string, size: number) => string = (dir: string, size: number) => {
 			return `border-top-${dir}-radius:${size}px;border-bottom-${dir}-radius:${size}px`;
 		};

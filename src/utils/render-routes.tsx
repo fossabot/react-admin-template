@@ -12,7 +12,6 @@ export interface IRouterConfig {
 	strict?: boolean; // 严格匹配
 	sensitive?: boolean; // 是否区分大小写匹配
 	redirect?: string; // 重定向路由地址
-	// eslint-disable-next-line no-unused-vars
 	render?: (props: IRouteComponentProps) => React.ReactNode;
 	component?: React.ComponentType<IRouteComponentProps> | React.ComponentType<any> | null;
 	meta?: { // 元数据

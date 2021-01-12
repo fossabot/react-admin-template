@@ -1,9 +1,16 @@
 import React from 'react';
 import { configure } from 'mobx';
-import { Provider, ProviderProps } from 'mobx-react';
+import { Provider, ProviderProps, enableStaticRendering } from 'mobx-react';
+import config from '../config';
 import store from './store';
 
-configure({ enforceActions: 'observed' });
+if (config.isSSR) {
+	enableStaticRendering(true);
+}
+
+if (config.isDevelopment) {
+	configure({ enforceActions: 'observed' });
+}
 
 function MobxProvider(props: ProviderProps): React.ReactElement {
 	return (

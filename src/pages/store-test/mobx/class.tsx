@@ -5,7 +5,6 @@ import { inject, observer } from 'mobx-react';
 export interface IProps {
 	system: {
 		systemName: string;
-		// eslint-disable-next-line no-unused-vars
 		onSetSystemName: (name: string) => void;
 	}
 }
