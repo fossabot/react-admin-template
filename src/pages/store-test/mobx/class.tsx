@@ -14,7 +14,6 @@ let count = 0;
 @inject('system')
 @observer
 export default class MobxTestC extends React.Component<IProps> {
-	// eslint-disable-next-line @typescript-eslint/ban-types
 	constructor(props: Readonly<IProps>) {
 		super(props);
 		this.state = {};

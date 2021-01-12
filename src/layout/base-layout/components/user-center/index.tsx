@@ -39,7 +39,6 @@ const UserCenter: React.FC = () => {
 
 	return (
 		<Dropdown
-			arrow
 			trigger={['click']}
 			overlay={overlay}
 		>

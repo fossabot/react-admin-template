@@ -68,7 +68,6 @@ const MessageCenter: React.FC = () => {
 	);
 	return (
 		<Dropdown
-			arrow
 			visible={visible}
 			trigger={['click']}
 			overlay={overlay}

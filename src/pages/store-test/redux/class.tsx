@@ -2,17 +2,16 @@ import React from 'react';
 import { Card, Button } from 'antd';
 
 export default class MobxTestC extends React.Component {
-	// eslint-disable-next-line @typescript-eslint/ban-types
-	constructor(props: {} | Readonly<{}>) {
+	constructor(props: Readonly<any>) {
 		super(props);
 		this.state = {};
 	}
 
-	componentDidMount(): void {
+	componentDidMount() {
 		console.log(this.props);
 	}
 
-	render(): React.ReactElement {
+	render() {
 		return (
 			<Card>
 				<h1>我是redux类组件</h1>
