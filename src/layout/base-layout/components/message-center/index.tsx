@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Dropdown, Badge, Menu } from 'antd';
+import { Dropdown, Badge } from 'antd';
 import { BellOutlined, ClearOutlined } from '@ant-design/icons';
 import s from './index.module.less';
 
 const MessageCenter: React.FC = () => {
 	const [visible, setVisible] = useState(false);
 	const overlay = (
-		<Menu className={s.messageCenterMenu}>
+		<section className={s.messageCenterContainer}>
 			<section className={s.header}>
 				<div className={s.title}>通知中心</div>
 				<div>
@@ -16,18 +16,55 @@ const MessageCenter: React.FC = () => {
 				</div>
 				<ClearOutlined className={s.clear} />
 			</section>
-			<Menu.Item className={s.messageCenterMenuItem}>
-				<div className={s.messageTitle}>施罗德：对价值股大面积忽视意味着机会多多 商业模式结构缺陷实属过虑</div>
-				<div
-					className={s.messageDescribe}
-				>
-					施罗德于最新研报中表示，价值投资在过去十年的表现不佳导致了人们对它的怀疑。但研报认为当下有很多，基本面有吸引力但近些年来被忽视的公司将会受到更多的青睐。
-				</div>
-			</Menu.Item>
-			<Menu.Item className={s.messageCenterMenuItem}>权限管理</Menu.Item>
-			<Menu.Item className={s.messageCenterMenuItem}>系统设置</Menu.Item>
-			<Menu.Item className={s.messageCenterMenuItem}>安全退出</Menu.Item>
-		</Menu>
+
+			<ul className={s.messageCenterMenu}>
+				<li className={s.messageCenterMenuItem}>
+					<div className={s.messageTitle}>施罗德：对价值股大面积忽视意味着机会多多 商业模式结构缺陷实属过虑</div>
+					<p
+						className={s.messageDescribe}
+					>
+						施罗德于最新研报中表示，价值投资在过去十年的表现不佳导致了人们对它的怀疑。但研报认为当下有很多，基本面有吸引力但近些年来被忽视的公司将会受到更多的青睐。
+					</p>
+					<div className={s.messageTime}>2021.01.12 16:08</div>
+				</li>
+				<li className={s.messageCenterMenuItem}>
+					<div className={s.messageTitle}>施罗德：对价值股大面积忽视意味着机会多多 商业模式结构缺陷实属过虑</div>
+					<p
+						className={s.messageDescribe}
+					>
+						施罗德于最新研报中表示，价值投资在过去十年的表现不佳导致了人们对它的怀疑。但研报认为当下有很多，基本面有吸引力但近些年来被忽视的公司将会受到更多的青睐。
+					</p>
+					<div className={s.messageTime}>2021.01.12 16:08</div>
+				</li>
+				<li className={s.messageCenterMenuItem}>
+					<div className={s.messageTitle}>施罗德：对价值股大面积忽视意味着机会多多 商业模式结构缺陷实属过虑</div>
+					<p
+						className={s.messageDescribe}
+					>
+						施罗德于最新研报中表示，价值投资在过去十年的表现不佳导致了人们对它的怀疑。但研报认为当下有很多，基本面有吸引力但近些年来被忽视的公司将会受到更多的青睐。
+					</p>
+					<div className={s.messageTime}>2021.01.12 16:08</div>
+				</li>
+				<li className={s.messageCenterMenuItem}>
+					<div className={s.messageTitle}>施罗德：对价值股大面积忽视意味着机会多多 商业模式结构缺陷实属过虑</div>
+					<p
+						className={s.messageDescribe}
+					>
+						施罗德于最新研报中表示，价值投资在过去十年的表现不佳导致了人们对它的怀疑。但研报认为当下有很多，基本面有吸引力但近些年来被忽视的公司将会受到更多的青睐。
+					</p>
+					<div className={s.messageTime}>2021.01.12 16:08</div>
+				</li>
+				<li className={s.messageCenterMenuItem}>
+					<div className={s.messageTitle}>施罗德：对价值股大面积忽视意味着机会多多 商业模式结构缺陷实属过虑</div>
+					<p
+						className={s.messageDescribe}
+					>
+						施罗德于最新研报中表示，价值投资在过去十年的表现不佳导致了人们对它的怀疑。但研报认为当下有很多，基本面有吸引力但近些年来被忽视的公司将会受到更多的青睐。
+					</p>
+					<div className={s.messageTime}>2021.01.12 16:08</div>
+				</li>
+			</ul>
+		</section>
 	);
 	return (
 		<Dropdown
