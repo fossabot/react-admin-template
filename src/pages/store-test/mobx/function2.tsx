@@ -4,33 +4,37 @@ import { MobXProviderContext, Observer } from 'mobx-react';
 
 export interface IProps {
 	system: {
+		count: number;
 		systemName: string;
-		onSetSystemName: (name: string) => void;
+		onSetCount: (num: number) => void;
 	}
 }
 
-let count = 0;
 const MobxTestF: React.FC = () => {
 	const ob = React.useContext(MobXProviderContext) as IProps;
 
 	function onHandleClick(): void {
-		ob.system.onSetSystemName(`更改了系统名称${count += 1}`);
+		ob.system.onSetCount(1);
 	}
 
 	return (
 		<Observer>
-			{() => (
-				<Card>
-					<p>我是mobx函数组件2</p>
-					<h1>{ob.system.systemName}</h1>
-					<Button
-						type="primary"
-						onClick={onHandleClick}
-					>
-						点击
-					</Button>
-				</Card>
-			)}
+			{() => {
+				const { system: { systemName, count } } = ob;
+
+				return (
+					<Card>
+						<p>我是mobx函数组件2</p>
+						<h1>{`${systemName} - ${count}`}</h1>
+						<Button
+							type="primary"
+							onClick={onHandleClick}
+						>
+							点击
+						</Button>
+					</Card>
+				);
+			}}
 		</Observer>
 	);
 };

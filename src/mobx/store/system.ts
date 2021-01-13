@@ -1,10 +1,18 @@
 import { makeAutoObservable } from 'mobx';
 
 class System {
-	systemName = 'React Admin Template';
+	private count: number;
+	private systemName: string;
 
 	constructor() {
+		this.count = 0;
+		this.systemName = 'React Admin Template';
+
 		makeAutoObservable(this);
+	}
+
+	onSetCount(num: number) {
+		this.count += num;
 	}
 
 	onSetSystemName(name: string): void {

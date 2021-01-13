@@ -127,7 +127,7 @@ module.exports = {
 		'comma-dangle': [ERROR, 'always-multiline'],
 
 		// 'linebreak-style': [ERROR, 'unix'],
-		'lines-between-class-members': ERROR,
+		'lines-between-class-members': OFF,
 
 		'import/extensions': OFF,
 		'import/no-unresolved': OFF,

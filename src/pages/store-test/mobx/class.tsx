@@ -4,12 +4,11 @@ import { inject, observer } from 'mobx-react';
 
 export interface IProps {
 	system: {
+		count: number;
 		systemName: string;
-		onSetSystemName: (name: string) => void;
+		onSetCount: (num: number) => void;
 	}
 }
-
-let count = 0;
 
 @inject('system')
 @observer
@@ -24,14 +23,16 @@ export default class MobxTestC extends React.Component<IProps> {
 	}
 
 	onHandleClick = ():void => {
-		this.props.system.onSetSystemName(`更改了系统名称${count += 1}`);
+		this.props.system.onSetCount(1);
 	}
 
 	render(): React.ReactElement {
+		const { system: { systemName, count } } = this.props;
+
 		return (
 			<Card>
 				<p>我是mobx类组件</p>
-				<h1>{this.props.system.systemName}</h1>
+				<h1>{`${systemName} - ${count}`}</h1>
 				<Button
 					type="primary"
 					onClick={this.onHandleClick}
