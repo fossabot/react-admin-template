@@ -19,21 +19,21 @@ const outsiders: IRouterConfig[] = [
 				path: '/store-test/mobx',
 				exact: true,
 				component: null,
-				redirect: '/store-test/mobx/function-component',
+				redirect: '/store-test/mobx/function1',
 				meta: { title: 'mobx', icon: <MergeCellsOutlined /> },
 				routes: [
 					{
-						path: '/store-test/mobx/function-component1',
+						path: '/store-test/mobx/function1',
 						component: load(() => import('../pages/store-test/mobx/function1')),
 						meta: { title: '函数组件1', icon: <ConsoleSqlOutlined />, showInTabs: false },
 					},
 					{
-						path: '/store-test/mobx/function-component2',
+						path: '/store-test/mobx/function2',
 						component: load(() => import('../pages/store-test/mobx/function2')),
 						meta: { title: '函数组件2', icon: <ConsoleSqlOutlined />, showInTabs: false },
 					},
 					{
-						path: '/store-test/mobx/class-component',
+						path: '/store-test/mobx/class',
 						component: load(() => import('../pages/store-test/mobx/class')),
 						meta: { title: '类组件', icon: <ClusterOutlined />, showInTabs: false },
 					},
@@ -43,16 +43,16 @@ const outsiders: IRouterConfig[] = [
 				path: '/store-test/redux',
 				exact: true,
 				component: null,
-				redirect: '/store-test/redux/function-component',
+				redirect: '/store-test/redux/function',
 				meta: { title: 'redux', icon: <MergeCellsOutlined /> },
 				routes: [
 					{
-						path: '/store-test/redux/function-component',
+						path: '/store-test/redux/function',
 						component: load(() => import('../pages/store-test/redux/function')),
 						meta: { title: '函数组件', icon: <ConsoleSqlOutlined />, showInTabs: false },
 					},
 					{
-						path: '/store-test/redux/class-component',
+						path: '/store-test/redux/class',
 						component: load(() => import('../pages/store-test/redux/class')),
 						meta: { title: '类组件', icon: <ClusterOutlined />, showInTabs: false },
 					},

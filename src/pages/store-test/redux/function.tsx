@@ -18,14 +18,14 @@ const MobxTestF: React.FC = () => {
 		setTimeout(() => {
 			store.dispatch({
 				type: 'system/incrementByAmount',
-				payload: 666,
+				payload: 1,
 			});
-		}, 3000);
+		}, 1000);
 	}
 
 	return (
 		<Card>
-			<h1>我是redux函数组件</h1>
+			<p>我是redux函数组件</p>
 			<h1>{`${selector.systemName} - ${selector.count}`}</h1>
 			<Button
 				type="primary"

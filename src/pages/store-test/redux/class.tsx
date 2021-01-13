@@ -1,8 +1,18 @@
 import React from 'react';
 import { Card, Button } from 'antd';
+import { connect } from 'react-redux';
+import { RootState, AppDispatch } from '../../../redux/store';
 
-export default class MobxTestC extends React.Component {
-	constructor(props: Readonly<any>) {
+export interface IProps {
+	system: {
+		count: number;
+		systemName: string;
+	},
+	incrementByAmount: (num: number) => void;
+}
+
+class MobxTestC extends React.Component<IProps> {
+	constructor(props: IProps) {
 		super(props);
 		this.state = {};
 	}
@@ -11,14 +21,36 @@ export default class MobxTestC extends React.Component {
 		console.log(this.props);
 	}
 
+	onHandleClick = () => {
+		this.props.incrementByAmount(1);
+	}
+
 	render() {
+		const { system: { systemName, count } } = this.props;
 		return (
 			<Card>
-				<div>我是redux类组件</div>
-				<div>hooks很香，使用了@reduxjs/toolkit类组件不再支持redux状态管理</div>
-				<h1>如果使用redux又想使用类组件，请自行改造</h1>
-				<Button type="primary">点击</Button>
+				<p>我是redux类组件</p>
+				<h1>{`${systemName} - ${count}`}</h1>
+				<Button type="primary" onClick={this.onHandleClick}>点击</Button>
 			</Card>
 		);
 	}
 }
+
+
+function mapStateToProps(state: RootState) {
+	return {
+		system: state.system,
+	};
+}
+
+function mapDispatchToProps(dispatch: AppDispatch) {
+	return {
+		incrementByAmount: (num: number) => dispatch({
+			type: 'system/incrementByAmount',
+			payload: num,
+		}),
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MobxTestC);
