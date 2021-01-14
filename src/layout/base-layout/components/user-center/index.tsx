@@ -10,6 +10,7 @@ const UserCenter: React.FC = () => {
 				<div className={s.name}>vanilla</div>
 				<div className={s.email}>uninge.sun@gmail.com</div>
 			</div>
+			<Menu.Divider />
 			<Menu.Item
 				className={s.userCenterMenuItem}
 				icon={<UserOutlined style={{ fontSize: 16 }} />}
@@ -28,6 +29,7 @@ const UserCenter: React.FC = () => {
 			>
 				系统设置
 			</Menu.Item>
+			<Menu.Divider />
 			<Menu.Item
 				className={s.userCenterMenuItem}
 				icon={<LogoutOutlined style={{ fontSize: 16 }} />}
@@ -38,14 +40,10 @@ const UserCenter: React.FC = () => {
 	);
 
 	return (
-		<Dropdown
-			trigger={['click']}
-			overlay={overlay}
-		>
+		<Dropdown overlay={overlay}>
 			<div className={s.userCenter}>
 				<Avatar
 					className={s.avatar}
-					size="large"
 					icon={<UserOutlined />}
 					src="https://avatars0.githubusercontent.com/u/22541178"
 				/>
