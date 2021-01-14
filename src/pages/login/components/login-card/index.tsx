@@ -3,9 +3,9 @@ import { Card, Form, Input, Checkbox, Button } from 'antd';
 import classnames from 'classnames';
 
 import s from './index.module.less';
-import normal from '../../img/normal.png';
-import greeting from '../../img/greeting.png';
-import blindfold from '../../img/blindfold.png';
+import normal from './img/normal.png';
+import greeting from './img/greeting.png';
+import blindfold from './img/blindfold.png';
 
 const LoginCard: React.FC = () => {
 	const [panda, setPanda] = useState('normal');
