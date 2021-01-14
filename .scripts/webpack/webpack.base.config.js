@@ -46,10 +46,10 @@ function getCSSModuleLocalIdent(context, localIdentName, localName, options) {
 
 function getStyleLoaders(useCssModule, isLessLoader) {
 	const loaders = [
-		isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-		'thread-loader',
+		isDevelopment ? require.resolve('style-loader') : MiniCssExtractPlugin.loader,
+		require.resolve('thread-loader'),
 		{
-			loader: 'css-loader',
+			loader: require.resolve('css-loader'),
 			options: useCssModule
 				? {
 						modules: isDevelopment
@@ -61,7 +61,7 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 				: {},
 		},
 		{
-			loader: 'postcss-loader',
+			loader: require.resolve('postcss-loader'),
 			options: {
 				sourceMap: canUseSourceMap,
 				postcssOptions: {
@@ -90,7 +90,7 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 				},
 			},
 			{
-				loader: 'less-loader',
+				loader: require.resolve('less-loader'),
 				options: {
 					sourceMap: canUseSourceMap,
 					lessOptions: {
@@ -100,7 +100,7 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 				},
 			},
 			{
-				loader: 'style-resources-loader',
+				loader: require.resolve('style-resources-loader'),
 				options: {
 					patterns: [paths.globalLessVariables, paths.globalLessMixins],
 					injector: 'append',
@@ -131,9 +131,9 @@ const webpackBaseConfig = {
 				test: /\.(js|jsx|ts|tsx)$/,
 				include: paths.appSrc,
 				use: [
-					'thread-loader',
+					require.resolve('thread-loader'),
 					{
-						loader: 'babel-loader',
+						loader: require.resolve('babel-loader'),
 						options: {
 							cacheDirectory: false,
 						},
@@ -167,6 +167,12 @@ const webpackBaseConfig = {
 					name: 'statics/assets/[name].[hash:8].[ext]',
 				},
 			},
+			{
+				test: /\.svg$/,
+				include: paths.svgIconPath,
+				loader: require.resolve('svg-sprite-loader'),
+				options: { symbolId: 'icon-[name]' },
+			}
 		],
 	},
 	resolve: {
