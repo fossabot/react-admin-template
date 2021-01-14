@@ -11,16 +11,16 @@ export interface IProps {
 }
 
 const MobxTestF: React.FC = () => {
-	const ob = React.useContext(MobXProviderContext) as IProps;
+	const mpc = React.useContext(MobXProviderContext) as IProps;
 
 	function onHandleClick(): void {
-		ob.system.onSetCount(1);
+		mpc.system.onSetCount(1);
 	}
 
 	return (
 		<Observer>
 			{() => {
-				const { system: { systemName, count } } = ob;
+				const { system: { systemName, count } } = mpc;
 
 				return (
 					<Card>
