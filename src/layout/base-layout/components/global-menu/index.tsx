@@ -3,9 +3,9 @@ import { Menu } from 'antd';
 import { MenuMode } from 'antd/lib/menu';
 import { useLocation, useHistory } from 'react-router';
 
-import { IRouterConfig } from '../../../../utils/render-routes';
-import routes from '../../../../router';
-import { SelectInfo } from '../../../../interface/menu';
+import { IRouterConfig } from '@/utils/render-routes';
+import routes from '@/router';
+import { SelectInfo } from '@/interface/menu';
 // import s from './index.module.less';
 
 export interface IProps {

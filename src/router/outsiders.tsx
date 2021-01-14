@@ -1,8 +1,7 @@
 import React from 'react';
 import { LoginOutlined } from '@ant-design/icons';
-
-import load from '../utils/load';
-import { IRouterConfig } from '../utils/render-routes';
+import load from '@/utils/load';
+import { IRouterConfig } from '@/utils/render-routes';
 
 /**
  * 无公共功能组件路由列表
@@ -10,12 +9,12 @@ import { IRouterConfig } from '../utils/render-routes';
 const outsiders: IRouterConfig[] = [
 	{
 		path: '/login',
-		component: load(() => import('../pages/login')),
+		component: load(() => import('@/pages/login')),
 		meta: { title: '用户登录', icon: <LoginOutlined />, showInTabs: false },
 	},
 	{
 		path: '/permission-denied',
-		component: load(() => import('../pages/errors/403')),
+		component: load(() => import('@/pages/errors/403')),
 		meta: { title: '无系统访问权限', icon: <LoginOutlined />, showInTabs: false },
 	},
 ];

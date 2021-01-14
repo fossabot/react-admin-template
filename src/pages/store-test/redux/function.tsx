@@ -1,8 +1,8 @@
 import React from 'react';
 import { Card, Button } from 'antd';
 import { useStore, useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
-import { increment } from '../../../redux/store/system';
+import { RootState } from '@/redux/store';
+import { increment } from '@/redux/store/system';
 
 const MobxTestF: React.FC = () => {
 	const store = useStore();

@@ -6,7 +6,7 @@ const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 
 const { dllConfig } = require('../config');
 const paths = require('../config/paths');
-const webpackBaseConfig = require('./webpack-base-config');
+const webpackBaseConfig = require('./webpack.base.config');
 
 const dllScriptExists = fs.existsSync(path.resolve(paths.appDllPath, dllConfig.filename));
 const dllJsonExists = fs.existsSync(path.resolve(paths.appDllPath, dllConfig.manifest));

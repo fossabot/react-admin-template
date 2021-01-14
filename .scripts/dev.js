@@ -21,7 +21,7 @@ const WebpackHotMiddleware = require('webpack-hot-middleware');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const config = require('./config');
-const webpackConfig = require('./webpack/webpack-dev-config');
+const webpackConfig = require('./webpack/webpack.dev.config');
 const { printInstructions } = require('./utils/printer');
 const compiler = webpack(webpackConfig);
 

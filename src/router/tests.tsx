@@ -1,8 +1,8 @@
 import React from 'react';
 import { GlobalOutlined, MergeCellsOutlined, ConsoleSqlOutlined, ClusterOutlined } from '@ant-design/icons';
 
-import load from '../utils/load';
-import { IRouterConfig } from '../utils/render-routes';
+import load from '@/utils/load';
+import { IRouterConfig } from '@/utils/render-routes';
 
 /**
  * 无公共功能组件路由列表
@@ -24,17 +24,17 @@ const outsiders: IRouterConfig[] = [
 				routes: [
 					{
 						path: '/store-test/mobx/class',
-						component: load(() => import('../pages/store-test/mobx/class')),
+						component: load(() => import('@/pages/store-test/mobx/class')),
 						meta: { title: '类组件', icon: <ClusterOutlined />, showInTabs: false },
 					},
 					{
 						path: '/store-test/mobx/function1',
-						component: load(() => import('../pages/store-test/mobx/function1')),
+						component: load(() => import('@/pages/store-test/mobx/function1')),
 						meta: { title: '函数组件1', icon: <ConsoleSqlOutlined />, showInTabs: false },
 					},
 					{
 						path: '/store-test/mobx/function2',
-						component: load(() => import('../pages/store-test/mobx/function2')),
+						component: load(() => import('@/pages/store-test/mobx/function2')),
 						meta: { title: '函数组件2', icon: <ConsoleSqlOutlined />, showInTabs: false },
 					},
 				],
@@ -48,12 +48,12 @@ const outsiders: IRouterConfig[] = [
 				routes: [
 					{
 						path: '/store-test/redux/class',
-						component: load(() => import('../pages/store-test/redux/class')),
+						component: load(() => import('@/pages/store-test/redux/class')),
 						meta: { title: '类组件', icon: <ClusterOutlined />, showInTabs: false },
 					},
 					{
 						path: '/store-test/redux/function',
-						component: load(() => import('../pages/store-test/redux/function')),
+						component: load(() => import('@/pages/store-test/redux/function')),
 						meta: { title: '函数组件', icon: <ConsoleSqlOutlined />, showInTabs: false },
 					},
 				],

@@ -31,21 +31,21 @@ import {
 	AlertOutlined,
 } from '@ant-design/icons';
 
-import load from '../utils/load';
-import { IRouterConfig } from '../utils/render-routes';
+import load from '@/utils/load';
+import { IRouterConfig } from '@/utils/render-routes';
 import tests from './tests';
 
 const routes: IRouterConfig[] = [
 	{
 		path: '/',
 		exact: true,
-		component: load(() => import('../pages/home')),
+		component: load(() => import('@/pages/home')),
 		meta: { title: '首页', icon: <DesktopOutlined />, hidden: true },
 	},
 	{
 		path: '/dashboard',
 		exact: true,
-		component: load(() => import('../pages/dashboard')),
+		component: load(() => import('@/pages/dashboard')),
 		meta: { title: '工作台', icon: <DashboardOutlined /> },
 	},
 	{
@@ -57,12 +57,12 @@ const routes: IRouterConfig[] = [
 		routes: [
 			{
 				path: '/errors/403',
-				component: load(() => import('../pages/errors/403')),
+				component: load(() => import('@/pages/errors/403')),
 				meta: { title: '无当前页面权限', icon: <VerifiedOutlined />, showInTabs: false },
 			},
 			{
 				path: '/errors/404',
-				component: load(() => import('../pages/errors/404')),
+				component: load(() => import('@/pages/errors/404')),
 				meta: { title: '访问出错了~', icon: <FieldNumberOutlined />, showInTabs: false },
 			},
 		],
@@ -70,7 +70,7 @@ const routes: IRouterConfig[] = [
 	...tests,
 	{
 		path: '/*',
-		component: load(() => import('../pages/errors/404')),
+		component: load(() => import('@/pages/errors/404')),
 		meta: { title: '/*', icon: <FieldNumberOutlined />, showInTabs: false },
 	},
 ];

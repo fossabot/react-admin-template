@@ -4,7 +4,7 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
-const webpackBaseConfig = require('./webpack-base-config');
+const webpackBaseConfig = require('./webpack.base.config');
 const paths = require('../config/paths');
 const { buildEnv, useSourceMap } = require('../config');
 const isProduction = buildEnv === 'production';

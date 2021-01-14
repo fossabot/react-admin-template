@@ -13,7 +13,7 @@ const path = require('path');
 const chalk = require('chalk');
 const { build } = require('./utils/functions');
 
-const webpackDllConfig = require('./webpack/webpack-dll-config');
+const webpackDllConfig = require('./webpack/webpack.dll.config');
 const { appRootPath, appDllPath, appRootPkgJson } = require('./config/paths');
 const { dependencies } = require(appRootPkgJson);
 

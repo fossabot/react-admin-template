@@ -4,10 +4,10 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { Layout } from 'antd';
 import { MenuFoldOutlined } from '@ant-design/icons';
 
+import { getRedirectsRoutes, renderRoutesDeep } from '@/utils/render-routes';
+import routes from '@/router';
 import GlobalMenu from './components/global-menu';
 import HeaderRight from './components/header-right';
-import { getRedirectsRoutes, renderRoutesDeep } from '../../utils/render-routes';
-import routes from '../../router';
 import s from './index.module.less';
 
 const { Header, Sider, Content } = Layout;

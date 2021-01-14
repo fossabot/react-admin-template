@@ -16,7 +16,7 @@ require('./utils/checkers');
 const chalk = require('chalk');
 const rimraf = require('rimraf');
 const paths = require('./config/paths');
-const webpackConfig = require('./webpack/webpack-pub-config');
+const webpackConfig = require('./webpack/webpack.pub.config');
 const { build } = require('./utils/functions');
 
 rimraf(paths.appDistPath, (err) => {

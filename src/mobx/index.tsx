@@ -1,7 +1,7 @@
 import React from 'react';
 import { configure } from 'mobx';
 import { Provider, ProviderProps, enableStaticRendering } from 'mobx-react';
-import config from '../config';
+import config from '@/config';
 import store from './store';
 
 if (config.isSSR) {
