@@ -1,70 +1,116 @@
 import React, { useState } from 'react';
-import { Dropdown, Badge } from 'antd';
-import { BellOutlined, ClearOutlined } from '@ant-design/icons';
+import { Dropdown, Badge, Tabs, List, Avatar, Divider } from 'antd';
+import { BellOutlined, MessageOutlined, ExceptionOutlined } from '@ant-design/icons';
 import s from './index.module.less';
 
+const { TabPane } = Tabs;
+
 const MessageCenter: React.FC = () => {
+	const dataSource = [
+		{
+			title: 'Ant Design Title 1',
+			description: 'Ant Design, a design language for background applications.',
+			time: '2020.01.14 18:24:36',
+		},
+		{
+			title: 'Ant Design Title 2',
+			description: 'Ant Design, a design language for background applications.',
+			time: '2020.01.14 18:24:36',
+		},
+		{
+			title: 'Ant Design Title 3',
+			description: 'Ant Design, a design language for background applications.',
+			time: '2020.01.14 18:24:36',
+		},
+		{
+			title: 'Ant Design Title 4',
+			description: 'Ant Design, a design language for background applications.',
+			time: '2020.01.14 18:24:36',
+		},
+	];
 	const [visible, setVisible] = useState(false);
 	const overlay = (
-		<section className={s.messageCenterContainer}>
-			<section className={s.header}>
-				<div className={s.title}>通知中心</div>
-				<div>
-					未读信息:
-					<span className={s.count}>100</span>
-					条
-				</div>
-				<ClearOutlined className={s.clear} />
-			</section>
-
-			<ul className={s.messageCenterMenu}>
-				<li className={s.messageCenterMenuItem}>
-					<div className={s.messageTitle}>施罗德：对价值股大面积忽视意味着机会多多 商业模式结构缺陷实属过虑</div>
-					<p
-						className={s.messageDescribe}
-					>
-						施罗德于最新研报中表示，价值投资在过去十年的表现不佳导致了人们对它的怀疑。但研报认为当下有很多，基本面有吸引力但近些年来被忽视的公司将会受到更多的青睐。
-					</p>
-					<div className={s.messageTime}>2021.01.12 16:08</div>
-				</li>
-				<li className={s.messageCenterMenuItem}>
-					<div className={s.messageTitle}>施罗德：对价值股大面积忽视意味着机会多多 商业模式结构缺陷实属过虑</div>
-					<p
-						className={s.messageDescribe}
-					>
-						施罗德于最新研报中表示，价值投资在过去十年的表现不佳导致了人们对它的怀疑。但研报认为当下有很多，基本面有吸引力但近些年来被忽视的公司将会受到更多的青睐。
-					</p>
-					<div className={s.messageTime}>2021.01.12 16:08</div>
-				</li>
-				<li className={s.messageCenterMenuItem}>
-					<div className={s.messageTitle}>施罗德：对价值股大面积忽视意味着机会多多 商业模式结构缺陷实属过虑</div>
-					<p
-						className={s.messageDescribe}
-					>
-						施罗德于最新研报中表示，价值投资在过去十年的表现不佳导致了人们对它的怀疑。但研报认为当下有很多，基本面有吸引力但近些年来被忽视的公司将会受到更多的青睐。
-					</p>
-					<div className={s.messageTime}>2021.01.12 16:08</div>
-				</li>
-				<li className={s.messageCenterMenuItem}>
-					<div className={s.messageTitle}>施罗德：对价值股大面积忽视意味着机会多多 商业模式结构缺陷实属过虑</div>
-					<p
-						className={s.messageDescribe}
-					>
-						施罗德于最新研报中表示，价值投资在过去十年的表现不佳导致了人们对它的怀疑。但研报认为当下有很多，基本面有吸引力但近些年来被忽视的公司将会受到更多的青睐。
-					</p>
-					<div className={s.messageTime}>2021.01.12 16:08</div>
-				</li>
-				<li className={s.messageCenterMenuItem}>
-					<div className={s.messageTitle}>施罗德：对价值股大面积忽视意味着机会多多 商业模式结构缺陷实属过虑</div>
-					<p
-						className={s.messageDescribe}
-					>
-						施罗德于最新研报中表示，价值投资在过去十年的表现不佳导致了人们对它的怀疑。但研报认为当下有很多，基本面有吸引力但近些年来被忽视的公司将会受到更多的青睐。
-					</p>
-					<div className={s.messageTime}>2021.01.12 16:08</div>
-				</li>
-			</ul>
-		</section>
+		<>
+			<Tabs defaultActiveKey="1">
+				<TabPane
+					key="1"
+					tab={<>
+						<BellOutlined />
+						通知 (4)
+					</>}
+				>
+					<section className={s.messages}>
+						<List
+							itemLayout="horizontal"
+							dataSource={dataSource}
+							renderItem={(item) => (
+								<List.Item className={s.listItem}>
+									<List.Item.Meta
+										avatar={<Avatar src="" />}
+										title={item.title}
+										description={item.description}
+									/>
+									<div className={s.listExtra}>{item.time}</div>
+								</List.Item>
+							)}
+						/>
+					</section>
+				</TabPane>
+				<TabPane
+					key="2"
+					tab={<>
+						<MessageOutlined />
+						消息 (4)
+					</>}
+				>
+					<section className={s.messages}>
+						<List
+							itemLayout="horizontal"
+							dataSource={dataSource}
+							renderItem={(item) => (
+								<List.Item className={s.listItem}>
+									<List.Item.Meta
+										avatar={<Avatar src="" />}
+										title={item.title}
+										description={item.description}
+									/>
+									<div className={s.listExtra}>{item.time}</div>
+								</List.Item>
+							)}
+						/>
+					</section>
+				</TabPane>
+				<TabPane
+					key="3"
+					tab={<>
+						<ExceptionOutlined />
+						代办 (4)
+					</>}
+				>
+					<section className={s.messages}>
+						<List
+							itemLayout="horizontal"
+							dataSource={dataSource}
+							renderItem={(item) => (
+								<List.Item className={s.listItem}>
+									<List.Item.Meta
+										avatar={<Avatar src="" />}
+										title={item.title}
+										description={item.description}
+									/>
+									<div className={s.listExtra}>{item.time}</div>
+								</List.Item>
+							)}
+						/>
+					</section>
+				</TabPane>
+			</Tabs>
+			<Divider />
+			<div className={s.messageFooter}>
+				<div>清空消息</div>
+				<div>查看更多</div>
+			</div>
+		</>
 	);
 	return (
 		<Dropdown
@@ -72,6 +118,7 @@ const MessageCenter: React.FC = () => {
 			trigger={['click']}
 			overlay={overlay}
 			onVisibleChange={setVisible}
+			overlayClassName={s.messageDropdown}
 		>
 			<div className={s.messageCenter}>
 				<Badge count={100}>

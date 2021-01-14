@@ -4,75 +4,80 @@
 	justify-content: center;
 	width: @global-header-height;
 	height: @global-header-height;
-}
-.bell {
-	margin-right: 10px;
-	font-size: 16px;
-	cursor: pointer;
-	transition: color 0.3s;
-	&:hover {
-		color: @dark-primary-color;
-	}
-}
-.messageCenterContainer {
-	width: 460px;
-	padding: 6px 0 10px 0;
-	background: @dark-main-bg-color;
 
-	.header {
-		display: flex;
-		align-items: center;
-		padding: 8px 12px 12px 12px;
-		border-bottom: 1px solid @dark-border-color;
-
-		.title {
-			margin-right: 20px;
-			font-size: 18px;
-		}
-		.count {
-			margin: 0 4px;
-			font-size: 18px;
+	.bell {
+		margin-right: 10px;
+		font-size: 16px;
+		cursor: pointer;
+		transition: color 0.3s;
+		&:hover {
 			color: @dark-primary-color;
 		}
-		.clear {
-			margin-left: 20px;
-			font-size: 16px;
+	}
+}
+
+.messageDropdown {
+	width: 360px;
+	background: @dark-main-bg-color;
+
+	.messages {
+		max-height: 400px;
+		overflow: auto;
+		.listItem {
+			display: block;
+			padding-right: 12px;
+			padding-left: 12px;
+
+			.listExtra {
+				margin-top: 2px;
+				text-align: right;
+				opacity: 0.3;
+			}
+		}
+	}
+	.messageFooter {
+		height: 46px;
+		line-height: 46px;
+		text-align: center;
+		user-select: none;
+
+		div {
+			display: inline-block;
+			width: 50%;
 			cursor: pointer;
+			transition: all 0.3s;
+
 			&:hover {
 				color: @dark-primary-color;
 			}
+
+			&:first-child {
+				border-right: 1px solid @dark-border-color;
+			}
 		}
 	}
-	.messageCenterMenu {
-		max-height: 520px;
-		overflow-y: auto;
-		.messageCenterMenuItem {
-			padding: 8px 12px;
-			white-space: normal;
-			cursor: pointer;
-			transition: all 0.3s;
-			&:hover {
-				background: @dark-hover-bg-color;
-			}
-			&:not(:last-child) {
-				border-bottom: 1px solid @dark-border-color;
-			}
-			.messageTitle {
-				overflow: hidden;
-				font-size: 14px;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-			}
-			.messageDescribe {
-				margin-top: 6px;
-				font-size: 12px;
-				color: #888;
-			}
-			.messageTime {
-				font-size: 12px;
-				color: #888;
-				text-align: right;
-			}
+
+	:global {
+		.ant-tabs-nav {
+			margin-bottom: 0;
+		}
+		.ant-tabs-tab .anticon {
+			margin-right: 4px;
+		}
+		.ant-tabs-nav-list {
+			margin: auto;
+		}
+		.ant-divider-horizontal {
+			margin: 0;
+		}
+		.ant-tabs-ink-bar {
+			background: @dark-primary-color;
+		}
+		.ant-tabs-tab:hover {
+			color: @dark-primary-color;
+		}
+		.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+			color: @dark-primary-color;
 		}
 	}
 }
