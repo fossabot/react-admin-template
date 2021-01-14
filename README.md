@@ -3,10 +3,11 @@
 自用 React 项目开发模板，本分支作为项目快速启动模板，不会过多提交代码，只提供基础模板。
 
 **注意**
-1. **本项目模板支持了`Redux`和`Mobx`同时存在，仅提供开始前的选择演示，所以切忌二者同时使用。**
+1. **本项目模板同时引入了`Redux`和`Mobx`的演示，仅提供开始前的选择演示，所以切忌二者同时使用。**
 2. **删除其中一个很容易，在`src/app.tsx`中`MobxProvider`和`ReduxProvider`二选一即可**
 3. **演示页面文件在`src/pages/store-test`目录，对应路由在`src/router/tests.tsx`文件，直接删除即可**
-4. **然后`src/mobx`目录或`src/redux`目录选择性删除。**
+4. **然后选择性删除`src/mobx`目录或`src/redux`目录。**
+5. **若选择`Mobx`，请将`@reduxjs/toolkit`、`react-redux`、`reselect`卸载，反之请将`mobx`、`mobx-react`卸载**
 
 ## 一. 本地开发
 
