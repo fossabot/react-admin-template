@@ -169,7 +169,7 @@ const webpackBaseConfig = {
 			},
 			{
 				test: /\.svg$/,
-				include: paths.svgIconPath,
+				include: paths.spriteSvgPath,
 				loader: require.resolve('svg-sprite-loader'),
 				options: { symbolId: 'icon-[name]' },
 			}

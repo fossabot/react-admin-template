@@ -20,7 +20,7 @@ module.exports = {
 	appPublicPath: resolvePath('public'),
 	favicon: resolvePath('public/favicon.ico'),
 	appHtml: resolvePath('public/index.html'),
-	svgIconPath: resolvePath('src/assets/svg'),
+	spriteSvgPath: resolvePath('src/assets/svg-sprite'),
 
 	appRootPath: resolvePath('.'),
 	appDllPath: resolvePath('node_modules/.cache/dll-plugin'),
