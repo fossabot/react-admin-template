@@ -50,5 +50,6 @@ build(webpackRenderDllConfig).then(res => {
 	console.log();
 }).catch(err => {
 	console.log(err);
+	process.exit(1);
 });
 

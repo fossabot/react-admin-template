@@ -29,5 +29,6 @@ rimraf(paths.appDistPath, (err) => {
 		console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green('打包完成')}`);
 	}).catch(err => {
 		console.log(err);
+		process.exit(1);
 	});
 });
