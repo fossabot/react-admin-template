@@ -34,12 +34,10 @@ module.exports = {
 	favicon: resolvePath('public/favicon.ico'),
 	appHtml: resolvePath('public/index.html'),
 	spriteSvgPath: resolvePath('src/assets/svg-sprite'),
-
-	appDllPath: resolvePath('node_modules/.cache/dll-plugin'),
-	appRenderDistPath: resolvePath('dist/render'),
 	appRenderSrc: resolvePath('src'),
 	appRenderEntry: resolveModule(resolvePath, 'src/index'),
-
+	appDllPath: resolvePath('node_modules/.cache/dll-plugin'),
+	appRenderDistPath: resolvePath('dist/render'),
 	globalLessVariables: resolvePath('src/styles/variables/*.less'),
 	globalLessMixins: resolvePath('src/styles/mixins/*.less'),
 };
