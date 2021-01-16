@@ -21,16 +21,16 @@ const WebpackHotMiddleware = require('webpack-hot-middleware');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const config = require('./config');
-const webpackConfig = require('./webpack/webpack.dev.config');
+const webpackRenderDevConfig = require('./webpack/webpack.render.dev.config');
 const { printInstructions } = require('./utils/printer');
-const compiler = webpack(webpackConfig);
+const compiler = webpack(webpackRenderDevConfig);
 
 const devMiddleware = WebpackDevMiddleware(compiler, {
 	lazy: false,
 	logTime: true,
 	serverSideRender: false,
 	stats: { colors: true },
-	publicPath: webpackConfig.output.publicPath,
+	publicPath: webpackRenderDevConfig.output.publicPath,
 	logger: webpackLog({ name: 'wds', level: 'error' }),
 });
 const hotMiddleware = WebpackHotMiddleware(compiler, {

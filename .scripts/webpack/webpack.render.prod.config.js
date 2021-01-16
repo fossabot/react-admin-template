@@ -4,14 +4,14 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
-const webpackBaseConfig = require('./webpack.base.config');
+const webpackRenderBaseConfig = require('./webpack.render.base.config');
 const paths = require('../config/paths');
 const { buildEnv, useSourceMap } = require('../config');
 const isProduction = buildEnv === 'production';
 const isProductionProfile = isProduction && process.argv.includes('--profile');
 const canUseSourceMap = isProduction ? useSourceMap : true;
 
-const webpackPubConfig = {
+const webpackRenderProdConfig = {
 	mode: 'production',
 	bail: isProduction,
 	devtool: canUseSourceMap ? 'source-map' : false,
@@ -80,4 +80,4 @@ const webpackPubConfig = {
 	},
 };
 
-module.exports = webpackMerge(webpackBaseConfig, webpackPubConfig);
+module.exports = webpackMerge(webpackRenderBaseConfig, webpackRenderProdConfig);

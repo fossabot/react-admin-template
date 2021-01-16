@@ -16,7 +16,7 @@ require('./utils/checkers');
 const chalk = require('chalk');
 const rimraf = require('rimraf');
 const paths = require('./config/paths');
-const webpackConfig = require('./webpack/webpack.pub.config');
+const webpackRenderProdConfig = require('./webpack/webpack.render.prod.config');
 const { build } = require('./utils/functions');
 
 rimraf(paths.appDistPath, (err) => {
@@ -24,7 +24,7 @@ rimraf(paths.appDistPath, (err) => {
 
 	console.log(chalk.gray(` 目录【${paths.appDistPath}】清理成功, 等待打包...`));
 
-	build(webpackConfig).then(res => {
+	build(webpackRenderProdConfig).then(res => {
 		console.log(`${res}`);
 		console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green('打包完成')}`);
 	}).catch(err => {

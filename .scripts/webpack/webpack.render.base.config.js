@@ -111,7 +111,7 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 	return loaders;
 }
 
-const webpackBaseConfig = {
+const webpackRenderBaseConfig = {
 	target: 'web',
 	entry: {
 		app: [paths.appEntry],
@@ -242,6 +242,6 @@ const webpackBaseConfig = {
 	},
 };
 
-bundleAnalyze && webpackBaseConfig.plugins.unshift(new BundleAnalyzerPlugin());
+bundleAnalyze && webpackRenderBaseConfig.plugins.unshift(new BundleAnalyzerPlugin());
 
-module.exports = webpackBaseConfig;
+module.exports = webpackRenderBaseConfig;
