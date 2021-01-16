@@ -28,7 +28,7 @@
     "watch": "tsc --watch",
     "prestart": "npm run dll",
     "prebuild": "npm run svgo",
-    "build": "node ./.scripts/pub.js",
+    "build": "node .scripts/build.js",
     "dll": "node ./.scripts/dll.js",
     "npm-check": "npm-check -u",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -54,6 +54,7 @@
     "axios": "^0.21.1",
     "change-case": "^4.1.2",
     "classnames": "^2.2.6",
+    "electron": "^11.2.0",
     "mobx": "^6.0.4",
     "mobx-react": "^7.0.5",
     "prop-types": "^15.7.2",
@@ -127,6 +128,7 @@
     "less-loader": "^6.2.0",
     "lint-staged": "^10.5.3",
     "mini-css-extract-plugin": "^1.3.4",
+    "node-loader": "^1.0.2",
     "nodemon": "^2.0.7",
     "npm": "^6.14.11",
     "npm-check": "^5.9.2",
@@ -190,6 +192,9 @@
     "env": {
       "NODE_ENV": "development"
     },
+    "ignore": [
+      ".scripts/webpack/webpack.main.prod.config.js"
+    ],
     "watch": [
       ".scripts",
       ".antdthemerc.js",

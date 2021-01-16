@@ -20,7 +20,7 @@ const webpackRenderProdConfig = {
 			patterns: [
 				{
 					from: paths.appPublicPath,
-					to: paths.appDistPath,
+					to: paths.appRenderDistPath,
 					globOptions: {
 						ignore: ['**/favicon.ico', '**/index.html'],
 					},

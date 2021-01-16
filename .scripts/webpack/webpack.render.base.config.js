@@ -86,7 +86,7 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 				loader: require.resolve('resolve-url-loader'),
 				options: {
 					sourceMap: canUseSourceMap,
-					root: paths.appSrc,
+					root: paths.appRenderSrc,
 				},
 			},
 			{
@@ -114,22 +114,22 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 const webpackRenderBaseConfig = {
 	target: 'web',
 	entry: {
-		app: [paths.appEntry],
+		app: [paths.appRenderEntry],
 	},
 	output: {
 		globalObject: 'this',
 		pathinfo: !isProduction,
-		path: paths.appDistPath,
 		publicPath: appPublicPath,
 		filename: 'statics/scripts/[name]-[chunkhash:8].js',
 		chunkFilename: 'statics/scripts/[name]-[chunkhash:8].chunk.js',
+		path: paths.appRenderDistPath,
 	},
 	module: {
 		strictExportPresence: true,
 		rules: [
 			{
 				test: /\.(js|jsx|ts|tsx)$/,
-				include: paths.appSrc,
+				include: paths.appRenderSrc,
 				use: [
 					require.resolve('thread-loader'),
 					{
@@ -178,7 +178,7 @@ const webpackRenderBaseConfig = {
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx'],
 		alias: {
-			'@': paths.appSrc,
+			'@': paths.appRenderSrc,
 		},
 	},
 	plugins: [
@@ -189,7 +189,7 @@ const webpackRenderBaseConfig = {
 			extensions: ['js', 'jsx', 'ts', 'tsx'],
 			formatter: require.resolve('react-dev-utils/eslintFormatter'),
 			eslintPath: require.resolve('eslint'),
-			context: paths.appSrc,
+			context: paths.appRenderSrc,
 			cache: false,
 			cwd: paths.appRootPath,
 			resolvePluginsRelativeTo: __dirname,
@@ -198,10 +198,11 @@ const webpackRenderBaseConfig = {
 			fix: true,
 			cache: false,
 			quiet: true,
-			context: paths.appSrc,
+			context: paths.appRenderSrc,
 			files: ['**/*.(le|c)ss'],
 		}),
 		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 			'process.env.BUILD_ENV': JSON.stringify(buildEnv),
 			'process.env.$__APP_NAME__$': JSON.stringify(name),
 			'process.env.$__APP_VERSION__$': JSON.stringify(version),
