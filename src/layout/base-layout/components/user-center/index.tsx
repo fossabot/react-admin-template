@@ -11,10 +11,7 @@ const UserCenter: React.FC = () => {
 				<div className={s.email}>uninge.sun@gmail.com</div>
 			</div>
 			<Menu.Divider />
-			<Menu.Item
-				className={s.userCenterMenuItem}
-				icon={<UserOutlined style={{ fontSize: 16 }} />}
-			>
+			<Menu.Item className={s.userCenterMenuItem} icon={<UserOutlined style={{ fontSize: 16 }} />}>
 				个人中心
 			</Menu.Item>
 			<Menu.Item

@@ -15,7 +15,8 @@ const LoginCard: React.FC = () => {
 			<img
 				title="图片来自掘金登陆弹窗，本项目非商业使用，如涉及侵权请联系删除，谢谢"
 				className={classnames(s.panda, { [s.show]: panda === 'normal' })}
-				src={normal} alt=""
+				src={normal}
+				alt=""
 			/>
 			<img
 				title="图片来自掘金登陆弹窗，本项目非商业使用，如涉及侵权请联系删除，谢谢"

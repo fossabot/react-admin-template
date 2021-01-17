@@ -7,9 +7,9 @@ import { increment } from '@/redux/store/system';
 const MobxTestF: React.FC = () => {
 	const store = useStore();
 	const dispatch = useDispatch();
-	const selector = useSelector(((data: RootState) => {
+	const selector = useSelector((data: RootState) => {
 		return data.system;
-	}));
+	});
 
 	// 两种方式提交数据变更
 	function onHandleClick() {
@@ -27,10 +27,7 @@ const MobxTestF: React.FC = () => {
 		<Card>
 			<p>我是redux函数组件</p>
 			<h1>{`${selector.systemName} - ${selector.count}`}</h1>
-			<Button
-				type="primary"
-				onClick={onHandleClick}
-			>
+			<Button type="primary" onClick={onHandleClick}>
 				点击
 			</Button>
 		</Card>

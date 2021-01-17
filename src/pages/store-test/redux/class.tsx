@@ -7,7 +7,7 @@ export interface IProps {
 	system: {
 		count: number;
 		systemName: string;
-	},
+	};
 	incrementByAmount: (num: number) => void;
 }
 
@@ -23,20 +23,23 @@ class MobxTestC extends React.Component<IProps> {
 
 	onHandleClick = () => {
 		this.props.incrementByAmount(1);
-	}
+	};
 
 	render() {
-		const { system: { systemName, count } } = this.props;
+		const {
+			system: { systemName, count },
+		} = this.props;
 		return (
 			<Card>
 				<p>我是redux类组件</p>
 				<h1>{`${systemName} - ${count}`}</h1>
-				<Button type="primary" onClick={this.onHandleClick}>点击</Button>
+				<Button type="primary" onClick={this.onHandleClick}>
+					点击
+				</Button>
 			</Card>
 		);
 	}
 }
-
 
 function mapStateToProps(state: RootState) {
 	return {
@@ -46,10 +49,11 @@ function mapStateToProps(state: RootState) {
 
 function mapDispatchToProps(dispatch: AppDispatch) {
 	return {
-		incrementByAmount: (num: number) => dispatch({
-			type: 'system/incrementByAmount',
-			payload: num,
-		}),
+		incrementByAmount: (num: number) =>
+			dispatch({
+				type: 'system/incrementByAmount',
+				payload: num,
+			}),
 	};
 }
 

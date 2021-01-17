@@ -7,7 +7,7 @@ export interface IProps {
 		count: number;
 		systemName: string;
 		onSetCount: (num: number) => void;
-	}
+	};
 }
 
 @inject('system')
@@ -22,21 +22,20 @@ export default class MobxTestC extends React.Component<IProps> {
 		console.log(this.props);
 	}
 
-	onHandleClick = ():void => {
+	onHandleClick = (): void => {
 		this.props.system.onSetCount(1);
-	}
+	};
 
 	render(): React.ReactElement {
-		const { system: { systemName, count } } = this.props;
+		const {
+			system: { systemName, count },
+		} = this.props;
 
 		return (
 			<Card>
 				<p>我是mobx类组件</p>
 				<h1>{`${systemName} - ${count}`}</h1>
-				<Button
-					type="primary"
-					onClick={this.onHandleClick}
-				>
+				<Button type="primary" onClick={this.onHandleClick}>
 					点击
 				</Button>
 			</Card>

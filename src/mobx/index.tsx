@@ -13,11 +13,7 @@ if (config.isDevelopment) {
 }
 
 function MobxProvider(props: ProviderProps): React.ReactElement {
-	return (
-		<Provider {...store}>
-			{props.children}
-		</Provider>
-	);
+	return <Provider {...store}>{props.children}</Provider>;
 }
 
 export default MobxProvider;

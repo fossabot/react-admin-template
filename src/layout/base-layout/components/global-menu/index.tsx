@@ -9,7 +9,7 @@ import { SelectInfo } from '@/interface/menu';
 // import s from './index.module.less';
 
 export interface IProps {
-	mode?: MenuMode
+	mode?: MenuMode;
 }
 
 const { Item: MenuItem, SubMenu } = Menu;

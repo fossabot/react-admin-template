@@ -15,10 +15,7 @@ function render(): void {
 	// 	document.getElementById('react-admin-template'),
 	// );
 
-	ReactDom.render(
-		<App />,
-		document.getElementById('react-admin-template'),
-	);
+	ReactDom.render(<App />, document.getElementById('react-admin-template'));
 }
 
 render();

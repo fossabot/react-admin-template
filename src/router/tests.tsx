@@ -1,5 +1,10 @@
 import React from 'react';
-import { GlobalOutlined, MergeCellsOutlined, ConsoleSqlOutlined, ClusterOutlined } from '@ant-design/icons';
+import {
+	GlobalOutlined,
+	MergeCellsOutlined,
+	ConsoleSqlOutlined,
+	ClusterOutlined,
+} from '@ant-design/icons';
 
 import load from '@/utils/load';
 import { IRouterConfig } from '@/utils/render-routes';

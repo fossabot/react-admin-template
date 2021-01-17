@@ -34,10 +34,12 @@ const MessageCenter: React.FC = () => {
 			<Tabs defaultActiveKey="1">
 				<TabPane
 					key="1"
-					tab={<>
-						<BellOutlined />
-						通知 (4)
-					</>}
+					tab={
+						<>
+							<BellOutlined />
+							通知 (4)
+						</>
+					}
 				>
 					<section className={s.messages}>
 						<List
@@ -58,10 +60,12 @@ const MessageCenter: React.FC = () => {
 				</TabPane>
 				<TabPane
 					key="2"
-					tab={<>
-						<MessageOutlined />
-						消息 (4)
-					</>}
+					tab={
+						<>
+							<MessageOutlined />
+							消息 (4)
+						</>
+					}
 				>
 					<section className={s.messages}>
 						<List
@@ -82,10 +86,12 @@ const MessageCenter: React.FC = () => {
 				</TabPane>
 				<TabPane
 					key="3"
-					tab={<>
-						<ExceptionOutlined />
-						代办 (4)
-					</>}
+					tab={
+						<>
+							<ExceptionOutlined />
+							代办 (4)
+						</>
+					}
 				>
 					<section className={s.messages}>
 						<List
