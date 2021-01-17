@@ -10,7 +10,8 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env BUILD_ENV=development nodemon ./.scripts/dev.js",
-    "build:dev": "cross-env BUILD_ENV=development npm run build",
+		"electron": "cross-env BUILD_ENV=development node ./.scripts/electron.js",
+		"build:dev": "cross-env BUILD_ENV=development npm run build",
     "build:test": "cross-env BUILD_ENV=test npm run build",
     "build:prod": "cross-env BUILD_ENV=production npm run build",
     "build:analyze": "cross-env BUNDLE_ANALYZE=true npm run build:prod",

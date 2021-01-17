@@ -3,11 +3,11 @@ import { capitalCase } from 'change-case';
 export default function appInfo(log?: boolean): void {
 	const env = process.env.BUILD_ENV || '';
 	const isDev = env === 'development';
-	const name = capitalCase(process.env.$__APP_NAME__$ || '');
-	const version = process.env.$__APP_VERSION__$ || '';
-	const gitBranch = process.env.$__GIT_BRANCH__$ || '';
-	const gitCommitHash = process.env.$__GIT_COMMIT_HASH__$ || '';
-	const prodBuildTime = process.env.$__APP_BUILD_TIME__$ || '';
+	const name = capitalCase(process.env.APP_NAME || '');
+	const version = process.env.APP_VERSION || '';
+	const gitBranch = process.env.GIT_BRANCH || '';
+	const gitCommitHash = process.env.GIT_COMMIT_HASH || '';
+	const prodBuildTime = process.env.APP_BUILD_TIME || '';
 	const devUpdateTime = new Date().toLocaleString();
 	const time = isDev ? `Refresh: ${devUpdateTime}` : `Build: ${prodBuildTime}`;
 
