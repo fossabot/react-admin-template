@@ -49,5 +49,5 @@
 1. 删除`.scripts/config/paths.js`中 electron 相关目录配置
 2. 删除`.scripts/webpack/webpack.main.prod.config.js`
 3. 删除根目录下`main`目录
-4. 卸载`package.json`文件中的`electron`、`node-loader`
+4. 卸载`package.json`文件中的`electron`、`node-loader`、`electron-debug`、`electron-devtools-installer`
 5. 为了好看，在`./config/paths.js`配置 web 文件打包输出目录`dist/render` -> `dist`
