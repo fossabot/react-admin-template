@@ -1,5 +1,6 @@
 const WebpackBar = require('webpackbar');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const { buildTime, buildEnv, name, version, gitBranch, gitCommitHash } = require('../config');
@@ -57,7 +58,7 @@ const webpackMainProdConfig = {
 		],
 	},
 	resolve: {
-		extensions: ['.js', '.json', '.node'],
+		extensions: ['.js', '.ts', '.json', '.node'],
 	},
 	plugins: [
 		new WebpackBar({
@@ -65,11 +66,22 @@ const webpackMainProdConfig = {
 			profile: true,
 		}),
 		new CleanWebpackPlugin({ verbose: true }),
+		new CopyWebpackPlugin({
+			patterns: [
+				{
+					from: paths.appMainStatics,
+					to: paths.appMainDistStatics,
+					globOptions: {
+						ignore: ['**/favicon.ico', '**/index.html'],
+					},
+				},
+			],
+		}),
 		new ESLintPlugin({
 			extensions: ['js', 'jsx', 'ts', 'tsx'],
 			formatter: require.resolve('react-dev-utils/eslintFormatter'),
 			eslintPath: require.resolve('eslint'),
-			context: paths.appRenderSrc,
+			context: paths.appMainSrc,
 			cache: false,
 			cwd: paths.appRootPath,
 			resolvePluginsRelativeTo: __dirname,

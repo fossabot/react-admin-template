@@ -59,10 +59,6 @@ function startRenderServer() {
 			log: (msg) => console.log(`${chalk.magenta('[HMW]')} ${chalk.green(msg)}`),
 		});
 
-		// compiler.hooks.done.tap('done', (stats) => {
-		// 	printStatsLog('Renderer', stats);
-		// });
-
 		const app = express();
 		app.use('/', require('connect-history-api-fallback')());
 		app.use(devMiddleware);
@@ -85,15 +81,15 @@ function startRenderServer() {
 				app.listen(port, config.hostName, () => {
 					config.port = port;
 
-					let firstTapDone = true;
+					let firstTapDone = false;
 					const localUrl = `http://localhost:${port}`;
 					const networkUrl = `http://${address.ip()}:${port}`;
 
 					compiler.hooks.done.tap('done', () => {
 						printInstructions(localUrl, networkUrl);
 
-						if (firstTapDone) {
-							firstTapDone = false;
+						if (!firstTapDone) {
+							firstTapDone = true;
 							resolve();
 						}
 					});
@@ -134,9 +130,8 @@ function startElectron() {
 }
 
 function startMainWatcher() {
-	let firstTapDone = true;
-
 	return new Promise((resolve, reject) => {
+		let firstTapDone = false;
 		const compiler = webpack(webpackMainProdConfig);
 
 		compiler.hooks.watchRun.tapAsync('watch-run', (compilation, done) => {
@@ -150,23 +145,22 @@ function startMainWatcher() {
 		compiler.watch({}, (err, stats) => {
 			if (err) {
 				console.log(err);
-				// return;
+				return;
 			}
-			// printStatsLog('Main', stats);
+			printStatsLog('Main', stats);
 		});
 
 		compiler.hooks.done.tap('done', (stats) => {
-			if (!firstTapDone) {
-				printStatsLog('Main', stats);
-				firstTapDone = true;
-			}
-
 			if (hotMiddleware) {
 				hotMiddleware.publish({ action: 'reload' });
 			}
 
 			if (stats.hasErrors()) {
-				reject(stats);
+				if (!firstTapDone) {
+					printStatsLog('Main', stats);
+					firstTapDone = true;
+					reject(stats);
+				}
 				return;
 			}
 
@@ -181,7 +175,11 @@ function startMainWatcher() {
 					}, 10000);
 				});
 			}
-			resolve();
+
+			if (!firstTapDone) {
+				firstTapDone = true;
+				resolve();
+			}
 		});
 	});
 }
@@ -211,4 +209,5 @@ start().then(() => {
 	printStatsLog('APP', chalk.green(' All Ready'));
 }).catch(() => {
 	printStatsLog('Unknown', chalk.red(' 启动失败！请检查startRenderServer、startMainWatcher、startElectron是否有异常'));
+	process.exit(1);
 });

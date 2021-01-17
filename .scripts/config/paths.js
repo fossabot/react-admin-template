@@ -27,7 +27,9 @@ module.exports = {
 	// electron
 	appMainSrc: resolvePath('main'),
 	appMainEntry: resolveModule(resolvePath, 'main/index'),
+	appMainStatics: resolvePath('main/statics'),
 	appMainDistPath: resolvePath('dist/main'),
+	appMainDistStatics: resolvePath('dist/main/statics'),
 
 	// web
 	appPublicPath: resolvePath('public'),

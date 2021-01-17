@@ -58,14 +58,14 @@ portFinder
 	})
 	.then((port) => {
 		app.listen(port, config.hostName, () => {
-			let firstTapDone = true;
+			let firstTapDone = false;
 			const localUrl = `http://localhost:${port}`;
 			const networkUrl = `http://${address.ip()}:${port}`;
 
 			compiler.hooks.done.tap('done', () => {
 				printInstructions(localUrl, networkUrl);
-				if (firstTapDone) {
-					firstTapDone = false;
+				if (!firstTapDone) {
+					firstTapDone = true;
 					open(localUrl);
 				}
 			});

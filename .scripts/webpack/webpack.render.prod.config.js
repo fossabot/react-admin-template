@@ -27,7 +27,6 @@ const webpackRenderProdConfig = {
 					globOptions: {
 						ignore: ['**/favicon.ico', '**/index.html'],
 					},
-					noErrorOnMissing: true,
 				},
 			],
 		}),
