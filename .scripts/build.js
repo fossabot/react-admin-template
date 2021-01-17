@@ -17,7 +17,6 @@ const chalk = require('chalk');
 const rimraf = require('rimraf');
 const paths = require('./config/paths');
 const webpackRenderProdConfig = require('./webpack/webpack.render.prod.config');
-const webpackMainProdConfig = require('./webpack/webpack.main.prod.config');
 const { build } = require('./utils/functions');
 
 rimraf(paths.appRenderDistPath, (err) => {
@@ -25,11 +24,13 @@ rimraf(paths.appRenderDistPath, (err) => {
 
 	console.log(chalk.gray(` 目录【${paths.appRenderDistPath}】清理成功, 等待打包...`));
 
-	build(webpackRenderProdConfig).then(res => {
-		console.log(`${res}`);
-		console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green('打包完成')}`);
-	}).catch(err => {
-		console.log(err);
-		process.exit(1);
-	});
+	build(webpackRenderProdConfig)
+		.then((res) => {
+			console.log(`${res}`);
+			console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green('打包完成')}`);
+		})
+		.catch((err) => {
+			console.log(err);
+			process.exit(1);
+		});
 });

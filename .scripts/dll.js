@@ -40,16 +40,17 @@ if (dllCheck()) {
 
 console.log(chalk.yellow(' DLL未构建或已失效，即将构建！'));
 
-build(webpackRenderDllConfig).then(res => {
-	console.log(res);
-	console.log(chalk.grey(' 写入DLL依赖配置...'));
-	fs.writeFileSync(`${appDllPath}/dependencies.json`, JSON.stringify(dependencies, null, 2));
-	console.log(chalk.grey(' DLL依赖配置写入成功！'));
-	console.log();
-	console.log(` ${chalk.bold(`${chalk.green('✔')}`)} ${chalk.cyan('DLL构建完成!')}`);
-	console.log();
-}).catch(err => {
-	console.log(err);
-	process.exit(1);
-});
-
+build(webpackRenderDllConfig)
+	.then((res) => {
+		console.log(res);
+		console.log(chalk.grey(' 写入DLL依赖配置...'));
+		fs.writeFileSync(`${appDllPath}/dependencies.json`, JSON.stringify(dependencies, null, 2));
+		console.log(chalk.grey(' DLL依赖配置写入成功！'));
+		console.log();
+		console.log(` ${chalk.bold(`${chalk.green('✔')}`)} ${chalk.cyan('DLL构建完成!')}`);
+		console.log();
+	})
+	.catch((err) => {
+		console.log(err);
+		process.exit(1);
+	});

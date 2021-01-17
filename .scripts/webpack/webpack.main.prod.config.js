@@ -1,21 +1,27 @@
-const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const {
-	buildTime,
-	buildEnv,
-	name,
-	version,
-	gitBranch,
-	gitCommitHash,
-} = require('../config');
+const { buildTime, buildEnv, name, version, gitBranch, gitCommitHash } = require('../config');
 const paths = require('../config/paths');
+const { dependencies } = require(paths.appRootPkgJson);
 const isProduction = buildEnv === 'production';
 
+const envs = {
+	NODE_ENV: buildEnv,
+	APP_NAME: name,
+	APP_VERSION: version,
+	GIT_BRANCH: gitBranch,
+	GIT_COMMIT_HASH: gitCommitHash,
+	APP_BUILD_TIME: buildTime,
+};
+
+Object.keys(envs).forEach(key => {
+	process.env[key] = envs[key];
+});
+
 const webpackMainProdConfig = {
-	mode: process.env.NODE_ENV,
+	mode: 'production',
 	target: 'electron-main',
 	entry: {
 		index: [paths.appMainEntry],
@@ -27,6 +33,7 @@ const webpackMainProdConfig = {
 		filename: '[name].js',
 		path: paths.appMainDistPath,
 	},
+	externals: [...Object.keys(dependencies || {})],
 	module: {
 		strictExportPresence: true,
 		rules: [
@@ -54,6 +61,7 @@ const webpackMainProdConfig = {
 	},
 	plugins: [
 		new WebpackBar({
+			name: 'Main Process',
 			profile: true,
 		}),
 		new CleanWebpackPlugin({ verbose: true }),
@@ -65,15 +73,6 @@ const webpackMainProdConfig = {
 			cache: false,
 			cwd: paths.appRootPath,
 			resolvePluginsRelativeTo: __dirname,
-		}),
-		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-			'process.env.BUILD_ENV': JSON.stringify(buildEnv),
-			'process.env.$__APP_NAME__$': JSON.stringify(name),
-			'process.env.$__APP_VERSION__$': JSON.stringify(version),
-			'process.env.$__GIT_BRANCH__$': JSON.stringify(gitBranch),
-			'process.env.$__GIT_COMMIT_HASH__$': JSON.stringify(gitCommitHash),
-			'process.env.$__APP_BUILD_TIME__$': JSON.stringify(buildTime),
 		}),
 	],
 	node: {

@@ -57,20 +57,21 @@ portFinder
 		port: config.port,
 	})
 	.then((port) => {
-		let first = true;
 		app.listen(port, config.hostName, () => {
+			let firstTapDone = true;
 			const localUrl = `http://localhost:${port}`;
 			const networkUrl = `http://${address.ip()}:${port}`;
 
 			compiler.hooks.done.tap('done', () => {
-				if (first) {
-					first = false;
+				printInstructions(localUrl, networkUrl);
+				if (firstTapDone) {
+					firstTapDone = false;
 					open(localUrl);
 				}
-				printInstructions(localUrl, networkUrl);
 			});
 		});
 	})
 	.catch((err) => {
 		console.log(err);
+		process.exit(1);
 	});

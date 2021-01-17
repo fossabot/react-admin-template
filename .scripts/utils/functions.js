@@ -10,7 +10,7 @@ const { engines } = require('../config');
 const currentNodeVersion = process.version;
 const requiredNodeVersion = engines.node;
 
-const boldYellowBright = str => chalk.bold(chalk.yellowBright(str));
+const boldYellowBright = (str) => chalk.bold(chalk.yellowBright(str));
 
 // exec
 function exec(cmd, options) {
@@ -20,7 +20,13 @@ function exec(cmd, options) {
 // Node Version
 function nodeVersionCheck() {
 	if (!semver.satisfies(currentNodeVersion, requiredNodeVersion)) {
-		console.log(chalk.yellow(` 你当前${chalk.red('Node')}版本${chalk.red(currentNodeVersion)}，期望${chalk.red('Node')}版本${chalk.red(requiredNodeVersion)}`));
+		console.log(
+			chalk.yellow(
+				` 你当前${chalk.red('Node')}版本${chalk.red(currentNodeVersion)}，期望${chalk.red(
+					'Node',
+				)}版本${chalk.red(requiredNodeVersion)}`,
+			),
+		);
 		console.log(chalk.yellow(` 点击右侧连接下载新版: https://nodejs.org/zh-cn/`));
 		console.log(chalk.yellow(` 也可以使用nvm管理Node版本: https://github.com/nvm-sh/nvm`));
 		console.log();
@@ -31,7 +37,11 @@ function nodeVersionCheck() {
 // BUILD_ENV
 function buildEnvCheck() {
 	if (!BUILD_ENV) {
-		console.log(chalk.red(` 缺少必要构建参数${chalk.bold(chalk.yellowBright('BUILD_ENV'))}，请检查构建命令是否正确`));
+		console.log(
+			chalk.red(
+				` 缺少必要构建参数${chalk.bold(chalk.yellowBright('BUILD_ENV'))}，请检查构建命令是否正确`,
+			),
+		);
 		console.log();
 		process.exit(1);
 	}
@@ -40,7 +50,13 @@ function buildEnvCheck() {
 // NODE_ENV
 function nodeEnvCheck() {
 	if (!envs.includes(NODE_ENV)) {
-		console.log(chalk.red(` 环境变量${boldYellowBright(NODE_ENV)}值无效，${boldYellowBright(envs.join(', '))}为${boldYellowBright('NODE_ENV')}可选项`));
+		console.log(
+			chalk.red(
+				` 环境变量${boldYellowBright(NODE_ENV)}值无效，${boldYellowBright(
+					envs.join(', '),
+				)}为${boldYellowBright('NODE_ENV')}可选项`,
+			),
+		);
 		console.log();
 		process.exit(1);
 	}
@@ -68,7 +84,7 @@ function build(config) {
 
 			resolve(message);
 		});
-	})
+	});
 }
 
 module.exports = {
@@ -77,4 +93,4 @@ module.exports = {
 	buildEnvCheck,
 	nodeEnvCheck,
 	build,
-}
+};

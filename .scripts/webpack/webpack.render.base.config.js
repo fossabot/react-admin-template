@@ -172,7 +172,7 @@ const webpackRenderBaseConfig = {
 				include: paths.spriteSvgPath,
 				loader: require.resolve('svg-sprite-loader'),
 				options: { symbolId: 'icon-[name]' },
-			}
+			},
 		],
 	},
 	resolve: {
@@ -183,6 +183,7 @@ const webpackRenderBaseConfig = {
 	},
 	plugins: [
 		new WebpackBar({
+			name: 'Render Process',
 			profile: true,
 		}),
 		new ESLintPlugin({
@@ -204,11 +205,11 @@ const webpackRenderBaseConfig = {
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 			'process.env.BUILD_ENV': JSON.stringify(buildEnv),
-			'process.env.$__APP_NAME__$': JSON.stringify(name),
-			'process.env.$__APP_VERSION__$': JSON.stringify(version),
-			'process.env.$__GIT_BRANCH__$': JSON.stringify(gitBranch),
-			'process.env.$__GIT_COMMIT_HASH__$': JSON.stringify(gitCommitHash),
-			'process.env.$__APP_BUILD_TIME__$': JSON.stringify(buildTime),
+			'process.env.APP_NAME': JSON.stringify(name),
+			'process.env.APP_VERSION': JSON.stringify(version),
+			'process.env.GIT_BRANCH': JSON.stringify(gitBranch),
+			'process.env.GIT_COMMIT_HASH': JSON.stringify(gitCommitHash),
+			'process.env.APP_BUILD_TIME': JSON.stringify(buildTime),
 		}),
 		new HtmlWebpackPlugin(
 			Object.assign(
