@@ -22,7 +22,7 @@ export default function appInfo(log?: boolean): void {
 		const timeStyle = `${style};color:#fff;background:#dfb317;${br('right', 3)};`;
 
 		window.console.log(
-			`%c${name}%cv${version}-${gitBranch}${isDev ? '' : `-${gitCommitHash}`}%c${env}%c${time}`,
+			`%c${name}%c${gitBranch}${isDev ? '' : `(${gitCommitHash})`}-v${version}%c${env}%c${time}`,
 			nameStyle,
 			versionStyle,
 			envStyle,
