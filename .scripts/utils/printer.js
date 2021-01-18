@@ -23,21 +23,13 @@ function printEnvironment() {
 	console.log(chalk.cyan(` name: ${chalk.yellow(name)}`));
 	console.log(chalk.cyan(` version: ${chalk.yellow(version)}`));
 	console.log(chalk.cyan(` branch: ${chalk.yellow(gitBranch)}`));
-	console.log(
-		chalk.cyan(
-			` last commit: ${chalk.yellow(`${exec('git log -1 --pretty=%s%b')} (${gitCommitHash})`)}`,
-		),
-	);
+	console.log(chalk.cyan(` last commit: ${chalk.yellow(`${exec('git log -1 --pretty=%s%b')} (${gitCommitHash})`)}`));
 
 	console.log(chalk.cyan(` NODE_ENV: ${chalk.yellow(process.env.NODE_ENV)}`));
 	console.log(chalk.cyan(` BUILD_ENV: ${chalk.yellow(process.env.BUILD_ENV)}`));
 
 	console.log(chalk.cyan(` Node.js: ${chalk.yellow(process.version)}`));
-	console.log(
-		chalk.cyan(
-			` OS: ${chalk.yellow(os.hostname(), os.type(), os.version(), os.platform(), os.arch())}`,
-		),
-	);
+	console.log(chalk.cyan(` OS: ${chalk.yellow(os.hostname(), os.type(), os.version(), os.platform(), os.arch())}`));
 }
 
 function printInstructions(localUrl, networkUrl) {
