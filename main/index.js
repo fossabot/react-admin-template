@@ -1,6 +1,13 @@
-const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const url = require('url');
+const { app, BrowserWindow } = require('electron');
+
+if (process.env.BUILD_ENV === 'production') {
+	process.on('unhandledRejection', (error) => {
+		console.log(error);
+		app.quit();
+	});
+}
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -9,8 +16,8 @@ let mainWindow;
 function createWindow() {
 	// Create the browser window.
 	mainWindow = new BrowserWindow({
-		width: 1366,
-		height: 768,
+		minWidth: 1366,
+		minHeight: 768,
 		frame: true,
 		show: false,
 		// transparent: true,
@@ -46,7 +53,7 @@ function createWindow() {
 	});
 
 	if (process.env.BUILD_ENV === 'development') {
-		mainWindow.webContents.openDevTools();
+		// mainWindow.webContents.openDevTools();
 	}
 }
 
@@ -73,4 +80,4 @@ app.on('window-all-closed', () => {
 });
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
+console.log(process.versions);
