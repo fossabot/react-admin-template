@@ -28,7 +28,7 @@ function appInfo() {
 		timeStyle,
 	);
 	window.console.log(
-		`%cBranch: ${gitBranch}%cCommit: ${gitCommitMsg}(${gitCommitHash})%c${BUILD_ENV}%c${APP_BUILD_TIME}`,
+		`%cBranch: ${gitBranch}(${gitCommitHash})%cCommit: ${gitCommitMsg}%c${BUILD_ENV}%cBuild: ${APP_BUILD_TIME}`,
 		nameStyle,
 		versionStyle,
 		envStyle,
