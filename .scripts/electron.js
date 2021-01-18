@@ -98,7 +98,7 @@ function startRenderServer() {
 
 function startElectron() {
 	return new Promise((resolve) => {
-		electronProcess = spawn(electron, ['--inspect=5858', paths.appMainSrc], {
+		electronProcess = spawn(electron, ['--inspect=5858', paths.appMainDistPath], {
 			env: Object.assign({}, process.env, {
 				RENDER_DEV_HOST_NAME: config.hostName === '0.0.0.0' ? 'localhost' : config.hostName,
 				RENDER_DEV_PORT: config.port,
@@ -125,6 +125,8 @@ function startElectron() {
 
 function startMainWatcher() {
 	return new Promise((resolve, reject) => {
+		webpackMainProdConfig.entry.index = [paths.appMainDevEntry];
+
 		let firstTapDone = false;
 		const compiler = webpack(webpackMainProdConfig);
 
