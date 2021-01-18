@@ -41,13 +41,18 @@
 
 由于自家 CI 没得商量只传递一个环境变量`NODE_ENV`且会超出`development`、`test`、`production`范围，故而此项目`BABEL_ENV`、`NODE_ENV`已固定为`development`、`production`，业务内环境变量统一由`BUILD_ENV`代替以判断部署环境。
 
-## 五. electron
+## 五. 关于 Electron
 
 本模板内置了`electron`相关功能，如果不需要`electron`又不想其留在项目中，操作如下:
 
 0. 删除`tsconfig.json`中`include`数组的`main`目录配置
-1. 删除`.scripts/config/paths.js`中 electron 相关目录配置
-2. 删除`.scripts/webpack/webpack.main.prod.config.js`
+1. 删除`.scripts/config/paths.js`中 electron 相关目录配置，有注释
+2. 删除`.scripts/electron.js`和`.scripts/webpack/webpack.main.prod.config.js`
 3. 删除根目录下`main`目录
-4. 卸载`package.json`文件中的`electron`、`node-loader`、`electron-debug`、`electron-devtools-installer`
-5. 为了好看，在`./config/paths.js`配置 web 文件打包输出目录`dist/render` -> `dist`
+4. 为了好看，在`./config/paths.js`配置 web 文件打包输出目录`dist/render` -> `dist`
+5. 卸载`package.json`文件中的依赖
+	1. `electron`
+	2.	`node-loader`
+	3. `electron-debug`
+	4. `electron-devtools-installer`
+	5. `@types/electron-devtools-installer`
