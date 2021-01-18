@@ -5,7 +5,7 @@
 
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
-// process.env.TARGET = 'electron-renderer';
+process.env.TARGET = 'electron-renderer';
 
 process.on('unhandledRejection', (error) => {
 	throw error;
