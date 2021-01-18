@@ -1,26 +1,27 @@
 import { app } from 'electron';
+import electronDebug from 'electron-debug';
 import installExtension, {
 	REACT_DEVELOPER_TOOLS,
 	REDUX_DEVTOOLS,
 	MOBX_DEVTOOLS,
-// eslint-disable-next-line import/no-extraneous-dependencies
 } from 'electron-devtools-installer';
 
-// eslint-disable-next-line import/no-extraneous-dependencies,@typescript-eslint/no-unsafe-call
-require('electron-debug')({ showDevTools: true });
+(async function dev() {
+	await app.whenReady();
 
-app.on('ready', () => {
-	installExtension(REACT_DEVELOPER_TOOLS)
-		.then((name) => console.log(`Added Extension:  ${name}`))
-		.catch((err) => console.log('An error occurred: ', err));
+	electronDebug();
 
-	installExtension(REDUX_DEVTOOLS)
-		.then((name) => console.log(`Added Extension:  ${name}`))
-		.catch((err) => console.log('An error occurred: ', err));
+	const names = await Promise.all([
+		installExtension(REACT_DEVELOPER_TOOLS),
+		installExtension(REDUX_DEVTOOLS),
+		installExtension(MOBX_DEVTOOLS),
+	]);
 
-	installExtension(MOBX_DEVTOOLS)
-		.then((name) => console.log(`Added Extension:  ${name}`))
-		.catch((err) => console.log('An error occurred: ', err));
-});
+	names.forEach((name) => {
+		console.log(`Added Extension: ${name}`);
+	});
+
+	console.log('Dev Ready');
+})();
 
 require('./index');

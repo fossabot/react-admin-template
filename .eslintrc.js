@@ -140,7 +140,7 @@ module.exports = {
 		'@typescript-eslint/unbound-method': ERROR,
 		'@typescript-eslint/no-unsafe-call': ERROR,
 		'@typescript-eslint/no-misused-promises': ERROR,
-		'@typescript-eslint/no-floating-promises': WARN,
+		'@typescript-eslint/no-floating-promises': OFF,
 		'@typescript-eslint/no-unsafe-member-access': ERROR,
 		'@typescript-eslint/explicit-function-return-type': OFF,
 		'@typescript-eslint/restrict-template-expressions': ERROR,
