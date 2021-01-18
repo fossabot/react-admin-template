@@ -133,7 +133,7 @@ module.exports = {
 		'import/no-unresolved': OFF,
 		'import/no-dynamic-require': ERROR,
 		'import/prefer-default-export': ERROR,
-		'import/no-extraneous-dependencies': ERROR,
+		'import/no-extraneous-dependencies': [ERROR, {devDependencies: true, optionalDependencies: false, peerDependencies: false}],
 
 		'@typescript-eslint/no-var-requires': OFF,
 		'@typescript-eslint/no-unused-vars': ERROR,
