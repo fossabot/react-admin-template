@@ -128,7 +128,7 @@ function startElectron() {
 
 function startMainWatcher() {
 	return new Promise((resolve, reject) => {
-		webpackMainProdConfig.entry.index = [paths.appMainDevEntry];
+		webpackMainProdConfig.entry.index.unshift(paths.appMainDevEntry);
 
 		let firstTapDone = false;
 		const compiler = webpack(webpackMainProdConfig);

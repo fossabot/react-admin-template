@@ -29,5 +29,3 @@ mark('dev-start');
 
 	mark('dev-end');
 })();
-
-require('./index');
