@@ -43,6 +43,7 @@ function createWindow() {
 
 	mainWindow.on('ready-to-show', () => {
 		mainWindow.show();
+		mainWindow.center();
 	});
 
 	// Emitted when the window is closed.
