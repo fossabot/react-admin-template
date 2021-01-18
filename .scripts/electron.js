@@ -5,6 +5,7 @@
 
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
+// process.env.TARGET = 'electron-renderer';
 
 process.on('unhandledRejection', (error) => {
 	throw error;
@@ -162,17 +163,17 @@ function startMainWatcher() {
 				return;
 			}
 
-			if (electronProcess && electronProcess.kill) {
-				isElectronManualRestarting = true;
-
-				process.kill(electronProcess.pid);
-
-				startElectron().then(() => {
-					setTimeout(() => {
-						isElectronManualRestarting = false;
-					}, 10000);
-				});
-			}
+			// if (electronProcess && electronProcess.kill) {
+			// 	isElectronManualRestarting = true;
+			//
+			// 	process.kill(electronProcess.pid);
+			//
+			// 	startElectron().then(() => {
+			// 		setTimeout(() => {
+			// 			isElectronManualRestarting = false;
+			// 		}, 10000);
+			// 	});
+			// }
 
 			if (!firstTapDone) {
 				firstTapDone = true;

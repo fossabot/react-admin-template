@@ -20,10 +20,11 @@ function createWindow() {
 		minHeight: 768,
 		frame: true,
 		show: false,
-		// transparent: true,
+		transparent: true,
 		backgroundColor: '#1f1f1f',
 		webPreferences: {
 			webSecurity: true,
+			nodeIntegration: true,
 			preload: path.resolve(__dirname, 'statics/preload.js'),
 		},
 	});

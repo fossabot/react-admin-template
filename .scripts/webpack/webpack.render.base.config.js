@@ -112,7 +112,7 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 }
 
 const webpackRenderBaseConfig = {
-	target: 'web',
+	target: process.env.TARGET || 'web', // web、electron-renderer
 	entry: {
 		app: [paths.appRenderEntry],
 	},
