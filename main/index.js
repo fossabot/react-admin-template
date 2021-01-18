@@ -20,7 +20,7 @@ function createWindow() {
 		minHeight: 768,
 		frame: true,
 		show: false,
-		transparent: true,
+		transparent: false,
 		backgroundColor: '#1f1f1f',
 		webPreferences: {
 			webSecurity: true,
@@ -54,7 +54,7 @@ function createWindow() {
 	});
 
 	setTimeout(() => {
-		mainWindow.webContents.reloadIgnoringCache();
+		// mainWindow.webContents.reloadIgnoringCache();
 	}, 5000);
 
 	if (process.env.BUILD_ENV === 'development') {
