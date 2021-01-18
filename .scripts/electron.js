@@ -163,17 +163,17 @@ function startMainWatcher() {
 				return;
 			}
 
-			// if (electronProcess && electronProcess.kill) {
-			// 	isElectronManualRestarting = true;
-			//
-			// 	process.kill(electronProcess.pid);
-			//
-			// 	startElectron().then(() => {
-			// 		setTimeout(() => {
-			// 			isElectronManualRestarting = false;
-			// 		}, 10000);
-			// 	});
-			// }
+			if (electronProcess && electronProcess.kill) {
+				isElectronManualRestarting = true;
+
+				process.kill(electronProcess.pid);
+
+				startElectron().then(() => {
+					setTimeout(() => {
+						isElectronManualRestarting = false;
+					}, 10000);
+				});
+			}
 
 			if (!firstTapDone) {
 				firstTapDone = true;
