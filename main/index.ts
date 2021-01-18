@@ -60,7 +60,7 @@ function createWindow() {
 		mark('main-source-load-end');
 		try {
 			const list = getMarks();
-			console.log(JSON.stringify(list, null, 2));
+			console.log('performance:', JSON.stringify(list, null, 2));
 		} catch (err) {
 			console.log(err);
 		}
