@@ -24,7 +24,7 @@ function createWindow() {
 		backgroundColor: '#1f1f1f',
 		webPreferences: {
 			webSecurity: true,
-			preload: path.join(__dirname, 'statics/preload.js'),
+			preload: path.resolve(__dirname, 'statics/preload.js'),
 		},
 	});
 
@@ -80,4 +80,3 @@ app.on('window-all-closed', () => {
 });
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-console.log(process.versions);
