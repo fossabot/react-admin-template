@@ -1,6 +1,9 @@
-const path = require('path');
-const url = require('url');
-const { app, BrowserWindow } = require('electron');
+import path from 'path';
+import url from 'url';
+import { app, BrowserWindow } from 'electron';
+import { mark, getMarks, performanceEnd } from './utils/performance';
+
+mark('main-start');
 
 process.on('unhandledRejection', (error) => {
 	console.log('An error occurred(unhandledRejection)', error);
@@ -11,9 +14,11 @@ process.on('unhandledRejection', (error) => {
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow;
+let mainWindow: BrowserWindow | null;
 
 function createWindow() {
+	mark('main-window-create-start');
+
 	// Create the browser window.
 	mainWindow = new BrowserWindow({
 		minWidth: 1366,
@@ -29,21 +34,38 @@ function createWindow() {
 		},
 	});
 
-	mainWindow.loadURL(
-		url.format({
-			protocol: 'http:',
-			pathname: `${process.env.RENDER_DEV_HOST_NAME}:${process.env.RENDER_DEV_PORT}`,
-			slashes: true,
-		}, {
-			userAgent: 'aaaa',
-		}),
-	).then(() => {
-		console.log(`Load Success: http://${process.env.RENDER_DEV_HOST_NAME}:${process.env.RENDER_DEV_PORT}`);
+	mark('main-source-load-start');
+
+	const { RENDER_DEV_HOST_NAME, RENDER_DEV_PORT } = process.env;
+	// 此处不做容错判断，无意义。如果不改启动方式不会出错，如果改了启动方式则默认知道如何关联
+	const pathname = `${RENDER_DEV_HOST_NAME as string}:${RENDER_DEV_PORT as string}`;
+
+	mainWindow.loadURL(url.format({
+		protocol: 'http',
+		pathname,
+		slashes: true,
+	})).then(() => {
+		console.log(`Main Window Load Success: http://${pathname}`);
 	});
 
 	mainWindow.on('ready-to-show', () => {
-		mainWindow.show();
-		mainWindow.center();
+		if (mainWindow) {
+			mainWindow.show();
+			mainWindow.center();
+		}
+		mark('main-window-create-end');
+	});
+
+	mainWindow.webContents.on('did-finish-load', () => {
+		mark('main-source-load-end');
+		try {
+			const list = getMarks();
+			console.log(JSON.stringify(list, null, 2));
+		} catch (err) {
+			console.log(err);
+		}
+
+		performanceEnd();
 	});
 
 	// Emitted when the window is closed.
@@ -86,3 +108,4 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+mark('main-end');

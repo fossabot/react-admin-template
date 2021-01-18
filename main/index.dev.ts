@@ -5,6 +5,11 @@ import installExtension, {
 	REDUX_DEVTOOLS,
 	MOBX_DEVTOOLS,
 } from 'electron-devtools-installer';
+import { mark, performanceStart } from './utils/performance';
+
+performanceStart();
+
+mark('dev-start');
 
 (async function dev() {
 	await app.whenReady();
@@ -20,8 +25,9 @@ import installExtension, {
 	names.forEach((name) => {
 		console.log(`Added Extension: ${name}`);
 	});
-
 	console.log('Dev Ready');
+
+	mark('dev-end');
 })();
 
 require('./index');
