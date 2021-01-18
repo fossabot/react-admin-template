@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const { buildTime, buildEnv, name, version, gitBranch, gitCommitHash } = require('../config');
 const paths = require('../config/paths');
-const { dependencies } = require(paths.appRootPkgJson);
+// const { dependencies } = require(paths.appRootPkgJson);
 const isProduction = buildEnv === 'production';
 
 const envs = {
@@ -34,7 +34,7 @@ const webpackMainProdConfig = {
 		filename: '[name].js',
 		path: paths.appMainDistPath,
 	},
-	externals: [...Object.keys(dependencies || {})],
+	// externals: [...Object.keys(dependencies || {})],
 	module: {
 		strictExportPresence: true,
 		rules: [
