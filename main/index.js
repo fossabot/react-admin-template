@@ -52,6 +52,10 @@ function createWindow() {
 		mainWindow = null;
 	});
 
+	setTimeout(() => {
+		mainWindow.webContents.reloadIgnoringCache();
+	}, 5000);
+
 	if (process.env.BUILD_ENV === 'development') {
 		// mainWindow.webContents.openDevTools();
 	}
