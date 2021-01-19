@@ -62,7 +62,7 @@ const webpackMainProdConfig = {
 	},
 	plugins: [
 		new WebpackBar({
-			name: 'Main Process',
+			name: 'Electron Main',
 			profile: true,
 		}),
 		new CleanWebpackPlugin({ verbose: true }),

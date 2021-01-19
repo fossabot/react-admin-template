@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const threadLoader = require('thread-loader');
+const { capitalCase } = require('change-case');
 const postcssNormalize = require('postcss-normalize');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -186,7 +187,7 @@ const webpackRenderBaseConfig = {
 	},
 	plugins: [
 		new WebpackBar({
-			name: 'Render Process',
+			name: capitalCase(process.env.TARGET) || 'webpack',
 			profile: true,
 		}),
 		new ESLintWebpackPlugin({
