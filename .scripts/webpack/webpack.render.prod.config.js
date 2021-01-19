@@ -29,6 +29,7 @@ const webpackRenderProdConfig = {
 					},
 				},
 			],
+			noErrorOnMissing: false,
 		}),
 		new MiniCssExtractPlugin({
 			ignoreOrder: true,
