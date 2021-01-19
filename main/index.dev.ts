@@ -14,7 +14,7 @@ performanceStart();
 
 mark('dev-start');
 
-electronDebug();
+electronDebug({ showDevTools: false });
 
 (async function dev() {
 	await app.whenReady();
