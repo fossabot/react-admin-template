@@ -1,11 +1,36 @@
 import React from 'react';
-import { Dropdown, Avatar, Menu } from 'antd';
+import { useLocation, useHistory } from 'react-router';
+import { Dropdown, Avatar, Menu, Tooltip } from 'antd';
 import { UserOutlined, VerifiedOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
+import JsCookie from 'js-cookie';
+import { MenuInfo } from '@/interface/menu';
 import s from './index.module.less';
 
 const UserCenter: React.FC = () => {
+	const isLogin = JsCookie.get('react-admin-template');
+	const { pathname, search, hash, state } = useLocation();
+	const history = useHistory();
+	function onHandleClick() {
+		history.replace({
+			pathname: '/login',
+			state: { pathname, search, hash, state },
+		});
+	}
+
+	function onMenuHandleClick(item: MenuInfo) {
+		switch (item.key) {
+			case 'logout':
+				JsCookie.set('react-admin-template', '');
+				// 简单模拟一下，后面改成store存放
+				window.location.reload();
+				break;
+			default:
+				break;
+		}
+	}
+
 	const overlay = (
-		<Menu className={s.userCenterMenu}>
+		<Menu className={s.userCenterMenu} onClick={onMenuHandleClick}>
 			<div className={s.header}>
 				<div className={s.name}>vanilla</div>
 				<div className={s.email}>uninge.sun@gmail.com</div>
@@ -28,6 +53,7 @@ const UserCenter: React.FC = () => {
 			</Menu.Item>
 			<Menu.Divider />
 			<Menu.Item
+				key="logout"
 				className={s.userCenterMenuItem}
 				icon={<LogoutOutlined style={{ fontSize: 16 }} />}
 			>
@@ -37,14 +63,26 @@ const UserCenter: React.FC = () => {
 	);
 
 	return (
-		<Dropdown overlay={overlay}>
-			<div className={s.userCenter}>
-				<Avatar
-					className={s.avatar}
-					icon={<UserOutlined />}
-					src="https://avatars0.githubusercontent.com/u/22541178"
-				/>
-			</div>
+		<Dropdown disabled={!isLogin} overlay={overlay}>
+			{isLogin ? (
+				<div className={s.userCenter}>
+					<Avatar
+						className={s.avatar}
+						icon={<UserOutlined />}
+						src="https://avatars0.githubusercontent.com/u/22541178"
+					/>
+				</div>
+			) : (
+				<Tooltip overlay="点击登陆">
+					<div className={s.userCenter} onClick={onHandleClick}>
+						<Avatar
+							className={s.avatar}
+							icon={<UserOutlined />}
+							src="https://avatars0.githubusercontent.com/u/22541178"
+						/>
+					</div>
+				</Tooltip>
+			)}
 		</Dropdown>
 	);
 };

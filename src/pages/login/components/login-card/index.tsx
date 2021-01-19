@@ -1,14 +1,33 @@
 import React, { useState } from 'react';
 import { Card, Form, Input, Checkbox, Button } from 'antd';
 import classnames from 'classnames';
+import JsCookie from 'js-cookie';
 
 import s from './index.module.less';
 import normal from './img/normal.png';
 import greeting from './img/greeting.png';
 import blindfold from './img/blindfold.png';
 
-const LoginCard: React.FC = () => {
+export interface IProps {
+	onSuccess: () => void;
+}
+
+export interface IFormData {
+	username: string;
+	password: string;
+	remember: boolean;
+}
+
+const LoginCard: React.FC<IProps> = (props: IProps) => {
 	const [panda, setPanda] = useState('normal');
+
+	function onFinish(values: IFormData) {
+		console.log(values);
+		// 纯模拟一下
+		JsCookie.set('react-admin-template', JSON.stringify(values));
+
+		props.onSuccess();
+	}
 
 	return (
 		<Card className={s.card}>
@@ -30,7 +49,7 @@ const LoginCard: React.FC = () => {
 				src={blindfold}
 				alt=""
 			/>
-			<Form name="login">
+			<Form name="login" onFinish={onFinish}>
 				<Form.Item
 					label="账户"
 					name="username"
