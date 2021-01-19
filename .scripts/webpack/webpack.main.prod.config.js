@@ -59,6 +59,9 @@ const webpackMainProdConfig = {
 	},
 	resolve: {
 		extensions: ['.js', '.ts', '.json', '.node'],
+		alias: {
+			'~': paths.appMainSrc,
+		},
 	},
 	plugins: [
 		new WebpackBar({

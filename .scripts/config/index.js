@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { pascalCase } = require('change-case');
 const childProcess = require('child_process');
 const paths = require('./paths');
 const { name, version, engines } = require(paths.appRootPkgJson);
@@ -39,7 +40,7 @@ module.exports = {
 	},
 
 	// 其他无关痛痒的参数
-	name,
+	name: pascalCase(name),
 	version,
 	engines,
 	gitBranch: exec('git rev-parse --abbrev-ref HEAD'),

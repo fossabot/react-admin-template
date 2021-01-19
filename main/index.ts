@@ -1,7 +1,10 @@
 import path from 'path';
 import url from 'url';
 import { app, BrowserWindow } from 'electron';
+import config from './config';
 import { mark, performanceEnd } from './utils/performance';
+
+const { name, version } = config;
 
 mark('main-start');
 
@@ -33,6 +36,9 @@ function createWindow() {
 			preload: path.resolve(__dirname, 'statics/preload.js'),
 		},
 	});
+
+	const originUa = mainWindow.webContents.getUserAgent();
+	mainWindow.webContents.setUserAgent(`${originUa} ${name as string}/${version as string}`);
 
 	mark('main-window-source-load-start');
 
