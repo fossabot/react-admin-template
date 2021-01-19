@@ -32,7 +32,7 @@
     "build": "node .scripts/build.js",
     "dll": "node ./.scripts/dll.js",
     "npm-check": "npm-check -u",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cross-env BUILD_ENV=test node ./.scripts/test.js"
   },
   "husky": {
     "hooks": {

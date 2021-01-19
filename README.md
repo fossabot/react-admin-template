@@ -39,7 +39,8 @@
 
 ## 四. 打包构建
 
-由于自家 CI 没得商量只传递一个环境变量`NODE_ENV`且会超出`development`、`test`、`production`范围，故而此项目`BABEL_ENV`、`NODE_ENV`已固定为`development`、`production`，业务内环境变量统一由`BUILD_ENV`代替以判断部署环境。
+由于自家 CI 没得商量只传递一个环境变量`NODE_ENV`且会超出`development`、`test`、`production`范围，故而此项目`BABEL_ENV`、`NODE_ENV`已固定为`development`、`production`。
+也就是说无论`NODE_ENV`传递什么值都会在赋值给`BUILD_ENV`后被强制矫正为`development`或`production`。**所以业务代码中请使用`BUILD_ENV`来判断真实的部署环境。**
 
 ## 五. 关于 Electron
 
