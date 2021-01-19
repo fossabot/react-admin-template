@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { HashRouter, Switch } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
 
@@ -13,7 +13,8 @@ import ReduxProvider from './redux';
 
 const App: React.FC = () => {
 	return (
-		<BrowserRouter>
+		// <BrowserRouter>
+		<HashRouter>
 			<ConfigProvider locale={zhCN}>
 				{/* @warn @todo 删除。此处仅是模板示例，真实项目请选择其一。⚠CAUTION: One of MobxProvider and ReduxProvider */}
 				<MobxProvider>
@@ -26,7 +27,8 @@ const App: React.FC = () => {
 					</ReduxProvider>
 				</MobxProvider>
 			</ConfigProvider>
-		</BrowserRouter>
+		</HashRouter>
+		// </BrowserRouter>
 	);
 };
 
