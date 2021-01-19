@@ -17,7 +17,9 @@ const webpackRenderProdConfig = {
 	bail: isProduction,
 	devtool: canUseSourceMap ? 'source-map' : false,
 	plugins: [
-		new CleanWebpackPlugin(),
+		new CleanWebpackPlugin({
+			// verbose: true,
+		}),
 		new CopyWebpackPlugin({
 			patterns: [
 				{

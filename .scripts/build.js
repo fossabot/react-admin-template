@@ -22,6 +22,7 @@ const paths = require('./config/paths');
 const webpackRenderProdConfig = require('./webpack/webpack.render.prod.config');
 const { build } = require('./utils/functions');
 
+// 配置有CleanWebpackPlugin，rimraf可以删除
 rimraf(paths.appRenderDistPath, (err) => {
 	if (err) throw err;
 

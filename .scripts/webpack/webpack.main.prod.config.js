@@ -65,7 +65,9 @@ const webpackMainProdConfig = {
 			name: 'Electron Main',
 			profile: true,
 		}),
-		new CleanWebpackPlugin({ verbose: true }),
+		new CleanWebpackPlugin({
+			// verbose: true,
+		}),
 		new CopyWebpackPlugin({
 			patterns: [
 				{
