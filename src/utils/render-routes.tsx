@@ -26,7 +26,7 @@ export interface IRouterConfig {
 		authorities?: string[]; // 权限列表
 		fallback?: string; // 无权限回退页面
 	};
-	routes?: IRouterConfig[]; // child routes
+	children?: IRouterConfig[]; // child routes
 }
 
 export interface ICommonObject {
@@ -99,8 +99,8 @@ function renderRoutesDeep(routes: IRouterConfig[], extraProps?: IExtraProps): Re
 		routerList.forEach((route, index) => {
 			routers.push(generatorRoute(route, index, extraProps));
 
-			if (Array.isArray(route.routes)) {
-				travel(route.routes);
+			if (Array.isArray(route.children)) {
+				travel(route.children);
 			}
 		});
 	}
@@ -124,8 +124,8 @@ function getRedirectsRoutes(routes: IRouterConfig[]): React.ReactElement[] {
 			if (route.redirect) {
 				redirects.push(<Redirect exact key={route.path} from={route.path} to={route.redirect} />);
 
-				if (route.routes) {
-					travel(route.routes);
+				if (route.children) {
+					travel(route.children);
 				}
 			}
 		});

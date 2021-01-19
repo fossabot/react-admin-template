@@ -7,6 +7,7 @@ import { MenuFoldOutlined } from '@ant-design/icons';
 import { getRedirectsRoutes, renderRoutesDeep } from '@/utils/render-routes';
 import routes from '@/router';
 import GlobalMenu from './components/global-menu';
+import GlobalBreadcrumb from './components/global-breadcrumb';
 import HeaderRight from './components/header-right';
 import s from './index.module.less';
 
@@ -42,6 +43,7 @@ const BaseLayout: React.FC = () => {
 								setCollapsed(!collapsed);
 							}}
 						/>
+						<GlobalBreadcrumb />
 					</section>
 					<HeaderRight />
 				</Header>

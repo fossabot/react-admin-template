@@ -54,7 +54,7 @@ const routes: IRouterConfig[] = [
 		component: null,
 		redirect: '/errors/403',
 		meta: { title: 'errors', icon: <AlertOutlined /> },
-		routes: [
+		children: [
 			{
 				path: '/errors/403',
 				component: load(() => import('@/pages/errors/403')),

@@ -6,10 +6,18 @@
 	padding: 0;
 	line-height: @global-header-height;
 	.foldIcon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: @global-header-height;
+		height: @global-header-height;
 		padding: 0 10px;
+		margin-right: 6px;
 		font-size: 16px;
+		transition: all 0.3s;
 		&:hover {
 			color: @dark-primary-color;
+			background: @dark-hover-bg-color;
 		}
 	}
 	.headerMenu {

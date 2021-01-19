@@ -19,14 +19,14 @@ const outsiders: IRouterConfig[] = [
 		component: null,
 		redirect: '/store-test/mobx',
 		meta: { title: '状态管理器演示', icon: <GlobalOutlined /> },
-		routes: [
+		children: [
 			{
 				path: '/store-test/mobx',
 				exact: true,
 				component: null,
 				redirect: '/store-test/mobx/function1',
 				meta: { title: 'mobx', icon: <MergeCellsOutlined /> },
-				routes: [
+				children: [
 					{
 						path: '/store-test/mobx/class',
 						component: load(() => import('@/pages/store-test/mobx/class')),
@@ -50,7 +50,7 @@ const outsiders: IRouterConfig[] = [
 				component: null,
 				redirect: '/store-test/redux/function',
 				meta: { title: 'redux', icon: <MergeCellsOutlined /> },
-				routes: [
+				children: [
 					{
 						path: '/store-test/redux/class',
 						component: load(() => import('@/pages/store-test/redux/class')),
