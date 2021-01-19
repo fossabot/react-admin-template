@@ -81,7 +81,7 @@ module.exports = {
 		'no-undef': ERROR,
 		'no-empty': ERROR,
 		'no-console': process.env.NODE_ENV === 'production' ? WARN : OFF,
-		'no-plusplus': ERROR,
+		'no-plusplus': [ERROR, { allowForLoopAfterthoughts: true }],
 		'no-shadow': WARN,
 		'no-bitwise': ERROR,
 		'no-debugger': ERROR,
