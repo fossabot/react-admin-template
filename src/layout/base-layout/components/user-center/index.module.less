@@ -4,9 +4,12 @@
 	justify-content: center;
 	width: @global-header-height;
 	height: @global-header-height;
-}
-.avatar {
 	cursor: pointer;
+	user-select: none;
+	transition: all 0.3s;
+	&:hover {
+		background: @dark-hover-bg-color;
+	}
 }
 
 .userCenterMenu {

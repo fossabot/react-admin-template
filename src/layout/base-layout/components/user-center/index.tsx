@@ -67,7 +67,6 @@ const UserCenter: React.FC = () => {
 			{isLogin ? (
 				<div className={s.userCenter}>
 					<Avatar
-						className={s.avatar}
 						icon={<UserOutlined />}
 						src="https://avatars0.githubusercontent.com/u/22541178"
 					/>
@@ -76,7 +75,6 @@ const UserCenter: React.FC = () => {
 				<Tooltip overlay="点击登陆">
 					<div className={s.userCenter} onClick={onHandleClick}>
 						<Avatar
-							className={s.avatar}
 							icon={<UserOutlined />}
 							src="https://avatars0.githubusercontent.com/u/22541178"
 						/>

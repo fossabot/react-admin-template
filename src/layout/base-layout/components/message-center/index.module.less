@@ -4,13 +4,17 @@
 	justify-content: center;
 	width: @global-header-height;
 	height: @global-header-height;
-
+	cursor: pointer;
+	user-select: none;
+	transition: all 0.3s;
 	.bell {
-		margin-right: 10px;
-		font-size: 16px;
+		font-size: 20px;
 		cursor: pointer;
 		transition: color 0.3s;
-		&:hover {
+	}
+	&:hover {
+		background: @dark-hover-bg-color;
+		.bell {
 			color: @dark-primary-color;
 		}
 	}

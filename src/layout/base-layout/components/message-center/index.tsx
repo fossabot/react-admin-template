@@ -127,7 +127,7 @@ const MessageCenter: React.FC = () => {
 			overlayClassName={s.messageDropdown}
 		>
 			<div className={s.messageCenter}>
-				<Badge count={100}>
+				<Badge count={999}>
 					<BellOutlined className={s.bell} />
 				</Badge>
 			</div>
