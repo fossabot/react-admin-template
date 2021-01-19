@@ -1,10 +1,10 @@
 const hotClient = require('webpack-hot-middleware/client?timeout=200&overlay=true&reload=true');
 
+// 仅在electron或者浏览器打开electron网页的时候有效，不使用electron可以在webpack.render.dev.config.js替换后删除
 hotClient.subscribe((event) => {
 	if (event.action === 'reload') {
-		// if (module.hot) {
-		// 	window.location.reload();
-		// }
+		// 热加载直接删除dom，不刷新网页
+		// window.location.reload();
 
 		const dom = document.querySelector('#webpack-hot-middleware-notice');
 		if (dom) {
