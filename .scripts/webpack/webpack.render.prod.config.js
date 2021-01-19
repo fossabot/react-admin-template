@@ -26,9 +26,9 @@ const webpackRenderProdConfig = {
 					globOptions: {
 						ignore: ['**/favicon.ico', '**/index.html'],
 					},
+					noErrorOnMissing: false,
 				},
 			],
-			noErrorOnMissing: false,
 		}),
 		new MiniCssExtractPlugin({
 			ignoreOrder: true,
