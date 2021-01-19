@@ -68,7 +68,7 @@
 
 > 如果不需要`electron`又不想其留在项目中，操作如下:
 
-0. 删除`tsconfig.json`中`include`数组的`main`目录配置
+0. 删除`tsconfig.json`中`include`数组的`main`目录配置和`paths`对象中的`~/*`
 1. 删除`.scripts/config/paths.js`中 electron 相关目录配置，有注释
 2. 删除`.scripts/electron`文件夹和`.scripts/webpack/webpack.main.prod.config.js`
 3. 为了好看，在`./config/paths.js`配置 web 文件打包输出目录`dist/render` -> `dist`
@@ -89,7 +89,7 @@
 > 如果希望将主进程、渲染进程放置于同一目录(以`src`为例，渲染进程代码`src/render`，主进程代码(`src/main`)，操作如下:
 
 0. 删除`tsconfig.json`中`include`数组的`main`目录配置，将`src`替换为`src/render`
-1. 将`tsconfig.json`中的`paths: { "@/*": ["./src/*"] }`对象修改为`paths: { "@/*": ["./src/render/*"] }`
+1. 将`tsconfig.json`中的`paths: { "~/*": ["./main/*"], "@/*": ["./src/*"] }`对象修改为`paths: { "~/*": ["./src/main/*"], "@/*": ["./src/render/*"] }`
 2. `src`目录中新建`render`子目录，将`src`目录中原有所有文件移动到`src/render`目录
 3. 将`main`目录移动到`src`目录与`render`目录同级
 4. 修改`.scripts/config/paths.js`相关配置，将`src`修改为`src/render`，将`main`修改为`src/main`
