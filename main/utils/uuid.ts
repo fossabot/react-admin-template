@@ -1,5 +1,5 @@
 /**
- * 出自: https://github.com/Microsoft/vscode/blob/master/src/vs/base/common/uuid.ts
+ * from: https://github.com/Microsoft/vscode/blob/master/src/vs/base/common/uuid.ts
  */
 
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
