@@ -1,4 +1,6 @@
-// 为了与生产行为一致（参考build.js注释）此处用 BUILD_ENV 接管 NODE_ENV 并对其重新赋值
+/**
+ * 为了与生产行为一致（参考build.js注释）此处用 BUILD_ENV 接管 NODE_ENV 并对其重新赋值
+ */
 if (!process.env.BUILD_ENV && process.env.NODE_ENV) {
 	process.env.BUILD_ENV = process.env.NODE_ENV;
 }

@@ -1,5 +1,7 @@
-// 自家 CI 对 NODE_ENV 传参不一定是development、test、production之一
-// 此处用 BUILD_ENV 接管，并将 NODE_ENV 强制赋值为 production
+/**
+ * 自家 CI 对 NODE_ENV 传参不一定是development、test、production之一
+ * 此处用 BUILD_ENV 接管，并将 NODE_ENV 强制赋值为 production
+ */
 if (!process.env.BUILD_ENV && process.env.NODE_ENV) {
 	process.env.BUILD_ENV = process.env.NODE_ENV;
 }

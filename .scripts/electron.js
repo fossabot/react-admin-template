@@ -1,7 +1,11 @@
 /**
- * 启动electron开发环境
- * 如果不需要electron又不想其留在项目中，在`README.md`中查看如何操作
+ * 启动 Electron 开发环境
+ * 如果不需要 Electron 又不想其留在项目中，在 `README.md` 中查看如何操作
+ * 为了与生产行为一致（参考build.js注释）此处用 BUILD_ENV 接管 NODE_ENV 并对其重新赋值
  */
+if (!process.env.BUILD_ENV && process.env.NODE_ENV) {
+	process.env.BUILD_ENV = process.env.NODE_ENV;
+}
 
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
