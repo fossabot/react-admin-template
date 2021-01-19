@@ -187,7 +187,7 @@ const webpackRenderBaseConfig = {
 	},
 	plugins: [
 		new WebpackBar({
-			name: capitalCase(process.env.TARGET) || 'webpack',
+			name: process.env.TARGET ? capitalCase(process.env.TARGET) : 'webpack',
 			profile: true,
 		}),
 		new ESLintWebpackPlugin({
