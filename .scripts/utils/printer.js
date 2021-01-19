@@ -75,19 +75,17 @@ function printElectronLog(data, color) {
 	let log = '';
 	data = data.toString().split(/\r?\n/);
 	data.forEach((line) => {
-		line = line.replace(/\r?\n/gm, '');
+		line = line.replace(/\r?\n/gm, '').trim();
 		if (line) {
 			log += `  ${line}\n`;
 		}
 	});
 
-	log = log.replace(/^(\\n)*/, '').replace(/(\\n)*&/, '');
-
 	if (/[0-9A-z]+/.test(log)) {
 		console.log(
 			chalk[color].bold('┏ Electron ---------------------------') +
 				'\n' +
-				log +
+				log.replace(/^(\r?\n)*/, '').replace(/(\r?\n)*&/, '') +
 				chalk[color].bold('┗ ------------------------------------'),
 		);
 	}

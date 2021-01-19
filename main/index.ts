@@ -1,7 +1,7 @@
 import path from 'path';
 import url from 'url';
 import { app, BrowserWindow } from 'electron';
-import { mark, getMarks, performanceEnd } from './utils/performance';
+import { mark, performanceEnd } from './utils/performance';
 
 mark('main-start');
 
@@ -59,8 +59,8 @@ function createWindow() {
 	mainWindow.webContents.on('did-finish-load', () => {
 		mark('main-window-source-load-end');
 		try {
-			const list = getMarks();
-			console.log('performance:', JSON.stringify(list, null, 2));
+			// const list = getMarks();
+			// console.log('performance:', JSON.stringify(list, null, 2));
 		} catch (err) {
 			console.log(err);
 		}

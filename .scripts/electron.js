@@ -189,18 +189,18 @@ function startMainWatcher() {
 
 async function start() {
 	await startMainWatcher();
-	printStatsLog('Main', chalk.green(' Main Process Ready'));
+	printStatsLog('Main', chalk.green('Main Process Ready'));
 
 	await startRenderServer();
-	printStatsLog('Render', chalk.green(' Render Process Ready'));
+	printStatsLog('Render', chalk.green('Render Process Ready'));
 
 	await startElectron();
-	printStatsLog('Electron', chalk.green(' Electron Process Ready'));
+	printStatsLog('Electron', chalk.green('Electron Process Ready'));
 }
 
 start().then(() => {
-	printStatsLog('APP', chalk.green(' All Ready'));
+	printStatsLog('APP', chalk.green('All Ready'));
 }).catch(() => {
-	printStatsLog('Unknown', chalk.red(' 启动失败！请检查startRenderServer、startMainWatcher、startElectron是否有异常'));
+	printStatsLog('Unknown', chalk.red('启动失败！请检查startRenderServer、startMainWatcher、startElectron是否有异常'));
 	process.exit(1);
 });
