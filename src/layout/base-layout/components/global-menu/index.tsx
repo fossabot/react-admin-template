@@ -30,12 +30,12 @@ const GlobalMenu: React.FC<IProps> = (props: IProps) => {
 			return null;
 		}
 		return list.map((route) => {
-			const subRoutes = route.routes?.filter((item) => item && !item.meta?.hidden);
+			const subRoutes = route.children?.filter((item) => item && !item.meta?.hidden);
 			const hasSubMenu = subRoutes?.length;
 
 			// route.routes为空会认为是有效的菜单，在判断
 			// 此处值判断route.routes非空且全部hidden返回null
-			if (route.routes?.length && !hasSubMenu) {
+			if (route.children?.length && !hasSubMenu) {
 				return null;
 			}
 
