@@ -10,7 +10,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env BUILD_ENV=development nodemon ./.scripts/dev.js",
-    "electron": "cross-env BUILD_ENV=development node ./.scripts/electron.js",
+    "electron": "cross-env BUILD_ENV=development node ./.scripts/electron/dev.js",
     "build:dev": "cross-env BUILD_ENV=development npm run build",
     "build:test": "cross-env BUILD_ENV=test npm run build",
     "build:prod": "cross-env BUILD_ENV=production npm run build",
@@ -30,7 +30,7 @@
     "prestart": "npm run dll",
 		"preelectron": "npm run dll",
     "prebuild": "npm run svgo",
-    "build": "node .scripts/build.js",
+    "build": "node ./.scripts/build.js",
     "dll": "node ./.scripts/dll.js",
     "npm-check": "npm-check -u",
     "test": "cross-env BUILD_ENV=test node ./.scripts/test.js"

@@ -16,14 +16,14 @@ process.on('unhandledRejection', (error) => {
 });
 
 // check
-require('./utils/checkers');
+require('../utils/checkers');
 
 const path = require('path');
 const chalk = require('chalk');
 const address = require('address');
 const express = require('express');
 const webpack = require('webpack');
-const electron = require('electron');
+const dev = require('electron');
 const portFinder = require('portfinder');
 const webpackLog = require('webpack-log');
 const { spawn } = require('child_process');
@@ -31,11 +31,11 @@ const WebpackDevMiddleware = require('webpack-dev-middleware');
 const WebpackHotMiddleware = require('webpack-hot-middleware');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const config = require('./config');
-const paths = require('./config/paths');
-const webpackMainProdConfig = require('./webpack/webpack.main.prod.config');
-const webpackRenderDevConfig = require('./webpack/webpack.render.dev.config');
-const { printStatsLog, printElectronLog, printInstructions } = require('./utils/printer');
+const config = require('../config');
+const paths = require('../config/paths');
+const webpackMainProdConfig = require('../webpack/webpack.main.prod.config');
+const webpackRenderDevConfig = require('../webpack/webpack.render.dev.config');
+const { printStatsLog, printElectronLog, printInstructions } = require('../utils/printer');
 
 let electronProcess = null;
 let isElectronManualRestarting = false;
@@ -103,7 +103,7 @@ function startRenderServer() {
 
 function startElectron() {
 	return new Promise((resolve) => {
-		electronProcess = spawn(electron, ['--inspect=5858', paths.appMainDistPath], {
+		electronProcess = spawn(dev, ['--inspect=5858', paths.appMainDistPath], {
 			env: Object.assign({}, process.env, {
 				APP_BUILD_TIME: new Date().toLocaleString(),
 				ELECTRON_DISABLE_SECURITY_WARNINGS: false, // electron的一些警告信息按需配置
