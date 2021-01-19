@@ -21,6 +21,9 @@
 
 # 启动不会构建dll，之前存在就用
 > npm run dev
+
+# 启动electron开发环境
+> npm run electron
 ```
 
 ## 二. 代码风格
@@ -34,8 +37,22 @@
 ```
 > type(scope?): subject // scope可选
 ```
-
-提交的 type 只能是`['feature', 'refactor', 'chore', 'style', 'docs', 'perf', 'fix', 'build', 'revert', 'ci', 'test']`其中之一。
+提交的 `type` 可选值如下:
+```javascript
+[
+ 'build',
+ 'ci',
+ 'chore',
+ 'docs',
+ 'feat',
+ 'fix', 
+ 'perf',
+ 'refactor',
+ 'revert',
+ 'style',
+ 'test',
+]
+```
 
 ## 四. 打包构建
 
@@ -47,7 +64,7 @@
 本模板内置了`electron`相关功能，为了方便不需要`electron`的项项目并没有将主进程代码和渲染进程代码放置一起。
 目录结构根据需要可以轻松自行调整，只需调整`.scripts/config/paths.js`文件相关变量即可轻松搞定。
 
-### 不需要`Electron`
+### 不需要`electron`
 
 > 如果不需要`electron`又不想其留在项目中，操作如下:
 
@@ -67,7 +84,7 @@
 
 以上操作经实践暂无问题，如有问题请先查看控制台错误输出。
 
-### 需要`Electron`
+### 需要`electron`
 
 > 如果希望将主进程、渲染进程放置于同一目录(以`src`为例，渲染进程代码`src/render`，主进程代码(`src/main`)，操作如下:
 
@@ -79,3 +96,7 @@
 5. done
 
 以上操作经实践暂无问题，如有问题请先查看控制台错误输出。
+
+## @todo
+
+* 主进程代码修改后如何才能像渲染进程代码一样热加载，而不是每次重新启动程序

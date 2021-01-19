@@ -28,6 +28,7 @@
     "svgo": "svgo -f src/assets/svg-sprite --config=./.svgo.yml",
     "watch": "tsc --watch",
     "prestart": "npm run dll",
+		"preelectron": "npm run dll",
     "prebuild": "npm run svgo",
     "build": "node .scripts/build.js",
     "dll": "node ./.scripts/dll.js",

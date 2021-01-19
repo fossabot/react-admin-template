@@ -8,7 +8,7 @@ const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
 const webpackRenderBaseConfig = require('./webpack.render.base.config');
 const paths = require('../config/paths');
-const { buildEnv, useSourceMap } = require('../config');
+const { buildEnv, useSourceMap, enableCache } = require('../config');
 const isProduction = buildEnv === 'production';
 const isProductionProfile = isProduction && process.argv.includes('--profile');
 const canUseSourceMap = isProduction ? useSourceMap : true;
@@ -42,7 +42,7 @@ const webpackRenderProdConfig = {
 		minimizer: [
 			new TerserWebpackPlugin({
 				exclude: /\.min\.js$/,
-				cache: true,
+				cache: enableCache,
 				parallel: true,
 				sourceMap: canUseSourceMap,
 				extractComments: true,
@@ -69,6 +69,7 @@ const webpackRenderProdConfig = {
 				},
 			}),
 			new CssMinimizerWebpackPlugin({
+				cache: enableCache,
 				sourceMap: canUseSourceMap,
 			}),
 		],

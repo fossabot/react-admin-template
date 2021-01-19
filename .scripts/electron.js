@@ -187,16 +187,6 @@ function startMainWatcher() {
 	});
 }
 
-// Promise.all([startMainWatcher(), startRenderServer()])
-// 	.then(async () => {
-// 		await startElectron();
-// 		console.log(chalk.grey(' 启动成功'));
-// 	})
-// 	.catch(() => {
-// 		console.log(chalk.red(' 启动失败！请检查startRenderServer或startMainWatcher是否有异常'));
-// 		process.exit(1);
-// 	});
-
 async function start() {
 	await startMainWatcher();
 	printStatsLog('Main', chalk.green(' Main Process Ready'));

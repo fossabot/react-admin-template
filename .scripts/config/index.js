@@ -16,13 +16,21 @@ function exec(cmd, options) {
 }
 
 module.exports = {
+	// dev
 	hostName: '0.0.0.0',
 	port: 3000,
 	proxy: { ...proxy },
+
+	// env
 	appPublicPath: '/',
 	buildEnv: process.env.BUILD_ENV,
 	bundleAnalyze: process.env.BUNDLE_ANALYZE,
 	useSourceMap: process.env.GENERATE_SOURCEMAP === 'true',
+
+	// 已知可配置cache参数的plugin、loader的cache开关，方便升级webpack5的时候排查改造
+	enableCache: false,
+
+	// dll
 	dllConfig: {
 		entryKey: 'dll',
 		filename: 'dll_scripts.js',

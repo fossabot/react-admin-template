@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const threadLoader = require('thread-loader');
 const postcssNormalize = require('postcss-normalize');
-const ESLintPlugin = require('eslint-webpack-plugin');
+const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -18,6 +18,8 @@ const {
 	bundleAnalyze,
 	appPublicPath,
 	useSourceMap,
+
+	enableCache,
 
 	name,
 	version,
@@ -187,18 +189,18 @@ const webpackRenderBaseConfig = {
 			name: 'Render Process',
 			profile: true,
 		}),
-		new ESLintPlugin({
+		new ESLintWebpackPlugin({
 			extensions: ['js', 'jsx', 'ts', 'tsx'],
 			formatter: require.resolve('react-dev-utils/eslintFormatter'),
 			eslintPath: require.resolve('eslint'),
 			context: paths.appRenderSrc,
-			cache: false,
+			cache: enableCache,
 			cwd: paths.appRootPath,
 			resolvePluginsRelativeTo: __dirname,
 		}),
 		new StylelintPlugin({
 			fix: true,
-			cache: false,
+			cache: enableCache,
 			quiet: true,
 			context: paths.appRenderSrc,
 			files: ['**/*.(le|c)ss'],

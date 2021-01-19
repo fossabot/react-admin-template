@@ -1,5 +1,5 @@
 const WebpackBar = require('webpackbar');
-const ESLintPlugin = require('eslint-webpack-plugin');
+const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -77,7 +77,7 @@ const webpackMainProdConfig = {
 				},
 			],
 		}),
-		new ESLintPlugin({
+		new ESLintWebpackPlugin({
 			extensions: ['js', 'jsx', 'ts', 'tsx'],
 			formatter: require.resolve('react-dev-utils/eslintFormatter'),
 			eslintPath: require.resolve('eslint'),
