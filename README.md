@@ -47,7 +47,9 @@
 本模板内置了`electron`相关功能，为了方便不需要`electron`的项项目并没有将主进程代码和渲染进程代码放置一起。
 目录结构根据需要可以轻松自行调整，只需调整`.scripts/config/paths.js`文件相关变量即可轻松搞定。
 
-**如果不需要`electron`又不想其留在项目中，操作如下:**
+### 不需要`Electron`
+
+> 如果不需要`electron`又不想其留在项目中，操作如下:
 
 0. 删除`tsconfig.json`中`include`数组的`main`目录配置
 1. 删除`.scripts/config/paths.js`中 electron 相关目录配置，有注释
@@ -62,3 +64,18 @@
 	4. `electron-devtools-installer`
 	5. `@types/electron-devtools-installer`
 7. done
+
+以上操作经实践暂无问题，如有问题请先查看控制台错误输出。
+
+### 需要`Electron`
+
+> 如果希望将主进程、渲染进程放置于同一目录(以`src`为例，渲染进程代码`src/render`，主进程代码(`src/main`)，操作如下:
+
+0. 删除`tsconfig.json`中`include`数组的`main`目录配置，将`src`替换为`src/render`
+1. 将`tsconfig.json`中的`paths: { "@/*": ["./src/*"] }`对象修改为`paths: { "@/*": ["./src/render/*"] }`
+2. `src`目录中新建`render`子目录，将`src`目录中原有所有文件移动到`src/render`目录
+3. 将`main`目录移动到`src`目录与`render`目录同级
+4. 修改`.scripts/config/paths.js`相关配置，将`src`修改为`src/render`，将`main`修改为`src/main`
+5. done
+
+以上操作经实践暂无问题，如有问题请先查看控制台错误输出。
