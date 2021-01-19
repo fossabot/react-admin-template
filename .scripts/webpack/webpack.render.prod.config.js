@@ -3,7 +3,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
 const webpackRenderBaseConfig = require('./webpack.render.base.config');
