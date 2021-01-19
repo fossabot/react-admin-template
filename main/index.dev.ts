@@ -19,8 +19,6 @@ electronDebug();
 (async function dev() {
 	await app.whenReady();
 
-	import('./utils/app-info');
-
 	/** ************** extensions start *************** */
 	const results = await Promise.allSettled([
 		installExtension(REACT_DEVELOPER_TOOLS),
