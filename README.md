@@ -43,16 +43,21 @@
 
 ## 五. 关于 Electron
 
-本模板内置了`electron`相关功能，如果不需要`electron`又不想其留在项目中，操作如下:
+本模板内置了`electron`相关功能，为了方便不需要`electron`的项项目并没有将主进程代码和渲染进程代码放置一起。
+目录结构根据需要可以轻松自行调整，只需调整`.scripts/config/paths.js`文件相关变量即可轻松搞定。
+
+**如果不需要`electron`又不想其留在项目中，操作如下:**
 
 0. 删除`tsconfig.json`中`include`数组的`main`目录配置
 1. 删除`.scripts/config/paths.js`中 electron 相关目录配置，有注释
 2. 删除`.scripts/electron.js`和`.scripts/webpack/webpack.main.prod.config.js`
-3. 删除根目录下`main`目录
-4. 为了好看，在`./config/paths.js`配置 web 文件打包输出目录`dist/render` -> `dist`
-5. 卸载`package.json`文件中的依赖
+3. 为了好看，在`./config/paths.js`配置 web 文件打包输出目录`dist/render` -> `dist`
+4. 删除根目录下`main`目录
+5. 删除`package.json`文件中`scripts`对象的`electron`相关命令
+6. 卸载`package.json`文件中的依赖
 	1. `electron`
-	2.	`node-loader`
+	2. `node-loader`
 	3. `electron-debug`
 	4. `electron-devtools-installer`
 	5. `@types/electron-devtools-installer`
+7. done
