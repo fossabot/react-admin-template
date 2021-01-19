@@ -1,13 +1,12 @@
-import { capitalCase } from 'change-case';
-
 export default function appInfo(log?: boolean): void {
-	const env = process.env.BUILD_ENV || '';
+	const env = <string>process.env.BUILD_ENV;
+	const name = <string>process.env.APP_NAME;
+	const version = <string>process.env.APP_VERSION;
+	const gitBranch = <string>process.env.GIT_BRANCH;
+	const gitCommitHash = <string>process.env.GIT_COMMIT_HASH;
+	const prodBuildTime = <string>process.env.APP_BUILD_TIME;
+
 	const isDev = env === 'development';
-	const name = capitalCase(process.env.APP_NAME || '');
-	const version = process.env.APP_VERSION || '';
-	const gitBranch = process.env.GIT_BRANCH || '';
-	const gitCommitHash = process.env.GIT_COMMIT_HASH || '';
-	const prodBuildTime = process.env.APP_BUILD_TIME || '';
 	const devUpdateTime = new Date().toLocaleString();
 	const time = isDev ? `Refresh: ${devUpdateTime}` : `Build: ${prodBuildTime}`;
 
