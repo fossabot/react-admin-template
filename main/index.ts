@@ -34,7 +34,7 @@ function createWindow() {
 		},
 	});
 
-	mark('main-source-load-start');
+	mark('main-window-source-load-start');
 
 	const { RENDER_DEV_HOST_NAME, RENDER_DEV_PORT } = process.env;
 	// 此处不做容错判断，无意义。如果不改启动方式不会出错，如果改了启动方式则默认知道如何关联
@@ -57,7 +57,7 @@ function createWindow() {
 	});
 
 	mainWindow.webContents.on('did-finish-load', () => {
-		mark('main-source-load-end');
+		mark('main-window-source-load-end');
 		try {
 			const list = getMarks();
 			console.log('performance:', JSON.stringify(list, null, 2));

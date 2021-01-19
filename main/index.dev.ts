@@ -1,3 +1,6 @@
+/**
+ * Electron 开发 dev 环境入口
+ */
 import { app } from 'electron';
 import electronDebug from 'electron-debug';
 import installExtension, {
@@ -11,21 +14,29 @@ performanceStart();
 
 mark('dev-start');
 
+electronDebug();
+
 (async function dev() {
 	await app.whenReady();
 
-	electronDebug();
-
-	const names = await Promise.all([
+	/** ************** extensions start *************** */
+	const results = await Promise.allSettled([
 		installExtension(REACT_DEVELOPER_TOOLS),
 		installExtension(REDUX_DEVTOOLS),
 		installExtension(MOBX_DEVTOOLS),
 	]);
 
-	names.forEach((name) => {
-		console.log(`Added Extension: ${name}`);
+	results.forEach((result) => {
+		if (result.status === 'fulfilled') {
+			console.log(`Added Extension: ${result.value}`);
+		}
+		if (result.status === 'rejected') {
+			console.log('An error occurred when added extension: ', result.reason);
+		}
 	});
-	console.log('Dev Ready');
+	/** ************** extensions end *************** */
 
 	mark('dev-end');
+
+	console.log('Dev Ready');
 })();
