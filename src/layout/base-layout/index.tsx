@@ -42,7 +42,6 @@ const BaseLayout: React.FC = () => {
 								setCollapsed(!collapsed);
 							}}
 						/>
-						<GlobalMenu mode="horizontal" />
 					</section>
 					<HeaderRight />
 				</Header>
