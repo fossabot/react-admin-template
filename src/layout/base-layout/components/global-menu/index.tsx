@@ -52,7 +52,7 @@ const GlobalMenu: React.FC<IProps> = (props: IProps) => {
 					{route.meta?.title}
 				</MenuItem>
 			);
-		});
+		}).filter(Boolean);
 	}
 
 	return (
