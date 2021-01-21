@@ -4,7 +4,11 @@ class Global {
 	private permissions: { [key: string]: boolean };
 
 	constructor() {
-		this.permissions = {};
+		this.permissions = {
+			admin: true,
+			张三: true,
+			李四: true,
+		};
 
 		makeAutoObservable(this);
 	}

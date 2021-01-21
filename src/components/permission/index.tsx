@@ -1,5 +1,5 @@
 /**
- * 权限控制。此处取了redux状态，mobx同理不在示范
+ * 权限控制。此处取了redux状态，mobx见同级目录authorization组件
  * @description 需要权限控制的UI视图可用此组件包裹，路由请移步`src/utils/render-routes.tsx`
  */
 import React from 'react';
