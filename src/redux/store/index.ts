@@ -1,8 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import globalSliceReducer from './global';
 import systemSliceReducer from './system';
 
 const store = configureStore({
 	reducer: {
+		global: globalSliceReducer,
 		system: systemSliceReducer,
 	},
 });

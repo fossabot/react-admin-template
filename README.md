@@ -10,6 +10,14 @@
 4. **然后选择性删除`src/mobx`目录或`src/redux`目录。**
 5. **若选择`Mobx`，请将`@reduxjs/toolkit`、`react-redux`、`reselect`卸载，反之请将`mobx`、`mobx-react`卸载**
 
+## 注意事项
+
+项目涉及权限管理默认使用`{ [(role | permission): string]: boolean }`格式返回，模板内处理也是此逻辑。
+如果返回的是数组或其他格式，适配如下两点即可：
+
+1. 路由相关 - 在`src/utils/render-routes.tsx`第`51`行修改，也可在调用`renderRoutes`方法的地方通过入参适配。
+2. 操作权限 - 有操作权限的渲染会用`Permission`组件包裹，处理逻辑修改适配即可。
+
 ## 一. 本地开发
 
 ```shell script

@@ -34,6 +34,7 @@ export interface ICommonObject {
 }
 
 export interface IExtraProps extends ICommonObject {
+	// 权限配置默认使用对象
 	permissions?: { [key: string]: boolean };
 }
 
