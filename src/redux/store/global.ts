@@ -25,6 +25,6 @@ export const globalSlice = createSlice({
 	},
 });
 
-export const { setPermissions } = globalSlice.actions;
+export const { setPermissions, changePermissions } = globalSlice.actions;
 
 export default globalSlice.reducer;

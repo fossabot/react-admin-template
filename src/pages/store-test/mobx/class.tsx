@@ -5,9 +5,7 @@ import PermissionTest from './components/perssion-test';
 
 export interface IProps {
 	system: {
-		count: number;
 		systemName: string;
-		onSetCount: (num: number) => void;
 	};
 	global: {
 		permissions: { [key: string]: boolean };
@@ -24,7 +22,6 @@ export default class MobxTestC extends React.Component<IProps> {
 	}
 
 	onHandleClick = () => {
-		this.props.system.onSetCount(1);
 		this.props.global.changePermissions({
 			张三: !this.props.global.permissions['张三'],
 		});
@@ -32,14 +29,14 @@ export default class MobxTestC extends React.Component<IProps> {
 
 	render(): React.ReactElement {
 		const {
-			system: { systemName, count },
+			system: { systemName },
 			global: { permissions },
 		} = this.props;
 
 		return (
 			<Card>
 				<p>我是mobx类组件</p>
-				<h1>{`${systemName} - ${count}`}</h1>
+				<h1>{systemName}</h1>
 				<Button type="primary" onClick={this.onHandleClick}>
 					点击
 				</Button>

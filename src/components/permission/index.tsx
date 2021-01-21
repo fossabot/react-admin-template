@@ -10,7 +10,7 @@ export interface IProps {
 	permission: string | string[] | { // 权限 或 权限列表 或 权限配置。当为数组，满足其中一项即认为有权限
 		logic?: 'some' | 'every'; // 权限判断逻辑，默认为some
 		checks: string | string[]; // 要检查的权限 或 权限列表
-	}
+	};
 	children: React.ReactElement;
 }
 

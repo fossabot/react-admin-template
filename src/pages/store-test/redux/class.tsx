@@ -6,7 +6,6 @@ import PermissionTest from './components/perssion-test';
 
 export interface IProps {
 	system: {
-		count: number;
 		systemName: string;
 	};
 	global: {
@@ -35,13 +34,13 @@ class ReduxTestC extends React.Component<IProps> {
 
 	render() {
 		const {
-			system: { systemName, count },
+			system: { systemName },
 			global: { permissions },
 		} = this.props;
 		return (
 			<Card>
 				<p>我是redux类组件</p>
-				<h1>{`${systemName} - ${count}`}</h1>
+				<h1>{systemName}</h1>
 				<Button type="primary" onClick={this.onHandleClick}>
 					点击
 				</Button>
