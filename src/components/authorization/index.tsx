@@ -10,15 +10,16 @@ export interface IProps {
 		logic?: 'some' | 'every'; // 权限判断逻辑，默认为some
 		checks: string | string[]; // 要检查的权限 或 权限列表
 	}
-	global: {
-		permissions: { [key: string]: string };
-	};
 	children: React.ReactElement;
 }
 
 const Authorization: React.FC<IProps> = (props: IProps) => {
 	const { permission } = props;
-	const mpc = React.useContext(MobXProviderContext) as IProps;
+	const mpc = React.useContext(MobXProviderContext) as {
+		global: {
+			permissions: { [key: string]: boolean };
+		};
+	};
 
 	return (
 		<Observer>
