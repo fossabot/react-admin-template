@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Button } from 'antd';
 import { connect } from 'react-redux';
 import { RootState, AppDispatch } from '@/redux/store';
-import PermissionTest from '../components/perssion-test';
+import PermissionTest from './components/perssion-test';
 
 export interface IProps {
 	system: {

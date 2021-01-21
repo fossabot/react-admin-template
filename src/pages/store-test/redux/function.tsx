@@ -3,7 +3,7 @@ import { Card, Button } from 'antd';
 import { useStore, useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { increment } from '@/redux/store/system';
-import PermissionTest from '../components/perssion-test';
+import PermissionTest from './components/perssion-test';
 
 const MobxTestF: React.FC = () => {
 	const store = useStore();
