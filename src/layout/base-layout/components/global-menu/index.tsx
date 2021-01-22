@@ -2,10 +2,14 @@ import React from 'react';
 import { Menu } from 'antd';
 import { MenuMode } from 'antd/lib/menu';
 import { useLocation, useHistory } from 'react-router';
+import { useSelector } from 'react-redux';
 
+import { RootState } from '@/redux/store';
 import { IRouterConfig } from '@/utils/render-routes';
 import routes from '@/router';
 import { SelectInfo } from '@/interface/menu';
+import { checkPermissions } from '@/utils/functions';
+
 // import s from './index.module.less';
 
 export interface IProps {
@@ -17,6 +21,7 @@ const { Item: MenuItem, SubMenu } = Menu;
 const GlobalMenu: React.FC<IProps> = (props: IProps) => {
 	const location = useLocation();
 	const history = useHistory();
+	const permissions = useSelector((state: RootState) => state.global.permissions);
 
 	function onHandleMenuSelect(item: SelectInfo): void {
 		if (location.pathname !== item.key) {
@@ -33,9 +38,14 @@ const GlobalMenu: React.FC<IProps> = (props: IProps) => {
 			const subRoutes = route.children?.filter((item) => item && !item.meta?.hidden);
 			const hasSubMenu = subRoutes?.length;
 
-			// route.routes为空会认为是有效的菜单，在判断
-			// 此处值判断route.routes非空且全部hidden返回null
+			// route.children为空会认为是有效的菜单，再判断
+			// 此处值判断route.children非空且全部hidden返回null
 			if (route.children?.length && !hasSubMenu) {
+				return null;
+			}
+
+			const authorities = route.meta?.authorities;
+			if (!checkPermissions(permissions, authorities, route.meta?.some)) {
 				return null;
 			}
 

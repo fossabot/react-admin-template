@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect, RouteComponentProps } from 'react-router';
+import { checkPermissions } from '@/utils/functions';
 
 export interface IRouteComponentProps extends RouteComponentProps {
 	route: IRouterConfig;
@@ -47,10 +48,6 @@ function generatorRoute(
 	const meta = route?.meta;
 	const fallback = meta?.fallback;
 	const authorities = meta?.authorities;
-	const authorizationRequired = authorities && authorities?.length > 0;
-	const authorized = meta?.some
-		? authorities?.some((value) => permissions?.includes(value))
-		: authorities?.every((value) => permissions?.includes(value));
 
 	return (
 		<Route
@@ -59,7 +56,7 @@ function generatorRoute(
 			exact={route.exact}
 			strict={route.strict}
 			render={(props): React.ReactNode => {
-				if (authorizationRequired && !authorized) {
+				if (!checkPermissions(permissions, authorities, route.meta?.some)) {
 					return (
 						<Redirect
 							to={{
