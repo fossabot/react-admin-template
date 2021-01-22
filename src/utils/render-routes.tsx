@@ -35,7 +35,7 @@ export interface ICommonObject {
 
 export interface IExtraProps extends ICommonObject {
 	// 权限配置默认使用对象
-	permissions?: { [key: string]: boolean };
+	permissions?: string[];
 }
 
 function generatorRoute(
@@ -49,8 +49,8 @@ function generatorRoute(
 	const authorities = meta?.authorities;
 	const authorizationRequired = authorities && authorities?.length > 0;
 	const authorized = meta?.some
-		? authorities?.some((value) => permissions?.[value])
-		: authorities?.every((value) => permissions?.[value]);
+		? authorities?.some((value) => permissions?.includes(value))
+		: authorities?.every((value) => permissions?.includes(value));
 
 	return (
 		<Route

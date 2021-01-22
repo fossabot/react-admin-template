@@ -46,14 +46,15 @@ export default class MobxTestC extends React.Component<IProps> {
 			<Card>
 				<p>我是mobx类组件</p>
 				<h1>{systemName}</h1>
-				<Button type="primary" onClick={this.onHandleClick}>
-					点击
-				</Button>
 
-				<div style={{ marginTop: 10 }}>
+				<div style={{ margin: '10px 0' }}>
 					当前拥有的权限：
 					{JSON.stringify(permissions)}
 				</div>
+
+				<Button type="primary" onClick={this.onHandleClick}>
+					点击切换权限
+				</Button>
 
 				<PermissionTest />
 			</Card>

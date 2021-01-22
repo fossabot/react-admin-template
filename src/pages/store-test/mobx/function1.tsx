@@ -36,14 +36,15 @@ const MobxTestF: React.FC<IProps> = (props: IProps) => {
 		<Card>
 			<p>我是mobx函数组件1</p>
 			<h1>{systemName}</h1>
-			<Button type="primary" onClick={onHandleClick}>
-				点击
-			</Button>
 
-			<div style={{ marginTop: 10 }}>
+			<div style={{ margin: '10px 0' }}>
 				当前拥有的权限：
 				{JSON.stringify(permissions)}
 			</div>
+
+			<Button type="primary" onClick={onHandleClick}>
+				点击切换权限
+			</Button>
 
 			<PermissionTest />
 		</Card>

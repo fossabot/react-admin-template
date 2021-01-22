@@ -28,6 +28,7 @@ import {
 	DashboardOutlined,
 	VerifiedOutlined,
 	FieldNumberOutlined,
+	ApiOutlined,
 	AlertOutlined,
 } from '@ant-design/icons';
 
@@ -64,6 +65,11 @@ const routes: IRouterConfig[] = [
 				path: '/errors/404',
 				component: load(() => import('@/pages/errors/404')),
 				meta: { title: '访问出错了~', icon: <FieldNumberOutlined />, showInTabs: false },
+			},
+			{
+				path: '/errors/500',
+				component: load(() => import('@/pages/errors/500')),
+				meta: { title: '服务端错误', icon: <ApiOutlined />, showInTabs: false },
 			},
 		],
 	},

@@ -39,6 +39,13 @@ class ReduxTestC extends React.Component<IProps> {
 		this.props.setPermissions(list);
 	};
 
+	onDeleteAdminClick = () => {
+		const {
+			global: { permissions },
+		} = this.props;
+		this.props.setPermissions(permissions.filter((p) => p !== 'admin'));
+	};
+
 	render() {
 		const {
 			system: { systemName },
@@ -48,13 +55,25 @@ class ReduxTestC extends React.Component<IProps> {
 			<Card>
 				<p>我是redux类组件</p>
 				<h1>{systemName}</h1>
-				<Button type="primary" onClick={this.onHandleClick}>
-					点击
-				</Button>
 
-				<div style={{ marginTop: 10 }}>
+				<div style={{ margin: '10px 0' }}>
 					当前拥有的权限：
 					{JSON.stringify(permissions)}
+				</div>
+
+				<div>
+					<Button type="primary" onClick={this.onHandleClick}>
+						点击切换权限
+					</Button>
+
+					<Button
+						style={{ marginLeft: 10 }}
+						type="primary"
+						disabled={!permissions.includes('admin')}
+						onClick={this.onDeleteAdminClick}
+					>
+						删除admin权限 (删除后工作台将会403)
+					</Button>
 				</div>
 
 				<PermissionTest />
@@ -73,7 +92,6 @@ function mapStateToProps(state: RootState) {
 function mapDispatchToProps(dispatch: AppDispatch) {
 	return {
 		setPermissions: (permissions: string[]) => {
-			console.log(permissions, '====');
 			dispatch({
 				type: 'global/setPermissions',
 				payload: permissions,
