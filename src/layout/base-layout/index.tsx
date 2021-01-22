@@ -3,7 +3,9 @@ import { Switch } from 'react-router';
 import { useLocation, useHistory } from 'react-router-dom';
 import { Layout } from 'antd';
 import { MenuFoldOutlined } from '@ant-design/icons';
+import { useSelector } from 'react-redux';
 
+import { RootState } from '@/redux/store';
 import { getRedirectsRoutes, renderRoutesDeep } from '@/utils/render-routes';
 import routes from '@/router';
 import GlobalMenu from './components/global-menu';
@@ -16,6 +18,7 @@ const { Header, Sider, Content } = Layout;
 const BaseLayout: React.FC = () => {
 	const location = useLocation();
 	const history = useHistory();
+	const permissions = useSelector((state: RootState) => state.global.permissions);
 	const [collapsed, setCollapsed] = useState(false);
 
 	function onNavToRoot(): void {
@@ -50,7 +53,7 @@ const BaseLayout: React.FC = () => {
 				<Content className={s.appRouterView}>
 					<Switch>
 						{getRedirectsRoutes(routes)}
-						{renderRoutesDeep(routes)}
+						{renderRoutesDeep(routes, { permissions })}
 					</Switch>
 				</Content>
 			</Layout>

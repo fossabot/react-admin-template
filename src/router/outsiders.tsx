@@ -5,6 +5,7 @@ import { IRouterConfig } from '@/utils/render-routes';
 
 /**
  * 无公共功能组件路由列表
+ * @description 此部分路由理论上不需要鉴权，如果需要请自行添加，渲染入口再`src/app.tsx`
  */
 const outsiders: IRouterConfig[] = [
 	{

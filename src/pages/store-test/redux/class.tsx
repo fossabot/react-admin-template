@@ -9,10 +9,9 @@ export interface IProps {
 		systemName: string;
 	};
 	global: {
-		permissions: { [key:string]: boolean };
+		permissions: string[];
 	};
-	incrementByAmount: (num: number) => void;
-	changePermissions: (permissions: { [key: string]: boolean }) => void;
+	setPermissions: (permissions: string[]) => void;
 }
 
 class ReduxTestC extends React.Component<IProps> {
@@ -26,10 +25,18 @@ class ReduxTestC extends React.Component<IProps> {
 	}
 
 	onHandleClick = () => {
-		this.props.incrementByAmount(1);
-		this.props.changePermissions({
-			李四: !this.props.global.permissions['李四'],
-		});
+		const {
+			global: { permissions },
+		} = this.props;
+
+		let list;
+		if (permissions.includes('李四')) {
+			list = permissions.filter((p) => p !== '李四');
+		} else {
+			list = [...permissions, '李四'];
+		}
+
+		this.props.setPermissions(list);
 	};
 
 	render() {
@@ -65,15 +72,10 @@ function mapStateToProps(state: RootState) {
 
 function mapDispatchToProps(dispatch: AppDispatch) {
 	return {
-		incrementByAmount: (num: number) => {
+		setPermissions: (permissions: string[]) => {
+			console.log(permissions, '====');
 			dispatch({
-				type: 'system/incrementByAmount',
-				payload: num,
-			});
-		},
-		changePermissions: (permissions: { [key: string]: boolean }) => {
-			dispatch({
-				type: 'global/changePermissions',
+				type: 'global/setPermissions',
 				payload: permissions,
 			});
 		},

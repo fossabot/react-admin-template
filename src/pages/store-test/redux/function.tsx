@@ -17,18 +17,22 @@ const MobxTestF: React.FC = () => {
 
 	// 两种方式提交数据变更
 	function onHandleClick() {
+		const { permissions } = selector.global;
+
+		let list;
+		if (permissions.includes('李四')) {
+			list = permissions.filter((p) => p !== '李四');
+		} else {
+			list = [...permissions, '李四'];
+		}
+
 		store.dispatch({
-			type: 'global/changePermissions',
-			payload: {
-				张三: !selector.global.permissions['张三'],
-			},
+			type: 'global/setPermissions',
+			payload: list,
 		});
 
-		// dispatch(changePermissions({
-		// 	张三: !selector.global.permissions['张三'],
-		// }));
+		// dispatch(setPermissions(list.filter(Boolean)));
 	}
-
 
 	return (
 		<Card>

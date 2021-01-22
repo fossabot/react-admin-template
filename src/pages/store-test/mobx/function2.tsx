@@ -8,8 +8,8 @@ export interface IProps {
 		systemName: string;
 	};
 	global: {
-		permissions: { [key: string]: boolean };
-		changePermissions: (permissions: { [key: string]: boolean }) => void;
+		permissions: string[];
+		setPermissions: (permissions: string[]) => void;
 	};
 }
 
@@ -17,9 +17,16 @@ const MobxTestF: React.FC = () => {
 	const mpc = React.useContext(MobXProviderContext) as IProps;
 
 	function onHandleClick(): void {
-		mpc.global.changePermissions({
-			李四: !mpc.global.permissions['李四'],
-		});
+		const { permissions } = mpc.global;
+
+		let list;
+		if (permissions.includes('张三')) {
+			list = permissions.filter((p) => p !== '张三');
+		} else {
+			list = [...permissions, '张三'];
+		}
+
+		mpc.global.setPermissions(list);
 	}
 
 	return (

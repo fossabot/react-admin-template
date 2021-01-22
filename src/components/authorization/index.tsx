@@ -17,7 +17,7 @@ const Authorization: React.FC<IProps> = (props: IProps) => {
 	const { permission } = props;
 	const mpc = React.useContext(MobXProviderContext) as {
 		global: {
-			permissions: { [key: string]: boolean };
+			permissions: string[];
 		};
 	};
 
@@ -26,14 +26,14 @@ const Authorization: React.FC<IProps> = (props: IProps) => {
 			{() => {
 				const { permissions } = mpc.global;
 				if (typeof permission === 'string') {
-					if (!permissions[permission]) {
+					if (!permissions.includes(permission)) {
 						return null;
 					}
 					return props.children;
 				}
 
 				if (Array.isArray(permission)) {
-					if (!permission.some((value) => permissions[value])) {
+					if (!permission.some((value) => permissions.includes(value))) {
 						return null;
 					}
 					return props.children;
@@ -41,14 +41,14 @@ const Authorization: React.FC<IProps> = (props: IProps) => {
 
 				const { logic, checks } = permission;
 
-				if (typeof checks === 'string' && !permissions[checks]) {
+				if (typeof checks === 'string' && !permissions.includes(checks)) {
 					return null;
 				}
 
 				if (Array.isArray(checks)) {
 					const authorized = logic === 'every'
-						? checks?.every((value) => permissions[value])
-						: checks?.some((value) => permissions[value]);
+						? checks?.every((value) => permissions.includes(value))
+						: checks?.some((value) => permissions.includes(value));
 
 					if (!authorized) {
 						return null;

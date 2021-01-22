@@ -6,9 +6,10 @@
 
 1. **本项目模板同时引入了`Redux`和`Mobx`的演示，仅提供开始前的选择演示，所以切忌二者同时使用。**
 2. **删除其中一个很容易，在`src/app.tsx`中`MobxProvider`和`ReduxProvider`二选一即可**
-3. **演示页面文件在`src/pages/store-test`目录，对应路由在`src/router/tests.tsx`文件，直接删除即可**
-4. **然后选择性删除`src/mobx`目录或`src/redux`目录。**
-5. **若选择`Mobx`，请将`@reduxjs/toolkit`、`react-redux`、`reselect`卸载，反之请将`mobx`、`mobx-react`卸载**
+3. **路由权限数据使用了redux的状态，根据选择修改，入口在`src/layout/index.tsx`**
+4. **演示页面文件在`src/pages/store-test`目录，对应路由在`src/router/tests.tsx`文件，直接删除即可**
+5. **然后选择性删除`src/mobx`目录或`src/redux`目录。**
+6. **若选择`Mobx`，请将`@reduxjs/toolkit`、`react-redux`、`reselect`卸载，反之请将`mobx`、`mobx-react`卸载**
 
 ## 注意事项
 

@@ -8,8 +8,8 @@ export interface IProps {
 		systemName: string;
 	};
 	global: {
-		permissions: { [key: string]: boolean };
-		changePermissions: (permissions: { [key: string]: boolean }) => void;
+		permissions: string[];
+		setPermissions: (permissions: string[]) => void;
 	};
 }
 
@@ -22,9 +22,18 @@ export default class MobxTestC extends React.Component<IProps> {
 	}
 
 	onHandleClick = () => {
-		this.props.global.changePermissions({
-			张三: !this.props.global.permissions['张三'],
-		});
+		const {
+			global: { permissions },
+		} = this.props;
+
+		let list;
+		if (permissions.includes('李四')) {
+			list = permissions.filter((p) => p !== '李四');
+		} else {
+			list = [...permissions, '李四'];
+		}
+
+		this.props.global.setPermissions(list);
 	};
 
 	render(): React.ReactElement {

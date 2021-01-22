@@ -46,7 +46,7 @@ const routes: IRouterConfig[] = [
 		path: '/dashboard',
 		exact: true,
 		component: load(() => import('@/pages/dashboard')),
-		meta: { title: '工作台', icon: <DashboardOutlined /> },
+		meta: { title: '工作台', icon: <DashboardOutlined />, authorities: ['admin'] }, // admin权限
 	},
 	{
 		path: '/errors',

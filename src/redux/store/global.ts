@@ -1,30 +1,28 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface IGlobalState {
-	permissions: { [key: string]: boolean };
+	permissions: string[];
 }
 
 const initialState: IGlobalState = {
-	permissions: {
-		admin: true,
-		张三: true,
-		李四: true,
-	},
+	permissions: [
+		'admin',
+		'张三',
+		'李四',
+	],
 };
 
 export const globalSlice = createSlice({
 	name: 'global',
 	initialState,
 	reducers: {
-		setPermissions: (state: IGlobalState, action: PayloadAction<{ [key: string]: boolean }>) => {
+		setPermissions: (state: IGlobalState, action: PayloadAction<string[]>) => {
+			console.log(action, '===****');
 			state.permissions = action.payload;
-		},
-		changePermissions: (state: IGlobalState, action: PayloadAction<{ [key: string]: boolean }>) => {
-			state.permissions = { ...state.permissions, ...action.payload };
 		},
 	},
 });
 
-export const { setPermissions, changePermissions } = globalSlice.actions;
+export const { setPermissions } = globalSlice.actions;
 
 export default globalSlice.reducer;
