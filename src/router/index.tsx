@@ -34,6 +34,7 @@ import {
 
 import load from '@/utils/load';
 import { IRouterConfig } from '@/utils/render-routes';
+import { flatRouterList } from '@/utils/functions';
 import tests from './tests';
 
 const routes: IRouterConfig[] = [
@@ -80,5 +81,7 @@ const routes: IRouterConfig[] = [
 		meta: { title: '/*', icon: <FieldNumberOutlined />, showInTabs: false },
 	},
 ];
+
+export const flatRoutes = flatRouterList(routes);
 
 export default routes;
