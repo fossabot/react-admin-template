@@ -1,3 +1,6 @@
+/**
+ * 全局的逻辑统一在此处理
+ */
 import React, { useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router';
 import { flatRoutes } from '@/router';
