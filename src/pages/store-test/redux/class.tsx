@@ -20,10 +20,6 @@ class ReduxTestC extends React.Component<IProps> {
 		this.state = {};
 	}
 
-	componentDidMount() {
-		console.log(this.props);
-	}
-
 	onHandleClick = () => {
 		const {
 			global: { permissions },

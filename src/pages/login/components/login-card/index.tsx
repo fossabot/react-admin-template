@@ -22,7 +22,6 @@ const LoginCard: React.FC<IProps> = (props: IProps) => {
 	const [panda, setPanda] = useState('normal');
 
 	function onFinish(values: IFormData) {
-		console.log(values);
 		// 纯模拟一下
 		JsCookie.set('react-admin-template', JSON.stringify(values));
 

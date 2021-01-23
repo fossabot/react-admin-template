@@ -5,11 +5,7 @@ export interface IGlobalState {
 }
 
 const initialState: IGlobalState = {
-	permissions: [
-		'admin',
-		'张三',
-		'李四',
-	],
+	permissions: ['admin', '张三', '李四'],
 };
 
 export const globalSlice = createSlice({
@@ -17,7 +13,6 @@ export const globalSlice = createSlice({
 	initialState,
 	reducers: {
 		setPermissions: (state: IGlobalState, action: PayloadAction<string[]>) => {
-			console.log(action, '===****');
 			state.permissions = action.payload;
 		},
 	},
