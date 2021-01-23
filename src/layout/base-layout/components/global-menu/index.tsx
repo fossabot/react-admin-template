@@ -25,7 +25,6 @@ const GlobalMenu: React.FC<IProps> = (props: IProps) => {
 
 	function onHandleMenuSelect(item: SelectInfo): void {
 		if (location.pathname !== item.key) {
-			console.log(item);
 			history.push(`${item.key}`);
 		}
 	}
@@ -34,35 +33,37 @@ const GlobalMenu: React.FC<IProps> = (props: IProps) => {
 		if (!Array.isArray(list) || !list.length) {
 			return null;
 		}
-		return list.map((route) => {
-			const subRoutes = route.children?.filter((item) => item && !item.meta?.hidden);
-			const hasSubMenu = subRoutes?.length;
+		return list
+			.map((route) => {
+				const subRoutes = route.children?.filter((item) => item && !item.meta?.hidden);
+				const hasSubMenu = subRoutes?.length;
 
-			// route.children为空会认为是有效的菜单，再判断
-			// 此处值判断route.children非空且全部hidden返回null
-			if (route.children?.length && !hasSubMenu) {
-				return null;
-			}
+				// route.children为空会认为是有效的菜单，再判断
+				// 此处值判断route.children非空且全部hidden返回null
+				if (route.children?.length && !hasSubMenu) {
+					return null;
+				}
 
-			const authorities = route.meta?.authorities;
-			if (!checkPermissions(permissions, authorities, route.meta?.some)) {
-				return null;
-			}
+				const authorities = route.meta?.authorities;
+				if (!checkPermissions(permissions, authorities, route.meta?.some)) {
+					return null;
+				}
 
-			if (hasSubMenu) {
+				if (hasSubMenu) {
+					return (
+						<SubMenu key={route.path} title={route.meta?.title} icon={route.meta?.icon}>
+							{renderMenuItem(subRoutes)}
+						</SubMenu>
+					);
+				}
+
 				return (
-					<SubMenu key={route.path} title={route.meta?.title} icon={route.meta?.icon}>
-						{renderMenuItem(subRoutes)}
-					</SubMenu>
+					<MenuItem key={route.path} icon={route.meta?.icon}>
+						{route.meta?.title}
+					</MenuItem>
 				);
-			}
-
-			return (
-				<MenuItem key={route.path} icon={route.meta?.icon}>
-					{route.meta?.title}
-				</MenuItem>
-			);
-		}).filter(Boolean);
+			})
+			.filter(Boolean);
 	}
 
 	return (
