@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Switch } from 'react-router';
-import { useLocation, useHistory, Route } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { Layout } from 'antd';
 import { MenuFoldOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 
-import Reactive from '@/pages/reactive';
 import { RootState } from '@/redux/store';
 import { getRedirectsRoutes, renderRoutesDeep } from '@/utils/render-routes';
 import routes from '@/router';
@@ -55,7 +54,6 @@ const BaseLayout: React.FC = () => {
 				</Header>
 				<GlobalBreadcrumb />
 				<Content className={s.appRouterView}>
-					<Route component={Reactive} />
 					<Switch>
 						{getRedirectsRoutes(routes)}
 						{renderRoutesDeep(routes, { permissions })}
