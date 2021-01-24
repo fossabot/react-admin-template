@@ -10,6 +10,7 @@
 4. **演示页面文件在`src/pages/store-test`目录，对应路由在`src/router/tests.tsx`文件，直接删除即可**
 5. **然后选择性删除`src/mobx`目录或`src/redux`目录。**
 6. **若选择`Mobx`，请将`@reduxjs/toolkit`、`react-redux`、`reselect`卸载，反之请将`mobx`、`mobx-react`卸载**
+7. **组件`TabsBar(src/layout/base-layout/components/tabs-bar)`依赖了`redux`的状态，使用`mobx`请自行改造**
 
 ## 注意事项
 
