@@ -118,7 +118,7 @@ module.exports = {
 		'max-depth': [ERROR, 2],
 		'max-params': [ERROR, 3],
 		'max-len': [ERROR, { code: 120 }],
-		'max-lines-per-function': [WARN, 120],
+		'max-lines-per-function': [WARN, 200],
 		'max-lines': [ERROR, { max: 800, skipBlankLines: true, skipComments: true }],
 
 		'consistent-return': ERROR,
@@ -164,5 +164,6 @@ module.exports = {
 
 		'jsx-a11y/click-events-have-key-events': OFF,
 		'jsx-a11y/no-static-element-interactions': OFF,
+		'jsx-a11y/no-noninteractive-element-interactions': OFF,
 	},
 };

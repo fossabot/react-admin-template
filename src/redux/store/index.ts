@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import globalSliceReducer from './global';
 import systemSliceReducer from './system';
+import layoutSliceReducer from './layout';
 
 const store = configureStore({
 	reducer: {
 		global: globalSliceReducer,
 		system: systemSliceReducer,
+		layout: layoutSliceReducer,
 	},
 });
 

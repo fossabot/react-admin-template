@@ -44,3 +44,10 @@ export function checkPermissions(
 		? authorities?.some((value) => permissions?.includes(value))
 		: authorities?.every((value) => permissions?.includes(value));
 }
+
+export 	function comparePathname(path1: string, path2: string) {
+	if (path1 === path2) {
+		return true;
+	}
+	return (path1 || '').replace(/\/$/, '') === (path2 || '').replace(/\/$/, '');
+}

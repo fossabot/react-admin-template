@@ -1,15 +1,16 @@
 /**
  * 全局的逻辑统一在此处理
  */
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 import { useLocation, useHistory } from 'react-router';
-import { flatRoutes } from '@/router';
+import useEnhancedEffect from '@/utils/use-enhanced-effect';
+import { flattedRoutes } from '@/router';
 
 const Reactive: React.FC = () => {
 	const history = useHistory();
 	const location = useLocation();
 
-	useLayoutEffect(() => {
+	useEnhancedEffect(() => {
 		const title = document.title;
 		setTitle(location.pathname, title);
 
@@ -37,7 +38,7 @@ const Reactive: React.FC = () => {
 
 	function getTitle(pathname: string) {
 		return new Promise((resolve, reject) => {
-			const match = flatRoutes.find((route) => {
+			const match = flattedRoutes.find((route) => {
 				const path = route.path;
 
 				return path.replace(/\/$/, '') === pathname.replace(/\/$/, '');

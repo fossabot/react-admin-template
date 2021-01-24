@@ -6,6 +6,19 @@ export interface IRouteComponentProps extends RouteComponentProps {
 	route: IRouterConfig;
 }
 
+export interface IRouteMetaConfig {
+	// 元数据
+	title?: string; // 菜单标题，同时会作为网页标题，如不能满足请自行扩展字段
+	icon?: React.ReactElement | string; // icon
+	pin?: boolean; // 是否固定在标签栏
+	cache?: boolean; // 是否被缓存
+	hidden?: boolean; // 是否被从导航栏隐藏
+	showInTabs?: boolean; // 是否被添加到tabs栏，优先级高于hidden
+	some?: boolean; // 鉴权逻辑，authorities满足其一即为有权限
+	authorities?: string[]; // 权限列表
+	fallback?: string; // 无权限回退页面
+}
+
 export interface IRouterConfig {
 	key?: string; // key
 	path: string; // 路由地址
@@ -15,18 +28,7 @@ export interface IRouterConfig {
 	redirect?: string; // 重定向路由地址
 	render?: (props: IRouteComponentProps) => React.ReactNode;
 	component?: React.ComponentType<IRouteComponentProps> | React.ComponentType<any> | null;
-	meta?: {
-		// 元数据
-		title?: string; // 菜单标题，同时会作为网页标题，如不能满足请自行扩展字段
-		icon?: React.ReactElement | string; // icon
-		pin?: boolean; // 是否固定在标签栏
-		cache?: boolean; // 是否被缓存
-		hidden?: boolean; // 是否被从导航栏隐藏
-		showInTabs?: boolean; // 是否被添加到tabs栏，优先级高于hidden
-		some?: boolean; // 鉴权逻辑，authorities满足其一即为有权限
-		authorities?: string[]; // 权限列表
-		fallback?: string; // 无权限回退页面
-	};
+	meta?: IRouteMetaConfig;
 	children?: IRouterConfig[]; // child routes
 }
 

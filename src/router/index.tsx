@@ -42,7 +42,7 @@ const routes: IRouterConfig[] = [
 		path: '/',
 		exact: true,
 		component: load(() => import('@/pages/home')),
-		meta: { title: '首页', icon: <DesktopOutlined />, hidden: true },
+		meta: { title: '首页', icon: <DesktopOutlined />, hidden: true, pin: true },
 	},
 	{
 		path: '/dashboard',
@@ -82,6 +82,6 @@ const routes: IRouterConfig[] = [
 	},
 ];
 
-export const flatRoutes = flatRouterList(routes);
+export const flattedRoutes = flatRouterList(routes);
 
 export default routes;

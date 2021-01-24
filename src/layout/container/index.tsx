@@ -1,9 +1,10 @@
 /**
  * 处理一些全局逻辑
  */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLocation, useHistory } from 'react-router';
-import { flatRoutes } from '@/router';
+import useEnhancedEffect from '@/utils/use-enhanced-effect';
+import { flattedRoutes } from '@/router';
 
 interface IProps {
 	children: React.ReactElement;
@@ -13,7 +14,7 @@ const Container: React.FC<IProps> = (props) => {
 	const history = useHistory();
 	const location = useLocation();
 
-	useEffect(() => {
+	useEnhancedEffect(() => {
 		const title = document.title;
 		setTitle(location.pathname, title);
 
@@ -41,7 +42,7 @@ const Container: React.FC<IProps> = (props) => {
 
 	function getTitle(pathname: string) {
 		return new Promise((resolve, reject) => {
-			const match = flatRoutes.find((route) => {
+			const match = flattedRoutes.find((route) => {
 				const path = route.path;
 
 				return path.replace(/\/$/, '') === pathname.replace(/\/$/, '');
