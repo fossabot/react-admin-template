@@ -45,7 +45,10 @@ export function checkPermissions(
 		: authorities?.every((value) => permissions?.includes(value));
 }
 
-export 	function comparePathname(path1: string, path2: string) {
+export 	function comparePathname(path1?: string, path2?: string) {
+	if (path1 === undefined || path2 === undefined) {
+		return false;
+	}
 	if (path1 === path2) {
 		return true;
 	}

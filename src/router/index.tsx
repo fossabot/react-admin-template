@@ -42,13 +42,14 @@ const routes: IRouterConfig[] = [
 		path: '/',
 		exact: true,
 		component: load(() => import('@/pages/home')),
-		meta: { title: '首页', icon: <DesktopOutlined />, hidden: true, pin: true },
+		meta: { title: '首页', icon: <DesktopOutlined />, hidden: true, showInTabs: false, pin: false },
 	},
 	{
 		path: '/dashboard',
 		exact: true,
 		component: load(() => import('@/pages/dashboard')),
-		meta: { title: '工作台', icon: <DashboardOutlined />, authorities: ['admin'] }, // admin权限
+		// eslint-disable-next-line max-len
+		meta: { title: '工作台', icon: <DashboardOutlined />, showInTabs: true, pin: true, authorities: ['admin'] }, // admin权限
 	},
 	{
 		path: '/errors',
@@ -76,9 +77,14 @@ const routes: IRouterConfig[] = [
 	},
 	...tests,
 	{
+		path: '/refresh',
+		component: load(() => import('@/pages/refresh')),
+		meta: { title: '正在刷新...', icon: null, hidden: true, showInTabs: false },
+	},
+	{
 		path: '/*',
 		component: load(() => import('@/pages/errors/404')),
-		meta: { title: '/*', icon: <FieldNumberOutlined />, showInTabs: false },
+		meta: { title: '/*', icon: null, hidden: true, showInTabs: false },
 	},
 ];
 

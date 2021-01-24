@@ -45,7 +45,7 @@
 		top: 50px;
 		left: 10px;
 		z-index: @small-z-index - 1;
-		width: 120px;
+		width: 140px;
 		padding: 4px 0;
 		font-size: 12px;
 		user-select: none;
@@ -57,6 +57,8 @@
 			margin: 4px 0;
 		}
 		.item {
+			display: flex;
+			justify-content: space-between;
 			height: 34px;
 			padding: 0 10px;
 			line-height: 34px;
@@ -64,6 +66,9 @@
 			transition: background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 			&:hover {
 				background-color: @dark-border-color;
+			}
+			.shortKey {
+				color: @dark-shallow-font-color;
 			}
 		}
 	}

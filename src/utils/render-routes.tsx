@@ -9,7 +9,7 @@ export interface IRouteComponentProps extends RouteComponentProps {
 export interface IRouteMetaConfig {
 	// 元数据
 	title?: string; // 菜单标题，同时会作为网页标题，如不能满足请自行扩展字段
-	icon?: React.ReactElement | string; // icon
+	icon?: React.ReactElement | string | null; // icon
 	pin?: boolean; // 是否固定在标签栏
 	cache?: boolean; // 是否被缓存
 	hidden?: boolean; // 是否被从导航栏隐藏

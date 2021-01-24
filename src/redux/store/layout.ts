@@ -4,9 +4,9 @@ import { comparePathname } from '@/utils/functions';
 export interface ITabItem {
 	path: string;
 	title: string;
-	showInTabs: boolean;
-	hidden: boolean;
-	pin: boolean;
+	showInTabs?: boolean;
+	hidden?: boolean;
+	pin?: boolean;
 }
 
 export interface ILayoutState {
@@ -31,6 +31,12 @@ export const layoutSlice = createSlice({
 				if (!flag) {
 					state.tabsList = [...state.tabsList, action.payload];
 				}
+			}
+		},
+		removeTabItems: (state: ILayoutState, action: PayloadAction<ITabItem[]>) => {
+			if (Array.isArray(action.payload) && action.payload.length) {
+				const paths = action.payload.map((item) => item.path.replace(/\/$/, ''));
+				state.tabsList = state.tabsList.filter((item) => !paths.includes(item.path.replace(/\/$/, '')));
 			}
 		},
 	},
