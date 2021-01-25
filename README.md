@@ -66,8 +66,11 @@
 
 ## 四. 打包构建
 
-由于自家 CI 没得商量只传递一个环境变量`NODE_ENV`且会超出`development`、`test`、`production`范围，故而此项目`BABEL_ENV`、`NODE_ENV`已固定为`development`、`production`。
-也就是说无论`NODE_ENV`传递什么值都会在赋值给`BUILD_ENV`后被强制矫正为`development`或`production`。**所以业务代码中请使用`BUILD_ENV`来判断真实的部署环境。**
+环境变量: 一些`BuiltIns`、`Plugins`、`Loader`的环境变量默认值是`process.env.NODE_ENV`，
+但是自家 CI 没得商量只传递一个环境变量`NODE_ENV`且会超出`development`、`test`、`production`范围，
+同时为了变量扩展，此项目`BABEL_ENV`、`NODE_ENV`已固定为`development`、`production`。
+也就是说无论`NODE_ENV`传递什么值都会在赋值给`BUILD_ENV`后被强制矫正为`development`或`production`。
+**所以本模板中请使用`BUILD_ENV`来区分环境，`process.env.NODE_ENV`不再使用**
 
 ## 五. 关于 Electron
 
