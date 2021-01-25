@@ -27,13 +27,14 @@
     "node_modules": "rimraf node_modules",
     "svgo": "svgo -f src/assets/svg-sprite --config=./.svgo.yml",
     "watch": "tsc --watch",
-    "prestart": "npm run dll",
+    "prestart": "npm run nvmuse && npm run dll",
     "preelectron": "npm run dll",
     "prebuild": "npm run svgo",
     "build": "node ./.scripts/build.js",
     "dll": "node ./.scripts/dll.js",
     "npm-check": "npm-check -u",
-    "test": "cross-env BUILD_ENV=test node ./.scripts/test.js"
+    "test": "cross-env BUILD_ENV=test node ./.scripts/test.js",
+    "nvmuse": "node ./.scripts/utils/nvm-use.js"
   },
   "husky": {
     "hooks": {
@@ -52,6 +53,7 @@
     "@babel/runtime-corejs3": "^7.12.5",
     "@loadable/component": "^5.14.1",
     "@reduxjs/toolkit": "^1.5.0",
+    "@types/shelljs": "^0.8.8",
     "antd": "^4.10.3",
     "axios": "^0.21.1",
     "change-case": "^4.1.2",
@@ -153,6 +155,7 @@
     "resolve-url-loader": "^3.1.2",
     "rimraf": "^3.0.2",
     "semver": "^7.3.4",
+    "shelljs": "^0.8.4",
     "style-loader": "^2.0.0",
     "style-resources-loader": "^1.4.1",
     "stylelint": "^13.9.0",
