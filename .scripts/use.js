@@ -3,8 +3,8 @@ const path = require('path');
 const chalk = require('chalk');
 const semver = require('semver');
 const shell = require('shelljs');
-const paths = require('../config/paths');
-const { engines } = require('../config');
+const paths = require('./config/paths');
+const { enginesRequired } = require('./config');
 
 shell.config.silent = true;
 
@@ -28,7 +28,7 @@ try {
 
 	// 无指定版本就从安装列表随便匹配一个
 	if (!installedVersions.includes(needNodeVersion)) {
-		needNodeVersion = installedVersions.find(v => semver.satisfies(v, engines.node));
+		needNodeVersion = installedVersions.find(v => semver.satisfies(v, enginesRequired.node));
 	}
 
 	if (!needNodeVersion) {
@@ -37,7 +37,7 @@ try {
 
 	const nvmLog = shell.exec(`nvm use ${needNodeVersion}`).toString();
 
-	console.log(chalk.bold.cyanBright(nvmLog.toString()));
+	console.log(chalk.bold.yellowBright(nvmLog.toString()));
 } catch (e) {
 	console.log(e);
 }

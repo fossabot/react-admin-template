@@ -43,7 +43,7 @@ module.exports = {
 	// 其他无关痛痒的参数
 	name: pascalCase(name),
 	version,
-	engines: engines && engines.node ? engines : { ...engines, node: '>=10.13.0' },
+	enginesRequired: engines && engines.node ? engines : { ...engines, node: '>=10.13.0' },
 	gitBranch: exec('git rev-parse --abbrev-ref HEAD'),
 	gitCommitHash: exec('git show -s --format=%h'),
 	buildTime: dayjs().toJSON(),

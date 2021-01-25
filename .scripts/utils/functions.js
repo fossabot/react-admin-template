@@ -6,9 +6,9 @@ const childProcess = require('child_process');
 const envs = ['development', 'test', 'production'];
 const NODE_ENV = process.env.NODE_ENV;
 const BUILD_ENV = process.env.BUILD_ENV;
-const { engines } = require('../config');
+const { enginesRequired } = require('../config');
 const currentNodeVersion = process.version;
-const requiredNodeVersion = engines.node;
+const requiredNodeVersion = enginesRequired.node;
 
 const boldYellowBright = (str) => chalk.bold(chalk.yellowBright(str));
 
