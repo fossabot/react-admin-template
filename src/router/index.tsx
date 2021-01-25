@@ -49,7 +49,7 @@ const routes: IRouterConfig[] = [
 		exact: true,
 		component: load(() => import('@/pages/dashboard')),
 		// eslint-disable-next-line max-len
-		meta: { title: '工作台', icon: <DashboardOutlined />, showInTabs: true, pin: false, authorities: ['admin'] }, // admin权限
+		meta: { title: '工作台', icon: <DashboardOutlined />, showInTabs: true, pin: true, authorities: ['admin'] }, // admin权限
 	},
 	{
 		path: '/errors',

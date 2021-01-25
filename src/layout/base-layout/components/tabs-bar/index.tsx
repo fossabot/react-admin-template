@@ -5,6 +5,7 @@
 import React, { useState, useRef } from 'react';
 import classNames from 'classnames';
 import { Divider } from 'antd';
+import { PushpinOutlined } from '@ant-design/icons';
 import { useLocation, useHistory } from 'react-router';
 import { useStore, useSelector } from 'react-redux';
 import { flattedRoutes } from '@/router';
@@ -287,6 +288,7 @@ const TabsBar: React.FC = () => {
 						onContextMenu={(event) => onContextMenu(event, tab)}
 						onClick={() => onTabItemClick(tab)}
 					>
+						{tab.pin && <PushpinOutlined className={s.pin} />}
 						{tab.title}
 					</li>
 				))}
