@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const dayjs = require('dayjs');
 const { pascalCase } = require('change-case');
 const childProcess = require('child_process');
 const paths = require('./paths');
@@ -45,5 +46,5 @@ module.exports = {
 	engines: engines && engines.node ? engines : { ...engines, node: '>=10.13.0' },
 	gitBranch: exec('git rev-parse --abbrev-ref HEAD'),
 	gitCommitHash: exec('git show -s --format=%h'),
-	buildTime: new Date().toLocaleString(),
+	buildTime: dayjs().toJSON(),
 };

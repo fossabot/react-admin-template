@@ -10,6 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 threadLoader.warmup({}, ['babel-loader', 'css-loader', 'postcss-loader', 'less-loader']);
 
@@ -190,6 +191,7 @@ const webpackRenderBaseConfig = {
 			name: process.env.TARGET ? capitalCase(process.env.TARGET) : 'webpack',
 			profile: true,
 		}),
+		new AntdDayjsWebpackPlugin(),
 		new ESLintWebpackPlugin({
 			extensions: ['js', 'jsx', 'ts', 'tsx'],
 			formatter: require.resolve('react-dev-utils/eslintFormatter'),
@@ -217,7 +219,14 @@ const webpackRenderBaseConfig = {
 		}),
 		new HtmlWebpackPlugin(
 			Object.assign(
-				{},
+				{
+					meta: {
+						name,
+						version,
+						hash: gitCommitHash,
+						time: buildTime,
+					},
+				},
 				{
 					inject: true,
 					publicPath: appPublicPath,
