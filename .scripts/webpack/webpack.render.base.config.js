@@ -219,18 +219,17 @@ const webpackRenderBaseConfig = {
 		}),
 		new HtmlWebpackPlugin(
 			Object.assign(
+				{},
 				{
+					inject: true,
+					publicPath: appPublicPath,
+					template: paths.appHtml,
 					meta: {
 						name,
 						version,
 						hash: gitCommitHash,
 						time: buildTime,
 					},
-				},
-				{
-					inject: true,
-					publicPath: appPublicPath,
-					template: paths.appHtml,
 				},
 				isProduction
 					? {
