@@ -3,23 +3,11 @@ const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const { buildTime, buildEnv, name, version, gitBranch, gitCommitHash } = require('../config');
+const { buildEnv } = require('../config');
 const paths = require('../config/paths');
-// const { dependencies } = require(paths.appRootPkgJson);
+const { dependencies, devDependencies } = require(paths.appRootPkgJson);
+const isDevelopment = buildEnv === 'development';
 const isProduction = buildEnv === 'production';
-
-const envs = {
-	NODE_ENV: buildEnv,
-	APP_NAME: name,
-	APP_VERSION: version,
-	GIT_BRANCH: gitBranch,
-	GIT_COMMIT_HASH: gitCommitHash,
-	APP_BUILD_TIME: buildTime,
-};
-
-Object.keys(envs).forEach(key => {
-	process.env[key] = envs[key];
-});
 
 const webpackMainProdConfig = {
 	mode: 'production',
@@ -34,7 +22,7 @@ const webpackMainProdConfig = {
 		filename: '[name].js',
 		path: paths.appMainDistPath,
 	},
-	// externals: [...Object.keys(dependencies || {})],
+	externals: isDevelopment ? [] : [...Object.keys(dependencies || {}), ...Object.keys(devDependencies || {})],
 	module: {
 		strictExportPresence: true,
 		rules: [
