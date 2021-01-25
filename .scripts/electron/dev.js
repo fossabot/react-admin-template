@@ -105,7 +105,6 @@ function startElectron() {
 	return new Promise((resolve) => {
 		electronProcess = spawn(dev, ['--inspect=5858', paths.appMainDistPath], {
 			env: Object.assign({}, process.env, {
-				APP_BUILD_TIME: new Date().toLocaleString(),
 				ELECTRON_DISABLE_SECURITY_WARNINGS: false, // electron的一些警告信息按需配置
 				RENDER_DEV_HOST_NAME: config.hostName === '0.0.0.0' ? 'localhost' : config.hostName,
 				RENDER_DEV_PORT: config.port,

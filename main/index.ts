@@ -10,7 +10,7 @@ mark('main-start');
 
 process.on('unhandledRejection', (error) => {
 	console.log('An error occurred(unhandledRejection)', error);
-	if (process.env.BUILD_ENV === 'production') {
+	if (process.env.BUILD_ENV !== 'development') {
 		app.quit();
 	}
 });
@@ -38,7 +38,7 @@ function createWindow() {
 	});
 
 	const originUa = mainWindow.webContents.getUserAgent();
-	mainWindow.webContents.setUserAgent(`${originUa} ${name as string}/${version as string}`);
+	mainWindow.webContents.setUserAgent(`${originUa} ${name}/${version}`);
 
 	mark('main-window-source-load-start');
 

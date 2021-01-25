@@ -1,6 +1,6 @@
-const { APP_NAME, APP_VERSION } = process.env;
+import { name, version } from '../../package.json';
 
 export default {
-	name: APP_NAME,
-	version: APP_VERSION,
+	name,
+	version,
 };
