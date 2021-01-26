@@ -12,7 +12,7 @@ export const globalSlice = createSlice({
 	name: 'global',
 	initialState,
 	reducers: {
-		setPermissions: (state: IGlobalState, action: PayloadAction<string[]>) => {
+		setPermissions(state: IGlobalState, action: PayloadAction<string[]>) {
 			state.permissions = action.payload;
 		},
 	},

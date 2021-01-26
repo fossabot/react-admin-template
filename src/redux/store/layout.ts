@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { comparePathname } from '@/utils/functions';
 
 export interface ITabItem {
@@ -17,14 +17,19 @@ const initialState: ILayoutState = {
 	tabsList: [],
 };
 
+export const removeTabItemsAsync = createAsyncThunk('', async (list) => {
+	await fetch('/');
+	console.log(list);
+});
+
 export const layoutSlice = createSlice({
 	name: 'layout',
 	initialState,
 	reducers: {
-		setTabsList: (state: ILayoutState, action: PayloadAction<ITabItem[]>) => {
+		setTabsList(state: ILayoutState, action: PayloadAction<ITabItem[]>) {
 			state.tabsList = action.payload;
 		},
-		addTabItem: (state: ILayoutState, action: PayloadAction<ITabItem>) => {
+		addTabItem(state: ILayoutState, action: PayloadAction<ITabItem>) {
 			if (action.payload && action.payload.path) {
 				const flag = state.tabsList.some((item) => comparePathname(item.path, action.payload.path));
 				if (!flag) {
@@ -32,7 +37,7 @@ export const layoutSlice = createSlice({
 				}
 			}
 		},
-		removeTabItems: (state: ILayoutState, action: PayloadAction<ITabItem[]>) => {
+		removeTabItems(state: ILayoutState, action: PayloadAction<ITabItem[]>) {
 			if (Array.isArray(action.payload) && action.payload.length) {
 				const paths = action.payload.map((item) => item.path.replace(/\/$/, ''));
 				state.tabsList = state.tabsList.filter((item) => !paths.includes(item.path.replace(/\/$/, '')));
