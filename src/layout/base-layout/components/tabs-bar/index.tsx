@@ -37,7 +37,10 @@ const TabsBar: React.FC = () => {
 	});
 	const [isContextmenuVisible, setContextmenuVisible] = useState(false);
 	const tabsList: ITabItem[] = useSelector((state: RootState) => state.layout.tabsList);
-	const [currentTab, setCurrentTab] = useState<ITabItem>();
+	const [currentTab, setCurrentTab] = useState<ITabItem>({
+		path: location.pathname,
+		title: '',
+	});
 	const [menus, setMenus] = useState<IContextmenu[]>([]);
 
 	useEnhancedEffect(() => {
@@ -130,8 +133,8 @@ const TabsBar: React.FC = () => {
 			setContextmenuVisible(true);
 			setMenus([
 				{ type: 'refresh', label: '刷新', shortKey: 'Alt+F', visible: getVisible('refresh', data) },
-				{ type: 'deep-refresh', label: '重新加载', shortKey: 'Alt+D', visible: getVisible('deep-refresh') },
-				{ type: 'divider', label: '', shortKey: '', visible: getVisible('divider') },
+				{ type: 'deep-refresh', label: '重新加载', shortKey: 'Alt+D', visible: getVisible('deep-refresh', data) },
+				{ type: 'divider', label: '', shortKey: '', visible: getVisible('divider', data) },
 				{ type: 'close', label: '关闭', shortKey: 'Alt+W', visible: getVisible('close', data) },
 				{ type: 'close-others', label: '关闭其他', shortKey: 'Alt+O', visible: getVisible('close-others', data) },
 				{ type: 'close-all', label: '关闭所有', shortKey: 'Alt+A', visible: getVisible('close-all', data) },
@@ -141,66 +144,25 @@ const TabsBar: React.FC = () => {
 		}
 	}
 
-	function onContextmenuItemClick(menu: { type: string; label: string }) {
-		if (!currentTab || !currentTab.path) {
-			return;
-		}
-
-		let list: ITabItem[] = [];
-		const path = currentTab.path;
-		const leftIndex = tabsList.findIndex((item) => comparePathname(item.path, path));
-
-		switch (menu.type) {
-			case 'refresh':
-				onRefresh();
-				break;
-			case 'deep-refresh':
-				window.location.reload();
-				break;
-			case 'close':
-				list = [currentTab];
-				break;
-			case 'close-others':
-				list = tabsList.filter((item) => !comparePathname(item.path, path));
-				break;
-			case 'close-all':
-				list = tabsList.filter((item) => !comparePathname(item.path, '/'));
-				history.push('/');
-				break;
-			case 'close-left':
-				list = [...tabsList].slice(0, leftIndex);
-				break;
-			case 'close-right':
-				list = [...tabsList].slice(leftIndex + 1);
-				break;
-			default:
-				break;
-		}
-		store.dispatch({
-			type: 'layout/removeTabItems',
-			payload: list,
-		});
-		setContextmenuVisible(false);
-	}
-
 	function onTabItemClick(data: ITabItem) {
 		setCurrentTab(data);
 		history.push(data.path);
 	}
 
-	function getVisible(type: string, data?: ITabItem) {
+	function getVisible(type: string, data: ITabItem) {
 		const { pathname } = location;
 		const length = tabsList.length;
-		const currentIndex = tabsList.findIndex((item) => comparePathname(item.path, data?.path));
+		const currentIndex = tabsList.findIndex((item) => comparePathname(item.path, data.path));
 		const firstPinIndex = tabsList.findIndex((item) => item.pin);
 		const lastPinIndex = [...tabsList].reverse().findIndex((item) => item.pin);
 
-		const showRefresh = comparePathname(pathname, data?.path);
-		const showClose = tabsList.length > 1 && !data?.pin;
+		const showRefresh = comparePathname(pathname, data.path);
+		const showClose = !data.pin; // 首页不可出现在tabs标签页中，因为无标签页的时候会跳转首页
+		// const showClose = tabsList.length > 1 && !data?.pin;
 		const showCloseOthers = tabsList
-			.filter((item) => !comparePathname(item.path, data?.path))
+			.filter((item) => !comparePathname(item.path, data.path))
 			.some((item) => !item.pin);
-		const showCloseAll = data?.path !== '/' && tabsList.length > 1 && !tabsList.some((item) => item.pin);
+		const showCloseAll = !tabsList.some((item) => item.pin);
 		const showCloseLeft = firstPinIndex === -1 && currentIndex > 0;
 		const showCloseRight = (lastPinIndex === -1 && currentIndex < length - 1)
 			|| (currentIndex < length - 1 && lastPinIndex > 0 && currentIndex >= length - 1 - lastPinIndex);
@@ -225,6 +187,48 @@ const TabsBar: React.FC = () => {
 			default:
 				return true;
 		}
+	}
+
+	function onExecContextmenuItemClick(menu: { type: string; label: string }) {
+		if (!currentTab.path) {
+			return;
+		}
+
+		let list: ITabItem[] = [];
+		const path = currentTab.path;
+		const leftIndex = tabsList.findIndex((item) => comparePathname(item.path, path));
+
+		switch (menu.type) {
+			case 'refresh':
+				onRefresh();
+				break;
+			case 'deep-refresh':
+				onDeepRefresh();
+				break;
+			case 'close':
+				list = [currentTab];
+				break;
+			case 'close-others':
+				list = tabsList.filter((item) => !item.pin).filter((item) => !comparePathname(item.path, path));
+				break;
+			case 'close-all':
+				list = tabsList.filter((item) => !item.pin);
+				history.push('/');
+				break;
+			case 'close-left':
+				list = [...tabsList].slice(0, leftIndex);
+				break;
+			case 'close-right':
+				list = [...tabsList].slice(leftIndex + 1);
+				break;
+			default:
+				break;
+		}
+		store.dispatch({
+			type: 'layout/removeTabItems',
+			payload: list,
+		});
+		setContextmenuVisible(false);
 	}
 
 	function onHandleKeydown(event: KeyboardEvent) {
@@ -256,15 +260,28 @@ const TabsBar: React.FC = () => {
 
 	function onRefresh() {
 		const { pathname, search, hash, state } = location;
-		history.replace({
-			pathname: '/refresh',
-			state: {
-				pathname,
-				search,
-				hash,
-				originState: state,
-			},
-		});
+		if (comparePathname(location.pathname, currentTab.path)) {
+			history.replace({
+				pathname: '/refresh',
+				state: {
+					pathname,
+					search,
+					hash,
+					originState: state,
+				},
+			});
+		} else {
+			history.push(currentTab.path);
+		}
+	}
+
+	function onDeepRefresh() {
+		if (!comparePathname(location.pathname, currentTab.path)) {
+			history.push(currentTab.path);
+		}
+		setTimeout(() => {
+			window.location.reload();
+		}, 500);
 	}
 
 	function onCancelAll(event: MouseEvent) {
@@ -308,7 +325,7 @@ const TabsBar: React.FC = () => {
 							<li
 								key={type}
 								className={classNames(s.item)}
-								onClickCapture={() => onContextmenuItemClick({ type, label })}
+								onClickCapture={() => onExecContextmenuItemClick({ type, label })}
 							>
 								<span>{label}</span>
 								<span className={s.shortKey}>{shortKey}</span>
