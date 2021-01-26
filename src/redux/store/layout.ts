@@ -27,7 +27,6 @@ export const layoutSlice = createSlice({
 		addTabItem: (state: ILayoutState, action: PayloadAction<ITabItem>) => {
 			if (action.payload && action.payload.path) {
 				const flag = state.tabsList.some((item) => comparePathname(item.path, action.payload.path));
-				console.log(flag);
 				if (!flag) {
 					state.tabsList = [...state.tabsList, action.payload];
 				}
