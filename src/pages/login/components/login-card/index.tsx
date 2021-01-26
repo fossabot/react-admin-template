@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, Form, Input, Checkbox, Button } from 'antd';
 import classnames from 'classnames';
 import JsCookie from 'js-cookie';
+import config from '@/config';
 
 import s from './index.module.less';
 import normal from './img/normal.png';
@@ -23,7 +24,7 @@ const LoginCard: React.FC<IProps> = (props: IProps) => {
 
 	function onFinish(values: IFormData) {
 		// 纯模拟一下
-		JsCookie.set('react-admin-template', JSON.stringify(values));
+		JsCookie.set(config.mainCookieName, JSON.stringify(values));
 
 		props.onSuccess();
 	}

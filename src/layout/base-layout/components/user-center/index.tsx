@@ -4,10 +4,11 @@ import { Dropdown, Avatar, Menu, Tooltip } from 'antd';
 import { UserOutlined, VerifiedOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
 import JsCookie from 'js-cookie';
 import { MenuInfo } from '@/interface/menu';
+import config from '@/config';
 import s from './index.module.less';
 
 const UserCenter: React.FC = () => {
-	const isLogin = JsCookie.get('react-admin-template');
+	const isLogin = JsCookie.get(config.mainCookieName);
 	const { pathname, search, hash, state } = useLocation();
 	const history = useHistory();
 	function onHandleClick() {
@@ -20,7 +21,7 @@ const UserCenter: React.FC = () => {
 	function onMenuHandleClick(item: MenuInfo) {
 		switch (item.key) {
 			case 'logout':
-				JsCookie.set('react-admin-template', '');
+				JsCookie.set(config.mainCookieName, '');
 				// 简单模拟一下，后面改成store存放
 				window.location.reload();
 				break;
