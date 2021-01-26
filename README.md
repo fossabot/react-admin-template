@@ -1,6 +1,7 @@
 # React Admin Template
 
 自用 React 项目开发模板，本分支作为项目快速启动模板，不会过多提交代码，只提供基础模板。
+默认使用`TypeScript`开发，如若支持`JavaScript`，修改`tsconfig.json`中`allowJs: true`。
 
 **注意**
 
@@ -11,14 +12,6 @@
 5. **然后选择性删除`src/mobx`目录或`src/redux`目录。**
 6. **若选择`Mobx`，请将`@reduxjs/toolkit`、`react-redux`、`reselect`卸载，反之请将`mobx`、`mobx-react`卸载**
 7. **标签页组件`TabsBar(src/layout/base-layout/components/tabs-bar)`依赖了`redux`的状态，使用`mobx`请自行改造**
-
-## 注意事项
-
-项目涉及权限管理默认使用`{ [(role | permission): string]: boolean }`格式返回，模板内处理也是此逻辑。
-如果返回的是数组或其他格式，适配如下两点即可：
-
-1. 路由相关 - 在`src/utils/render-routes.tsx`第`51`行修改，也可在调用`renderRoutes`方法的地方通过入参适配。
-2. 操作权限 - 有操作权限的渲染会用`Permission`组件包裹，处理逻辑修改适配即可。
 
 ## 一. 本地开发
 

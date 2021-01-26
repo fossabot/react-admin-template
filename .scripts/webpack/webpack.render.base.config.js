@@ -11,6 +11,7 @@ const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 threadLoader.warmup({}, ['babel-loader', 'css-loader', 'postcss-loader', 'less-loader']);
 
@@ -191,7 +192,20 @@ const webpackRenderBaseConfig = {
 			name: process.env.TARGET ? capitalCase(process.env.TARGET) : 'webpack',
 			profile: true,
 		}),
-		new AntdDayjsWebpackPlugin(),
+		new ForkTsCheckerWebpackPlugin({
+			typescript: {
+				enabled: true,
+				async: isDevelopment,
+				mode: 'write-references',
+				configFile: paths.appTsConfig,
+				diagnosticOptions: {
+					syntactic: true,
+					semantic: true,
+					declaration: true,
+					global: true,
+				},
+			},
+		}),
 		new ESLintWebpackPlugin({
 			extensions: ['js', 'jsx', 'ts', 'tsx'],
 			formatter: require.resolve('react-dev-utils/eslintFormatter'),
@@ -208,6 +222,7 @@ const webpackRenderBaseConfig = {
 			context: paths.appRenderSrc,
 			files: ['**/*.(le|c)ss'],
 		}),
+		new AntdDayjsWebpackPlugin(),
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 			'process.env.BUILD_ENV': JSON.stringify(buildEnv),

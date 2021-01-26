@@ -2,6 +2,7 @@ const WebpackBar = require('webpackbar');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const { buildEnv } = require('../config');
 const paths = require('../config/paths');
@@ -56,6 +57,29 @@ const webpackMainProdConfig = {
 			name: 'Electron Main',
 			profile: true,
 		}),
+		new ForkTsCheckerWebpackPlugin({
+			typescript: {
+				enabled: true,
+				async: isDevelopment,
+				mode: 'write-references',
+				configFile: paths.appTsConfig,
+				diagnosticOptions: {
+					syntactic: true,
+					semantic: true,
+					declaration: true,
+					global: true,
+				},
+			},
+		}),
+		new ESLintWebpackPlugin({
+			extensions: ['js', 'jsx', 'ts', 'tsx'],
+			formatter: require.resolve('react-dev-utils/eslintFormatter'),
+			eslintPath: require.resolve('eslint'),
+			context: paths.appMainSrc,
+			cache: false,
+			cwd: paths.appRootPath,
+			resolvePluginsRelativeTo: __dirname,
+		}),
 		new CleanWebpackPlugin({
 			// verbose: true,
 		}),
@@ -70,15 +94,6 @@ const webpackMainProdConfig = {
 					noErrorOnMissing: false,
 				},
 			],
-		}),
-		new ESLintWebpackPlugin({
-			extensions: ['js', 'jsx', 'ts', 'tsx'],
-			formatter: require.resolve('react-dev-utils/eslintFormatter'),
-			eslintPath: require.resolve('eslint'),
-			context: paths.appMainSrc,
-			cache: false,
-			cwd: paths.appRootPath,
-			resolvePluginsRelativeTo: __dirname,
 		}),
 	],
 	node: {

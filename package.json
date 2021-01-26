@@ -8,7 +8,7 @@
     "email": "uninge.sun@gmail.com"
   },
   "scripts": {
-		"start": "npm run dev",
+    "start": "npm run dev",
     "dev": "cross-env BUILD_ENV=development nodemon ./.scripts/dev.js",
     "electron": "cross-env BUILD_ENV=development node ./.scripts/electron/dev.js",
     "build:dev": "cross-env BUILD_ENV=development npm run build",
@@ -26,18 +26,18 @@
     "cacheclean": "rimraf node_modules/.cache .eslintcache .stylelintcache debug.log yarn-error.log yarn.lock",
     "svgo": "svgo -f src/assets/svg-sprite --config=./.svgo.yml",
     "dll": "node ./.scripts/dll.js",
-		"build": "node ./.scripts/build.js",
-		"use": "node .scripts/use.js",
-		"prestart": "npm run dll",
-		"predev": "npm run use",
-		"predll": "npm run use",
-		"presvgo": "npm run use",
-		"preelectron": "npm run dll",
-		"prebuild": "npm run svgo",
-		"test": "cross-env BUILD_ENV=test node ./.scripts/test.js",
-		"watch": "tsc --watch",
-		"npm-check": "npm-check -u"
-	},
+    "build": "node ./.scripts/build.js",
+    "use": "node .scripts/use.js",
+    "prestart": "npm run dll",
+    "predev": "npm run use",
+    "predll": "npm run use",
+    "presvgo": "npm run use",
+    "preelectron": "npm run dll",
+    "prebuild": "npm run svgo",
+    "test": "cross-env BUILD_ENV=test node ./.scripts/test.js",
+    "watch": "tsc --watch",
+    "npm-check": "npm-check -u"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick && npm run lint-staged",
@@ -135,6 +135,7 @@
     "express": "^4.17.1",
     "figlet": "^1.5.0",
     "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "^6.1.0",
     "html-webpack-plugin": "^4.5.1",
     "http-proxy-middleware": "^1.0.6",
     "husky": "^4.3.8",

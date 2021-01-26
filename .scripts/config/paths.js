@@ -22,6 +22,7 @@ module.exports = {
 	appRootPkgJson: resolvePath('package.json'),
 	appJsConfig: resolvePath('jsconfig.json'),
 	appTsConfig: resolvePath('tsconfig.json'),
+	appEslintConfig: resolvePath('.eslintrc.js'),
 	appNodeModules: resolvePath('node_modules'),
 
 	// electron
