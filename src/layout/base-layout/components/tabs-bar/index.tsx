@@ -229,6 +229,12 @@ const TabsBar: React.FC = () => {
 			payload: list,
 		});
 		setContextmenuVisible(false);
+
+		const newTabsList = (store.getState() as RootState).layout.tabsList;
+		if (!newTabsList.some((item) => comparePathname(item.path, location.pathname))) {
+			const redirectPath = [...newTabsList].reverse()[0]?.path || '/';
+			history.push(redirectPath);
+		}
 	}
 
 	function onHandleKeydown(event: KeyboardEvent) {
