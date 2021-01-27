@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Menu } from 'antd';
 import { MenuMode } from 'antd/lib/menu';
 import { useLocation, useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 
+import useEnhancedEffect from '@/utils/use-enhanced-effect';
 import { RootState } from '@/redux/store';
 import { IRouterConfig } from '@/utils/render-routes';
 import routes from '@/router';
@@ -21,7 +22,12 @@ const { Item: MenuItem, SubMenu } = Menu;
 const GlobalMenu: React.FC<IProps> = (props: IProps) => {
 	const location = useLocation();
 	const history = useHistory();
+	const [openKeys, setOpenKeys] = useState<React.Key[]>([]);
 	const permissions = useSelector((state: RootState) => state.global.permissions);
+
+	useEnhancedEffect(() => {
+		console.log('@todo 查找当前路由的所有父级path');
+	}, [location.pathname]);
 
 	function onHandleMenuSelect(item: SelectInfo): void {
 		if (location.pathname !== item.key) {
@@ -71,8 +77,9 @@ const GlobalMenu: React.FC<IProps> = (props: IProps) => {
 			theme="dark"
 			mode={props.mode || 'inline'}
 			inlineIndent={12}
-			defaultOpenKeys={[]}
-			defaultSelectedKeys={[location.pathname]}
+			openKeys={openKeys as string[]}
+			onOpenChange={(keys) => setOpenKeys(keys)}
+			selectedKeys={[location.pathname]}
 			onClick={onHandleMenuSelect}
 		>
 			{renderMenuItem(routes.filter((item) => item && !item.meta?.hidden))}
