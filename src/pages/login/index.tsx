@@ -15,7 +15,7 @@ const Login: React.FC = () => {
 	const location = useLocation();
 	const history = useHistory();
 
-	const { pathname, search, hash, state } = location.state as ILocationState;
+	const { pathname, search, hash, state } = (location.state || {}) as ILocationState;
 
 	function onSuccess() {
 		if (!pathname) {
