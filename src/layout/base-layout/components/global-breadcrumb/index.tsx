@@ -18,8 +18,10 @@ const GlobalBreadcrumb: React.FC = () => {
 	return (
 		<Breadcrumb className={s.breadcrumb}>
 			<Breadcrumb.Item><Link to="/">首页</Link></Breadcrumb.Item>
-			{breadcrumbs.reverse().map(({ path, meta }) => (
-				<Breadcrumb.Item key={path}><Link to={path}>{meta?.title}</Link></Breadcrumb.Item>
+			{breadcrumbs.reverse().map(({ path, children, meta }) => (
+				<Breadcrumb.Item key={path}>
+					{children?.length ? meta?.title : <Link to={path}>{meta?.title}</Link>}
+				</Breadcrumb.Item>
 			))}
 		</Breadcrumb>
 	);
