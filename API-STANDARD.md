@@ -31,11 +31,23 @@
 
 如果业务数据复杂，可考虑单独将`pageIndex`、`pageSize`挪至url。
 
+```typescript
+interface RequestPayload {
+ [key]: [value];       // 业务数据。value必须JSON Safe。
+ pageIndex?: number;   // 页码索引。
+ pageSize?: number;    // 每页条数。
+}
 ```
-{
-  [key]: [value],      // 业务数据。value必须JSON Safe。
-  pageIndex?: number,   // 页码索引。
-  pageSize?: number     // 每页条数。
+
+or
+
+```typescript
+interface RequestPayload {
+ data: {
+  [key]: [value];      // 业务数据。value必须JSON Safe。
+ };
+ pageIndex?: number;   // 页码索引。
+ pageSize?: number;    // 每页条数。
 }
 ```
 
@@ -43,11 +55,11 @@
 
 仅适用`Content-Type`为`application/json;charset=UTF-8`的场景。
 
-```
-{
-  code: number,         // Number 请求状态。复杂业务可使用String，但是全系统只能是Number、String之一。
-  success?: boolean,    // Boolean 请求是否成功，此值按需添加，确定之后不再更改。
-  message: string,      // String 描述，失败返回必须是用户能看懂的。
+```typescript
+interface ResponsePayload {
+  code: number,         // 请求状态。复杂业务可使用String，但是全系统只能是Number、String之一。
+  success?: boolean,    // 请求是否成功，此值按需添加，确定之后不再更改。
+  message: string,      // 描述，失败返回必须是用户能看懂的。
   data: any,            // 必须返回，没有时赋值null。
   pageIndex?: number,   // 页码索引。
   pageSize?: number,    // 每页条数。

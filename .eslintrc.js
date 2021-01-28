@@ -116,7 +116,7 @@ module.exports = {
 		'arrow-body-style': OFF,
 
 		'max-depth': [ERROR, 2],
-		'max-params': [ERROR, 3],
+		'max-params': [ERROR, 4],
 		'max-len': [ERROR, { code: 120 }],
 		'max-lines-per-function': [WARN, 200],
 		'max-lines': [ERROR, { max: 800, skipBlankLines: true, skipComments: true }],
