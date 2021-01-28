@@ -10,15 +10,23 @@ body,
 	overflow: hidden;
 }
 
-.all-inherit {
-	color: inherit;
-	background: inherit;
-
-	&:hover,
-	&:active,
-	&:visited,
-	&:focus {
+#app-container {
+	a:hover {
+		color: @dark-primary-color;
+	}
+	.all-inherit {
 		color: inherit;
 		background: inherit;
+
+		&:hover,
+		&:active,
+		&:visited,
+		&:focus {
+			color: inherit;
+			background: inherit;
+		}
 	}
 }
+
+
+

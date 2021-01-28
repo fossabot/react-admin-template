@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Breadcrumb } from 'antd';
+import { HomeOutlined } from '@ant-design/icons';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { getParentsRouteByPath } from '@/utils/temp-utils';
@@ -13,15 +14,19 @@ const GlobalBreadcrumb: React.FC = () => {
 	const [breadcrumbs, setBreadcrumbs] = useState<IRouterConfig[]>([]);
 	useEnhancedEffect(() => {
 		const pathname = location.pathname.replace(/\/$/, '');
-		setBreadcrumbs(getParentsRouteByPath(routes, pathname) as IRouterConfig[] || []);
+		const list = getParentsRouteByPath(routes, pathname) as IRouterConfig[] || [];
+		setBreadcrumbs(list.reverse());
 	}, [location.pathname]);
 	return (
 		<Breadcrumb className={s.breadcrumb}>
-			<Breadcrumb.Item><Link to="/">首页</Link></Breadcrumb.Item>
-			{breadcrumbs.reverse().map(({ path, children, meta }) => (
-				<Breadcrumb.Item key={path}>
-					{children?.length ? meta?.title : <Link to={path}>{meta?.title}</Link>}
-				</Breadcrumb.Item>
+			<Breadcrumb.Item>
+				<Link to="/">
+					<HomeOutlined className={s.home} />
+					首页
+				</Link>
+			</Breadcrumb.Item>
+			{breadcrumbs.map(({ path, meta }) => (
+				<Breadcrumb.Item key={path}>{meta?.title}</Breadcrumb.Item>
 			))}
 		</Breadcrumb>
 	);
