@@ -20,10 +20,17 @@ const GlobalBreadcrumb: React.FC = () => {
 	return (
 		<Breadcrumb className={s.breadcrumb}>
 			<Breadcrumb.Item>
-				<Link to="/">
-					<HomeOutlined className={s.home} />
-					首页
-				</Link>
+				{breadcrumbs.length ? (
+					<Link className={s.link} to="/">
+						<HomeOutlined className={s.home} />
+						首页
+					</Link>
+				) : (
+					<>
+						<HomeOutlined className={s.home} />
+						首页
+					</>
+				)}
 			</Breadcrumb.Item>
 			{breadcrumbs.map(({ path, meta }) => (
 				<Breadcrumb.Item key={path}>{meta?.title}</Breadcrumb.Item>
