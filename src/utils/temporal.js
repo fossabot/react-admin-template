@@ -22,7 +22,7 @@ export function getParentsRouteByPath(
 			return [treeList[i]];
 		}
 		if (treeList[i]?.[childrenField]) {
-			const nodes = getParentsRouteByPath(treeList[i]?.[childrenField], value);
+			const nodes = getParentsRouteByPath(treeList[i]?.[childrenField], value, childrenField, valueField);
 			if (nodes) {
 				return nodes.concat(treeList[i]);
 			}
