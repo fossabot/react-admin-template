@@ -22,7 +22,8 @@
 
 .messageDropdown {
 	width: 360px;
-	background: @dark-main-bg-color;
+	background: @main-bg-color;
+	border: 1px solid @border-color;
 
 	.messages {
 		max-height: 400px;
@@ -33,7 +34,7 @@
 			padding-left: 12px;
 			transition: all 0.3s;
 			&:hover {
-				background: @dark-hover-bg-color;
+				background: @base-bg-color;
 			}
 
 			.listExtra {
@@ -56,11 +57,11 @@
 			transition: all 0.3s;
 
 			&:hover {
-				color: @dark-primary-color;
+				color: @primary-color;
 			}
 
 			&:first-child {
-				border-right: 1px solid @dark-border-color;
+				border-right: 1px solid @border-color;
 			}
 		}
 	}
@@ -79,13 +80,56 @@
 			margin: 0;
 		}
 		.ant-tabs-ink-bar {
-			background: @dark-primary-color;
+			background: @primary-color;
 		}
 		.ant-tabs-tab:hover {
-			color: @dark-primary-color;
+			color: @primary-color;
 		}
 		.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-			color: @dark-primary-color;
+			color: @primary-color;
+		}
+	}
+}
+
+[data-theme="dark"] {
+	.messageCenter {
+		&:hover {
+			background: @dark-hover-bg-color;
+			.bell {
+				color: @dark-primary-color;
+			}
+		}
+	}
+
+	.messageDropdown {
+		background: @dark-main-bg-color;
+		.messages {
+			.listItem {
+				&:hover {
+					background: @dark-hover-bg-color;
+				}
+			}
+		}
+		.messageFooter {
+			div {
+				&:hover {
+					color: @dark-primary-color;
+				}
+				&:first-child {
+					border-right: 1px solid @dark-border-color;
+				}
+			}
+		}
+		:global {
+			.ant-tabs-ink-bar {
+				background: @dark-primary-color;
+			}
+			.ant-tabs-tab:hover {
+				color: @dark-primary-color;
+			}
+			.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+				color: @dark-primary-color;
+			}
 		}
 	}
 }
