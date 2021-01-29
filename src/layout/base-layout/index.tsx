@@ -31,7 +31,7 @@ const BaseLayout: React.FC = () => {
 
 	return (
 		<Layout id="app-container">
-			<Sider collapsedWidth={80} collapsed={collapsed}>
+			<Sider className={s.appSider} collapsedWidth={80} collapsed={collapsed}>
 				<div className={s.appAside}>
 					<Header className={s.appAsideLogo} onClick={onNavToRoot}>
 						React Admin Template

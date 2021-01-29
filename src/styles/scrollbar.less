@@ -9,10 +9,18 @@
 	background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-	background: #4c4c4c;
+	background: #ddd;
 	border-radius: 10px;
-
 	&:hover {
-		background: #5c5c5c;
+		background: #ccc;
+	}
+}
+
+[data-theme="dark"] {
+	::-webkit-scrollbar-thumb {
+		background: #4c4c4c;
+		&:hover {
+			background: #5c5c5c;
+		}
 	}
 }

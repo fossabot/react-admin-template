@@ -6,6 +6,7 @@
 	padding: 0;
 	line-height: @global-header-height;
 	color: @dark-main-font-color;
+	background: @dark-main-bg-color;
 
 	.foldIcon {
 		display: flex;
@@ -34,26 +35,30 @@
 		}
 	}
 }
-.appAside {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	.appAsideLogo {
+
+.appSider {
+	background: #1f1f1f;
+	.appAside {
 		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 0 10px;
-		overflow: hidden;
-		font-size: 16px;
-		font-weight: 700;
-		line-height: 1;
-		color: @dark-primary-color;
-		text-align: center;
-		cursor: pointer;
-		user-select: none;
-	}
-	.asideMenu {
-		overflow-y: auto;
+		flex-direction: column;
+		height: 100%;
+		.appAsideLogo {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0 10px;
+			overflow: hidden;
+			font-size: 16px;
+			font-weight: 700;
+			line-height: 1;
+			color: @dark-primary-color;
+			text-align: center;
+			cursor: pointer;
+			user-select: none;
+		}
+		.asideMenu {
+			overflow-y: auto;
+		}
 	}
 }
 
