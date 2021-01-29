@@ -12,11 +12,7 @@
  * @param valueField
  * @returns {T[]|*[]}
  */
-export function getParentsRouteByPath(
-	treeList, value,
-	childrenField = 'children',
-	valueField = 'id',
-) {
+export function getParentsRouteByPath(treeList, value, childrenField = 'children', valueField = 'id') {
 	for (let i = 0; i < treeList.length; i++) {
 		if (treeList[i]?.[valueField] === value) {
 			return [treeList[i]];
