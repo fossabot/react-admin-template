@@ -3,7 +3,7 @@ import { Breadcrumb } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
-import { getParentsRouteByPath } from '@/utils/temp-utils';
+import { getParentsRouteByPath } from '@/utils/temporal';
 import useEnhancedEffect from '@/utils/use-enhanced-effect';
 import routes from '@/router';
 import { IRouterConfig } from '@/utils/render-routes';
@@ -14,7 +14,7 @@ const GlobalBreadcrumb: React.FC = () => {
 	const [breadcrumbs, setBreadcrumbs] = useState<IRouterConfig[]>([]);
 	useEnhancedEffect(() => {
 		const pathname = location.pathname.replace(/\/$/, '');
-		const list = getParentsRouteByPath(routes, pathname) as IRouterConfig[] || [];
+		const list = getParentsRouteByPath(routes, pathname, 'children', 'path') as IRouterConfig[] || [];
 		setBreadcrumbs(list.reverse());
 	}, [location.pathname]);
 	return (

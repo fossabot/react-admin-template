@@ -10,7 +10,7 @@ import { IRouterConfig } from '@/utils/render-routes';
 import routes from '@/router';
 import { SelectInfo } from '@/interface/menu';
 import { checkPermissions } from '@/utils/functions';
-import { getParentsRouteByPath } from '@/utils/temp-utils';
+import { getParentsRouteByPath } from '@/utils/temporal';
 
 // import s from './index.module.less';
 
@@ -28,7 +28,7 @@ const GlobalMenu: React.FC<IProps> = (props: IProps) => {
 
 	useEnhancedEffect(() => {
 		const pathname = location.pathname.replace(/\/$/, '');
-		const parents = getParentsRouteByPath(routes, pathname) as IRouterConfig[] || [];
+		const parents = getParentsRouteByPath(routes, pathname, 'children', 'path') as IRouterConfig[] || [];
 		setOpenKeys(parents.map((item) => item.path));
 	}, [location.pathname]);
 
