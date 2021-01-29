@@ -55,15 +55,15 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 		require.resolve('thread-loader'),
 		{
 			loader: require.resolve('css-loader'),
-			options: useCssModule
+			options: Object.assign({}, { sourceMap: useSourceMap }, useCssModule
 				? {
-						modules: isDevelopment
-							? {
-									getLocalIdent: getCSSModuleLocalIdent,
-							  }
-							: true,
-				  }
-				: {},
+					modules: isDevelopment
+						? {
+							getLocalIdent: getCSSModuleLocalIdent,
+						}
+						: true,
+				}
+				: {}),
 		},
 		{
 			loader: require.resolve('postcss-loader'),
