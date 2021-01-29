@@ -36,7 +36,9 @@ const BaseLayout: React.FC = () => {
 					<Header className={s.appAsideLogo} onClick={onNavToRoot}>
 						React Admin Template
 					</Header>
-					<GlobalMenu />
+					<div className={s.asideMenu}>
+						<GlobalMenu />
+					</div>
 				</div>
 			</Sider>
 			<Layout>
