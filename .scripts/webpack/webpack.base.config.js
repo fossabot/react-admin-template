@@ -91,7 +91,7 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 				loader: require.resolve('resolve-url-loader'),
 				options: {
 					sourceMap: canUseSourceMap,
-					root: paths.appRenderSrc,
+					root: paths.appWebSrc,
 				},
 			},
 			{
@@ -116,11 +116,11 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 	return loaders;
 }
 
-const webpackRenderBaseConfig = {
+const webpackBaseConfig = {
 	// web or electron-renderer 如果想运行于浏览器，target设为web，同时请注意渲染线程代码
 	target: process.env.TARGET || 'web',
 	entry: {
-		app: [paths.appRenderEntry],
+		app: [paths.appWebEntry],
 	},
 	output: {
 		globalObject: 'this',
@@ -128,14 +128,14 @@ const webpackRenderBaseConfig = {
 		publicPath: appPublicPath,
 		filename: 'statics/scripts/[name]-[chunkhash:8].js',
 		chunkFilename: 'statics/scripts/[name]-[chunkhash:8].chunk.js',
-		path: paths.appRenderDistPath,
+		path: paths.appWebDistPath,
 	},
 	module: {
 		strictExportPresence: true,
 		rules: [
 			{
 				test: /\.(js|jsx|ts|tsx)$/,
-				include: paths.appRenderSrc,
+				include: paths.appWebSrc,
 				use: [
 					require.resolve('thread-loader'),
 					{
@@ -184,7 +184,7 @@ const webpackRenderBaseConfig = {
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx'],
 		alias: {
-			'@': paths.appRenderSrc,
+			'@': paths.appWebSrc,
 		},
 	},
 	plugins: [
@@ -210,7 +210,7 @@ const webpackRenderBaseConfig = {
 			extensions: ['js', 'jsx', 'ts', 'tsx'],
 			formatter: require.resolve('react-dev-utils/eslintFormatter'),
 			eslintPath: require.resolve('eslint'),
-			context: paths.appRenderSrc,
+			context: paths.appWebSrc,
 			cache: enableCache,
 			cwd: paths.appRootPath,
 			resolvePluginsRelativeTo: __dirname,
@@ -219,7 +219,7 @@ const webpackRenderBaseConfig = {
 			fix: true,
 			cache: enableCache,
 			quiet: true,
-			context: paths.appRenderSrc,
+			context: paths.appWebSrc,
 			files: ['**/*.(le|c)ss'],
 		}),
 		new AntdDayjsWebpackPlugin(),
@@ -271,6 +271,6 @@ const webpackRenderBaseConfig = {
 	},
 };
 
-bundleAnalyze && webpackRenderBaseConfig.plugins.unshift(new BundleAnalyzerPlugin());
+bundleAnalyze && webpackBaseConfig.plugins.unshift(new BundleAnalyzerPlugin());
 
-module.exports = webpackRenderBaseConfig;
+module.exports = webpackBaseConfig;

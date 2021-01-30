@@ -5,14 +5,14 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
-const webpackRenderBaseConfig = require('./webpack.render.base.config');
+const webpackBaseConfig = require('./webpack.base.config');
 const paths = require('../config/paths');
 const { buildEnv, useSourceMap, enableCache } = require('../config');
 const isProduction = buildEnv === 'production';
 const isProductionProfile = isProduction && process.argv.includes('--profile');
 const canUseSourceMap = isProduction ? useSourceMap : true;
 
-const webpackRenderProdConfig = {
+const webpackProdConfig = {
 	mode: 'production',
 	bail: isProduction,
 	devtool: canUseSourceMap ? 'source-map' : false,
@@ -24,7 +24,7 @@ const webpackRenderProdConfig = {
 			patterns: [
 				{
 					from: paths.appPublicPath,
-					to: paths.appRenderDistPath,
+					to: paths.appWebDistPath,
 					globOptions: {
 						ignore: ['**/favicon.ico', '**/index.html'],
 					},
@@ -85,4 +85,4 @@ const webpackRenderProdConfig = {
 	},
 };
 
-module.exports = webpackMerge(webpackRenderBaseConfig, webpackRenderProdConfig);
+module.exports = webpackMerge(webpackBaseConfig, webpackProdConfig);

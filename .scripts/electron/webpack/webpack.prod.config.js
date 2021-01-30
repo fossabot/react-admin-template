@@ -4,24 +4,24 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
-const { buildEnv } = require('../config');
-const paths = require('../config/paths');
+const { buildEnv } = require('../../config');
+const paths = require('../../config/paths');
 const { dependencies, devDependencies } = require(paths.appRootPkgJson);
 const isDevelopment = buildEnv === 'development';
 const isProduction = buildEnv === 'production';
 
-const webpackMainProdConfig = {
+const webpackProdConfig = {
 	mode: 'production',
 	target: 'electron-main',
 	entry: {
-		index: [paths.appMainEntry],
+		index: [paths.appElectronEntry],
 	},
 	output: {
 		globalObject: 'this',
 		pathinfo: !isProduction,
 		publicPath: '/',
 		filename: '[name].js',
-		path: paths.appMainDistPath,
+		path: paths.appElectronDistPath,
 	},
 	externals: isDevelopment ? [] : [...Object.keys(dependencies || {}), ...Object.keys(devDependencies || {})],
 	module: {
@@ -29,7 +29,7 @@ const webpackMainProdConfig = {
 		rules: [
 			{
 				test: /\.(js|ts)$/,
-				include: paths.appMainSrc,
+				include: paths.appElectronSrc,
 				use: [
 					require.resolve('thread-loader'),
 					{
@@ -49,7 +49,7 @@ const webpackMainProdConfig = {
 	resolve: {
 		extensions: ['.js', '.ts', '.json', '.node'],
 		alias: {
-			'~': paths.appMainSrc,
+			'~': paths.appElectronSrc,
 		},
 	},
 	plugins: [
@@ -75,7 +75,7 @@ const webpackMainProdConfig = {
 			extensions: ['js', 'jsx', 'ts', 'tsx'],
 			formatter: require.resolve('react-dev-utils/eslintFormatter'),
 			eslintPath: require.resolve('eslint'),
-			context: paths.appMainSrc,
+			context: paths.appElectronSrc,
 			cache: false,
 			cwd: paths.appRootPath,
 			resolvePluginsRelativeTo: __dirname,
@@ -86,8 +86,8 @@ const webpackMainProdConfig = {
 		new CopyWebpackPlugin({
 			patterns: [
 				{
-					from: paths.appMainStatics,
-					to: paths.appMainDistStatics,
+					from: paths.appElectronStatics,
+					to: paths.appElectronDistStatics,
 					globOptions: {
 						ignore: ['**/favicon.ico', '**/index.html'],
 					},
@@ -102,4 +102,4 @@ const webpackMainProdConfig = {
 	},
 };
 
-module.exports = webpackMainProdConfig;
+module.exports = webpackProdConfig;

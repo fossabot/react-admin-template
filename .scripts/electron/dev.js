@@ -33,8 +33,8 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const config = require('../config');
 const paths = require('../config/paths');
-const webpackMainProdConfig = require('../webpack/webpack.main.prod.config');
-const webpackRenderDevConfig = require('../webpack/webpack.render.dev.config');
+const webpackMainProdConfig = require('./webpack/webpack.prod.config');
+const webpackDevConfig = require('../webpack/webpack.dev.config');
 const { printStatsLog, printElectronLog, printInstructions } = require('../utils/printer');
 
 let electronProcess = null;
@@ -43,14 +43,14 @@ let hotMiddleware = null;
 
 function startRenderServer() {
 	return new Promise(async (resolve, reject) => {
-		const compiler = webpack(webpackRenderDevConfig);
+		const compiler = webpack(webpackDevConfig);
 
 		const devMiddleware = WebpackDevMiddleware(compiler, {
 			lazy: false,
 			logTime: true,
 			serverSideRender: false,
 			stats: { colors: true },
-			publicPath: webpackRenderDevConfig.output.publicPath,
+			publicPath: webpackDevConfig.output.publicPath,
 			logger: webpackLog({ name: 'wds', level: 'error' }),
 		});
 
@@ -103,7 +103,7 @@ function startRenderServer() {
 
 function startElectron() {
 	return new Promise((resolve) => {
-		electronProcess = spawn(dev, ['--inspect=5858', paths.appMainDistPath], {
+		electronProcess = spawn(dev, ['--inspect=5858', paths.appElectronDistPath], {
 			env: Object.assign({}, process.env, {
 				ELECTRON_DISABLE_SECURITY_WARNINGS: false, // electron的一些警告信息按需配置
 				RENDER_DEV_HOST_NAME: config.hostName === '0.0.0.0' ? 'localhost' : config.hostName,
@@ -131,7 +131,7 @@ function startElectron() {
 
 function startMainWatcher() {
 	return new Promise((resolve, reject) => {
-		webpackMainProdConfig.entry.index.unshift(paths.appMainDevEntry);
+		webpackMainProdConfig.entry.index.unshift(paths.appElectronDevEntry);
 
 		let firstTapDone = false;
 		const compiler = webpack(webpackMainProdConfig);

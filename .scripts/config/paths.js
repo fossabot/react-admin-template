@@ -26,22 +26,22 @@ module.exports = {
 	appNodeModules: resolvePath('node_modules'),
 
 	// electron
-	appMainSrc: resolvePath('main'),
-	appMainDevEntry: resolveModule(resolvePath, 'main/index.dev'),
-	appMainEntry: resolveModule(resolvePath, 'main/index'),
-	appMainStatics: resolvePath('main/statics'),
-	appMainDistPath: resolvePath('dist/main'),
-	appMainDistStatics: resolvePath('dist/main/statics'),
+	appElectronSrc: resolvePath('main'),
+	appElectronDevEntry: resolveModule(resolvePath, 'main/index.dev'),
+	appElectronEntry: resolveModule(resolvePath, 'main/index'),
+	appElectronStatics: resolvePath('main/statics'),
+	appElectronDistPath: resolvePath('build'),
+	appElectronDistStatics: resolvePath('build/statics'),
 
 	// web
 	appPublicPath: resolvePath('public'),
 	favicon: resolvePath('public/favicon.ico'),
 	appHtml: resolvePath('public/index.html'),
 	spriteSvgPath: resolvePath('src/assets/svg-sprite'),
-	appRenderSrc: resolvePath('src'),
-	appRenderEntry: resolveModule(resolvePath, 'src/index'),
+	appWebSrc: resolvePath('src'),
+	appWebEntry: resolveModule(resolvePath, 'src/index'),
 	appDllPath: resolvePath('node_modules/.cache/dll-plugin'),
-	appRenderDistPath: resolvePath('dist/render'),
+	appWebDistPath: resolvePath('dist'),
 	globalLessVariables: resolvePath('src/styles/variables/*.less'),
 	globalLessMixins: resolvePath('src/styles/mixins/*.less'),
 };

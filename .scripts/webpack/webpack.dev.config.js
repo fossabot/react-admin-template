@@ -6,13 +6,13 @@ const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 
 const { dllConfig } = require('../config');
 const paths = require('../config/paths');
-const webpackRenderBaseConfig = require('./webpack.render.base.config');
+const webpackBaseConfig = require('./webpack.base.config');
 
 const dllScriptExists = fs.existsSync(path.resolve(paths.appDllPath, dllConfig.filename));
 const dllJsonExists = fs.existsSync(path.resolve(paths.appDllPath, dllConfig.manifest));
 const canUseDll = dllScriptExists && dllJsonExists;
 
-const webpackRenderDevConfig = {
+const webpackDevConfig = {
 	mode: 'development',
 	devtool: 'cheap-module-source-map',
 	output: {
@@ -42,7 +42,7 @@ const webpackRenderDevConfig = {
 	},
 };
 
-const config = webpackMerge(webpackRenderBaseConfig, webpackRenderDevConfig);
+const config = webpackMerge(webpackBaseConfig, webpackDevConfig);
 
 Object.keys(config.entry).forEach(function (name) {
 	// config.entry[name].unshift('webpack-hot-middleware/client?timeout=200&overlay=true&reload=true');

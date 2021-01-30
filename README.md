@@ -76,7 +76,7 @@
 
 0. 删除`tsconfig.json`中`include`数组的`main`目录配置和`paths`对象中的`~/*`
 1. 删除`.scripts/config/paths.js`中 electron 相关目录配置，有注释
-2. 删除`.scripts/electron`文件夹和`.scripts/webpack/webpack.main.prod.config.js`
+2. 删除`.scripts/electron`文件夹`
 3. 为了好看，在`./config/paths.js`配置 web 文件打包输出目录`dist/render` -> `dist`
 4. 删除根目录下`main`目录
 5. 删除`package.json`文件中`scripts`对象的`electron`相关命令
