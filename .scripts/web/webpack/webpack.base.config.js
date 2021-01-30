@@ -18,6 +18,7 @@ threadLoader.warmup({}, ['babel-loader', 'css-loader', 'postcss-loader', 'less-l
 const {
 	buildTime,
 	buildEnv,
+	buildTarget,
 	bundleAnalyze,
 	appPublicPath,
 	useSourceMap,
@@ -118,7 +119,7 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 
 const webpackBaseConfig = {
 	// web or electron-renderer 如果想运行于浏览器，target设为web，同时请注意渲染线程代码
-	target: process.env.TARGET || 'web',
+	target: buildTarget === 'electron' ? 'electron-renderer' : 'web',
 	entry: {
 		app: [paths.appWebEntry],
 	},
@@ -189,7 +190,7 @@ const webpackBaseConfig = {
 	},
 	plugins: [
 		new WebpackBar({
-			name: process.env.TARGET ? capitalCase(process.env.TARGET) : 'webpack',
+			name: buildTarget === 'electron' ? 'Electron Render' : 'webpack',
 			profile: true,
 		}),
 		new ForkTsCheckerWebpackPlugin({

@@ -16,6 +16,8 @@ const resolveModule = (resolveFn, filePath) => {
 	return resolveFn(`${filePath}.js`);
 };
 
+const buildTarget = process.env.BUILD_TARGET;
+
 module.exports = {
 	// global
 	appRootPath: resolvePath('.'),
@@ -41,7 +43,7 @@ module.exports = {
 	appWebSrc: resolvePath('src'),
 	appWebEntry: resolveModule(resolvePath, 'src/index'),
 	appDllPath: resolvePath('node_modules/.cache/dll-plugin'),
-	appWebDistPath: resolvePath('dist'),
+	appWebDistPath: buildTarget === 'electron' ? resolvePath('build/render') : resolvePath('dist'),
 	globalLessVariables: resolvePath('src/styles/variables/*.less'),
 	globalLessMixins: resolvePath('src/styles/mixins/*.less'),
 };

@@ -1,7 +1,7 @@
 const WebpackBar = require('webpackbar');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const { buildEnv } = require('../../config');
@@ -80,9 +80,9 @@ const webpackProdConfig = {
 			cwd: paths.appRootPath,
 			resolvePluginsRelativeTo: __dirname,
 		}),
-		new CleanWebpackPlugin({
-			// verbose: true,
-		}),
+		// new CleanWebpackPlugin({
+		// 	// verbose: true,
+		// }),
 		new CopyWebpackPlugin({
 			patterns: [
 				{

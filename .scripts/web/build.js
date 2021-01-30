@@ -18,20 +18,21 @@ require('../utils/checkers');
 
 const chalk = require('chalk');
 const rimraf = require('rimraf');
-const paths = require('../config/paths');
+const { appWebDistPath } = require('../config/paths');
 const webpackProdConfig = require('./webpack/webpack.prod.config');
 const { build } = require('../utils/functions');
 
 // 配置有CleanWebpackPlugin，rimraf可以删除
-rimraf(paths.appWebDistPath, (err) => {
+rimraf(appWebDistPath, (err) => {
 	if (err) throw err;
 
-	console.log(chalk.gray(` 目录【${paths.appWebDistPath}】清理成功, 等待打包...`));
+	console.log(chalk.gray(` 目录【${appWebDistPath}】清理成功, 等待打包...`));
 
 	build(webpackProdConfig)
 		.then((res) => {
 			console.log(`${res}`);
-			console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green('打包完成')}`);
+			console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green(`打包完成！可在${chalk.yellow(`【${appWebDistPath}】`)}目录查看`)}`);
+			console.log();
 		})
 		.catch((err) => {
 			console.log(err);

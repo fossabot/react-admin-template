@@ -1,7 +1,7 @@
 const { merge: webpackMerge } = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
@@ -17,9 +17,9 @@ const webpackProdConfig = {
 	bail: isProduction,
 	devtool: canUseSourceMap ? 'source-map' : false,
 	plugins: [
-		new CleanWebpackPlugin({
-			// verbose: true,
-		}),
+		// new CleanWebpackPlugin({
+		// 	// verbose: true,
+		// }),
 		new CopyWebpackPlugin({
 			patterns: [
 				{

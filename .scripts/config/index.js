@@ -26,6 +26,7 @@ module.exports = {
 	// env
 	appPublicPath: '/',
 	buildEnv: process.env.BUILD_ENV,
+	buildTarget: process.env.BUILD_TARGET,
 	bundleAnalyze: process.env.BUNDLE_ANALYZE,
 	useSourceMap: process.env.GENERATE_SOURCEMAP === 'true' || process.env.BUILD_ENV !== 'production',
 
