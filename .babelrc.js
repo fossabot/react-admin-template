@@ -10,7 +10,7 @@ module.exports = {
 		'@babel/plugin-transform-regenerator', // https://babeljs.io/docs/en/babel-plugin-transform-regenerator
 		'@babel/plugin-transform-modules-commonjs', // https://babeljs.io/docs/en/babel-plugin-transform-modules-commonjs
 		'react-hot-loader/babel', // https://github.com/gaearon/react-hot-loader#react-hot-loader
-		['babel-plugin-import', { libraryName: 'antd', style: 'css' }], // https://github.com/ant-design/babel-plugin-import#babel-plugin-import
+		['babel-plugin-import', { libraryName: 'antd', style: true }], // https://github.com/ant-design/babel-plugin-import#babel-plugin-import
 	],
 	presets: [
 		'@babel/preset-typescript', // https://babeljs.io/docs/en/babel-preset-typescript

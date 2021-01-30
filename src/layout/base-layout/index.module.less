@@ -7,22 +7,6 @@
 	line-height: @global-header-height;
 	color: @dark-main-font-color;
 	background: @dark-main-bg-color;
-
-	.foldIcon {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: @global-header-height;
-		height: @global-header-height;
-		padding: 0 10px;
-		margin-right: 6px;
-		font-size: 16px;
-		transition: all 0.3s;
-		&:hover {
-			color: @dark-primary-color;
-			background: @dark-hover-bg-color;
-		}
-	}
 	.headerMenu {
 		display: flex;
 		flex: 1;
@@ -57,7 +41,23 @@
 			user-select: none;
 		}
 		.asideMenu {
+			flex: 1;
 			overflow-y: auto;
+		}
+		.fold {
+			display: flex;
+			align-items: center;
+			height: 40px;
+			padding: 0 10px;
+			font-size: 16px;
+			color: @dark-main-font-color;
+			cursor: pointer;
+			border-top: 1px solid @dark-border-color;
+			transition: all 0.3s;
+			&:hover {
+				color: @dark-primary-color;
+				background: @dark-hover-bg-color;
+			}
 		}
 	}
 }

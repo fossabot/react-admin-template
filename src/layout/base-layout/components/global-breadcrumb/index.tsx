@@ -18,24 +18,26 @@ const GlobalBreadcrumb: React.FC = () => {
 		setBreadcrumbs(list.reverse());
 	}, [location.pathname]);
 	return (
-		<Breadcrumb className={s.breadcrumb}>
-			<Breadcrumb.Item>
-				{breadcrumbs.length ? (
-					<Link className={s.link} to="/">
-						<HomeOutlined className={s.home} />
-						首页
-					</Link>
-				) : (
-					<>
-						<HomeOutlined className={s.home} />
-						首页
-					</>
-				)}
-			</Breadcrumb.Item>
-			{breadcrumbs.map(({ path, meta }) => (
-				<Breadcrumb.Item key={path}>{meta?.title}</Breadcrumb.Item>
-			))}
-		</Breadcrumb>
+		<section className={s.breadcrumb}>
+			<Breadcrumb>
+				<Breadcrumb.Item>
+					{breadcrumbs.length ? (
+						<Link className={s.link} to="/">
+							<HomeOutlined className={s.home} />
+							首页
+						</Link>
+					) : (
+						<>
+							<HomeOutlined className={s.home} />
+							首页
+						</>
+					)}
+				</Breadcrumb.Item>
+				{breadcrumbs.map(({ path, meta }) => (
+					<Breadcrumb.Item key={path}>{meta?.title}</Breadcrumb.Item>
+				))}
+			</Breadcrumb>
+		</section>
 	);
 };
 

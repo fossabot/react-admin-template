@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Switch } from 'react-router';
 import { useLocation, useHistory } from 'react-router-dom';
 import { Layout } from 'antd';
-import { MenuFoldOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 
 import { RootState } from '@/redux/store';
@@ -39,17 +39,19 @@ const BaseLayout: React.FC = () => {
 					<div className={s.asideMenu}>
 						<GlobalMenu />
 					</div>
+					<div
+						className={s.fold}
+						onClick={(): void => {
+							setCollapsed(!collapsed);
+						}}
+					>
+						{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined /> }
+					</div>
 				</div>
 			</Sider>
 			<Layout>
 				<Header className={s.appHeader}>
 					<section className={s.headerMenu}>
-						<MenuFoldOutlined
-							className={s.foldIcon}
-							onClick={(): void => {
-								setCollapsed(!collapsed);
-							}}
-						/>
 						<TabsBar />
 					</section>
 					<HeaderRight />
