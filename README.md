@@ -40,7 +40,9 @@
 ```
 > type(scope?): subject // scope可选
 ```
+
 提交的 `type` 可选值如下:
+
 ```javascript
 [
  'build',
@@ -59,11 +61,41 @@
 
 ## 四. 打包构建
 
-环境变量: 一些`BuiltIns`、`Plugins`、`Loader`的环境变量默认值是`process.env.NODE_ENV`，
+### 环境变量说明
+
+一些`BuiltIns`、`Plugins`、`Loader`的环境变量默认值是`process.env.NODE_ENV`，
 但是自家 CI 没得商量只传递一个环境变量`NODE_ENV`且会超出`development`、`test`、`production`范围，
 同时为了变量扩展，此项目`BABEL_ENV`、`NODE_ENV`已固定为`development`、`production`。
 也就是说无论`NODE_ENV`传递什么值都会在赋值给`BUILD_ENV`后被强制矫正为`development`或`production`。
+
 **所以本模板中请使用`BUILD_ENV`来区分环境，`process.env.NODE_ENV`不再使用**
+
+### 打包命令
+
+本模板无内置`electron`安装包构建支持，具体是`electron-builder`、`electron-packager`亦或其他请自行选择。
+
+> 如果`CI/CD`平台只支持`run build`，`electron`打包请自行适配
+
+```shell script
+# web开发环境打包
+> npm run build:dev
+
+# web测试环境打包
+> npm run build:test
+
+# web生产环境打包
+> npm run build:prod
+
+# electron开发环境打包
+> npm run build:electron:dev
+
+# electron测试环境打包
+> npm run build:electron:test
+
+# electron生产环境打包
+> npm run build:electron:prod
+```
+
 
 ## 五. 关于 Electron
 
@@ -77,16 +109,15 @@
 0. 删除`tsconfig.json`中`include`数组的`main`目录配置和`paths`对象中的`~/*`
 1. 删除`.scripts/config/paths.js`中 electron 相关目录配置，有注释
 2. 删除`.scripts/electron`文件夹`
-3. 为了好看，在`./config/paths.js`配置 web 文件打包输出目录`dist/render` -> `dist`
-4. 删除根目录下`main`目录
-5. 删除`package.json`文件中`scripts`对象的`electron`相关命令
-6. 卸载`package.json`文件中的依赖
+3. 删除根目录下`main`目录
+4. 删除`package.json`文件中`scripts`对象的`electron`相关命令
+5. 卸载`package.json`文件中的依赖
 	1. `electron`
 	2. `node-loader`
 	3. `electron-debug`
 	4. `electron-devtools-installer`
 	5. `@types/electron-devtools-installer`
-7. done
+6. done
 
 以上操作经实践暂无问题，如有问题请先查看控制台错误输出。
 
@@ -100,8 +131,6 @@
 3. 将`main`目录移动到`src`目录与`render`目录同级
 4. 修改`.scripts/config/paths.js`相关配置，将`src`修改为`src/render`，将`main`修改为`src/main`
 5. done
-
-以上操作经实践暂无问题，如有问题请先查看控制台错误输出。
 
 ## @todo
 
