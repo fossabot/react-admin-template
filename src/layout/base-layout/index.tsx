@@ -5,9 +5,11 @@ import { Layout } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 
+import config from '@/config';
 import { RootState } from '@/redux/store';
 import { getRedirectsRoutes, renderRoutesDeep } from '@/utils/render-routes';
 import routes from '@/router';
+import logo from '@/assets/icon/logo.png';
 
 import GlobalMenu from './components/global-menu';
 import GlobalBreadcrumb from './components/global-breadcrumb';
@@ -33,8 +35,11 @@ const BaseLayout: React.FC = () => {
 		<Layout id="app-container">
 			<Sider className={s.appSider} collapsedWidth={48} collapsed={collapsed}>
 				<div id="app-aside" className={s.appAside}>
-					<div className={s.appAsideLogo} onClick={onNavToRoot}>
-						React Admin Template
+					<div
+						className={s.appAsideLogo}
+						onClick={onNavToRoot}
+					>
+						{collapsed ? <img className={s.logo} src={logo} alt="logo"/> : config.appName}
 					</div>
 					<div className={s.asideMenu}>
 						<GlobalMenu />
