@@ -3,8 +3,8 @@ const path = require('path');
 const chalk = require('chalk');
 const semver = require('semver');
 const shell = require('shelljs');
-const paths = require('./config/paths');
-const { enginesRequired } = require('./config');
+const paths = require('../config/paths');
+const { enginesRequired } = require('../config');
 
 shell.config.silent = true;
 

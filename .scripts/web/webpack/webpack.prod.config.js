@@ -6,8 +6,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
 const webpackBaseConfig = require('./webpack.base.config');
-const paths = require('../config/paths');
-const { buildEnv, useSourceMap, enableCache } = require('../config');
+const paths = require('../../config/paths');
+const { buildEnv, useSourceMap, enableCache } = require('../../config');
 const isProduction = buildEnv === 'production';
 const isProductionProfile = isProduction && process.argv.includes('--profile');
 const canUseSourceMap = isProduction ? useSourceMap : true;

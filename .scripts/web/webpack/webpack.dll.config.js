@@ -3,8 +3,8 @@ const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const { dllConfig } = require('../config');
-const { appDllPath, appRootPkgJson } = require('../config/paths');
+const { dllConfig } = require('../../config');
+const { appDllPath, appRootPkgJson } = require('../../config/paths');
 const { dependencies } = require(appRootPkgJson);
 
 // 不被DllPlugin支持的包

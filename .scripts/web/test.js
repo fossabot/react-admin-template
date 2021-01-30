@@ -15,7 +15,7 @@ process.on('unhandledRejection', (error) => {
 const chalk = require('chalk');
 
 // check
-require('./utils/checkers');
+require('../utils/checkers');
 
 console.log(chalk.yellowBright.bold(' @todo: 此功能还在施工中... 施工中... 中...\n'));
 

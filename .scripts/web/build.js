@@ -14,13 +14,13 @@ process.on('unhandledRejection', (error) => {
 });
 
 // check
-require('./utils/checkers');
+require('../utils/checkers');
 
 const chalk = require('chalk');
 const rimraf = require('rimraf');
-const paths = require('./config/paths');
+const paths = require('../config/paths');
 const webpackProdConfig = require('./webpack/webpack.prod.config');
-const { build } = require('./utils/functions');
+const { build } = require('../utils/functions');
 
 // 配置有CleanWebpackPlugin，rimraf可以删除
 rimraf(paths.appWebDistPath, (err) => {

@@ -13,7 +13,7 @@ process.on('unhandledRejection', (error) => {
 });
 
 // check
-require('./utils/checkers');
+require('../utils/checkers');
 
 const path = require('path');
 const open = require('open');
@@ -27,9 +27,9 @@ const WebpackDevMiddleware = require('webpack-dev-middleware');
 const WebpackHotMiddleware = require('webpack-hot-middleware');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const config = require('./config');
+const config = require('../config');
 const webpackDevConfig = require('./webpack/webpack.dev.config');
-const { printInstructions } = require('./utils/printer');
+const { printInstructions } = require('../utils/printer');
 const compiler = webpack(webpackDevConfig);
 
 const devMiddleware = WebpackDevMiddleware(compiler, {

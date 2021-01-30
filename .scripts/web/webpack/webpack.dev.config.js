@@ -4,8 +4,8 @@ const webpack = require('webpack');
 const { merge: webpackMerge } = require('webpack-merge');
 const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 
-const { dllConfig } = require('../config');
-const paths = require('../config/paths');
+const { dllConfig } = require('../../config');
+const paths = require('../../config/paths');
 const webpackBaseConfig = require('./webpack.base.config');
 
 const dllScriptExists = fs.existsSync(path.resolve(paths.appDllPath, dllConfig.filename));

@@ -6,15 +6,15 @@ process.on('unhandledRejection', (error) => {
 });
 
 // check
-require('./utils/functions').nodeVersionCheck();
+require('../utils/functions').nodeVersionCheck();
 
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
-const { build } = require('./utils/functions');
+const { build } = require('../utils/functions');
 
 const webpackDllConfig = require('./webpack/webpack.dll.config');
-const { appRootPath, appDllPath, appRootPkgJson } = require('./config/paths');
+const { appRootPath, appDllPath, appRootPkgJson } = require('../config/paths');
 const { dependencies } = require(appRootPkgJson);
 
 function dllCheck() {

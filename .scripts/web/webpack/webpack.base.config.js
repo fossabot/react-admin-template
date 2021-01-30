@@ -28,8 +28,8 @@ const {
 	version,
 	gitBranch,
 	gitCommitHash,
-} = require('../config');
-const paths = require('../config/paths');
+} = require('../../config');
+const paths = require('../../config/paths');
 const isDevelopment = buildEnv === 'development';
 const isProduction = buildEnv === 'production';
 const canUseSourceMap = isProduction ? useSourceMap : true;

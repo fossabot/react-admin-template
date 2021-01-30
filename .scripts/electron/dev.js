@@ -34,7 +34,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const config = require('../config');
 const paths = require('../config/paths');
 const webpackMainProdConfig = require('./webpack/webpack.prod.config');
-const webpackDevConfig = require('../webpack/webpack.dev.config');
+const webpackDevConfig = require('../web/webpack/webpack.dev.config');
 const { printStatsLog, printElectronLog, printInstructions } = require('../utils/printer');
 
 let electronProcess = null;
