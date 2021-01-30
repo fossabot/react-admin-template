@@ -31,11 +31,11 @@ const BaseLayout: React.FC = () => {
 
 	return (
 		<Layout id="app-container">
-			<Sider className={s.appSider} collapsedWidth={80} collapsed={collapsed}>
-				<div className={s.appAside}>
-					<Header className={s.appAsideLogo} onClick={onNavToRoot}>
+			<Sider className={s.appSider} collapsedWidth={48} collapsed={collapsed}>
+				<div id="app-aside" className={s.appAside}>
+					<div className={s.appAsideLogo} onClick={onNavToRoot}>
 						React Admin Template
-					</Header>
+					</div>
 					<div className={s.asideMenu}>
 						<GlobalMenu />
 					</div>

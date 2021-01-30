@@ -77,6 +77,7 @@ const GlobalMenu: React.FC<IProps> = (props: IProps) => {
 
 	return (
 		<Menu
+			style={{ width: '100%' }}
 			theme="dark"
 			mode={props.mode || 'inline'}
 			inlineIndent={12}
