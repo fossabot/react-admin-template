@@ -61,6 +61,8 @@
 
 ## 四. 打包构建
 
+为了互不影响，`web`代码打包再`dist`目录，`electron`代码打包在`build`目录，其中渲染进程代码全部在`build/render`目录。
+
 ### 环境变量说明
 
 一些`BuiltIns`、`Plugins`、`Loader`的环境变量默认值是`process.env.NODE_ENV`，
