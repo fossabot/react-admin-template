@@ -17,21 +17,19 @@ hotClient.subscribe((event) => {
 	}
 
 	if (event.action === 'compiling') {
-		const style = `
-			position: absolute;
-			bottom: 20px;
-			left: 20px;
-			padding: 8px 12px;
-			color: #f90;
-			font-size: 16px;
-			font-weight: 700;
-			background: #000;
-			border-radius: 4px;
-			box-shadow: 0 4px 5px 0 #f90, 0 1px 10px 0 #f90;
-		`.replace(/\r?\n\s*/gm, '').replace(/:\s/g, ':');
-
-		document.body.innerHTML += `
-      <div id="webpack-hot-middleware-notice" style="${style}">Main Process Compiling...</div>
-    `;
+		const el = document.createElement('div');
+		el.id = 'webpack-hot-middleware-notice';
+		el.style.position = 'absolute';
+		el.style.bottom = '20px';
+		el.style.left = '20px';
+		el.style.padding = '8px 12px';
+		el.style.color = '#f90';
+		el.style.fontSize = '16px';
+		el.style.fontWeight = '700';
+		el.style.backgroundColor = '#000';
+		el.style.borderRadius = '4px';
+		el.style.boxShadow = '0 4px 5px 0 #f90, 0 1px 10px 0 #f90';
+		el.textContent = 'Main Process Compiling...';
+		document.body.appendChild(el);
 	}
 });
