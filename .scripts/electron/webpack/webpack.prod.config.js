@@ -6,7 +6,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const { buildEnv } = require('../../config');
 const paths = require('../../config/paths');
-const { dependencies, devDependencies } = require(paths.appRootPkgJson);
+// const { dependencies, devDependencies } = require(paths.appRootPkgJson);
 const isDevelopment = buildEnv === 'development';
 const isProduction = buildEnv === 'production';
 
@@ -23,7 +23,7 @@ const webpackProdConfig = {
 		filename: '[name].js',
 		path: paths.appElectronDistPath,
 	},
-	externals: isDevelopment ? [] : [...Object.keys(dependencies || {}), ...Object.keys(devDependencies || {})],
+	// externals: isDevelopment ? [] : [...Object.keys(dependencies || {}), ...Object.keys(devDependencies || {})],
 	module: {
 		strictExportPresence: true,
 		rules: [

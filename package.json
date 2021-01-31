@@ -217,7 +217,7 @@
       "NODE_ENV": "development"
     },
     "ignore": [
-      ".scripts/webpack/webpack.main.prod.config.js"
+      ".scripts/electron"
     ],
     "watch": [
       ".scripts",

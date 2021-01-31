@@ -24,7 +24,7 @@ module.exports = {
 	proxy: { ...proxy },
 
 	// env
-	appPublicPath: '/',
+	appPublicPath: '',
 	buildEnv: process.env.BUILD_ENV,
 	buildTarget: process.env.BUILD_TARGET,
 	bundleAnalyze: process.env.BUNDLE_ANALYZE,
