@@ -1,4 +1,5 @@
 import qs from 'qs';
+import { notification } from 'antd';
 import axios, {
 	AxiosInstance,
 	AxiosRequestConfig,
@@ -41,23 +42,30 @@ const codeMessageMap = new Map([
 	[410, '请求的资源被永久删除，且不会再得到的。'],
 	[413, '发送内容过大。'],
 	[422, '当创建一个对象时，发生一个验证错误。'],
-	[500, '服务器内部错误。'],
+	[500, '服务器发生错误，请检查服务器。'],
 	[502, '网关错误。'],
 	[503, '服务不可用，服务器暂时过载或维护。'],
 	[504, '网关超时。'],
 ]);
 
 function errorHandler(error: AxiosError) {
-	const config = error.config as IAxiosRequestConfig;
 	const response = error.response;
+	const config = response?.config as IAxiosRequestConfig;
 	const status = response?.status;
+	const statusText = response?.statusText;
 	const serverMessage = ((response?.data) as unknown as ICommonObject)?.message;
 	const codeMessage = status ? codeMessageMap.get(status) : '';
-	const message = serverMessage || codeMessage || error.message || '未知错误';
+	const message = serverMessage || codeMessage || statusText || error.message || '未知错误';
 
+	console.log(response?.statusText, response?.config.url, error.response, error.config);
 	if (config?.background) {
 		// @todo 隐藏菊花图动作
 	}
+
+	notification.error({
+		message: `接口异常 ${status}: ${config?.url}`,
+		description: message,
+	});
 
 	if (status) {
 		// @todo message
@@ -111,7 +119,7 @@ class Request {
 		this.client.interceptors.request.use(
 			(config: IAxiosRequestConfig) => {
 				if (config?.background) {
-					// @todo message
+					// @todo 打开菊花图动作
 				}
 
 				return config;
@@ -148,7 +156,7 @@ class Request {
 
 		const { method, headers = {}, format = 'json', params, data } = relConfig;
 
-		if (!method || method.toLowerCase() === 'get' || method.toLowerCase() === 'head') {
+		if (!method || ['head', 'get'].includes(method.toLowerCase())) {
 			if (params) {
 				params.timestamp = Date.now();
 			} else {
@@ -169,8 +177,6 @@ class Request {
 				headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
 			}
 		}
-
-		console.log(relConfig, headers);
 
 		return this.client
 			.request(relConfig)

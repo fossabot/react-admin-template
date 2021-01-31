@@ -144,7 +144,7 @@ module.exports = {
 		'@typescript-eslint/no-floating-promises': OFF,
 		'@typescript-eslint/no-unsafe-member-access': ERROR,
 		'@typescript-eslint/explicit-function-return-type': OFF,
-		'@typescript-eslint/restrict-template-expressions': ERROR,
+		'@typescript-eslint/restrict-template-expressions': WARN,
 		'@typescript-eslint/explicit-module-boundary-types': OFF,
 
 		'react/no-danger': ERROR,
