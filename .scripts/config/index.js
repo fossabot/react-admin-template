@@ -12,8 +12,8 @@ if (fs.existsSync(proxyPath)) {
 	proxy = require(proxyPath);
 }
 
-// exec
-function exec(cmd, options) {
+// execSync
+function execSync(cmd, options) {
 	return childProcess.execSync(cmd, options).toString().trim();
 }
 
@@ -45,7 +45,7 @@ module.exports = {
 	name: pascalCase(name),
 	version,
 	enginesRequired: engines && engines.node ? engines : { ...engines, node: '>=10.13.0' },
-	gitBranch: exec('git rev-parse --abbrev-ref HEAD'),
-	gitCommitHash: exec('git show -s --format=%h'),
+	gitBranch: execSync('git rev-parse --abbrev-ref HEAD'),
+	gitCommitHash: execSync('git show -s --format=%h'),
 	buildTime: dayjs().toJSON(),
 };
