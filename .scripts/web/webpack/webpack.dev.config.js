@@ -48,7 +48,7 @@ Object.keys(config.entry).forEach(function (name) {
 	// config.entry[name].unshift('webpack-hot-middleware/client?timeout=200&overlay=true&reload=true');
 
 	// electron主进程编译时提示订阅，如不使用electron，可以使用上面那行，本质没什么区别
-	config.entry[name].unshift(path.resolve(__dirname, '../enhance/webpack-hot-middleware'));
+	config.entry[name].unshift(path.resolve(__dirname, '../../enhance/webpack-hot-middleware'));
 
 	// react-hot-loader
 	config.entry[name].unshift('react-hot-loader/patch');

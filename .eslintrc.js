@@ -136,6 +136,7 @@ module.exports = {
 		'import/no-extraneous-dependencies': [ERROR, {devDependencies: true, optionalDependencies: false, peerDependencies: false}],
 
 		'@typescript-eslint/no-var-requires': OFF,
+		'@typescript-eslint/no-unsafe-return': OFF,
 		'@typescript-eslint/no-unused-vars': ERROR,
 		'@typescript-eslint/unbound-method': ERROR,
 		'@typescript-eslint/no-unsafe-call': ERROR,
