@@ -3,7 +3,6 @@ import { Card, Form, Input, Checkbox, Button } from 'antd';
 import classnames from 'classnames';
 import JsCookie from 'js-cookie';
 import config from '@/config';
-import { login } from '@/apis';
 
 import s from './index.module.less';
 import normal from './img/normal.png';
@@ -24,11 +23,10 @@ const LoginCard: React.FC<IProps> = (props: IProps) => {
 	const [panda, setPanda] = useState('normal');
 
 	function onFinish(values: IFormData) {
-		login();
 		// 纯模拟一下
 		JsCookie.set(config.mainCookieName, JSON.stringify(values));
 
-		console.log(props.onSuccess);
+		props.onSuccess();
 	}
 
 	return (
