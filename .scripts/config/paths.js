@@ -32,7 +32,8 @@ module.exports = {
 	appElectronDevEntry: resolveModule(resolvePath, 'main/index.dev'),
 	appElectronEntry: resolveModule(resolvePath, 'main/index'),
 	appElectronStatics: resolvePath('main/statics'),
-	appElectronDistPath: resolvePath('build'),
+	appElectronDistPath: resolvePath('build/main'),
+	appElectronReleasePath: resolvePath('release'),
 	appElectronDistStatics: resolvePath('build/statics'),
 
 	// web

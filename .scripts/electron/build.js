@@ -19,6 +19,7 @@ require('../utils/checkers');
 
 const chalk = require('chalk');
 const rimraf = require('rimraf');
+
 const { appElectronDistPath } = require('../config/paths');
 const { webpackBuilder } = require('../utils/functions');
 
@@ -45,30 +46,12 @@ rimraf(appElectronDistPath, (err) => {
 			console.log();
 			console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green(`主进程和渲染进程代码打包完成！可在${chalk.yellow(`【${appElectronDistPath}】`)}目录查看`)}`);
 			console.log();
+			// 打包
+			require('./packager');
 		})
 		.catch((err) => {
 			console.log(err);
 			process.exit(1);
 		});
-
-	// build(require('./webpack/webpack.prod.config'))
-	// 	.then((res) => {
-	// 		console.log(`${res}`);
-	// 		console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green('主进程打包完成')}`);
-	// 	})
-	// 	.catch((err) => {
-	// 		console.log(err);
-	// 		process.exit(1);
-	// 	});
-	//
-	// build(require('../web/webpack/webpack.prod.config'))
-	// 	.then((res) => {
-	// 		console.log(`${res}`);
-	// 		console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green('渲染进程打包完成')}`);
-	// 	})
-	// 	.catch((err) => {
-	// 		console.log(err);
-	// 		process.exit(1);
-	// 	});
 });
 
