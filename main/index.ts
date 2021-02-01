@@ -5,6 +5,7 @@ import config from './config';
 import { mark, performanceEnd } from './utils/performance';
 
 const { name, version } = config;
+const isDevelopment = process.env.BUILD_ENV === 'development';
 
 mark('main-start');
 
@@ -46,11 +47,13 @@ function createWindow() {
 	// 此处不做容错判断，无意义。如果不改启动方式不会出错，如果改了启动方式则默认知道如何关联
 	const pathname = `${RENDER_DEV_HOST_NAME as string}:${RENDER_DEV_PORT as string}`;
 
-	mainWindow.loadURL(url.format({
-		protocol: 'http',
-		pathname,
+	const options = {
+		protocol: isDevelopment ? 'http' : 'file',
+		pathname: isDevelopment ? pathname : path.join(__dirname, '../render/index.html'),
 		slashes: true,
-	})).then(() => {
+	};
+
+	mainWindow.loadURL(url.format(options)).then(() => {
 		console.log(`Main Window Load Success: http://${pathname}`);
 	});
 
