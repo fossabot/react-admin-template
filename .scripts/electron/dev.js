@@ -121,7 +121,7 @@ function startElectron() {
 
 		electronProcess.on('close', (code) => {
 			if (!isElectronManualRestarting) {
-				process.exit(code);
+				process.exit(code || 1);
 			}
 		});
 
