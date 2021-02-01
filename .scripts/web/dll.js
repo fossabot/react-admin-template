@@ -11,7 +11,7 @@ require('../utils/functions').nodeVersionCheck();
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
-const { build } = require('../utils/functions');
+const { webpackBuilder } = require('../utils/functions');
 
 const webpackDllConfig = require('./webpack/webpack.dll.config');
 const { appRootPath, appDllPath, appRootPkgJson } = require('../config/paths');
@@ -40,7 +40,7 @@ if (dllCheck()) {
 
 console.log(chalk.yellow(' DLL未构建或已失效，即将构建！'));
 
-build(webpackDllConfig)
+webpackBuilder(webpackDllConfig)
 	.then((res) => {
 		console.log(res);
 		console.log(chalk.grey(' 写入DLL依赖配置...'));

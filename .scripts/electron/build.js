@@ -20,7 +20,7 @@ require('../utils/checkers');
 const chalk = require('chalk');
 const rimraf = require('rimraf');
 const { appElectronDistPath } = require('../config/paths');
-const { build } = require('../utils/functions');
+const { webpackBuilder } = require('../utils/functions');
 
 // 配置有CleanWebpackPlugin，rimraf可以删除
 rimraf(appElectronDistPath, (err) => {
@@ -29,8 +29,8 @@ rimraf(appElectronDistPath, (err) => {
 	console.log(chalk.gray(` 目录【${appElectronDistPath}】清理成功, 等待打包...`));
 
 	Promise.all([
-		build(require('./webpack/webpack.prod.config')),
-		build(require('../web/webpack/webpack.prod.config')),
+		webpackBuilder(require('./webpack/webpack.prod.config')),
+		webpackBuilder(require('../web/webpack/webpack.prod.config')),
 	])
 		.then((res) => {
 			console.log();

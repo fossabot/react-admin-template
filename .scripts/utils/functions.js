@@ -84,7 +84,7 @@ function nodeEnvCheck() {
 }
 
 // webpack compiler
-function build(config) {
+function webpackBuilder(config) {
 	return new Promise((resolve, reject) => {
 		webpack(config, (err, stats) => {
 			if (err) {
@@ -114,5 +114,5 @@ module.exports = {
 	nodeVersionCheck,
 	buildEnvCheck,
 	nodeEnvCheck,
-	build,
+	webpackBuilder,
 };
