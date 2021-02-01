@@ -43,7 +43,7 @@ rimraf(appElectronDistPath, (err) => {
 			}));
 			console.log(chalk.green('------------------ 打包日志输出结束 ------------------'));
 			console.log();
-			console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green(`打包完成！可在${chalk.yellow(`【${appElectronDistPath}】`)}目录查看或进行下一步操作`)}`);
+			console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green(`主进程、渲染进程带啊吗打包完成！可在${chalk.yellow(`【${appElectronDistPath}】`)}目录查看`)}`);
 			console.log();
 		})
 		.catch((err) => {
