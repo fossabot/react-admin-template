@@ -31,7 +31,7 @@ rimraf(appWebDistPath, (err) => {
 	webpackBuilder(webpackProdConfig)
 		.then((res) => {
 			console.log(`${res}`);
-			console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green(`构建完成！可在${chalk.yellow(`【${appWebDistPath}】`)}目录查看或进行下一步操作`)}`);
+			console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.cyan(`构建完成！可在${chalk.green(`【${appWebDistPath}】`)}目录查看或进行下一步操作`)}`);
 			console.log();
 		})
 		.catch((err) => {
