@@ -27,7 +27,7 @@ const { webpackBuilder } = require('../utils/functions');
 rimraf(appElectronDistPath, (err) => {
 	if (err) throw err;
 
-	console.log(chalk.gray(` 目录【${appElectronDistPath}】清理成功, 等待打包...`));
+	console.log(chalk.gray(` 目录【${appElectronDistPath}】清理成功, 等待构建...`));
 
 	Promise.all([
 		webpackBuilder(require('./webpack/webpack.prod.config')),
@@ -44,9 +44,8 @@ rimraf(appElectronDistPath, (err) => {
 			}));
 			console.log(chalk.green('------------------ 打包日志输出结束 ------------------'));
 			console.log();
-			console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green(`主进程和渲染进程代码打包完成！可在${chalk.yellow(`【${appElectronDistPath}】`)}目录查看`)}`);
+			console.log(` ${chalk.bold.green('✔')} ${chalk.green(`主进程和渲染进程代码构建完成！可在${chalk.yellow(`【${appElectronDistPath}】`)}目录查看`)}`);
 			console.log();
-			// 打包
 			require('./packager');
 		})
 		.catch((err) => {

@@ -11,6 +11,7 @@
     "email": "uninge.sun@gmail.com"
   },
   "scripts": {
+		"a": "node ./.scripts/electron/packager.js",
     "start": "npm run dev",
     "dev": "cross-env BUILD_ENV=development nodemon .scripts/web/dev.js",
     "electron": "cross-env BUILD_ENV=development node ./.scripts/electron/dev.js",
@@ -35,7 +36,8 @@
     "build": "node .scripts/web/build.js",
     "build:electron": "node ./.scripts/electron/build.js",
     "use": "node .scripts/utils/use.js",
-    "prestart": "npm run dll",
+		"postinstall": "electron-builder install-app-deps",
+		"prestart": "npm run dll",
     "predev": "npm run use",
     "predll": "npm run use",
     "presvgo": "npm run use",

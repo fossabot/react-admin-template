@@ -26,12 +26,12 @@ const { webpackBuilder } = require('../utils/functions');
 rimraf(appWebDistPath, (err) => {
 	if (err) throw err;
 
-	console.log(chalk.gray(` 目录【${appWebDistPath}】清理成功, 等待打包...`));
+	console.log(chalk.gray(` 目录【${appWebDistPath}】清理成功, 等待构建...`));
 
 	webpackBuilder(webpackProdConfig)
 		.then((res) => {
 			console.log(`${res}`);
-			console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green(`打包完成！可在${chalk.yellow(`【${appWebDistPath}】`)}目录查看或进行下一步操作`)}`);
+			console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.green(`构建完成！可在${chalk.yellow(`【${appWebDistPath}】`)}目录查看或进行下一步操作`)}`);
 			console.log();
 		})
 		.catch((err) => {

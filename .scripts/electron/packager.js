@@ -1,8 +1,18 @@
-const { build } = require('electron-builder');
+const path = require('path');
+const chalk = require('chalk');
+const builder = require("electron-builder")
+const paths = require('../config/paths');
+const cliOptions = require(path.resolve(paths.appRootPath, 'electron.js'));
 
-build(require('./config'))
+console.log(`  ${chalk.cyan('•')} 开始打包`);
+
+// 打包
+builder.build(cliOptions)
 	.then((res) => {
-		console.log(res);
+		res.forEach((item) => {
+			console.log(`  ${chalk.cyan('•')} ${chalk.green(item)}`);
+		});
+		console.log(`  ${chalk.bold.green('✔')} ${chalk.green(`打包完成！可在${chalk.yellow(`【${cliOptions.config.directories.output}】`)}目录查看`)}`);
 	})
 	.catch((err) => {
 		console.log(err);
