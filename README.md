@@ -119,6 +119,7 @@
 	3. `electron-debug`
 	4. `electron-devtools-installer`
 	5. `@types/electron-devtools-installer`
+	6. `electron-builder`
 6. done
 
 以上操作经实践暂无问题，如有问题请先查看控制台错误输出。
