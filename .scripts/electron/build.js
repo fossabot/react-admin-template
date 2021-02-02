@@ -35,14 +35,14 @@ rimraf(appBuildPath, (err) => {
 	])
 		.then((res) => {
 			console.log();
-			console.log(chalk.green('------------------ 打包日志输出开始 ------------------'));
+			console.log(chalk.green('------------------ 构建日志输出开始 ------------------'));
 			res.forEach(((item, index) => {
 				if (index) {
-					console.log(chalk.green('------------------ 打包日志输出分割 ------------------'));
+					console.log(chalk.green('------------------ 构建日志输出分割 ------------------'));
 				}
 				console.log(`${item}`);
 			}));
-			console.log(chalk.green('------------------ 打包日志输出结束 ------------------'));
+			console.log(chalk.green('------------------ 构建日志输出结束 ------------------'));
 			console.log();
 			console.log(` ${chalk.bold.green('✔')} ${chalk.cyan(`主进程和渲染进程代码构建完成！可在${chalk.green(`【${appBuildPath}】`)}目录查看`)}`);
 			console.log();
