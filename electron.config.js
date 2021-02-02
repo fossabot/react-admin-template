@@ -1,5 +1,6 @@
 /**
- * electron-builder configuration
+ * electron configuration
+ * @description 目前仅暴露electron-builder的全量配置
  */
 const path = require('path');
 const builder = require("electron-builder")
@@ -15,30 +16,39 @@ const {
 const ICON_ICO = path.resolve(__dirname, './assets/app-icon/icon/icon.ico')
 const ICON_ICNS = path.resolve(__dirname, './assets/app-icon/icon/icon.icns')
 
-module.exports = {
+/**
+ * For electron-builder
+ * https://www.electron.build/configuration/configuration#configuration
+ */
+const cliOptions = {
 	targets: builder.Platform.WINDOWS.createTarget(),
-	// https://www.electron.build/configuration/configuration#configuration
 	config: {
 		productName,
 		buildVersion,
 		appId,
-		files: ['build', 'assets', 'package.json'],
 		asar: false,
+		files: ['build', 'assets', 'package.json'],
 		directories: {
 			buildResources: 'assets',
 			output: path.join(paths.appElectronReleasePath, `${productName}-release-${version}.${buildVersion}`),
 		},
+		nsis: {
+			oneClick: false,
+			deleteAppDataOnUninstall: true,
+			allowToChangeInstallationDirectory: true,
+		},
 		win: {
 			icon: ICON_ICO,
-			target: ['msi'],
+			target: ['nsis', 'msi'],
 		},
 		mac: {
 			icon: ICON_ICNS,
+			target: ['dmg', 'pkg', 'zip']
 		},
 		dmg: {
 			icon: ICON_ICNS,
 			contents: [
-				{ x: 130, y: 220 },
+				{ x: 130, y: 220, type: 'file' },
 				{ x: 410, y: 220, type: 'link', path: '/Applications' },
 			],
 		},
@@ -49,3 +59,7 @@ module.exports = {
 		},
 	},
 }
+
+module.exports = {
+	cliOptions,
+};

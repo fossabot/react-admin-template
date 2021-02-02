@@ -2,11 +2,10 @@ const path = require('path');
 const chalk = require('chalk');
 const builder = require("electron-builder")
 const paths = require('../config/paths');
-const cliOptions = require(path.resolve(paths.appRootPath, 'electron.config.js'));
+const { cliOptions } = require(path.resolve(paths.appRootPath, 'electron.config.js'));
 
 console.log(`  ${chalk.cyan('•')} 开始打包`);
 
-// 打包
 builder.build(cliOptions)
 	.then((res) => {
 		res.forEach((item) => {
