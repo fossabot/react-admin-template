@@ -1,0 +1,26 @@
+{
+	"restartable": "rs",
+	"verbose": true,
+	"execMap": {
+		"js": "node --harmony"
+	},
+	"env": {
+		"NODE_ENV": "development"
+	},
+	"ignore": [
+		".scripts/electron"
+	],
+	"watch": [
+		".scripts",
+		".antdthemerc.js",
+		".babelrc.js",
+		".browserslistrc",
+		".eslintignore",
+		".eslintrc.js",
+		".stylelintrc.js",
+		"dev.proxy.js",
+		"package.json",
+		"tsconfig.json"
+	],
+	"ext": "*.js"
+}

@@ -1,8 +1,6 @@
 {
   "name": "react-admin-template",
   "version": "0.0.1",
-	"buildVersion": "0001",
-	"appId": "org.react.admin.template",
 	"main": "build/main/index.js",
 	"private": false,
   "description": "React Admin Template",
@@ -199,59 +197,25 @@
     "src/**/*.less": "npm run lint:styles",
     "src/**/*.{js,jsx,ts,tsx}": "npm run lint:scripts"
   },
-  "browserslist": {
-    "production": [
-      "Chrome >= 35",
-      "Firefox >= 38",
-      "Edge >= 12",
-      "not ie < 9",
-      "Safari >= 8"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "nodemonConfig": {
-    "restartable": "rs",
-    "verbose": true,
-    "execMap": {
-      "js": "node --harmony"
-    },
-    "env": {
-      "NODE_ENV": "development"
-    },
-    "ignore": [
-      ".scripts/electron"
-    ],
-    "watch": [
-      ".scripts",
-      ".antdthemerc.js",
-      ".babelrc.js",
-      ".eslintrc.js",
-      ".stylelintrc.js",
-      "dev.proxy.js",
-      "package.json",
-      "tsconfig.json"
-    ],
-    "ext": "*.js"
-  },
   "repository": {
     "type": "git",
     "url": " https://github.com/uninge/react-admin-template.git"
   },
   "tags": [
     "react",
-    "admin",
-    "template",
-    "element"
+		"electron",
+		"antd",
+		"admin",
+    "template"
   ],
   "keywords": [
     "react",
-    "admin",
+		"electron",
+		"antd",
+		"ant design",
+		"element",
+		"admin",
     "template",
-    "element",
     "react-template",
     "react-admin-template"
   ],

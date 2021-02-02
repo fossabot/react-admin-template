@@ -3,19 +3,16 @@
  * @description 目前仅暴露electron-builder的全量配置
  */
 const path = require('path');
-// const builder = require("electron-builder")
-
+// const builder = require("electron-builder");
+const ICON_ICO = path.resolve(__dirname, './main/public/assets/app-icon/icon/icon.ico');
+const ICON_ICNS = path.resolve(__dirname, './main/public/assets/app-icon/icon/icon.icns');
 const paths = require('./.scripts/config/paths');
-const {
-	name: productName,
-	version,
-	buildVersion,
-	appId
-} = require('./package.json');
+const { author } = require('./package.json');
 
-const ICON_ICO = path.resolve(__dirname, './main/public/assets/app-icon/icon/icon.ico')
-const ICON_ICNS = path.resolve(__dirname, './main/public/assets/app-icon/icon/icon.icns')
-const outputPath = path.join(paths.appElectronReleasePath, `${productName}-release-${version}.${buildVersion}`);
+// 可以考虑放到package.json里
+const productName = 'React Admin Template';
+const buildVersion = '0.0.1.0001';
+const appId = 'come.react.admin.template';
 
 /**
  * For electron-builder
@@ -28,10 +25,23 @@ const cliOptions = {
 		buildVersion,
 		appId,
 		asar: false,
-		files: ['build', 'package.json'],
+		// Inject properties to `package.json`
+		extraMetadata: {
+			'[key: string]': 'string',
+		},
+		copyright: `Copyright © ${new Date().getFullYear()} ${author.name}`,
+		// 网速有问题使用镜像
+		// electronDownload: {
+		// 	mirror: 'https://npm.taobao.org/mirrors/electron/',
+		// },
+
+		// `package.json` and `**/node_modules/**/*` only production dependencies will be copied
+		// https://www.electron.build/configuration/contents.html#files
+		// 此模板不需要copy node_modules，如有需要参考文档自行配置
+		files: ['build', 'package.json', '!**/node_modules/**/*'],
 		directories: {
 			buildResources: 'build/main/public/assets',
-			output: outputPath,
+			output: path.join(paths.appElectronReleasePath, `${productName}-release-${buildVersion}`),
 		},
 		nsis: {
 			oneClick: false,
@@ -59,7 +69,7 @@ const cliOptions = {
 			category: 'Development',
 		},
 	},
-}
+};
 
 module.exports = {
 	cliOptions,
