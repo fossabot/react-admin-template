@@ -1,6 +1,8 @@
-import { name, version } from '../../package.json';
+import { cliOptions } from '../../electron.config';
+
+const { config: { productName, buildVersion } } = cliOptions;
 
 export default {
-	name,
-	version,
+	name: productName,
+	version: buildVersion,
 };
