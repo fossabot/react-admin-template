@@ -44,7 +44,7 @@ rimraf(appBuildPath, (err) => {
 			}));
 			console.log(chalk.green('------------------ 构建日志输出结束 ------------------'));
 			console.log();
-			console.log(` ${chalk.bold.green('✔')} ${chalk.cyan(`主进程和渲染进程代码构建完成！可在${chalk.green(`【${appBuildPath}】`)}目录查看`)}`);
+			console.log(` ${chalk.bold.greenBright('✔')} ${chalk.cyanBright(`主进程和渲染进程代码构建完成！可在${chalk.greenBright(`【${appBuildPath}】`)}目录查看`)}`);
 			console.log();
 			require('./packager');
 		})

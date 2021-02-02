@@ -16,7 +16,7 @@ rimraf(outputPath, (err) => {
 			res.forEach((item) => {
 				console.log(`  ${chalk.cyan('•')} ${chalk.green(item)}`);
 			});
-			console.log(`  ${chalk.bold.green('✔')} ${chalk.green(`打包完成！可在${chalk.yellow(`【${outputPath}】`)}目录查看`)}`);
+			console.log(`  ${chalk.bold.greenBright('✔')} ${chalk.cyanBright(`打包完成！可在${chalk.greenBright(`【${outputPath}】`)}目录查看`)}`);
 		})
 		.catch((err) => {
 			console.log(err);
