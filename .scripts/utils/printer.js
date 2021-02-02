@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const figlet = require('figlet');
 const { capitalCase } = require('change-case');
 const { execSync } = require('./functions');
-const { name, version, gitBranch, gitCommitHash } = require('../config');
+const { name, version, gitBranch, gitCommitHash, buildTarget } = require('../config');
 
 function printName() {
 	const cols = process.stdout.columns;
@@ -27,6 +27,7 @@ function printEnvironment() {
 
 	console.log(chalk.cyan(` NODE_ENV: ${chalk.yellow(process.env.NODE_ENV)}`));
 	console.log(chalk.cyan(` BUILD_ENV: ${chalk.yellow(process.env.BUILD_ENV)}`));
+	console.log(chalk.cyan(` buildTarget: ${chalk.yellow(buildTarget)}`));
 
 	console.log(chalk.cyan(` Node.js: ${chalk.yellow(process.version)}`));
 	console.log(chalk.cyan(` OS: ${chalk.yellow(os.hostname(), os.type(), os.version(), os.platform(), os.arch())}`));
