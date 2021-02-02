@@ -1,10 +1,11 @@
 const WebpackBar = require('webpackbar');
-const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
-const { buildEnv } = require('../../config');
+const { buildEnv, bundleAnalyze } = require('../../config');
 const paths = require('../../config/paths');
 // const { dependencies, devDependencies } = require(paths.appRootPkgJson);
 const isDevelopment = buildEnv === 'development';
@@ -57,6 +58,7 @@ const webpackProdConfig = {
 			name: 'Electron Main',
 			profile: true,
 		}),
+		bundleAnalyze && new BundleAnalyzerPlugin(),
 		new ForkTsCheckerWebpackPlugin({
 			typescript: {
 				enabled: true,
@@ -95,7 +97,7 @@ const webpackProdConfig = {
 				},
 			],
 		}),
-	],
+	].filter(Boolean),
 	node: {
 		__dirname: process.env.NODE_ENV !== 'production',
 		__filename: process.env.NODE_ENV !== 'production',

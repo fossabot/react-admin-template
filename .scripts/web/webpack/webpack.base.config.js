@@ -192,6 +192,7 @@ const webpackBaseConfig = {
 			name: buildTarget === 'electron' ? 'Electron Render' : 'webpack',
 			profile: true,
 		}),
+		bundleAnalyze && new BundleAnalyzerPlugin(),
 		new ForkTsCheckerWebpackPlugin({
 			typescript: {
 				enabled: true,
@@ -264,13 +265,11 @@ const webpackBaseConfig = {
 					: undefined,
 			),
 		),
-	],
+	].filter(Boolean),
 	performance: {
 		maxEntrypointSize: 512000,
 		maxAssetSize: 512000,
 	},
 };
-
-bundleAnalyze && webpackBaseConfig.plugins.unshift(new BundleAnalyzerPlugin());
 
 module.exports = webpackBaseConfig;
