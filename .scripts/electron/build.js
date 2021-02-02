@@ -34,7 +34,6 @@ rimraf(appBuildPath, (err) => {
 		webpackBuilder(require('../web/webpack/webpack.prod.config')),
 	])
 		.then((res) => {
-			console.log();
 			console.log(chalk.green('------------------ 构建日志输出开始 ------------------'));
 			res.forEach(((item, index) => {
 				if (index) {
