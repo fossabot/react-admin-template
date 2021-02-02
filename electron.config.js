@@ -40,7 +40,7 @@ const cliOptions = {
 		},
 		win: {
 			icon: ICON_ICO,
-			target: ['nsis', 'msi'],
+			target: ['msi'],
 		},
 		mac: {
 			icon: ICON_ICNS,
