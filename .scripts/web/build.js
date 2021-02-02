@@ -26,7 +26,7 @@ const { webpackBuilder } = require('../utils/functions');
 rimraf(appWebDistPath, (err) => {
 	if (err) throw err;
 
-	console.log(chalk.gray(` 目录【${appWebDistPath}】清理成功, 等待构建...`));
+	console.log(chalk.yellowBright(` 构建目录【${appWebDistPath}】清理成功, 开始构建...`));
 
 	webpackBuilder(webpackProdConfig)
 		.then((res) => {

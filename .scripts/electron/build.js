@@ -27,7 +27,7 @@ const { webpackBuilder } = require('../utils/functions');
 rimraf(appBuildPath, (err) => {
 	if (err) throw err;
 
-	console.log(chalk.yellow(` 构建输出目录【${appBuildPath}】清理成功, 开始构建...`));
+	console.log(chalk.yellowBright(` 构建输出目录【${appBuildPath}】清理成功, 开始构建...`));
 
 	Promise.all([
 		webpackBuilder(require('./webpack/webpack.prod.config')),
