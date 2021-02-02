@@ -27,7 +27,7 @@ const { webpackBuilder } = require('../utils/functions');
 rimraf(appElectronDistPath, (err) => {
 	if (err) throw err;
 
-	console.log(chalk.gray(` 目录【${appElectronDistPath}】清理成功, 等待构建...`));
+	console.log(chalk.yellow(` 目录【${appElectronDistPath}】清理成功, 开始构建...`));
 
 	Promise.all([
 		webpackBuilder(require('./webpack/webpack.prod.config')),

@@ -15,6 +15,7 @@ const {
 
 const ICON_ICO = path.resolve(__dirname, './assets/app-icon/icon/icon.ico')
 const ICON_ICNS = path.resolve(__dirname, './assets/app-icon/icon/icon.icns')
+const outputPath = path.join(paths.appElectronReleasePath, `${productName}-release-${version}.${buildVersion}`);
 
 /**
  * For electron-builder
@@ -30,7 +31,7 @@ const cliOptions = {
 		files: ['build', 'assets', 'package.json'],
 		directories: {
 			buildResources: 'assets',
-			output: path.join(paths.appElectronReleasePath, `${productName}-release-${version}.${buildVersion}`),
+			output: outputPath,
 		},
 		nsis: {
 			oneClick: false,
