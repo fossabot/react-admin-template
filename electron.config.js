@@ -3,7 +3,7 @@
  * @description 目前仅暴露electron-builder的全量配置
  */
 const path = require('path');
-// const builder = require("electron-builder");
+const builder = require("electron-builder");
 const ICON_ICO = path.resolve(__dirname, './main/public/assets/app-icon/icon/icon.ico');
 const ICON_ICNS = path.resolve(__dirname, './main/public/assets/app-icon/icon/icon.icns');
 const paths = require('./.scripts/config/paths');
@@ -19,7 +19,7 @@ const appId = 'come.react.admin.template';
  * https://www.electron.build/configuration/configuration#configuration
  */
 const cliOptions = {
-	// targets: builder.Platform.WINDOWS.createTarget(),
+	targets: builder.Platform.WINDOWS.createTarget(),
 	config: {
 		productName,
 		buildVersion,
