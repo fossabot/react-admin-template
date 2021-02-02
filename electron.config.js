@@ -3,7 +3,7 @@
  * @description 目前仅暴露electron-builder的全量配置
  */
 const path = require('path');
-const builder = require("electron-builder")
+// const builder = require("electron-builder")
 
 const paths = require('./.scripts/config/paths');
 const {
