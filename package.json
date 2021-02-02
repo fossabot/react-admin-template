@@ -231,7 +231,7 @@
       ".babelrc.js",
       ".eslintrc.js",
       ".stylelintrc.js",
-      "dev-proxy.js",
+      "dev.proxy.js",
       "package.json",
       "tsconfig.json"
     ],

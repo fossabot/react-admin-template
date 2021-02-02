@@ -13,8 +13,8 @@ const {
 	appId
 } = require('./package.json');
 
-const ICON_ICO = path.resolve(__dirname, './assets/app-icon/icon/icon.ico')
-const ICON_ICNS = path.resolve(__dirname, './assets/app-icon/icon/icon.icns')
+const ICON_ICO = path.resolve(__dirname, './main/public/assets/app-icon/icon/icon.ico')
+const ICON_ICNS = path.resolve(__dirname, './main/public/assets/app-icon/icon/icon.icns')
 const outputPath = path.join(paths.appElectronReleasePath, `${productName}-release-${version}.${buildVersion}`);
 
 /**
@@ -28,9 +28,9 @@ const cliOptions = {
 		buildVersion,
 		appId,
 		asar: false,
-		files: ['build', 'assets', 'package.json'],
+		files: ['build', 'package.json'],
 		directories: {
-			buildResources: 'assets',
+			buildResources: 'build/main/public/assets',
 			output: outputPath,
 		},
 		nsis: {

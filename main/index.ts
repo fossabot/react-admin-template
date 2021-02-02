@@ -34,7 +34,7 @@ function createWindow() {
 		webPreferences: {
 			webSecurity: true,
 			nodeIntegration: true,
-			preload: path.resolve(__dirname, 'statics/preload.js'),
+			preload: path.resolve(__dirname, 'public/statics/preload.js'),
 		},
 	});
 

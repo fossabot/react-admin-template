@@ -86,8 +86,8 @@ const webpackProdConfig = {
 		new CopyWebpackPlugin({
 			patterns: [
 				{
-					from: paths.appElectronStatics,
-					to: paths.appElectronDistStatics,
+					from: paths.appElectronPublicPath,
+					to: paths.appElectronDistPublicPath,
 					globOptions: {
 						ignore: ['**/favicon.ico', '**/index.html'],
 					},

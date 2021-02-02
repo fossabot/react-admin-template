@@ -30,12 +30,13 @@ module.exports = {
 	appNodeModules: resolvePath('node_modules'),
 
 	// electron
+	appElectronConfigPath: resolvePath('electron.config.js'),
 	appElectronSrc: resolvePath('main'),
 	appElectronDevEntry: resolveModule(resolvePath, 'main/index.dev'),
 	appElectronEntry: resolveModule(resolvePath, 'main/index'),
-	appElectronStatics: resolvePath('main/statics'),
+	appElectronPublicPath: resolvePath('main/public'),
 	appElectronDistPath: resolvePath('build/main'),
-	appElectronDistStatics: resolvePath('build/main/statics'),
+	appElectronDistPublicPath: resolvePath('build/main/public'),
 	appElectronReleasePath: resolvePath('release'),
 
 	// web
