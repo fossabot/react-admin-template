@@ -30,7 +30,10 @@ rimraf(appWebDistPath, (err) => {
 
 	webpackBuilder(webpackProdConfig)
 		.then((res) => {
+			console.log(chalk.green('------------------ 构建日志输出开始 ------------------'));
 			console.log(`${res}`);
+			console.log(chalk.green('------------------ 构建日志输出结束 ------------------'));
+			console.log();
 			console.log(` ${chalk.bold(chalk.green('✔'))} ${chalk.cyan(`构建完成！可在${chalk.green(`【${appWebDistPath}】`)}目录查看或进行下一步操作`)}`);
 			console.log();
 		})
