@@ -21,6 +21,8 @@ const buildTarget = process.env.BUILD_TARGET;
 module.exports = {
 	// global
 	appRootPath: resolvePath('.'),
+	appDistPath: resolvePath('dist'),
+	appBuildPath: resolvePath('build'),
 	appRootPkgJson: resolvePath('package.json'),
 	appJsConfig: resolvePath('jsconfig.json'),
 	appTsConfig: resolvePath('tsconfig.json'),
@@ -33,8 +35,8 @@ module.exports = {
 	appElectronEntry: resolveModule(resolvePath, 'main/index'),
 	appElectronStatics: resolvePath('main/statics'),
 	appElectronDistPath: resolvePath('build/main'),
+	appElectronDistStatics: resolvePath('build/main/statics'),
 	appElectronReleasePath: resolvePath('release'),
-	appElectronDistStatics: resolvePath('build/statics'),
 
 	// web
 	appPublicPath: resolvePath('public'),

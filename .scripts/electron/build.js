@@ -20,14 +20,14 @@ require('../utils/checkers');
 const chalk = require('chalk');
 const rimraf = require('rimraf');
 
-const { appElectronDistPath } = require('../config/paths');
+const { appBuildPath } = require('../config/paths');
 const { webpackBuilder } = require('../utils/functions');
 
 // 配置有CleanWebpackPlugin，rimraf可以删除
-rimraf(appElectronDistPath, (err) => {
+rimraf(appBuildPath, (err) => {
 	if (err) throw err;
 
-	console.log(chalk.yellow(` 输出目录【${appElectronDistPath}】清理成功, 开始构建...`));
+	console.log(chalk.yellow(` 输出目录【${appBuildPath}】清理成功, 开始构建...`));
 
 	Promise.all([
 		webpackBuilder(require('./webpack/webpack.prod.config')),
@@ -44,7 +44,7 @@ rimraf(appElectronDistPath, (err) => {
 			}));
 			console.log(chalk.green('------------------ 打包日志输出结束 ------------------'));
 			console.log();
-			console.log(` ${chalk.bold.green('✔')} ${chalk.cyan(`主进程和渲染进程代码构建完成！可在${chalk.green(`【${appElectronDistPath}】`)}目录查看`)}`);
+			console.log(` ${chalk.bold.green('✔')} ${chalk.cyan(`主进程和渲染进程代码构建完成！可在${chalk.green(`【${appBuildPath}】`)}目录查看`)}`);
 			console.log();
 			require('./packager');
 		})
