@@ -9,7 +9,7 @@ const outputPath = cliOptions.config.directories.output;
 rimraf(outputPath, (err) => {
 	if (err) throw err;
 
-	console.log(chalk.yellow(`  ${chalk.cyan('•')} 目录【${outputPath}】清理成功, 开始打包...`));
+	console.log(chalk.yellow(`  ${chalk.cyan('•')} 输出目录【${outputPath}】清理成功, 开始打包...`));
 
 	builder.build(cliOptions)
 		.then((res) => {
