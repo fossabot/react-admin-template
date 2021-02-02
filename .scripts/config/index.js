@@ -7,7 +7,7 @@ const paths = require('./paths');
 const { name, version, engines } = require(paths.appRootPkgJson);
 
 let proxy = {};
-const proxyPath = path.resolve(paths.appRootPath, 'dev-proxy.js');
+const proxyPath = path.resolve(paths.appRootPath, 'dev.proxy.js');
 if (fs.existsSync(proxyPath)) {
 	proxy = require(proxyPath);
 }
