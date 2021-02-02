@@ -22,7 +22,7 @@ const outputPath = path.join(paths.appElectronReleasePath, `${productName}-relea
  * https://www.electron.build/configuration/configuration#configuration
  */
 const cliOptions = {
-	targets: builder.Platform.WINDOWS.createTarget(),
+	// targets: builder.Platform.WINDOWS.createTarget(),
 	config: {
 		productName,
 		buildVersion,
