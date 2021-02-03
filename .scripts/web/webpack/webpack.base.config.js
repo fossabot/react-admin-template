@@ -193,8 +193,9 @@ const webpackBaseConfig = {
 			profile: true,
 		}),
 		bundleAnalyzer && new BundleAnalyzerPlugin({
-			reportTitle: buildTarget === 'electron' ? `渲染线程代码 - ${name} - [${buildTime}]` : `${name} - [${buildTime}]`,
+			openAnalyzer: false,
 			analyzerPort: 'auto',
+			reportTitle: `${buildTarget === 'electron' ? '渲染线程代码 - ' : ''}${name} - [${buildTime}]`,
 		}),
 		new ForkTsCheckerWebpackPlugin({
 			typescript: {

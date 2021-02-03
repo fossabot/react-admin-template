@@ -37,6 +37,7 @@ rimraf(appBuildPath, (err) => {
 		.then((res) => {
 			// 启用webpack-bundle-analyzer不输出日志不启动electron打包
 			if (bundleAnalyzer) {
+				console.log(` ${chalk.bold.greenBright('✔')} ${chalk.cyanBright('构建成功，浏览器可点击上方链接查看')}`);
 				return;
 			}
 			console.log(chalk.green('------------------ 构建日志输出开始 ------------------'));

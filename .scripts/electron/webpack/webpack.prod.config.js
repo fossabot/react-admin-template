@@ -65,8 +65,9 @@ const webpackProdConfig = {
 			profile: true,
 		}),
 		bundleAnalyzer && new BundleAnalyzerPlugin({
-			reportTitle: `主线程代码 - ${name} - [${buildTime}]`,
+			openAnalyzer: false,
 			analyzerPort: 'auto',
+			reportTitle: `主线程代码 - ${name} - [${buildTime}]`,
 		}),
 		new ForkTsCheckerWebpackPlugin({
 			typescript: {
