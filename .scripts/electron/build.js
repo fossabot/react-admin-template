@@ -24,17 +24,17 @@ const { bundleAnalyzer } = require('../config');
 const { appBuildPath } = require('../config/paths');
 const { webpackBuilder } = require('../utils/functions');
 
+if (process.env.PACKAGE_ONLY === '1') {
+	// electron打包
+	require('./packager');
+	return;
+}
+
 // 配置有CleanWebpackPlugin，rimraf可以删除
 rimraf(appBuildPath, (err) => {
 	if (err) throw err;
 
 	console.log(chalk.yellowBright(` 构建输出目录【${appBuildPath}】清理成功, 开始构建...`));
-
-	if (process.env.PACKAGE_ONLY === '1') {
-		// electron打包
-		require('./packager');
-		return;
-	}
 
 	Promise.all([
 		webpackBuilder(require('./webpack/webpack.prod.config')),
