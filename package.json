@@ -16,6 +16,7 @@
     "electron": "cross-env BUILD_ENV=development node ./.scripts/electron/dev.js",
 		"build": "cross-env BUILD_ENV=production node .scripts/web/build.js",
 		"package": "cross-env BUILD_ENV=production node ./.scripts/electron/build.js",
+		"package:only": "echo \"不构建，只运行electron-builder打包\" && cross-env PACKAGE_ONLY=1 BUILD_ENV=production node ./.scripts/electron/build.js",
     "build:analyze": "cross-env BUNDLE_ANALYZER=1 npm run build",
 		"package:analyze": "cross-env BUNDLE_ANALYZER=1 npm run package",
 		"lint-staged": "lint-staged",

@@ -30,6 +30,12 @@ rimraf(appBuildPath, (err) => {
 
 	console.log(chalk.yellowBright(` 构建输出目录【${appBuildPath}】清理成功, 开始构建...`));
 
+	if (process.env.PACKAGE_ONLY === '1') {
+		// electron打包
+		require('./packager');
+		return;
+	}
+
 	Promise.all([
 		webpackBuilder(require('./webpack/webpack.prod.config')),
 		webpackBuilder(require('../web/webpack/webpack.prod.config')),
