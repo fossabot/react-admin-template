@@ -27,7 +27,7 @@ module.exports = {
 	appPublicPath: '',
 	buildEnv: process.env.BUILD_ENV,
 	buildTarget: process.env.BUILD_TARGET,
-	bundleAnalyze: process.env.BUNDLE_ANALYZER === '1',
+	bundleAnalyzer: process.env.BUNDLE_ANALYZER === '1',
 	useSourceMap: process.env.GENERATE_SOURCEMAP === '1' || process.env.BUILD_ENV !== 'production',
 
 	// 已知可配置cache参数的plugin、loader的cache开关，方便升级webpack5的时候排查改造
@@ -47,5 +47,5 @@ module.exports = {
 	enginesRequired: engines && engines.node ? engines : { ...engines, node: '>=10.13.0' },
 	gitBranch: execSync('git rev-parse --abbrev-ref HEAD'),
 	gitCommitHash: execSync('git show -s --format=%h'),
-	buildTime: dayjs().toJSON(),
+	buildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
 };

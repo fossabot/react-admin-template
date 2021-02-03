@@ -15,10 +15,9 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 threadLoader.warmup({}, ['babel-loader', 'css-loader', 'postcss-loader', 'less-loader']);
 
 const {
-	buildTime,
 	buildEnv,
 	buildTarget,
-	bundleAnalyze,
+	bundleAnalyzer,
 	appPublicPath,
 	useSourceMap,
 
@@ -28,6 +27,7 @@ const {
 	version,
 	gitBranch,
 	gitCommitHash,
+	buildTime,
 } = require('../../config');
 const paths = require('../../config/paths');
 const isDevelopment = buildEnv === 'development';
@@ -192,8 +192,8 @@ const webpackBaseConfig = {
 			name: buildTarget === 'electron' ? 'Electron Render' : 'webpack',
 			profile: true,
 		}),
-		bundleAnalyze && new BundleAnalyzerPlugin({
-			reportTitle: buildTarget === 'electron' ? '渲染线程代码' : undefined,
+		bundleAnalyzer && new BundleAnalyzerPlugin({
+			reportTitle: buildTarget === 'electron' ? `渲染线程代码 - ${name} - [${buildTime}]` : `${name} - [${buildTime}]`,
 			analyzerPort: 'auto',
 		}),
 		new ForkTsCheckerWebpackPlugin({

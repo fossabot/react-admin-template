@@ -5,7 +5,13 @@ const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
-const { buildEnv, bundleAnalyze } = require('../../config');
+const {
+	buildEnv,
+	bundleAnalyzer,
+
+	name,
+	buildTime,
+} = require('../../config');
 const paths = require('../../config/paths');
 // const { dependencies, devDependencies } = require(paths.appRootPkgJson);
 const isDevelopment = buildEnv === 'development';
@@ -58,8 +64,8 @@ const webpackProdConfig = {
 			name: 'Electron Main',
 			profile: true,
 		}),
-		bundleAnalyze && new BundleAnalyzerPlugin({
-			reportTitle: '主进程代码',
+		bundleAnalyzer && new BundleAnalyzerPlugin({
+			reportTitle: `主线程代码 - ${name} - [${buildTime}]`,
 			analyzerPort: 'auto',
 		}),
 		new ForkTsCheckerWebpackPlugin({

@@ -18,6 +18,7 @@ require('../utils/checkers');
 
 const chalk = require('chalk');
 const rimraf = require('rimraf');
+const { bundleAnalyzer } = require('../config');
 const { appWebDistPath } = require('../config/paths');
 const webpackProdConfig = require('./webpack/webpack.prod.config');
 const { webpackBuilder } = require('../utils/functions');
@@ -30,6 +31,10 @@ rimraf(appWebDistPath, (err) => {
 
 	webpackBuilder(webpackProdConfig)
 		.then((res) => {
+			// 启用webpack-bundle-analyzer不输出日志
+			if (bundleAnalyzer) {
+				return;
+			}
 			console.log(chalk.green('------------------ 构建日志输出开始 ------------------'));
 			console.log(`${res}`);
 			console.log(chalk.green('------------------ 构建日志输出结束 ------------------'));

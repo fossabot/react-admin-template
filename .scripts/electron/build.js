@@ -20,6 +20,7 @@ require('../utils/checkers');
 const chalk = require('chalk');
 const rimraf = require('rimraf');
 
+const { bundleAnalyzer } = require('../config');
 const { appBuildPath } = require('../config/paths');
 const { webpackBuilder } = require('../utils/functions');
 
@@ -34,6 +35,10 @@ rimraf(appBuildPath, (err) => {
 		webpackBuilder(require('../web/webpack/webpack.prod.config')),
 	])
 		.then((res) => {
+			// 启用webpack-bundle-analyzer不输出日志不启动electron打包
+			if (bundleAnalyzer) {
+				return;
+			}
 			console.log(chalk.green('------------------ 构建日志输出开始 ------------------'));
 			res.forEach(((item, index) => {
 				if (index) {
@@ -45,6 +50,8 @@ rimraf(appBuildPath, (err) => {
 			console.log();
 			console.log(` ${chalk.bold.greenBright('✔')} ${chalk.cyanBright(`主进程和渲染进程代码构建完成！可在${chalk.greenBright(`【${appBuildPath}】`)}目录查看`)}`);
 			console.log();
+
+			// electron打包
 			require('./packager');
 		})
 		.catch((err) => {
