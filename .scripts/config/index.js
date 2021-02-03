@@ -27,8 +27,8 @@ module.exports = {
 	appPublicPath: '',
 	buildEnv: process.env.BUILD_ENV,
 	buildTarget: process.env.BUILD_TARGET,
-	bundleAnalyze: process.env.BUNDLE_ANALYZE,
-	useSourceMap: process.env.GENERATE_SOURCEMAP === 'true' || process.env.BUILD_ENV !== 'production',
+	bundleAnalyze: process.env.BUNDLE_ANALYZER === '1',
+	useSourceMap: process.env.GENERATE_SOURCEMAP === '1' || process.env.BUILD_ENV !== 'production',
 
 	// 已知可配置cache参数的plugin、loader的cache开关，方便升级webpack5的时候排查改造
 	enableCache: false,

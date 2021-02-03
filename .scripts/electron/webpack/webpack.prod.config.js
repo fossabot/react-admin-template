@@ -58,7 +58,10 @@ const webpackProdConfig = {
 			name: 'Electron Main',
 			profile: true,
 		}),
-		bundleAnalyze && new BundleAnalyzerPlugin(),
+		bundleAnalyze && new BundleAnalyzerPlugin({
+			reportTitle: '主进程代码',
+			analyzerPort: 'auto',
+		}),
 		new ForkTsCheckerWebpackPlugin({
 			typescript: {
 				enabled: true,

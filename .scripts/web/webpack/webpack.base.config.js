@@ -192,7 +192,10 @@ const webpackBaseConfig = {
 			name: buildTarget === 'electron' ? 'Electron Render' : 'webpack',
 			profile: true,
 		}),
-		bundleAnalyze && new BundleAnalyzerPlugin(),
+		bundleAnalyze && new BundleAnalyzerPlugin({
+			reportTitle: buildTarget === 'electron' ? '渲染线程代码' : undefined,
+			analyzerPort: 'auto',
+		}),
 		new ForkTsCheckerWebpackPlugin({
 			typescript: {
 				enabled: true,
