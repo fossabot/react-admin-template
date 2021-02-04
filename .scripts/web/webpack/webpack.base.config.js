@@ -192,6 +192,15 @@ const webpackBaseConfig = {
 			name: buildTarget === 'electron' ? 'Electron Render' : 'webpack',
 			profile: true,
 		}),
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+			'process.env.BUILD_ENV': JSON.stringify(buildEnv),
+			'process.env.APP_NAME': JSON.stringify(name),
+			'process.env.APP_VERSION': JSON.stringify(version),
+			'process.env.GIT_BRANCH': JSON.stringify(gitBranch),
+			'process.env.GIT_COMMIT_HASH': JSON.stringify(gitCommitHash),
+			'process.env.APP_BUILD_TIME': JSON.stringify(buildTime),
+		}),
 		bundleAnalyzer && new BundleAnalyzerPlugin({
 			openAnalyzer: false,
 			analyzerPort: 'auto',
@@ -228,15 +237,6 @@ const webpackBaseConfig = {
 			files: ['**/*.(le|c)ss'],
 		}),
 		new AntdDayjsWebpackPlugin(),
-		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-			'process.env.BUILD_ENV': JSON.stringify(buildEnv),
-			'process.env.APP_NAME': JSON.stringify(name),
-			'process.env.APP_VERSION': JSON.stringify(version),
-			'process.env.GIT_BRANCH': JSON.stringify(gitBranch),
-			'process.env.GIT_COMMIT_HASH': JSON.stringify(gitCommitHash),
-			'process.env.APP_BUILD_TIME': JSON.stringify(buildTime),
-		}),
 		new HtmlWebpackPlugin(
 			Object.assign(
 				{},
