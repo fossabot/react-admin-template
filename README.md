@@ -100,7 +100,7 @@
 2. 删除`.scripts/config/index.js`、`.scripts/config/paths.js`中 electron 相关目录配置，有注释
 3. 删除`.scripts/electron`文件夹`
 4. 删除根目录下`main`目录
-5. 删除`package.json`文件中`scripts`对象的`electron`相关命令及打包用到的两个参数
+5. 删除`package.json`文件中`scripts`对象的`electron`相关命令
 6. 删除根目录下`electron.config.js`文件
 7. 卸载`package.json`文件中的依赖
 	1. `electron`
