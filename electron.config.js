@@ -16,8 +16,6 @@ const {
 	npm_package_author_email: authorEmail,
 } = process.env;
 
-console.log(process.env)
-
 /**
  * For electron-builder
  * https://www.electron.build/configuration/configuration#configuration
@@ -45,10 +43,7 @@ const cliOptions = {
 		files: ['build', 'package.json', '!**/node_modules/**/*'],
 		directories: {
 			buildResources: 'build/main/public/assets',
-			output: path.join(
-				paths.appElectronReleasePath,
-				`${productName}-release-${version}.${buildVersion}`,
-			),
+			output: path.join(paths.appElectronReleasePath, `${productName}-release-${version}.${buildVersion}`),
 		},
 		nsis: {
 			oneClick: false,
