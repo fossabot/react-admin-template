@@ -3,16 +3,20 @@
  * @description 目前仅暴露electron-builder的全量配置
  */
 const path = require('path');
-const builder = require("electron-builder");
+const builder = require('electron-builder');
 const ICON_ICO = path.resolve(__dirname, './main/public/assets/app-icon/icon/icon.ico');
 const ICON_ICNS = path.resolve(__dirname, './main/public/assets/app-icon/icon/icon.icns');
 const paths = require('./.scripts/config/paths');
-const { author } = require('./package.json');
+const {
+	npm_package_name: productName,
+	npm_package_version: version,
+	npm_package_electronBuildVersion: buildVersion,
+	npm_package_appId: appId,
+	npm_package_author_name: authorName,
+	npm_package_author_email: authorEmail,
+} = process.env;
 
-// 可以考虑放到package.json里
-const productName = 'React Admin Template';
-const buildVersion = '0.0.1.0001';
-const appId = 'come.react.admin.template';
+console.log(process.env)
 
 /**
  * For electron-builder
@@ -24,12 +28,12 @@ const cliOptions = {
 		productName,
 		buildVersion,
 		appId,
-		asar: false,
+		asar: false, // @todo 注意: 为便于调试默认设为了false
 		// Inject properties to `package.json`
 		extraMetadata: {
 			'[key: string]': 'string',
 		},
-		copyright: `Copyright © ${new Date().getFullYear()} ${author.name}`,
+		copyright: `Copyright © ${new Date().getFullYear()} ${authorName}<${authorEmail}>`,
 		// 网速有问题使用镜像
 		// electronDownload: {
 		// 	mirror: 'https://npm.taobao.org/mirrors/electron/',
@@ -41,20 +45,28 @@ const cliOptions = {
 		files: ['build', 'package.json', '!**/node_modules/**/*'],
 		directories: {
 			buildResources: 'build/main/public/assets',
-			output: path.join(paths.appElectronReleasePath, `${productName}-release-${buildVersion}`),
+			output: path.join(
+				paths.appElectronReleasePath,
+				`${productName}-release-${version}.${buildVersion}`,
+			),
 		},
 		nsis: {
 			oneClick: false,
 			deleteAppDataOnUninstall: true,
 			allowToChangeInstallationDirectory: true,
+			artifactName: '${productName}_setup_${version}.${ext}',
 		},
 		win: {
 			icon: ICON_ICO,
-			target: ['msi'],
+			// 注意: 启用`nsis`全程不可出现中文目录，包括但不限于【项目存放目录】、【`C:\Users\yourname\**`】目录
+			// 因为报`could not find...`异常但文件又确实存在，所以这儿被坑了很久很久😂😂😂
+			// !include: could not find: "D:\那一夜此处是中文\react-admin-template\node_modules\app-builder-lib\templates\nsis\include\StdUtils.nsh"
+			target: ['nsis'],
+			// target: ['msi', 'nsis', 'nsis-web', 'zip'],
 		},
 		mac: {
 			icon: ICON_ICNS,
-			target: ['dmg', 'pkg', 'zip']
+			target: ['dmg', 'pkg', 'zip'],
 		},
 		dmg: {
 			icon: ICON_ICNS,

@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
@@ -10,6 +11,10 @@ const {
 	bundleAnalyzer,
 
 	name,
+	version,
+	electronBuildVersion,
+	gitBranch,
+	gitCommitHash,
 	buildTime,
 } = require('../../config');
 const paths = require('../../config/paths');
@@ -64,11 +69,22 @@ const webpackProdConfig = {
 			name: 'Electron Main',
 			profile: true,
 		}),
-		bundleAnalyzer && new BundleAnalyzerPlugin({
-			openAnalyzer: false,
-			analyzerPort: 'auto',
-			reportTitle: `主线程代码 - ${name} - [${buildTime}]`,
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+			'process.env.BUILD_ENV': JSON.stringify(buildEnv),
+			'process.env.APP_NAME': JSON.stringify(name),
+			'process.env.APP_VERSION': JSON.stringify(version),
+			'process.env.ELECTRON_BUILD_VERSION': JSON.stringify(electronBuildVersion),
+			'process.env.GIT_BRANCH': JSON.stringify(gitBranch),
+			'process.env.GIT_COMMIT_HASH': JSON.stringify(gitCommitHash),
+			'process.env.APP_BUILD_TIME': JSON.stringify(buildTime),
 		}),
+		bundleAnalyzer &&
+			new BundleAnalyzerPlugin({
+				openAnalyzer: false,
+				analyzerPort: 'auto',
+				reportTitle: `主线程代码 - ${name} - [${buildTime}]`,
+			}),
 		new ForkTsCheckerWebpackPlugin({
 			typescript: {
 				enabled: true,

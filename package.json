@@ -1,6 +1,8 @@
 {
   "name": "react-admin-template",
   "version": "0.0.1",
+	"electronBuildVersion": "0.0.1",
+	"appId": "com.react.electron.admin.template",
   "main": "build/main/index.js",
   "private": false,
   "description": "React Admin Template",
@@ -25,7 +27,7 @@
     "lint:scripts": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "lint:prettier": "prettier --check src/**/*.{js,jsx,tsx,ts,less,md,json} --end-of-line auto",
     "cacheclean": "rimraf node_modules/.cache .eslintcache .stylelintcache debug.log yarn-error.log yarn.lock",
-    "package:only": "echo \"主线程渲染线程代码已构建，只运行electron-builder打包\" && cross-env PACKAGE_ONLY=1 BUILD_ENV=production node ./.scripts/electron/build.js",
+    "package:only": "echo \"运行此命令你应明白为什么这么做，包括但不限于主线程渲染线程代码已构建并且是你需要的，只运行electron-builder打包\" && cross-env PACKAGE_ONLY=1 BUILD_ENV=production node ./.scripts/electron/build.js",
     "svgo": "svgo -f src/assets/svg-sprite --config=./.svgo.yml",
     "postinstall": "electron-builder install-app-deps",
     "dll": "node .scripts/web/dll.js",

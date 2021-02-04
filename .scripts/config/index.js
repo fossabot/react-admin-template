@@ -4,7 +4,7 @@ const dayjs = require('dayjs');
 const { pascalCase } = require('change-case');
 const childProcess = require('child_process');
 const paths = require('./paths');
-const { name, version, engines } = require(paths.appRootPkgJson);
+const { name, version, electronBuildVersion, engines } = require(paths.appRootPkgJson);
 
 let proxy = {};
 const proxyPath = path.resolve(paths.appRootPath, 'dev.proxy.js');
@@ -44,6 +44,7 @@ module.exports = {
 	// 其他无关痛痒的参数
 	name: pascalCase(name),
 	version,
+	electronBuildVersion,
 	enginesRequired: engines && engines.node ? engines : { ...engines, node: '>=10.13.0' },
 	gitBranch: execSync('git rev-parse --abbrev-ref HEAD'),
 	gitCommitHash: execSync('git show -s --format=%h'),
