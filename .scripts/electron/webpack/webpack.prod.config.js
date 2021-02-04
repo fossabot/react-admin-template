@@ -13,7 +13,6 @@ const {
 
 	name,
 	version,
-	electronBuildVersion,
 	gitBranch,
 	gitCommitHash,
 	buildTime,
@@ -75,7 +74,6 @@ const webpackProdConfig = {
 			'process.env.BUILD_ENV': JSON.stringify(buildEnv),
 			'process.env.APP_NAME': JSON.stringify(name),
 			'process.env.APP_VERSION': JSON.stringify(version),
-			'process.env.ELECTRON_BUILD_VERSION': JSON.stringify(electronBuildVersion),
 			'process.env.GIT_BRANCH': JSON.stringify(gitBranch),
 			'process.env.GIT_COMMIT_HASH': JSON.stringify(gitCommitHash),
 			'process.env.APP_BUILD_TIME': JSON.stringify(buildTime),

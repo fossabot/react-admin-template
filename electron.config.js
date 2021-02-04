@@ -10,8 +10,6 @@ const paths = require('./.scripts/config/paths');
 const {
 	npm_package_name: productName,
 	npm_package_version: version,
-	npm_package_electronBuildVersion: buildVersion,
-	npm_package_appId: appId,
 	npm_package_author_name: authorName,
 	npm_package_author_email: authorEmail,
 } = process.env;
@@ -24,8 +22,8 @@ const cliOptions = {
 	targets: builder.Platform.WINDOWS.createTarget(),
 	config: {
 		productName,
-		buildVersion,
-		appId,
+		buildVersion: version,
+		appId: 'com.react.electron.admin.template',
 		asar: false, // @todo 注意: 为便于调试默认设为了false，生产环境建议为true
 		// Inject properties to `package.json`
 		extraMetadata: {
@@ -43,7 +41,7 @@ const cliOptions = {
 		files: ['build', 'package.json', '!**/node_modules/**/*'],
 		directories: {
 			buildResources: 'build/main/public/assets',
-			output: path.join(paths.appElectronReleasePath, `${productName}-release-${version}.${buildVersion}`),
+			output: path.join(paths.appElectronReleasePath, `${productName}-release-${version}`),
 		},
 		nsis: {
 			oneClick: false,

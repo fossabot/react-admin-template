@@ -1,8 +1,6 @@
 {
   "name": "react-admin-template",
   "version": "0.0.1",
-	"electronBuildVersion": "0.0.1",
-	"appId": "com.react.electron.admin.template",
   "main": "build/main/index.js",
   "private": false,
   "description": "React Admin Template",
