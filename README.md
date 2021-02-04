@@ -17,16 +17,16 @@
 
 ```shell script
 # 安装依赖
-> npm install
+> yarn # npm install
 
 # 启动前会构建dll
-> npm run start
+> yarn start # npm run start
 
 # 启动不会构建dll，之前存在就用
-> npm run dev
+> yarn dev # npm run dev
 
 # 启动electron开发环境
-> npm run electron
+> yarn electron # npm run electron
 ```
 
 ## 二. 代码风格
@@ -74,30 +74,18 @@
 
 ### 打包命令
 
-本模板无内置`electron`安装包构建支持，具体是`electron-builder`、`electron-packager`亦或其他请自行选择。
-
-> 如果`CI/CD`平台只支持`run build`，`electron`打包请自行适配
+> 本模板内置`electron`打包支持。
 
 ```shell script
-# web开发环境打包
-> npm run build:dev
+# web打包，默认生产环境
+> yarn build # npm run build
 
-# web测试环境打包
-> npm run build:test
+# electron打包，默认生产环境
+> yarn package # npm run package
 
-# web生产环境打包
-> npm run build:prod
-
-# electron开发环境打包
-> npm run build:electron:dev
-
-# electron测试环境打包
-> npm run build:electron:test
-
-# electron生产环境打包
-> npm run build:electron:prod
+# electron打包，仅打包
+> yarn package:only # npm run package:only
 ```
-
 
 ## 五. 关于 Electron
 
@@ -108,34 +96,36 @@
 
 > 如果不需要`electron`又不想其留在项目中，操作如下:
 
-0. 删除`tsconfig.json`中`include`数组的`main`目录配置和`paths`对象中的`~/*`
-1. 删除`.scripts/config/paths.js`中 electron 相关目录配置，有注释
-2. 删除`.scripts/electron`文件夹`
-3. 删除根目录下`main`目录
-4. 删除`package.json`文件中`scripts`对象的`electron`相关命令
-5. 卸载`package.json`文件中的依赖
+1. 删除`tsconfig.json`中`include`数组的`main`目录配置和`paths`对象中的`~/*`
+2. 删除`.scripts/config/index.js`、`.scripts/config/paths.js`中 electron 相关目录配置，有注释
+3. 删除`.scripts/electron`文件夹`
+4. 删除根目录下`main`目录
+5. 删除`package.json`文件中`scripts`对象的`electron`相关命令及打包用到的两个参数
+6. 删除根目录下`electron.config.js`文件
+7. 卸载`package.json`文件中的依赖
 	1. `electron`
 	2. `node-loader`
 	3. `electron-debug`
 	4. `electron-devtools-installer`
 	5. `@types/electron-devtools-installer`
 	6. `electron-builder`
-6. done
+8. done
 
 以上操作经实践暂无问题，如有问题请先查看控制台错误输出。
 
-### 需要`electron`
+### 需要`electron`且需适当改造
 
 > 如果希望将主进程、渲染进程放置于同一目录(以`src`为例，渲染进程代码`src/render`，主进程代码(`src/main`)，操作如下:
 
-0. 删除`tsconfig.json`中`include`数组的`main`目录配置，将`src`替换为`src/render`
-1. 将`tsconfig.json`中的`paths: { "~/*": ["./main/*"], "@/*": ["./src/*"] }`对象修改为`paths: { "~/*": ["./src/main/*"], "@/*": ["./src/render/*"] }`
-2. `src`目录中新建`render`子目录，将`src`目录中原有所有文件移动到`src/render`目录
-3. 将`main`目录移动到`src`目录与`render`目录同级
-4. 修改`.scripts/config/paths.js`相关配置，将`src`修改为`src/render`，将`main`修改为`src/main`
-5. done
+1. 删除`tsconfig.json`中`include`数组的`main`目录配置，将`src`替换为`src/render`
+2. 将`tsconfig.json`中的`paths: { "~/*": ["./main/*"], "@/*": ["./src/*"] }`对象修改为`paths: { "~/*": ["./src/main/*"], "@/*": ["./src/render/*"] }`
+3. `src`目录中新建`render`子目录，将`src`目录中原有所有文件移动到`src/render`目录
+4. 将`main`目录移动到`src`目录与`render`目录同级
+5. 修改`.scripts/config/paths.js`相关配置，将`src`修改为`src/render`，将`main`修改为`src/main`
+6. 修改`electron.config.js`文件相关目录指向
+7. done
 
 ## @todo
 
 * 主进程代码修改后如何才能像渲染进程代码一样热加载，而不是每次重新启动程序
-* 引入electron的打包脚本，更新功能
+* 添加electron安装包更新功能

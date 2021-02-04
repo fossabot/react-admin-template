@@ -27,7 +27,7 @@ module.exports = {
 	appPublicPath: '',
 	nodeEnv: process.env.NODE_ENV,
 	buildEnv: process.env.BUILD_ENV,
-	buildTarget: process.env.BUILD_TARGET,
+	buildTarget: process.env.BUILD_TARGET, // electron only
 	bundleAnalyzer: process.env.BUNDLE_ANALYZER === '1',
 	useSourceMap: process.env.GENERATE_SOURCEMAP === '1' || process.env.BUILD_ENV !== 'production',
 
@@ -45,7 +45,7 @@ module.exports = {
 	// 其他无关痛痒的参数
 	name: pascalCase(name),
 	version,
-	electronBuildVersion,
+	electronBuildVersion, // electron only
 	enginesRequired: engines && engines.node ? engines : { ...engines, node: '>=10.13.0' },
 	gitBranch: execSync('git rev-parse --abbrev-ref HEAD'),
 	gitCommitHash: execSync('git show -s --format=%h'),
