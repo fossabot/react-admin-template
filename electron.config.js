@@ -26,7 +26,7 @@ const cliOptions = {
 		productName,
 		buildVersion,
 		appId,
-		asar: false, // @todo 注意: 为便于调试默认设为了false
+		asar: false, // @todo 注意: 为便于调试默认设为了false，生产环境建议为true
 		// Inject properties to `package.json`
 		extraMetadata: {
 			'[key: string]': 'string',
@@ -56,8 +56,7 @@ const cliOptions = {
 			// 注意: 启用`nsis`全程不可出现中文目录，包括但不限于【项目存放目录】、【`C:\Users\yourname\**`】目录
 			// 因为报`could not find...`异常但文件又确实存在，所以这儿被坑了很久很久😂😂😂
 			// !include: could not find: "D:\那一夜此处是中文\react-admin-template\node_modules\app-builder-lib\templates\nsis\include\StdUtils.nsh"
-			target: ['nsis'],
-			// target: ['msi', 'nsis', 'nsis-web', 'zip'],
+			target: ['msi', 'nsis', 'zip'],
 		},
 		mac: {
 			icon: ICON_ICNS,
