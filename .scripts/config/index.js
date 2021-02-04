@@ -25,6 +25,7 @@ module.exports = {
 
 	// env
 	appPublicPath: '',
+	nodeEnv: process.env.NODE_ENV,
 	buildEnv: process.env.BUILD_ENV,
 	buildTarget: process.env.BUILD_TARGET,
 	bundleAnalyzer: process.env.BUNDLE_ANALYZER === '1',

@@ -7,6 +7,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const {
+	nodeEnv,
 	buildEnv,
 	bundleAnalyzer,
 
@@ -70,7 +71,7 @@ const webpackProdConfig = {
 			profile: true,
 		}),
 		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+			'process.env.NODE_ENV': JSON.stringify(nodeEnv),
 			'process.env.BUILD_ENV': JSON.stringify(buildEnv),
 			'process.env.APP_NAME': JSON.stringify(name),
 			'process.env.APP_VERSION': JSON.stringify(version),
