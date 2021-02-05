@@ -5,7 +5,7 @@ import { app, BrowserWindow } from 'electron';
 import config from './config';
 import { mark, performanceEnd } from './utils/performance';
 
-const { name, version } = config;
+const { name, version, packed } = config;
 const isDevelopment = process.env.BUILD_ENV === 'development';
 
 mark('main-start');
@@ -35,7 +35,10 @@ function createWindow() {
 		webPreferences: {
 			webSecurity: true,
 			nodeIntegration: true,
-			preload: path.resolve(__dirname, 'public/statics/preload.js'),
+			preload: path.resolve(
+				__dirname,
+				packed ? 'public/statics/preload.js' : '../public/main/statics/preload.js',
+			),
 		},
 	});
 

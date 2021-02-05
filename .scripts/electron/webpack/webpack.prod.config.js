@@ -70,6 +70,7 @@ const webpackProdConfig = {
 			profile: true,
 		}),
 		new webpack.DefinePlugin({
+			'process.env.ELECTRON_PACKED': JSON.stringify(process.env.ELECTRON_PACKED),
 			'process.env.NODE_ENV': JSON.stringify(nodeEnv),
 			'process.env.BUILD_ENV': JSON.stringify(buildEnv),
 			'process.env.APP_NAME': JSON.stringify(name),
