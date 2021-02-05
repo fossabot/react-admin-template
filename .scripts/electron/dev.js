@@ -23,7 +23,7 @@ const chalk = require('chalk');
 const address = require('address');
 const express = require('express');
 const webpack = require('webpack');
-const dev = require('electron');
+const electron = require('electron');
 const portFinder = require('portfinder');
 const { spawn } = require('child_process');
 const WebpackDevMiddleware = require('webpack-dev-middleware');
@@ -99,7 +99,7 @@ function startRenderServer() {
 
 function startElectron() {
 	return new Promise((resolve) => {
-		electronProcess = spawn(dev, ['--inspect=5858', paths.appElectronDistPath], {
+		electronProcess = spawn(electron, ['--inspect=5858', paths.appElectronDistPath], {
 			env: Object.assign({}, process.env, {
 				ELECTRON_DISABLE_SECURITY_WARNINGS: false, // electron的一些警告信息按需配置
 				RENDER_DEV_HOST_NAME: config.hostName === '0.0.0.0' ? 'localhost' : config.hostName,

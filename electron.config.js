@@ -4,8 +4,8 @@
  */
 const path = require('path');
 const builder = require('electron-builder');
-const ICON_ICO = path.resolve(__dirname, './main/public/assets/icon/icon.ico');
-const ICON_ICNS = path.resolve(__dirname, './main/public/assets/icon/icon.icns');
+const ICON_ICO = path.resolve(__dirname, './public/main/icon/icon.ico');
+const ICON_ICNS = path.resolve(__dirname, './public/main/icon/icon.icns');
 const paths = require('./.scripts/config/paths');
 const {
 	npm_package_name: productName,
