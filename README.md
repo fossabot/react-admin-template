@@ -109,6 +109,13 @@
 	4. `electron-devtools-installer`
 	5. `@types/electron-devtools-installer`
 	6. `electron-builder`
+	
+	> yarn remove electron node-loader electron-debug electron-devtools-installer @types/electron-devtools-installer electron-builder
+	
+	or
+	
+	> npm uninstall electron node-loader electron-debug electron-devtools-installer @types/electron-devtools-installer electron-builder
+
 8. done
 
 以上操作经实践暂无问题，如有问题请先查看控制台错误输出。

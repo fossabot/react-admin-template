@@ -72,7 +72,7 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 				sourceMap: canUseSourceMap,
 				postcssOptions: {
 					plugins: [
-						require('postcss-flexbugs-fixes'),
+						require.resolve('postcss-flexbugs-fixes'),
 						require('postcss-preset-env')({
 							autoprefixer: {
 								flexbox: 'no-2009',

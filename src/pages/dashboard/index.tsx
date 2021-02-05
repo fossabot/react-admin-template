@@ -4,7 +4,7 @@ import { Card } from 'antd';
 const Dashboard: React.FC = () => {
 	return (
 		<Card>
-			Dashboard
+			Dashboard:
 			{navigator.userAgent}
 		</Card>
 	);
