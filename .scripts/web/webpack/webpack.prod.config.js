@@ -23,7 +23,7 @@ const webpackProdConfig = {
 		new CopyWebpackPlugin({
 			patterns: [
 				{
-					from: paths.appPublicPath,
+					from: paths.appPublicAssetsPath,
 					to: paths.appWebDistPath,
 					globOptions: {
 						ignore: ['**/favicon.ico', '**/index.html'],

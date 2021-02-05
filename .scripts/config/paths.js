@@ -40,7 +40,7 @@ module.exports = {
 	appElectronReleasePath: resolvePath('release'),
 
 	// web
-	appPublicPath: resolvePath('public'),
+	appPublicAssetsPath: resolvePath('public'),
 	favicon: resolvePath('public/favicon.ico'),
 	appHtml: resolvePath('public/index.html'),
 	spriteSvgPath: resolvePath('src/assets/svg-sprite'),
