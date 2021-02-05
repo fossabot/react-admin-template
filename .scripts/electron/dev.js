@@ -25,7 +25,6 @@ const express = require('express');
 const webpack = require('webpack');
 const dev = require('electron');
 const portFinder = require('portfinder');
-const webpackLog = require('webpack-log');
 const { spawn } = require('child_process');
 const WebpackDevMiddleware = require('webpack-dev-middleware');
 const WebpackHotMiddleware = require('webpack-hot-middleware');
@@ -46,12 +45,9 @@ function startRenderServer() {
 		const compiler = webpack(webpackDevConfig);
 
 		const devMiddleware = WebpackDevMiddleware(compiler, {
-			lazy: false,
-			logTime: true,
+			stats: 'minimal',
 			serverSideRender: false,
-			stats: { colors: true },
 			publicPath: webpackDevConfig.output.publicPath,
-			logger: webpackLog({ name: 'wds', level: 'error' }),
 		});
 
 		hotMiddleware = WebpackHotMiddleware(compiler, {

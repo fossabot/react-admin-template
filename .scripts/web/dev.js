@@ -22,7 +22,6 @@ const address = require('address');
 const express = require('express');
 const webpack = require('webpack');
 const portFinder = require('portfinder');
-const webpackLog = require('webpack-log');
 const WebpackDevMiddleware = require('webpack-dev-middleware');
 const WebpackHotMiddleware = require('webpack-hot-middleware');
 const { createProxyMiddleware } = require('http-proxy-middleware');
@@ -33,15 +32,12 @@ const { printInstructions } = require('../utils/printer');
 const compiler = webpack(webpackDevConfig);
 
 const devMiddleware = WebpackDevMiddleware(compiler, {
-	lazy: false,
-	logTime: true,
+	stats: 'minimal',
 	serverSideRender: false,
-	stats: { colors: true },
 	publicPath: webpackDevConfig.output.publicPath,
-	logger: webpackLog({ name: 'wds', level: 'error' }),
 });
 const hotMiddleware = WebpackHotMiddleware(compiler, {
-	log: (msg) => console.log(`${chalk.magenta('[HMW]')} ${chalk.green(msg)}`),
+	log: (msg) => console.log(`${chalk.magenta('[WebpackHotMiddleware]')} ${chalk.green(msg)}`),
 });
 
 const app = express();

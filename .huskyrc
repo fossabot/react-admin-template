@@ -1,8 +1,0 @@
-{
-	"skipCI": false,
-	"hooks": {
-		"pre-commit": "pretty-quick && npm run lint-staged",
-		"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-		"pre-push": "echo \"\n半壁翻云刃，满江酩酊红。千古光阴一霎时，且醉浪涛中！\n\""
-	}
-}
