@@ -4,8 +4,8 @@
  */
 const path = require('path');
 const builder = require('electron-builder');
-const ICON_ICO = path.resolve(__dirname, './main/public/assets/app-icon/icon/icon.ico');
-const ICON_ICNS = path.resolve(__dirname, './main/public/assets/app-icon/icon/icon.icns');
+const ICON_ICO = path.resolve(__dirname, './main/public/assets/icon/icon.ico');
+const ICON_ICNS = path.resolve(__dirname, './main/public/assets/icon/icon.icns');
 const paths = require('./.scripts/config/paths');
 const {
 	npm_package_name: productName,
@@ -55,7 +55,8 @@ const cliOptions = {
 			// 注意: 启用`nsis`全程不可出现中文目录，包括但不限于【项目存放目录】、【`C:\Users\yourname\**`】目录
 			// 因为报`could not find...`异常但文件又确实存在，所以这儿被坑了很久很久😂😂😂
 			// !include: could not find: "D:\那一夜此处是中文\react-admin-template\node_modules\app-builder-lib\templates\nsis\include\StdUtils.nsh"
-			target: ['msi', 'nsis', 'zip'],
+			target: ['nsis'],
+			// target: ['msi', 'nsis', 'zip'],
 		},
 		mac: {
 			icon: ICON_ICNS,
