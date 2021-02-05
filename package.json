@@ -1,6 +1,6 @@
 {
   "name": "react-admin-template",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "build/main/index.js",
   "private": false,
   "description": "React Admin Template",
