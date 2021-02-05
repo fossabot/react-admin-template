@@ -17,6 +17,7 @@ const {
 /**
  * For electron-builder
  * https://www.electron.build/configuration/configuration#configuration
+ * https://www.electron.build/auto-update.html#auto-updatable-targets
  */
 const cliOptions = {
 	targets: builder.Platform.WINDOWS.createTarget(),
