@@ -119,7 +119,7 @@ function getStyleLoaders(useCssModule, isLessLoader) {
 
 const webpackBaseConfig = {
 	// web or electron-renderer 如果想运行于浏览器，target设为web，同时请注意渲染线程代码
-	target: buildTarget === 'electron-renderer' ? 'electron-renderer' : 'web',
+	target: buildTarget === 'electron' ? 'electron-renderer' : 'web',
 	entry: {
 		app: [paths.appWebEntry],
 	},
