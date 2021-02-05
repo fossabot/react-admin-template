@@ -9,7 +9,7 @@ if (!process.env.BUILD_ENV && process.env.NODE_ENV) {
 
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
-process.env.BUILD_TARGET = 'electron';
+// process.env.BUILD_TARGET = 'electron'; // 见package.json
 
 process.on('unhandledRejection', (error) => {
 	throw error;

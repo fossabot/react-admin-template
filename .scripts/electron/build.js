@@ -8,7 +8,7 @@ if (!process.env.BUILD_ENV && process.env.NODE_ENV) {
 
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
-process.env.BUILD_TARGET = 'electron';
+// process.env.BUILD_TARGET = 'electron'; // 见package.json
 
 process.on('unhandledRejection', (error) => {
 	throw error;
