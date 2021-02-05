@@ -2,6 +2,7 @@
  * Electron 开发 dev 环境入口
  */
 import { app } from 'electron';
+import electronLog from 'electron-log';
 import electronDebug from 'electron-debug';
 import installExtension, {
 	REACT_DEVELOPER_TOOLS,
@@ -28,15 +29,15 @@ electronDebug({ showDevTools: false });
 
 	results.forEach((result) => {
 		if (result.status === 'fulfilled') {
-			console.log(`Added Extension: ${result.value}`);
+			electronLog.info(`Added Extension: ${result.value}`);
 		}
 		if (result.status === 'rejected') {
-			console.log('An error occurred when added extension: ', result.reason);
+			electronLog.error('An error occurred when added extension: ', result.reason);
 		}
 	});
 	/** ************** extensions end *************** */
 
 	mark('dev-end');
 
-	console.log('Dev Ready');
+	electronLog.info('Dev Ready');
 })();

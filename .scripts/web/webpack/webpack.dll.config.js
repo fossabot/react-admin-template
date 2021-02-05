@@ -8,7 +8,13 @@ const { appDllPath, appRootPkgJson } = require('../../config/paths');
 const { dependencies } = require(appRootPkgJson);
 
 // 不被DllPlugin支持的包
-const dllExcludePackages = ['electron', '@babel/runtime', '@babel/runtime-corejs3'];
+const dllExcludePackages = [
+	'electron',
+	'@babel/runtime',
+	'@babel/runtime-corejs3',
+	'electron-log',
+	'electron-updater'
+];
 
 module.exports = {
 	mode: 'development',

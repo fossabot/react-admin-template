@@ -52,6 +52,8 @@
     "change-case": "^4.1.2",
     "classnames": "^2.2.6",
     "dayjs": "^1.10.4",
+    "electron-log": "^4.3.1",
+    "electron-updater": "^4.3.5",
     "js-cookie": "^2.2.1",
     "mobx": "^6.1.5",
     "mobx-react": "^7.1.0",

@@ -1,5 +1,6 @@
 import path from 'path';
 import url from 'url';
+import electronLog from 'electron-log';
 import { app, BrowserWindow } from 'electron';
 import config from './config';
 import { mark, performanceEnd } from './utils/performance';
@@ -10,7 +11,7 @@ const isDevelopment = process.env.BUILD_ENV === 'development';
 mark('main-start');
 
 process.on('unhandledRejection', (error) => {
-	console.log('An error occurred(unhandledRejection)', error);
+	electronLog.error('An error occurred(unhandledRejection)', error);
 	if (process.env.BUILD_ENV !== 'development') {
 		app.quit();
 	}
@@ -54,7 +55,7 @@ function createWindow() {
 	};
 
 	mainWindow.loadURL(url.format(options)).then(() => {
-		console.log(`Main Window Load Success: http://${pathname}`);
+		electronLog.info(`Main Window Load Success: http://${pathname}`);
 	});
 
 	mainWindow.on('ready-to-show', () => {
@@ -71,7 +72,7 @@ function createWindow() {
 			// const list = getMarks();
 			// console.log('performance:', JSON.stringify(list, null, 2));
 		} catch (err) {
-			console.log(err);
+			electronLog.error(err);
 		}
 
 		performanceEnd();
