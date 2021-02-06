@@ -1,4 +1,6 @@
 # React Admin Template
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Funinge%2Freact-admin-template.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Funinge%2Freact-admin-template?ref=badge_shield)
+
 
 自用 React 项目开发模板，本分支作为项目快速启动模板，不会过多提交代码，只提供基础模板。
 默认使用`TypeScript`开发，如若支持`JavaScript`，修改`tsconfig.json`中`allowJs: true`。
@@ -136,3 +138,6 @@
 
 * 主进程代码修改后如何才能像渲染进程代码一样热加载，而不是每次重新启动程序
 * 添加electron安装包更新功能
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Funinge%2Freact-admin-template.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Funinge%2Freact-admin-template?ref=badge_large)
